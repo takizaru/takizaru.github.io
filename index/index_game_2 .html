@@ -5,40 +5,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/styles/style.css">
-
-    <title>Document</title>
-    <style>
-      
-        .card1{
-            background-image: url('/image/фон\ 2.png');
-
-        }
-      .card1>img{
-        height: 20px;
-        width: 400px;
-      }
-      .card2{
-            background-image: url('/image/фон\ 2.png');
-
-        }
-      .card2>img{
-        height: 20px;
-        width: 400px;
-      }
-    </style>
+    <link rel="stylesheet" href="/styles/style_game_2.css">
+    <title>Korean Sentence Builder</title>
+   
 </head>
 
 <body>
     <header>
         <div class="container">
+            <div class="burger-menu" id="burgerMenu">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
             <img class="logo" src="/image/logo krug.svg" alt="">
-            <nav class="nav-header">
+            <nav class="nav-header" id="navHeader">
                 <ul class="ul-header">
                     <li class="li-header"> <a href="" class="a-header">онлайн - переводчик</a></li>
-                    <!-- <li class="li-header"> <a href="">подарок другу</a></li> -->
                     <li class="li-header"> <a href="" class="a-header">контакты</a></li>
                     <li class="li-header"> <a href="" class="a-header">светлая тема</a></li>
-                    <!-- сделать переключатель на темную тему -->
                 </ul>
             </nav>
             <a href="" class="user"> <img class="lk" src="/image/userrblur.svg" alt=""></a>
@@ -46,51 +31,35 @@
     </header>
     <main>
         <div class="container">
-            <div class="baner">
-                <h1>сайт разработан для всех желающих изучать корейский язык</h1>
-            </div>
-            <div class="box">
-                <div class="card1">
-                    <div class="btn-vibor">
-                        <a href="/index/indexalfavit2.html" class="a-card">алфавит</a>
+            <div class="game4">
+            <div class="card">
+                <h3>конструктор предложений</h3>
+                <div class="sentence" id="sentence"></div>
+                <!-- <button id="playButton">▶️ Проиграть предложение</button> -->
+                <button id="playButton">
+                    <img src="/image/player - blue.png" alt="Проиграть предложение">
+                </button>
+                <div class="game" id="game">
+                    <div class="build-sentence" id="buildSentence"></div>
+                    <button id="checkButton">Проверить</button>
+                    <div id="result"></div>
+                    <div class="nextButton">
+                        <button id="prevButton" style="display:none;"> <img class="prev-icon" src="/image/iconl.png" alt="Назад"></button>
+                        <button id="nextButton" style="display:none;"> <img src="/image/iconr.png" alt="Следующее предложение"></button>
                     </div>
-                    <div class="btn-vibor">
-                        <a href="/index_chitat1_zvuk.html" class="a-card">правила чтения</a>
-
-                    </div>
-                    <div class="btn-vibor">
-                        <a href="/index_priglasit_ofisial.html" class="a-card">уроки</a>
-                    </div>
-
-                    <div class="btn-proba">
-                        <a href="/index/indexalfavit2.html" class="a-card">попробовать бесплатно</a>
-                    </div>
-                </div>
-                <div class="card2">
-                    <div class="btn-vibor">
-                        <a href="/index_number.html" class="a-card">числительные</a>
-                    </div>
-                    <div class="btn-vibor">
-                        <a href="/index/index_slovar_1.html" class="a-card">набор слов</a>
-                    </div>
-                    <div class="btn-vibor">
-                        <a href="/index/index_game_1.html" class="a-card">упражнения</a>
-                    </div>
-
-                    <div class="btn-proba">
-                        <a href="/index/indexalfavit2.html" class="a-card">попробовать бесплатно</a>
-                    </div>
-
                 </div>
             </div>
         </div>
+        </div>
     </main>
-
+    <div class="perehod">
+        <a href="/index/index_game_1.html"><img src="/image/vlevo2.svg" alt=""></a>
+        <a href="/index/index_game3_kor-rus.html"><img src="/image/vpravo2.svg" alt=""></a>
+    </div>
     <footer>
         <section class="footer container">
-
-            <address >
-                <div class="footer1"> 
+            <address>
+                <div class="footer1">
                     <div class="mail">
                         <p>anastasiya3000@yandex.ru</p>
                     </div>
@@ -99,47 +68,44 @@
                         <p>8-925-685-52-39 </p>
                     </div>
                     <div class="footer-icon">
-
                         <a href="" class="social-icon"> <img src="/image/telegram_icon 1.svg" alt=""></a>
                         <a href="" class="social-icon"> <img src="/image/skype_icon 1.svg" alt=""></a>
-                        <!-- <a href="" class="social"><img src="image/viber_icon 1.svg" alt=""></a> -->
                         <a href="" class="social-icon"><img src="/image/whatsapp_green.png" alt=""></a>
                         <a href="" class="social-icon"> <img src="/image/license.svg" alt=""></a>
                     </div>
+                    <div class="copyright">
+                        <img id="copyright" src="/image/Copyright2 _ blue.svg" alt="copyright">
+                        <p>takiza, 2025</p>
+                    </div>
                 </div>
-
             </address>
             <div class="footer2">
                 <nav class="nav1-footer">
                     <ul-footer>
                         <li class="li-footer"> <a href="" class="a-footer"><b>Политика конфиденциальности</b></a></li>
                         <li class="li-footer"><a href="" class="a-footer"><b>Пользовательское соглашение</b></a></li>
-                        </ul>
+                    </ul>
                 </nav>
                 <nav class="nav2-footer">
                     <ul-footer>
-                       
                         <li class="li-footer"> <a href="" class="a-footer"><b>Договор оферты</b></a></li>
                         <li class="li-footer"> <a href="" class="a-footer"><b>Правила оплаты</b></a></li>
-                      </ul>
+                    </ul>
                 </nav>
                 <nav class="nav3-footer">
                     <ul-footer>
-                       <li class="li-footer"> <a href="" class="a-footer"><b>Согласие с рассылкой</b></a></li>
+                        <li class="li-footer"> <a href="" class="a-footer"><b>Согласие с рассылкой</b></a></li>
                         <li class="li-footer"> <a href="" class="a-footer"><b>Положение о защите персональных данных</b></a></li>
-
                     </ul>
                 </nav>
             </div>
-            <div class="copyright">
-
-                <img id="copyright" src="/image/Copyright2 _ blue.svg" alt="copyright">
-                <p>takiza, 2025</p>
-            </div>
         </section>
-
     </footer>
 
+    <script src="/scripts/script_game2.js"></script>
 </body>
 
 </html>
+
+
+    

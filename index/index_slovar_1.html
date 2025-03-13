@@ -4,27 +4,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/styles/style.css">
-
-    <title>Document</title>
+    <title>Korean Words Practice</title>
+    <link rel="stylesheet" href="/styles/style_slovar1.css">
     <style>
-      
-        .card1{
-            background-image: url('/image/фон\ 2.png');
+    
 
-        }
-      .card1>img{
-        height: 20px;
-        width: 400px;
-      }
-      .card2{
-            background-image: url('/image/фон\ 2.png');
 
+        /* ОЗВУЧКА */
+        .word-window {
+            width: 400px;
+            height: 300px;
+            background-color: rgba(201, 201, 72, 0.737);
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            margin: 20px auto;
+            position: relative;
+            margin-bottom: 100px;
         }
-      .card2>img{
-        height: 20px;
-        width: 400px;
-      }
+
+        .word-display {
+            margin-top: 20px;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .audio-icon {
+            margin-top: 20px;
+            cursor: pointer;
+        }
+
+        .translation-box {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border-radius: 10px;
+            margin-top: 20px;
+            font-size: 20px;
+        }
+
+        .navigation-buttons {
+            margin-top: 20px;
+        }
+
+        .navigation-buttons button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 50px;
+        }
     </style>
 </head>
 
@@ -35,62 +73,38 @@
             <nav class="nav-header">
                 <ul class="ul-header">
                     <li class="li-header"> <a href="" class="a-header">онлайн - переводчик</a></li>
-                    <!-- <li class="li-header"> <a href="">подарок другу</a></li> -->
                     <li class="li-header"> <a href="" class="a-header">контакты</a></li>
                     <li class="li-header"> <a href="" class="a-header">светлая тема</a></li>
-                    <!-- сделать переключатель на темную тему -->
                 </ul>
             </nav>
             <a href="" class="user"> <img class="lk" src="/image/userrblur.svg" alt=""></a>
         </div>
     </header>
+
     <main>
-        <div class="container">
-            <div class="baner">
-                <h1>сайт разработан для всех желающих изучать корейский язык</h1>
+
+       
+
+        <div class="word-window">
+            <div class="word-display" id="korean-word">안녕하세요</div>
+            <div class="audio-icon" onclick="playAudio()">
+                <img src="https://cdn-icons-png.flaticon.com/512/727/727245.png" alt="Play" width="50">
             </div>
-            <div class="box">
-                <div class="card1">
-                    <div class="btn-vibor">
-                        <a href="/index/indexalfavit2.html" class="a-card">алфавит</a>
-                    </div>
-                    <div class="btn-vibor">
-                        <a href="/index_chitat1_zvuk.html" class="a-card">правила чтения</a>
-
-                    </div>
-                    <div class="btn-vibor">
-                        <a href="/index_priglasit_ofisial.html" class="a-card">уроки</a>
-                    </div>
-
-                    <div class="btn-proba">
-                        <a href="/index/indexalfavit2.html" class="a-card">попробовать бесплатно</a>
-                    </div>
-                </div>
-                <div class="card2">
-                    <div class="btn-vibor">
-                        <a href="/index_number.html" class="a-card">числительные</a>
-                    </div>
-                    <div class="btn-vibor">
-                        <a href="/index/index_slovar_1.html" class="a-card">набор слов</a>
-                    </div>
-                    <div class="btn-vibor">
-                        <a href="/index/index_game_1.html" class="a-card">упражнения</a>
-                    </div>
-
-                    <div class="btn-proba">
-                        <a href="/index/indexalfavit2.html" class="a-card">попробовать бесплатно</a>
-                    </div>
-
-                </div>
+            <div class="translation-box" id="translation-box">Здравствуйте</div>
+            <div class="navigation-buttons">
+                <button onclick="previousWord()">Назад</button>
+                <button onclick="nextWord()">Следующее</button>
             </div>
         </div>
     </main>
-
+    <div class="perehod">
+        <a href="/index.html"><img src="/image/vlevo2.svg" alt=""></a>
+        <a href="/index.html"><img src="/image/vpravo2.svg" alt=""></a>
+    </div>
     <footer>
         <section class="footer container">
-
-            <address >
-                <div class="footer1"> 
+            <address>
+                <div class="footer1">
                     <div class="mail">
                         <p>anastasiya3000@yandex.ru</p>
                     </div>
@@ -99,47 +113,41 @@
                         <p>8-925-685-52-39 </p>
                     </div>
                     <div class="footer-icon">
-
                         <a href="" class="social-icon"> <img src="/image/telegram_icon 1.svg" alt=""></a>
                         <a href="" class="social-icon"> <img src="/image/skype_icon 1.svg" alt=""></a>
-                        <!-- <a href="" class="social"><img src="image/viber_icon 1.svg" alt=""></a> -->
                         <a href="" class="social-icon"><img src="/image/whatsapp_green.png" alt=""></a>
                         <a href="" class="social-icon"> <img src="/image/license.svg" alt=""></a>
                     </div>
                 </div>
-
             </address>
             <div class="footer2">
                 <nav class="nav1-footer">
-                    <ul-footer>
+                    <ul class="ul-footer">
                         <li class="li-footer"> <a href="" class="a-footer"><b>Политика конфиденциальности</b></a></li>
                         <li class="li-footer"><a href="" class="a-footer"><b>Пользовательское соглашение</b></a></li>
-                        </ul>
+                    </ul>
                 </nav>
                 <nav class="nav2-footer">
-                    <ul-footer>
-                       
+                    <ul class="ul-footer">
                         <li class="li-footer"> <a href="" class="a-footer"><b>Договор оферты</b></a></li>
                         <li class="li-footer"> <a href="" class="a-footer"><b>Правила оплаты</b></a></li>
-                      </ul>
+                    </ul>
                 </nav>
                 <nav class="nav3-footer">
-                    <ul-footer>
-                       <li class="li-footer"> <a href="" class="a-footer"><b>Согласие с рассылкой</b></a></li>
+                    <ul class="ul-footer">
+                        <li class="li-footer"> <a href="" class="a-footer"><b>Согласие с рассылкой</b></a></li>
                         <li class="li-footer"> <a href="" class="a-footer"><b>Положение о защите персональных данных</b></a></li>
-
                     </ul>
                 </nav>
             </div>
             <div class="copyright">
-
                 <img id="copyright" src="/image/Copyright2 _ blue.svg" alt="copyright">
                 <p>takiza, 2025</p>
             </div>
         </section>
-
     </footer>
 
+    <script src="/scripts/script_slovar1.js"></script>
 </body>
 
 </html>
