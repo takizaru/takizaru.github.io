@@ -227,7 +227,7 @@ button:hover {
 @media (max-width: 900px) {
     .card {
         font-size: 24px;
-        height: 30vh;
+        
     }
 
     .build-sentence {
@@ -257,7 +257,7 @@ button:hover {
 @media (max-width: 700px) {
     .card {
         font-size: 18px;
-        height: 20vh;
+        
     }
 
     .build-sentence {
@@ -327,7 +327,7 @@ button:hover {
 @media (max-width: 600px) {
     .card {
         font-size: 16px;
-        height: 10vh;
+        
     }
 
     .build-sentence {
