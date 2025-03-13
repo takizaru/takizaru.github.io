@@ -92,7 +92,7 @@ const words = [
     { korean: "당신", translation: "Вы" },
     { korean: "대학", translation: "институт" },
     { korean: "대학교", translation: "университет" },
-    { korean: "돈", translation: "деньгим" },
+    { korean: "돈", translation: "деньги" },
     { korean: "뛰다", translation: "прыгать, подпрыгивать; скакать; бежать" },
     { korean: "라디오", translation: "радио" },
     { korean: "러시아", translation: "Россия" },
