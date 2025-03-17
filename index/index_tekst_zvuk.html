@@ -5,9 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/styles/style_tekst_zvuk.css">
-    <link rel="stylesheet" href="/styles/style_game_3.css">
-    <title>Korean to Russian Sentence Builder</title>
-    
+    <title>Korean Sentence Practice</title>
+    <style>
+ 
+    </style>
 </head>
 
 <body>
@@ -19,7 +20,7 @@
                 <div></div>
             </div>
             <img class="logo" src="/image/logo krug.svg" alt="">
-            <nav class="nav-header" id="navHeader">
+            <nav class="nav-burger" id="navBurger">
                 <ul class="ul-header">
                     <li class="li-header"> <a href="" class="a-header">онлайн - переводчик</a></li>
                     <li class="li-header"> <a href="" class="a-header">контакты</a></li>
@@ -31,35 +32,42 @@
     </header>
     <main>
         <div class="container">
-            <div class="game3">
-                <div class="card">
-                  
-                    <h5>конструктор предложений</h5>
-                    <div class="sentence" id="sentence">
-                        <!-- Корейское предложение и иконка для озвучки -->
-                        <span id="koreanSentence"></span>
-                        <img id="koreanspeak-icon" src="/image/Speaker.svg" alt="Озвучить">
+            <h1>прослушать текст и перевести</h1>
+            <div class="text">
+                <!-- Левая панель -->
+                <div class="left-panel">
+                    <article id="koreanText"></article>
+                    <div class="player">
+                        <img src="/image/player - blue.png" alt="Проиграть текст" id="playButton">
                     </div>
-                    <!-- Кнопка "Проиграть предложение" заменена на изображение -->
-                    <button id="playButton">
-                        <img src="/image/player - blue.png" alt="Проиграть предложение">
-                    </button>
-                    <div class="game" id="game">
-                        <div class="build-sentence" id="buildSentence"></div>
-                        <button id="checkButton">Проверить</button>
-                        <div id="result"></div>
-                        <div class="nextButton">
-                            <!-- Иконка возврата к предыдущему предложению -->
-                            <button id="prevButton" style="display:none;"> <img class="prev-icon" src="/image/iconl.png" alt="Назад"></button>
-                            <button id="nextButton" style="display:none;"> <img src="/image/iconr.png" alt="Следующее предложение"></button>
-                        </div>
+                    <div class="beforeButton">
+                        <button id="beforeButton" style="display:none;"> <img src="/image/iconl.png" alt="Предыдущий текст"></button>
                     </div>
+                    <div class="nextButton">
+                        <button id="nextButton" style="display:none;"> <img src="/image/iconr.png" alt="Следующий текст"></button>
+                    </div>
+                </div>
+
+                <!-- Правая панель -->
+                <div class="right-panel">
+                    <h2>Словарь</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Корейский</th>
+                                <th>Русский</th>
+                            </tr>
+                        </thead>
+                        <tbody id="vocabularyTable">
+                            <!-- Строки таблицы будут добавлены через JavaScript -->
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </main>
     <div class="perehod">
-        <a href="/index_game_2.html"><img src="/image/vlevo2.svg" alt=""></a>
+        <a href="/index.html"><img src="/image/vlevo2.svg" alt=""></a>
         <a href="/index.html"><img src="/image/vpravo2.svg" alt=""></a>
     </div>
     <footer>
@@ -78,6 +86,10 @@
                         <a href="" class="social-icon"> <img src="/image/skype_icon 1.svg" alt=""></a>
                         <a href="" class="social-icon"><img src="/image/whatsapp_green.png" alt=""></a>
                         <a href="" class="social-icon"> <img src="/image/license.svg" alt=""></a>
+                    </div>
+                    <div class="copyright">
+                        <img id="copyright" src="/image/Copyright2 _ blue.svg" alt="copyright">
+                        <p>takiza, 2025</p>
                     </div>
                 </div>
             </address>
@@ -101,18 +113,10 @@
                     </ul>
                 </nav>
             </div>
-            <div class="copyright">
-                <img id="copyright" src="/image/Copyright2 _ blue.svg" alt="copyright">
-                <p>takiza, 2025</p>
-            </div>
         </section>
     </footer>
 
-    <script src="/scripts/script_game_3.js"></script>
+    <script src="/scripts/script_tekst_zvuk.js"></script>
 </body>
 
 </html>
-
-
-
-    
