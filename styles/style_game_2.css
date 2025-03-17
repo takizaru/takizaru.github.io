@@ -20,7 +20,45 @@ body {
     margin: 0 auto;
     padding: 20px;
 }
+/* #playButton {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    width: auto;
+}
 
+#playButton img {
+    width: 40px;
+    height: 40px;
+}
+
+#checkButton {
+    width: 150px;
+    margin: 0 auto;
+} */
+
+.perehod img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50px;
+    border: 1px solid rgb(49, 36, 105);
+}
+
+.perehod>a:hover {
+    transform: scale(1.5);
+
+}
+
+.perehod {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-self: flex-end;
+    padding: 0 120px 0 120px;
+    margin-bottom: 20px;
+
+}
 .card {
     background-color: #fff;
     padding: 20px;
@@ -46,11 +84,15 @@ h5:hover {
     color: rgba(0, 0, 0, 1);
     transform: scale(1.05);
 }
-
 .sentence, .game {
     margin-bottom: 20px;
 }
-
+.sentence{
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 30px;
+}
 .build-sentence {
     display: flex;
     align-items: center;
@@ -77,18 +119,7 @@ input {
 input::placeholder {
     font-size: 14px;
 }
-#playButton {
-background: none; /* Убираем фон кнопки */
-border: none; /* Убираем границу */
-padding: 0; /* Убираем отступы */
-cursor: pointer; /* Курсор в виде указателя */
-width: auto; /* Ширина по содержимому */
-}
 
-#playButton img {
-width: 40px; /* Размер изображения */
-height: 40px;
-}
 button {
     padding: 10px 20px;
     border: none;
@@ -97,14 +128,25 @@ button {
     color: #fff;
     cursor: pointer;
 }
-
+#koreanspeak-icon{
+width: 40px;
+height: 40px;
+}
 button:hover {
     background-color: #848d62d1;
 }
 
 #playButton {
-    width: calc(50% - 40px);
-    margin: 0 auto;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    width: auto;
+}
+
+#playButton img {
+    width: 40px;
+    height: 40px;
 }
 
 #checkButton {
@@ -128,7 +170,6 @@ button:hover {
 
 #nextButton, #prevButton {
     display: none;
-    margin-top: 20px;
 }
 
 #nextButton>img, #prevButton>img {
@@ -147,7 +188,6 @@ button:hover {
     flex-direction: column;
     gap: 20px;
 }
-
 /* Бургер-меню */
 .burger-menu {
     display: none;
