@@ -20,7 +20,27 @@ body {
     margin: 0 auto;
     padding: 20px;
 }
+.perehod img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50px;
+    border: 1px solid rgb(49, 36, 105);
+}
 
+.perehod>a:hover {
+    transform: scale(1.5);
+
+}
+
+.perehod {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-self: flex-end;
+    padding: 0 120px 0 120px;
+    margin-bottom: 20px;
+
+}
 .card {
     background-color: #fff;
     padding: 20px;
@@ -227,7 +247,7 @@ button:hover {
 @media (max-width: 900px) {
     .card {
         font-size: 24px;
-        
+     
     }
 
     .build-sentence {
@@ -257,7 +277,7 @@ button:hover {
 @media (max-width: 700px) {
     .card {
         font-size: 18px;
-        
+       
     }
 
     .build-sentence {
