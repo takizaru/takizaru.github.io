@@ -26,11 +26,12 @@ document.addEventListener("DOMContentLoaded", function() {
                 { korean: "사자", russian: "лев" },
                 { korean: "곰", russian: "медведь" },
                 { korean: "타조", russian: "страус" },
+                { korean: "낙타", russian: "верблюд" },
                 { korean: "늑대", russian: "волк" }
             ]
         },
         {
-            korean: "오늘은 수요일입니다. 저녁 18 시 30 분에 친구들과 나는 카페에 갑니다. 우리는 이 카페를 정말로 좋아합니다.나는 이 카페에서 음악을 정말 좋아합니다. 정중한 웨이터가 일합니다.  가격은 비싸지 않습니다. 그리고 요리는 매우 맛있습니다.",
+            korean: "오늘은 수요일입니다. 저녁 18 시 30 분에 친구들과 나는 카페에 갑니다. 우리는 이 카페를 정말로 좋아합니다.나는 이 카페에서 음악을 정말 좋아한다. 정중한 웨이터가 일합니다.  가격은 비싸지 않습니다. 그리고 요리는 매우 맛이 있습니다.",
             // russian: "Это книга.",
             vocabulary: [
                 { korean: "오늘", russian: "сегодня" },
@@ -40,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 { korean: "카페", russian: "кафе" },
                 { korean: "정말", russian: "действительно" },
                 { korean: "좋아하다", russian: "нравиться" },
-                { korean: "음악", russian: "Книга" },
+                { korean: "음악", russian: "музыка" },
                 { korean: "정중한", russian: "вежливый" },
                 { korean: "웨이터", russian: "официант" },
                 { korean: "가격", russian: "цена" },
