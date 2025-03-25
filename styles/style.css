@@ -567,12 +567,7 @@ address {
         padding-top: 30px;
         gap: 20px;
     }
-    .card1 a:hover{
-        font-size:8px;
-    }
-    .card2 a:hover{
-        font-size:8px;
-    }
+    
     /* Уменьшаем кнопки */
     .btn-vibor, .btn-proba {
         width: 120px;
