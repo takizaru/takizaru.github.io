@@ -8,7 +8,7 @@
 
     <title>Document</title>
     <style>
-       
+
     </style>
 </head>
 
@@ -17,16 +17,21 @@
 <body>
     <header>
         <div class="container">
-            <img class="logo" src="/image/logo krug.svg" alt="">
-            <nav class="nav-header">
-                <ul class="ul-header">
-                    <li class="li-header"> <a href="" class="a-header">онлайн - переводчик</a></li>
-                    <li class="li-header"> <a href="" class="a-header">контакты</a></li>
-                    <li class="li-header"> <a href="" class="a-header">светлая тема</a></li>
-                </ul>
-            </nav>
-            <a href="" class="user"> <img class="lk" src="/image/userrblur.svg" alt=""></a>
+            <div class="burger-menu" id="burgerMenu">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <img class="logo" src="/image/logo krug.svg" alt="Логотип">
+            <a href="" class="user"> <img class="lk" src="/image/userrblur.svg" alt="Пользователь"></a>
         </div>
+        <nav class="nav-burger" id="navBurger">
+            <ul class="ul-header">
+                <li class="li-header"> <a href="" class="a-header">онлайн - переводчик</a></li>
+                <li class="li-header"> <a href="" class="a-header">контакты</a></li>
+                <li class="li-header"> <a href="" class="a-header">светлая тема</a></li>
+            </ul>
+        </nav>
     </header>
     <main>
         <div class="container">
@@ -36,16 +41,16 @@
             <div class="box">
                 <div class="card1">
                     <div class="btn-vibor">
-                        <a href="/index/indexalfavit2.html" class="a-card">алфавит</a>
+                        <a href="/index/index_assimil_kor.html" class="a-card">алфавит</a>
                     </div>
                     <div class="btn-vibor">
                         <a href="/index/index_assimil_kor.html" class="a-card">правила чтения</a>
                     </div>
                     <div class="btn-vibor">
-                        <a href="/index_game_1.html" class="a-card">уроки</a>
+                        <a href="" class="a-card">уроки</a>
                     </div>
                     <div class="btn-proba">
-                        <a href="/index/indexalfavit2.html" class="a-card">попробовать бесплатно</a>
+                        <a href="/index/index_slovar_1.html" class="a-card">попробовать бесплатно</a>
                     </div>
                 </div>
                 <div class="card2">
@@ -59,7 +64,7 @@
                         <a href="/index/index_game_1.html" class="a-card">упражнения</a>
                     </div>
                     <div class="btn-proba">
-                        <a href="/index/indexalfavit2.html" class="a-card">попробовать бесплатно</a>
+                        <a href="/index/index_slovar_1.html" class="a-card">попробовать бесплатно</a>
                     </div>
                 </div>
             </div>
@@ -70,12 +75,13 @@
         <section class="footer container">
             <address>
                 <div class="footer1">
-                    <div class="mail">
-                        <p>anastasiya3000@yandex.ru</p>
-                    </div>
+                    
                     <div class="tel">
                         <img src="/image/tel_blue.svg" alt="">
                         <p>8-925-685-52-39 </p>
+                    </div>
+                    <div class="mail">
+                        <p>anastasiya3000@yandex.ru</p>
                     </div>
                     <div class="footer-icon">
                         <a href="" class="social-icon"> <img src="/image/telegram_icon 1.svg" alt=""></a>
@@ -84,27 +90,35 @@
                         <a href="" class="social-icon"> <img src="/image/license.svg" alt=""></a>
                     </div>
                 </div>
+
+
+                <div class="footer2">
+                    <nav class="nav1-footer">
+                        <ul class="ul-footer">
+                            <div class="f-li">
+                                <li class="li-footer"> <a href="" class="a-footer"><b>Правила оплаты</b></a></li>
+                                <li class="li-footer"> <a href="" class="a-footer"><b>Договор оферты</b></a></li>
+                                <li class="li-footer"> <a href="" class="a-footer"><b>Согласие с рассылкой</b></a></li>
+                                <li class="li-footer"><a href="" class="a-footer"><b>Пользовательское соглашение</b></a>
+                                </li>
+                                <li class="li-footer"> <a href="" class="a-footer"><b>Политика конфиденциальности</b></a>
+                                </li>
+                                <li class="li-footer"> <a href="" class="a-footer"><b>Положение о защите персональных
+                                            данных</b></a></li>
+                            </div>
+                        </ul>
+                    </nav>
+                </div>
             </address>
-            <div class="footer2">
-                <nav class="nav1-footer">
-                    <ul>
-                        <li> <a href="" class="a-footer"><b>Договор оферты</b></a></li>
-                        <li> <a href="" class="a-footer"><b>Правила оплаты</b></a></li>
-                     <li> <a href="" class="a-footer"><b>Согласие с рассылкой</b></a></li>
-                     <li><a href="" class="a-footer"><b>Пользовательское соглашение</b></a></li>
-                        <li> <a href="" class="a-footer"><b>Политика конфиденциальности</b></a></li>
-                       
-                       
-                        <li> <a href="" class="a-footer"><b>Положение о защите персональных данных</b></a></li>
-                    </ul>
-                </nav>
-            </div>
+        </section>
+           
             <div class="copyright">
                 <img id="copyright" src="/image/Copyright2 _ blue.svg" alt="copyright">
                 <p>takiza, 2025</p>
             </div>
-        </section>
+      
     </footer>
+    <script src="/scripts/script_svipe_nav.bg.js"></script>
 </body>
 
 </html>
