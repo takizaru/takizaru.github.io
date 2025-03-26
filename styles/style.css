@@ -513,7 +513,10 @@ h1 {
     height: 54px; /* Уменьшено в 2 раза */
     transition: transform 0.3s;
 }
-
+a.a-card:hover{
+    color: rgb(4, 1, 48);
+    font-size: 8px;
+}
 .lk {
     width: 27px; /* Уменьшено в 2 раза */
     height: 27px; /* Уменьшено в 2 раза */
