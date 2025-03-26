@@ -536,6 +536,11 @@ h1 {
     /* остальные стили */
 }
 
+.card1 a:hover, .card2 a:hover {
+    color: rgb(4, 1, 48);
+    font-size: 10px;
+}
+
 /* Подвал */
 footer {
     text-align: center;
