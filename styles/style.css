@@ -571,13 +571,13 @@ address {
     /* Уменьшаем кнопки */
     .btn-vibor, .btn-proba {
         width: 120px;
-        height: 3px;
+        height: 30px;
         font-size: 14px;
     }
     
     /* Уменьшаем шрифты */
     a.a-card {
-        font-size: 10px;
+        font-size: 8px;
     }
     
     h1 {
