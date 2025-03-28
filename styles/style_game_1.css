@@ -48,7 +48,7 @@
         }
 
         #task-text {
-            font-size: 24px;
+            font-size: 18px;
             font-weight: bold;
         }
 
@@ -72,7 +72,7 @@
             cursor: pointer;
             background-color: #f0f0f0;
             user-select: none;
-            font-size: 18px;
+            font-size: 10px;
         }
 
         #sentence-builder {
@@ -91,7 +91,7 @@
 
         #feedback {
             margin-top: 20px;
-            font-size: 24px;
+            font-size: 18px;
             display: flex;
             align-items: center;
             gap: 10px;
@@ -101,6 +101,7 @@
             display: flex;
             gap: 10px;
             margin-top: 20px;
+            flex-direction: row;
         }
 
         .buttons button {
@@ -111,6 +112,7 @@
             cursor: pointer;
             font-size: 16px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            flex-direction: row;
         }
 
         .buttons button:hover {
@@ -123,39 +125,100 @@
             cursor: pointer;
         }
 
-        /* Бургер-меню */
-        .burger-menu {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            gap: 5px;
-        }
-
-        .burger-menu div {
-            width: 25px;
-            height: 3px;
-            background-color: #000;
-        }
-
-        .nav-header.active {
+          /* Добавляем стили для правильного отображения */
+          #sentence-builder {
             display: flex;
-            flex-direction: column;
-            position: absolute;
-            top: 60px;
-            left: 0;
-            background-color: #fff;
-            width: 100%;
+            flex-wrap: wrap;
+            min-height: 60px;
             padding: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .nav-header.active .ul-header {
-            flex-direction: column;
-        }
-
-        .nav-header.active .li-header {
+            background-color: #fff9c4;
+            border-radius: 8px;
             margin: 10px 0;
+            gap: 5px;
+            align-items: center;
         }
+        
+        #sentence-builder.combined {
+            flex-direction: row;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+        
+        .word {
+            display: inline-flex;
+            padding: 8px 12px;
+            background-color: #e3f2fd;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s;
+            height: 40px;
+            box-sizing: border-box;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .word.combined {
+            background-color: #bbdefb;
+            white-space: nowrap;
+            width: auto;
+            min-width: fit-content;
+        }
+
+       /* Бургер-меню */
+.burger-menu {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+    z-index: 1000;
+}
+
+.burger-menu div {
+    width: 25px;
+    height: 3px;
+    background-color: #000;
+}
+
+.nav-burger {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 250px;
+    height: 100vh;
+    background-color: rgba(200, 186, 141, 0.95);
+    transition: left 0.3s ease;
+    z-index: 999;
+    padding-top: 80px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.nav-burger.active {
+    left: 0;
+}
+
+.nav-burger .ul-header {
+    list-style: none;
+    padding: 20px;
+    margin: 0;
+    flex-direction: column;
+}
+
+.nav-burger .li-header {
+    margin-bottom: 20px;
+}
+
+.nav-burger .a-header {
+    color: hsla(47, 18%, 20%, 0.814);
+    text-decoration: none;
+    font-size: 18px;
+    display: block;
+}
+
+.nav-burger .a-header:hover {
+    color: rgb(4, 1, 48);
+}
 
       /* Медиазапросы */
 @media (max-width: 950px) {
@@ -166,7 +229,7 @@
         width: 500px;
     }
     .buttons {
-        flex-direction: column;
+        /* flex-direction: column; */
         align-items: center;
         gap: 10px;
     }
@@ -249,7 +312,7 @@
         font-size: 9px;
     }
     .game1{
-        width: 300px;
+        width: 400px;
     }
 
     .buttons #prev-btn img,
@@ -257,11 +320,24 @@
         width: 10px;
         height: 10px;
     }
+    .task-text{
+        font-size: 10px;
+    }
+    .word{
+        font-size: 10px;
+    }
+    #feedback{
+        font-size: 8px;
+    }
+    #check-btn{
+        font-size: 8px;
+        text-align: center;
+    }
 }
 
 @media (max-width: 400px) {
     .game1{
-        width: 200px;
+        width: 300px;
     }
     .buttons button {
         font-size: 8px;
