@@ -1,0 +1,306 @@
+.container,
+.box {
+    width: 100%;
+    max-width: 1288px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+/* Header styles */
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #c8ba8d;
+    padding: 20px 110px;
+}
+
+.left {
+    flex: 1;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.right {
+    flex: 1;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+/* Letters container */
+.letters-container {
+    display: flex;
+    gap: 40px;
+
+}
+
+.alfavit, .transcription {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.korbukva, .transition {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    width: 150px;
+    border: 1px solid rgba(14, 80, 106, 1);
+    box-shadow: 10px 10px 4px 0px rgba(140, 221, 233, 0.25);
+    border-radius: 10px;
+    padding: 20px;
+    cursor: pointer;
+}
+
+.bukva {
+    font-size: 40px;
+    font-weight: 900;
+    text-align: center;
+    font-family: "Noto Sans KR", serif;
+}
+
+.bukva:hover {
+    background-color: #e7eaf3;
+}
+
+/* Right section styles */
+.grammatika {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.pravilo, .poyas {
+    border: 1px solid rgba(14, 80, 106, 1);
+    box-shadow: 10px 10px 4px 0px rgba(140, 221, 233, 0.25);
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+}
+
+.zalivka {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.animation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+}
+
+.animation > * {
+    border: 1px solid rgba(14, 80, 106, 1);
+    box-shadow: 10px 10px 4px 0px rgba(140, 221, 233, 0.25);
+    padding: 30px;
+    border-radius: 10px;
+}
+
+/* Footer styles */
+footer {
+    margin-top: auto;
+}
+
+address {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.footer1,
+.footer2 {
+    flex: 1;
+    min-width: 300px;
+}
+
+.footer-icon {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.copyright {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 20px;
+}
+
+.perehod {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+/* Responsive adaptations */
+@media (max-width: 1024px) {
+    header .container {
+        padding: 20px 50px;
+    }
+}
+
+@media (max-width: 900px) {
+    .box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 30px;
+    }
+    
+    .grammatika {
+        order: -1;
+        width: 100%;
+        max-width: 600px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 0 20px;
+    }
+    
+    .pravilo {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .left, .right {
+        width: 100%;
+        max-width: 600px;
+    }
+    
+    .letters-container {
+        margin-top: 0;
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .alfavit {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+    
+    .transcription {
+        display: none;
+    }
+    
+    .korbukva {
+        height: 60px;
+        width: 60px;
+        padding: 10px;
+    }
+    
+    .bukva {
+        font-size: 30px;
+    }
+    
+    .left {
+        order: 1;
+    }
+    
+    .zalivka {
+        order: 2;
+        margin-top: 30px;
+    }
+    
+    .poyas {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    header .container {
+        padding: 15px 30px;
+    }
+    
+    .korbukva {
+        height: 55px;
+        width: 55px;
+    }
+}
+
+@media (max-width: 600px) {
+    header .container {
+        padding: 15px 20px;
+    }
+    
+    .korbukva {
+        height: 50px;
+        width: 50px;
+    }
+    
+    .bukva {
+        font-size: 25px;
+    }
+    
+    .zalivka {
+        margin-top: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .korbukva {
+        height: 45px;
+        width: 45px;
+    }
+    
+    .bukva {
+        font-size: 22px;
+    }
+}
+
+@media (max-width: 360px) {
+    .korbukva {
+        height: 40px;
+        width: 40px;
+        padding: 8px;
+    }
+    
+    .bukva {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 300px) {
+    .korbukva {
+        height: 35px;
+        width: 35px;
+        padding: 5px;
+    }
+    
+    .bukva {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 250px) {
+    .korbukva {
+        height: 30px;
+        width: 30px;
+        padding: 3px;
+    }
+    
+    .bukva {
+        font-size: 16px;
+    }
+    
+    .footer-icon {
+        flex-direction: column;
+        align-items: center;
+    }
+}
