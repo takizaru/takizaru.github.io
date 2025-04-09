@@ -58,6 +58,42 @@ const dictionaries = {
                 { korean: "오늘", translation: "сегодня" },
                 { korean: "어제", translation: "вчера" },
                 { korean: "내일", translation: "завтра" }
+            ],
+            slovar6: [
+                { korean: "과연", translation: "неужели; действительно" },
+                { korean: "물론", translation: "конечно" },
+                { korean: "늘", translation: "всегда; постоянно" },
+                { korean: "결코", translation: "ни в коем случае" },
+                { korean: "응당", translation: "непременно; конечно" },
+                { korean: "응", translation: "да; ладно" },
+                { korean: "설마", translation: "вряд ли, едва ли" },
+                { korean: "정말", translation: "честное слово; в самом деле" },
+                { korean: "아무쪼록", translation: "по мере возможности" },
+                { korean: "하물며", translation: "тем более; тем более, что" }
+            ],
+            slovar7: [
+                { korean: "그리고", translation: "и" },
+                { korean: "그러나", translation: "а; но; однако" },
+                { korean: "그러므로", translation: "поэтому" },
+                { korean: "그러면", translation: "итак, в таком случае, (и) тогда" },
+                { korean: "그런데", translation: " однако (же)" },
+                { korean: "오히려", translation: "наоборот, напротив; скорее всего" },
+                { korean: "더구나", translation: "более того, вдобавок,кроме того, к тому же" },
+                { korean: "그러면", translation: "итак,в таком случае, (и) тогда" },
+                { korean: "혹은", translation: "или; либо" },
+                { korean: "또는", translation: "или; либо" }
+            ],
+            slovar8: [
+                { korean: "또", translation: "снова, опять; и, еще" },
+                { korean: "또다시", translation: "снова, еще раз, опять" },
+                { korean: "천만에", translation: "что вы; не за что; не стоит благодарности" },
+                { korean: "천만", translation: "10 миллионов" },
+                { korean: "얼마", translation: "сколько; немного" },
+                { korean: "언제", translation: "когда" },
+                { korean: "언제나", translation: "всегда, в любое время" },
+                { korean: "어느", translation: "какой, который; какой - то; когда - то" },
+                { korean: "어느새", translation: "незаметно; как - то, в какой - то момент" },
+                { korean: "아주", translation: "очень, совершенно" }
             ]
 };
 
