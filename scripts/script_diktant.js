@@ -48,6 +48,103 @@ const dictionaries = {
                 { korean: "받다", translation: "брать; получать" }
             ],
             slovar5: [
+                { korean: "차", translation: "чай" },
+                { korean: "커피", translation: "кофе" },
+                { korean: "우유", translation: "молоко" },
+                { korean: "주스", translation: "сок" },
+                { korean: "음료", translation: "напиток" },
+                { korean: "마시다", translation: "пить" },
+                { korean: "먹다", translation: "кушать" },
+                { korean: "음식을 먹다", translation: "кушать еду" },
+                { korean: "밥", translation: "рис" },
+                { korean: "빵", translation: "хлеб" }
+            ],
+            slovar6: [
+                { korean: "물", translation: "вода" },
+                { korean: "국", translation: "суп" },
+                { korean: "과자", translation: "сладости" },
+                { korean: "피자", translation: "пицца" },
+                { korean: "햄버거", translation: "гамбургер" },
+                { korean: "치킨", translation: "курица" },
+                { korean: "케이크", translation: "торт" },
+                { korean: "고기", translation: "мясо" },
+                { korean: "생선", translation: "рыба" },
+                { korean: "스파게티", translation: "спагетти" }
+            ],
+            slovar7: [
+                { korean: "집", translation: "дом" },
+                { korean: "영화관", translation: "кинотеатр" },
+                { korean: "학교", translation: "школа" },
+                { korean: "슈퍼마켓", translation: "супермаркет" },
+                { korean: "호텔", translation: "отель" },
+                { korean: "식당", translation: "кафе, столовая" },
+                { korean: "병원", translation: "больница" },
+                { korean: "공원", translation: "парк" },
+                { korean: "회사", translation: "фирма" },
+                { korean: "공장", translation: "завод" }
+            ],
+            slovar8: [
+                { korean: "바지", translation: "брюки" },
+                { korean: "치마", translation: "юбка" },
+                { korean: "셔츠", translation: "рубашка" },
+                { korean: "정장", translation: "костюм" },
+                { korean: "청바지", translation: "джинсы" },
+                { korean: "반바지", translation: "шорты" },
+                { korean: "드레스, 원피스", translation: "платье" },
+                { korean: "블라우스", translation: "блузка" },
+                { korean: "입다", translation: "надевать (на тело)" },
+                { korean: "벗다", translation: "снимать (одежду, раздеваться)" }
+            ],
+            slovar9: [
+                { korean: "구두", translation: "ботинки" },
+                { korean: "신발", translation: "обувь" },
+                { korean: "운동화", translation: "кроссовки" },
+                { korean: "슬리퍼", translation: "тапочки" },
+                { korean: "하이힐", translation: "туфли (на высоких каблуках)" },
+                { korean: "신다", translation: "надевать (на ноги)" },
+                { korean: "옷을 갈아 입다", translation: "переодеться" },
+                { korean: "신발을 신다", translation: "носить обувь" },
+                { korean: "옷을 입다", translation: "носить одежду" },
+                { korean: "신발을 벗다", translation: "снять обувь" }
+            ],
+            // slovar5: [
+            //     { korean: "모자를 쓰다", translation: "носить шляпу" },
+            //     { korean: "안경을 썼다", translation: "надел очки" },
+            //     { korean: "메다", translation: "носить на плечах" },
+            //     { korean: "가방을 메다", translation: "носить сумку" },
+            //     { korean: "풀다", translation: "развязывать" },
+            //     { korean: "신발끈을 매다", translation: "завязать шнурки на обуви" },
+            //     { korean: "넥타이를 매었다", translation: "завязал (надел галстук)" },
+            //     { korean: "끼다", translation: "носить на руке" },
+            //     { korean: "반지를 끼다", translation: "носить кольцо" },
+            //     { korean: "장갑을 꼈다", translation: "надел перчатки" }
+            // ],
+            // slovar5: [
+            //     { korean: "빼다", translation: "снимать (украшения)" },
+            //     { korean: "귀걸이를 빼다", translation: "снимать сережки" },
+            //     { korean: "걸치다", translation: "надевать, набрасывать" },
+            //     { korean: "외투를 걸치다", translation: "надевать пальто" },
+            //     { korean: "차다", translation: "носить на конечностях (ремни, часы)" },
+            //     { korean: "시계를 차다", translation: "носить часы" },
+            //     { korean: "팔지를 찼다", translation: "надел браслет" },
+            //     { korean: "멋있다 ", translation: "стильный, замечательный, милый" },
+            //     { korean: "재미있다", translation: "веселый, интересный" },
+            //     { korean: "놀다", translation: "играть" }
+            // ],
+            
+            slovar10: [
+                { korean: "버스", translation: "автобус" },
+                { korean: "배", translation: "лодка, пароход" },
+                { korean: "택시", translation: "такси" },
+                { korean: "지하철", translation: "метро" },
+                { korean: "자동차", translation: "машина" },
+                { korean: "자전거", translation: "велосипед" },
+                { korean: "오토바이", translation: "мотоцикл" },
+                { korean: "비행기", translation: "самолет" },
+                { korean: "경찰차", translation: "полицейская машина" },
+                { korean: "구급차", translation: "скорая помощь" }
+            ],
+            slovar11: [
                 { korean: "월요일", translation: "понедельник" },
                 { korean: "화요일", translation: "вторник" },
                 { korean: "수요일", translation: "среда" },
@@ -59,7 +156,79 @@ const dictionaries = {
                 { korean: "어제", translation: "вчера" },
                 { korean: "내일", translation: "завтра" }
             ],
-            slovar6: [
+            slovar12: [
+                { korean: "일월", translation: "январь" },
+                { korean: "삼월", translation: "март" },
+                { korean: "오월", translation: "май" },
+                { korean: "유월", translation: "* июнь" },
+                { korean: "팔월", translation: "август" },
+                { korean: "시월", translation: "* октябрь" },
+                { korean: "구월", translation: "сентябрь" },
+                { korean: "십일월", translation: "ноябрь" },
+                { korean: "십이월", translation: "декабрь" },
+                { korean: "년", translation: "год" }
+            ],
+            slovar13: [
+                { korean: "시", translation: "час" },
+                { korean: "분", translation: "минута" },
+                { korean: "초", translation: "секунда" },
+                { korean: "아침", translation: "утро" },
+                { korean: "낮", translation: "день" },
+                { korean: "저녁", translation: "вечер" },
+                { korean: "밤", translation: "ночь" },
+                { korean: "새벽", translation: "рассвет" },
+                { korean: "반", translation: "половина (2 часа 30 минут)" },
+                { korean: "전", translation: "без (без 15 минут 9)" }
+            ],
+            slovar14: [
+                { korean: "머리", translation: "голова" },
+                { korean: "눈", translation: "глаз" },
+                { korean: "귀", translation: "ухо" },
+                { korean: "코", translation: "нос" },
+                { korean: "입", translation: "рот" },
+                { korean: "뺨", translation: "щека" },
+                { korean: "턱", translation: "подбородок" },
+                { korean: "머리가락", translation: "волосы" },
+                { korean: "몸", translation: "тело" },
+                { korean: "아프다", translation: "болеть" }
+            ],
+            slovar15: [
+                { korean: "목", translation: "шея" },
+                { korean: "어깨", translation: "плечо" },
+                { korean: "배", translation: "живот" },
+                { korean: "가슴", translation: "грудная клетка (грудь)" },
+                { korean: "팔", translation: "рука" },
+                { korean: "다리", translation: "нога" },
+                { korean: "손", translation: "кисть руки" },
+                { korean: "손가락", translation: "палец (руки)" },
+                { korean: "발", translation: "стопа" },
+                { korean: "발가락", translation: "палец (ноги)" }
+            ],
+            // slovar5: [
+            //     { korean: "무릎", translation: "колено" },
+            //     { korean: "팔꿈치", translation: "локоть" },
+            //     { korean: "", translation: "" },
+            //     { korean: "", translation: "" },
+            //     { korean: "", translation: "" },
+            //     { korean: "", translation: "" },
+            //     { korean: "", translation: "" },
+            //     { korean: "", translation: "" },
+            //     { korean: "", translation: "" },
+            //     { korean: "", translation: "" }
+            // ],
+            // slovar5: [
+            //     { korean: "", translation: "" },
+            //     { korean: "", translation: "" },
+            //     { korean: "", translation: "" },
+            //     { korean: "", translation: "" },
+            //     { korean: "", translation: "" },
+            //     { korean: "", translation: "" },
+            //     { korean: "", translation: "" },
+            //     { korean: "", translation: "" },
+            //     { korean: "", translation: "" },
+            //     { korean: "", translation: "" }
+            // ],
+            slovar16: [
                 { korean: "과연", translation: "неужели; действительно" },
                 { korean: "물론", translation: "конечно" },
                 { korean: "늘", translation: "всегда; постоянно" },
@@ -71,7 +240,7 @@ const dictionaries = {
                 { korean: "아무쪼록", translation: "по мере возможности" },
                 { korean: "하물며", translation: "тем более; тем более, что" }
             ],
-            slovar7: [
+            slovar17: [
                 { korean: "그리고", translation: "и" },
                 { korean: "그러나", translation: "а; но; однако" },
                 { korean: "그러므로", translation: "поэтому" },
@@ -83,7 +252,7 @@ const dictionaries = {
                 { korean: "혹은", translation: "или; либо" },
                 { korean: "또는", translation: "или; либо" }
             ],
-            slovar8: [
+            slovar18: [
                 { korean: "또", translation: "снова, опять; и, еще" },
                 { korean: "또다시", translation: "снова, еще раз, опять" },
                 { korean: "천만에", translation: "что вы; не за что; не стоит благодарности" },
