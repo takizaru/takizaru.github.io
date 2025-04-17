@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="/styles/style_base.css/style_nav.bg_footer_header_tel.css"> -->
+    <!-- <link rel="stylesheet" href="/styles/style_base.css/style_3bg.css"> -->
+    <title>Document</title>
+   <style>
+
+/* Base styles */
+:root {
+    --header-footer-color: #c8ba8d;
+    --footer-height: 200px;
+}
+
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    position: relative;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+}
+
+.main-container {
+    padding-bottom: var(--footer-height);
+}
+
+/* Header styles */
+header .container {
+    background-color: var(--header-footer-color);
+    padding: 20px 110px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+    /* Корейский текст */
+    .korean-text {
+        font-family: "Noto Sans KR", sans-serif;
+    }
+
+    .container {
+        max-width: 1288px;
+        margin: 0 auto;
+    }
+
+    .logo:hover {
+        left: 150px;
+        top: 55px;
+        transform: scale(1.5);
+    }
+
+    .lk {
+        width: 54px;
+        height: 54px;
+    }
+
+    .lk:hover {
+        transform: scale(1.5);
+        border-radius: 100px solid rgb(49, 36, 105);
+    }
+
+    
+
+/* Стили для корейского текста lдля озвучки кор текста */
+/* Korean text styles */
+.korean-text {
+    font-family: "Noto Sans KR", sans-serif;
+    cursor: pointer;
+    transition: all 0.2s;
+    padding: 2px 5px;
+    border-radius: 3px;
+}
+
+.korean-text:hover {
+    background-color: #f0f0f0;
+}
+
+.korean-text:active {
+    transform: scale(0.98);
+}
+
+        /* Бургер-меню */
+        .burger-menu {
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+            z-index: 1000;
+        }
+
+        .burger-menu div {
+            width: 25px;
+            height: 3px;
+            background-color: #000;
+        }
+
+        .nav-burger {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 250px;
+            height: 100vh;
+            background-color: rgba(200, 186, 141, 0.95);
+            transition: left 0.3s ease;
+            z-index: 999;
+            padding-top: 80px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-burger.active {
+            left: 0;
+        }
+
+        .nav-burger .ul-header {
+            list-style: none;
+            padding: 20px;
+            margin: 0;
+            flex-direction: column;
+        }
+
+        .nav-burger .li-header {
+            margin-bottom: 20px;
+        }
+
+        .nav-burger .a-header {
+            color: hsla(47, 18%, 20%, 0.814);
+            text-decoration: none;
+            font-size: 18px;
+            display: block;
+        }
+
+        .nav-burger .a-header:hover {
+            color: rgb(4, 1, 48);
+        }
+
+        header .container {
+            max-width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #c8ba8d;
+            padding-right: 110px;
+            padding-left: 110px;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            margin-bottom: 50px;
+        }
+
+        .nav-header {
+            padding: 20px;
+        }
+
+        .ul-header {
+            display: flex;
+            list-style: none;
+        }
+
+        .li-header {
+            display: flex;
+            margin-right: 45px;
+        }
+
+        .a-header {
+            color: hsla(47, 18%, 20%, 0.814);
+            text-decoration: none;
+            font-size: 18px;
+            font-style: normal; /* Убрал курсив */
+        }
+
+        .a-header:hover {
+            color: rgb(4, 1, 48);
+        }
+
+        .perehod {
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+            margin: 20px 0;
+        }
+
+        .perehod img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: 1px solid rgb(49, 36, 105);
+            transition: transform 0.3s;
+        }
+
+        .perehod>a:hover {
+            transform: scale(1.5);
+        }
+
+        .perehod {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            padding: 0 120px 0 120px;
+            margin-bottom: 20px;
+        }
+
+        
+
+/* Burger menu styles */
+.burger {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    margin: 20px;
+  }
+  
+  .burger-part1, 
+  .burger-part2 {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .burger-part2 {
+    display: none;
+  }
+  
+  .iconDown, 
+  .iconUp {
+    cursor: pointer;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+ /* Burger menu styles */
+.burger-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+.nav-burger {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 250px;
+    height: 100vh;
+    background-color: rgba(200, 186, 141, 0.95);
+    transition: left 0.3s ease;
+    z-index: 999;
+    padding-top: 80px;
+}
+
+.nav-burger.active {
+    left: 0;
+}
+
+/* Side panels */
+.left-burger,
+.right-burger {
+    position: fixed;
+    width: 250px;
+    padding: 15px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    z-index: 100;
+    display: none;
+}
+
+.left-burger {
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.right-burger {
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.bottom-burger-container {
+    position: fixed;
+    bottom: var(--footer-height);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    max-width: 600px;
+    z-index: 100;
+}
+
+.bottom-burger {
+    padding: 15px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    margin: 0 auto;
+    display: none;
+}
+
+/* Bookmark icons */
+.left-bookmark-icon,
+.bookmark-icon,
+.bottom-bookmark-icon {
+    width: 70px;
+    height: 20px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    cursor: pointer;
+    z-index: 1000;
+    border-radius: 20px 20px 0 0;
+    position: fixed;
+    border: 1px solid #000;
+}
+
+.left-bookmark-icon {
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%) rotate(90deg);
+    margin-left: -30px;
+}
+
+.bookmark-icon {
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%) rotate(270deg);
+    margin-right: -30px;
+}
+
+.bottom-bookmark-icon {
+    bottom: var(--footer-height);
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+        /* ===== FOOTER STYLES ===== */
+ /* Footer styles */
+ footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: var(--header-footer-color);
+    padding: 20px 0;
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+
+        address {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            font-style: normal;
+        }
+
+        /* Footer Columns */
+       /* Footer Columns */
+       .footer1 {
+            display: flex;
+            flex-direction: column;
+            width: 35%;
+            gap: 10px;
+            position: absolute;
+            left: 110px;
+        }
+
+        .footer2 {
+            width: 60%;
+            position: absolute;
+            right: 110px;
+            text-align: right;
+        }
+
+        .footer1, .footer2 {
+    flex: 1;
+    min-width: 300px;
+    margin: 10px;
+}
+
+        /* Footer1 Elements */
+        .tel, .mail {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 14px;
+        }
+
+        .tel img {
+            width: 10px;
+            height: 10px;
+        }
+
+        .footer-icon {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .footer-icon img {
+            width: 30px;
+            height: 30px;
+        }
+
+        /* Footer2 Elements */
+       
+        .ul-footer {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .a-footer {
+            color: hsla(47, 18%, 20%, 0.814);
+            text-decoration: none;
+            font-size: 12px;
+            white-space: nowrap;
+            font-style: normal; /* Убрал курсив */
+        }
+
+        /* Copyright Styles */
+        .copyright {
+            display: flex;
+            align-items: center;
+        
+            gap: 5px;
+            font-size: 14px;
+            color: hsla(47, 18%, 20%, 0.814);
+            margin-top: 15px;
+            font-style: normal; /* Убрал курсив */
+        }
+
+
+ /* Copyright Styles */
+ .copyright.desktop-only {
+            position: relative;
+            margin-top: 15px;
+            left: 0;
+            display: flex;
+        }
+
+        .copyright.mobile-only {
+            display: none;
+        }
+
+        #copyright {
+            height: 15px;
+            width: 15px;
+        }
+
+        /* Hover Effects */
+        .tel:hover p,
+        .mail:hover p,
+        .copyright:hover p,
+        .a-footer:hover {
+            color: rgb(4, 1, 48);
+            transition: all 0.3s ease;
+        }
+
+        .tel:hover p,
+        .mail:hover p,
+        .copyright:hover p {
+            font-size: 1.1em;
+        }
+
+
+                                                                          /* адаптация для футера и шапки */
+        
+        /* 1440px and above - Desktop layout */
+        @media (min-width: 1441px) {
+            :root {
+                --footer-height: 180px;
+            }
+            
+            .footer1 {
+                width: 35%;
+            }
+            
+            .footer2 {
+                width: 60%;
+                text-align: right;
+            }
+            
+            .ul-footer {
+                text-align: right;
+            }
+        }
+
+        /* 1200px-1440px */
+        @media (max-width: 1440px) {
+            :root {
+                --footer-height: 200px;
+            }
+            
+            .footer1 {
+                left: 60px;
+            }
+            
+            .footer2 {
+                right: 60px;
+            }
+     
+          
+            .ul-footer {
+                text-align: right;
+            }
+        }
+
+        /* 992px-1200px */
+        @media (max-width: 1200px) {
+            :root {
+                --footer-height: 200px;
+            }
+            
+            .footer1 {
+                width: 35%;
+            }
+            
+            .footer2 {
+                width: 60%;
+                text-align: right;
+            }
+            
+            .ul-footer {
+                text-align: right;
+            }
+        }
+
+        /* 768px-992px - Tablet layout */
+        @media (max-width: 992px) {
+          :root {
+                --footer-height: 220px;
+            }
+            
+            .footer1 {
+                left: 40px;
+            }
+            
+            .footer2 {
+                right: 40px;
+            }
+            
+        
+            
+            .ul-footer {
+                text-align: right;
+            }
+            
+
+            .copyright.mobile-only {
+                display: none;
+                justify-content: center;
+                margin-top: 20px;
+            }
+        }
+
+
+
+
+
+      /* 786px and below - Mobile layout */
+      @media (max-width: 786px) {
+        :root {
+        --footer-height: 280px;
+    }
+    
+    header .container {
+        padding: 20px;
+    }
+    
+    .left-burger,
+    .right-burger,
+    .bottom-burger {
+        position: static;
+        width: auto;
+        margin: 10px;
+        transform: none;
+    }
+    
+    .bottom-burger-container {
+        position: static;
+        transform: none;
+        width: auto;
+        margin: 10px;
+    }
+            
+            address {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .footer1, 
+            .footer2 {
+                position: static;
+                width: 100%;
+                text-align: center;
+                
+            }
+            
+            .footer1 {
+                order: 1;
+                padding: 0 20px;
+                align-items: center;
+            }
+            
+            .footer2 {
+                order: 2;
+                margin: 15px 0;
+                text-align: center;
+            }
+            
+            .ul-footer {
+                align-items: center;
+            }
+            
+            .footer-icon {
+                justify-content: center;
+            }
+            
+            .copyright.desktop-only {
+                display: none;
+            }
+            
+            .copyright.mobile-only {
+                display: flex;
+                order: 3;
+                justify-content: center;
+                margin-top: 20px;
+                position: static;
+            }
+
+            .logo {
+    width: 54px; /* Уменьшено в 2 раза */
+    height: 54px; /* Уменьшено в 2 раза */
+    transition: transform 0.3s;
+}
+
+.lk {
+    width: 27px; /* Уменьшено в 2 раза */
+    height: 27px; /* Уменьшено в 2 раза */
+    transition: transform 0.3s;
+}
+
+.left-burger,
+    .right-burger {
+        position: static;
+        width: auto;
+        margin: 10px;
+        transform: none;
+    }
+    
+    .bottom-burger-container {
+        position: static;
+        transform: none;
+        width: auto;
+        margin: 10px;
+    }
+    
+    .main-container {
+        padding-bottom: 250px; /* Больше места для мобильных */
+    }
+
+        }
+
+
+
+           
+            
+
+  
+
+           
+            /* .ul-footer {
+                align-items: center;
+            }
+            
+            .footer-icon {
+                justify-content: center;
+            }
+            
+            .copyright.desktop-only {
+                display: none;
+            }
+            
+            .copyright.mobile-only {
+                display: flex;
+                order: 3;
+                justify-content: center;
+                margin-top: 20px;
+                width: 100%;
+           
+            } */
+
+            /* стили для 3 бургеров */
+
+     
+        
+
+        /* 500px-700px */
+        @media (max-width: 500px) {
+        
+            
+            .container {
+                padding: 0 20px;
+            }
+            
+           
+
+  /* Добавляем отступы между элементами */
+  .burger-menu,
+            .logo,
+            .user {
+                margin: 0 20px; /* Отступы по 20px с каждой стороны = 40px между элементами */
+            }
+            
+       
+            :root {
+                --footer-height: 340px;
+            }
+            
+            header .container {
+                padding: 20px;
+                justify-content: space-between;
+                position: relative;
+            }
+            
+            /* Бургер-меню и иконка пользователя */
+            .burger-menu, .user {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                z-index: 1001;
+            }
+            
+            .burger-menu {
+                left: 20px;
+            }
+            
+            .user {
+                right: 20px;
+            }
+            
+            /* Логотип по центру */
+            .logo {
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 54px;
+                height: 54px;
+                margin: 0 auto;
+            }
+            
+            /* Отступы для контента */
+            .container {
+                padding: 0 20px;
+            }
+            
+            .footer-icon img {
+                width: 25px;
+                height: 25px;
+            }
+            
+            .lk {
+                width: 27px;
+                height: 27px;
+            }
+        }
+
+        /* Below 400px */
+        @media (max-width: 400px) {
+            :root {
+                --footer-height: 360px;
+            }
+            
+            .ul-footer {
+                gap: 8px;
+            }
+        }
+
+
+     
+   </style>
+
+</head>
+
+
+    <body>
+        <header>
+            <div class="container">
+                <div class="burger-menu" id="burgerMenu">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <img class="logo" src="/image/logo krug.svg" alt="Логотип">
+                <a href="#" class="user" id="userBtn"> 
+                    <img class="lk" src="/image/userrblur.svg" alt="Пользователь">
+                </a>
+            </div>
+            <nav class="nav-burger" id="navBurger">
+                <ul class="ul-header">
+                    <li class="li-header"> <a href="" class="a-header">онлайн - переводчик</a></li>
+                    <li class="li-header"> <a href="" class="a-header">контакты</a></li>
+                    <li class="li-header"> <a href="" class="a-header">светлая тема</a></li>
+                </ul>
+            </nav>
+        </header>
+        
+        <main>
+            <div class="main-container">
+                <article>
+                    <!-- Burger Menu -->
+                    <div class="burger">
+                        <div class="burger-part1">
+                            <h3>подсказка</h3>
+                            <div><p><b>творительный падеж </b>образуется путем присоединения к основе имени окончаний: <b> 로 / 으로</b></p></div>
+                            <div><p> если основа имени оканчивается на согласный: <b>으로</b></p></div>
+                            <div class="korean-text" data-korean="신문으로">신문으로 - газетой</div>
+                            <div class="korean-text" data-korean="지우개로">지우개로 - тряпкой</div>
+                            <div><p>если основа имени оканчивается на гласный: <b>로</b></p></div>
+                            <div class="korean-text" data-korean="편지로">편지로 - письмом</div>
+                            <div class="korean-text" data-korean="영어로">영어로 - по - английски</div>
+                            <div><p>если основа имени оканчивается на <b>ㄹ</b>: <b>로</b></p></div>
+                            <div class="korean-text" data-korean="한국말로">한국말로 - по - корейски</div>
+                            <div class="korean-text" data-korean="연필로">연필로</div>
+                            <div><p><b>творительный падеж имеет несколько функций:</b></p></div>
+                            <div><p><b>а) обозначение орудия или средства, с помощью которого совершается какое - либо действие (кем? чем?):</b></p></div>
+                            <div class="korean-text" data-korean="나는 만년필로 씁니다">나는 만년필로 씁니다 - я пишу ручкой</div>
+                            <div class="korean-text" data-korean="우리는 한국말로 말합니다">우리는 한국말로 말합니다 - мы говорим по - корейски </div>
+                            <div class="iconDown" onclick="toggleBurger()">▼</div>
+                        </div>
+                        <div class="burger-part2">
+                            <div><p><b>б) обозначение места, по направлению к которому совершается движение (куда?):</b></p></div>
+                            <div class="korean-text" data-korean="나는 도서관으로 갑니다">나는 도서관으로 갑니다 - я иду в библиотеку </div>
+                            <div><p><b>в)обозначение промежуточного пункта движения ("мимо", "через")</b></p></div>
+                            <div class="korean-text" data-korean="공원으로 갑시다">공원으로 갑시다 - пойдем через парк</div>
+                            <div><p><b>г) обозначение образа или способа действия (каким образом?)</b></p></div>
+                            <div class="korean-text" data-korean="큰 소리로 말하다">큰 소리로 말하다 - говорить громко (громким голосом) </div>
+                            <div><p><b>д) обозначение признака лица или предмета</b></p></div>
+                            <div class="korean-text" data-korean="기사로 일하다">기사로 일하다 - работать инжинером</div>
+                            <div><p><b>е) обозначение причины действия (так, как)</b></p></div>
+                            <div class="korean-text" data-korean="그녀는 병으로 오지 못합니다">그녀는 병으로 오지 못합니다 - она не может прийти из-за болезни</div>
+                            <div class="iconUp" onclick="toggleBurger()">▲</div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </main>
+    
+        <!-- Левый бургер -->
+        <div class="left-burger">
+            <div><b>чередование ㄹ - 0</b></div>
+            <div> <b>ㄹ перед ㄴ, ㅂ, ㅅ, 오 </b> - <b>исчезает</b></div>
+            <div class="korean-text" data-korean="알다, 아는">알다 - 아는</div>
+            <div class="korean-text" data-korean="알다, 압니다">알다 - 압니다</div>
+            <div><p>к таким корням <b>чередование ㄹ - 0</b> относятся:</p></div>
+            <div class="korean-text" data-korean="알다">알다 - знать</div>
+            <div class="korean-text" data-korean="불다">불다 - дуть</div>
+            <div class="korean-text" data-korean="살다">살다 - жить</div>
+            <div class="korean-text" data-korean="길다">길다 - длинный</div>
+            <div class="korean-text" data-korean="잘다">잘다 - мелкий</div>
+            <div class="korean-text" data-korean="멀다">멀다 - короткий</div>
+        </div>
+    
+        <!-- Левая закладка -->
+        <div class="left-bookmark-icon"></div>
+    
+        <!-- Нижний бургер -->
+        <div class="bottom-burger-container">
+            <div class="bottom-burger">
+                <div><b>чередования предикативных корней: ㄶ, ㅀ, ㅎ</b></div>
+                <div><p><b>предикативы, у которых в конце корня: ㄶ, ㅀ, ㅎ</b><br>
+                     а после этих корней следует окончание, начинающееся на: <br> <b>ㄱ, ㄷ, ㅈ</b></p>
+                <p>то произносится:<b>ㅋ, ㅌ, ㅊ</b></p>
+                </div>
+                <div class="korean-text" data-korean="많다">많다</div>
+                <div class="korean-text" data-korean="많고">많고</div>
+                <div class="korean-text" data-korean="많지">많지</div>
+                <div><p>если после <b>ㅎ</b> стоит <b>ㅅ</b> то произносится<b> ㅆ</b></p></div>
+                <div class="korean-text" data-korean="많습니다">많습니다</div>
+                <div><p>в остальных случаях <b>ㅎ</b> никак не отображается</p></div>
+            </div>
+        </div>
+    
+        <!-- Нижняя закладка -->
+        <div class="bottom-bookmark-icon"></div>
+    
+        <!-- Правая закладка -->
+        <div class="bookmark-icon"></div>
+    
+        <!-- Правый бургер -->
+        <div class="right-burger">
+            <div><b>обстоятельство места при глаголе <br>살다 (жить)</b> - может быть выражено именем в дательном <b>에</b> либо в дательно - местном падеже <b>에서</b></div>
+            <div class="korean-text" data-korean="안나는 서울에 삽니다">안나는 서울에 삽니다 - Анна живет в Сеуле</div>
+            <div class="korean-text" data-korean="그녀는 호텔에서 삽니다">그녀는 호텔에서 삽니다 - она живет в отеле</div>
+        </div>
+    
+        <div class="perehod">
+            <a href="/index/index_grammatika.html/index_vin_zvuk.html"><img src="/image/vlevo2.svg" alt=""></a>
+            <a href="/index/index_grammatika.html/index_number.tel.html"><img src="/image/vpravo2.svg" alt=""></a>
+        </div>
+    
+        <footer>
+            <section class="footer container">
+                <address>
+                    <div class="footer1">
+                        <div class="tel">
+                            <img src="/image/tel_blue.svg" alt="">
+                            <p>8-925-685-52-39</p>
+                        </div>
+                        <div class="mail">
+                            <p>anastasiya3000@yandex.ru</p>
+                        </div>
+                        <div class="footer-icon">
+                            <a href="" class="social-icon"><img src="/image/telegram_icon 1.svg" alt=""></a>
+                            <a href="" class="social-icon"><img src="/image/skype_icon 1.svg" alt=""></a>
+                            <a href="" class="social-icon"><img src="/image/whatsapp_green.png" alt=""></a>
+                            <a href="" class="social-icon"><img src="/image/license.svg" alt=""></a>
+                        </div>
+                        <div class="copyright desktop-only">
+                            <img id="copyright" src="/image/Copyright2 _ blue.svg" alt="copyright">
+                            <p>takiza, 2025</p>
+                        </div>
+                    </div>
+            
+                    <div class="footer2">
+                        <nav class="nav1-footer">
+                            <ul class="ul-footer">
+                                <li class="li-footer"><a href="" class="a-footer"><b>Правила оплаты</b></a></li>
+                                <li class="li-footer"><a href="" class="a-footer"><b>Договор оферты</b></a></li>
+                                <li class="li-footer"><a href="" class="a-footer"><b>Согласие с рассылкой</b></a></li>
+                                <li class="li-footer"><a href="" class="a-footer"><b>Пользовательское соглашение</b></a></li>
+                                <li class="li-footer"><a href="" class="a-footer"><b>Политика конфиденциальности</b></a></li>
+                                <li class="li-footer"><a href="" class="a-footer"><b>Положение о защите персональных данных</b></a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    
+                    <div class="copyright mobile-only">
+                        <img id="copyright" src="/image/Copyright2 _ blue.svg" alt="copyright">
+                        <p>takiza, 2025</p>
+                    </div>
+                </address>
+            </section>
+        </footer>
+      <script>
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Основное бургер-меню
+    const burgerMenu = document.getElementById('burgerMenu');
+    const navBurger = document.getElementById('navBurger');
+    
+    if (burgerMenu && navBurger) {
+        burgerMenu.addEventListener('click', function(e) {
+            e.stopPropagation();
+            navBurger.classList.toggle('active');
+        });
+    }
+
+    // Закрытие меню при клике вне его области
+    document.addEventListener('click', function() {
+        if (navBurger) navBurger.classList.remove('active');
+    });
+
+    // Боковые панели
+    const leftBookmark = document.querySelector('.left-bookmark-icon');
+    const rightBookmark = document.querySelector('.bookmark-icon');
+    const bottomBookmark = document.querySelector('.bottom-bookmark-icon');
+    const leftBurger = document.querySelector('.left-burger');
+    const rightBurger = document.querySelector('.right-burger');
+    const bottomBurger = document.querySelector('.bottom-burger');
+
+    // Переключение левой панели
+    if (leftBookmark && leftBurger) {
+        leftBookmark.addEventListener('click', function(e) {
+            e.stopPropagation();
+            leftBurger.style.display = leftBurger.style.display === 'block' ? 'none' : 'block';
+        });
+    }
+
+    // Переключение правой панели
+    if (rightBookmark && rightBurger) {
+        rightBookmark.addEventListener('click', function(e) {
+            e.stopPropagation();
+            rightBurger.style.display = rightBurger.style.display === 'block' ? 'none' : 'block';
+        });
+    }
+
+    // Переключение нижней панели
+    if (bottomBookmark && bottomBurger) {
+        bottomBookmark.addEventListener('click', function(e) {
+            e.stopPropagation();
+            bottomBurger.style.display = bottomBurger.style.display === 'block' ? 'none' : 'block';
+        });
+    }
+
+    // Закрытие панелей при клике вне их области
+    document.addEventListener('click', function() {
+        if (leftBurger) leftBurger.style.display = 'none';
+        if (rightBurger) rightBurger.style.display = 'none';
+        if (bottomBurger) bottomBurger.style.display = 'none';
+    });
+
+    // Озвучка корейского текста
+    document.querySelectorAll('.korean-text').forEach(element => {
+        element.addEventListener('click', function() {
+            const korean = this.getAttribute('data-korean');
+            speakKorean(korean);
+        });
+    });
+
+    // Переключение внутреннего бургера
+    function toggleBurger() {
+        const part1 = document.querySelector('.burger-part1');
+        const part2 = document.querySelector('.burger-part2');
+        
+        if (part1 && part2) {
+            if (part2.style.display === 'none' || !part2.style.display) {
+                part1.style.display = 'none';
+                part2.style.display = 'flex';
+            } else {
+                part1.style.display = 'flex';
+                part2.style.display = 'none';
+            }
+        }
+    }
+
+    // Назначение обработчиков для кнопок переключения
+    document.querySelectorAll('.iconDown, .iconUp').forEach(icon => {
+        icon.addEventListener('click', toggleBurger);
+    });
+
+    // Функция озвучки корейского текста
+    function speakKorean(text) {
+        if ('speechSynthesis' in window) {
+            window.speechSynthesis.cancel();
+            
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'ko-KR';
+            utterance.rate = 0.9;
+            
+            const voices = window.speechSynthesis.getVoices();
+            const koreanVoice = voices.find(voice => 
+                voice.lang === 'ko-KR' || voice.lang === 'ko'
+            );
+            
+            if (koreanVoice) {
+                utterance.voice = koreanVoice;
+            }
+            
+            window.speechSynthesis.speak(utterance);
+        } else {
+            console.log('Speech synthesis not supported');
+        }
+    }
+
+    // Загрузка голосов
+    if (speechSynthesis.onvoiceschanged !== undefined) {
+        speechSynthesis.onvoiceschanged = function() {
+            // Голоса загружены
+        };
+    }
+});
+
+      </script>
+    
+        <!-- <script src="/script_zvu_4bg.js"></script> -->
+    </body>
+    
+    </html>
+
+     <!-- исправь ошибки в коде (напиши раздельно html, css, script):
+     в всем подвале - цвет такой же как и в шапке постоянно начиная с адаптации на 1440 и до конца,
+  -->
