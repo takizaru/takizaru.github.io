@@ -4,624 +4,385 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/styles/style_base.css/style_nav.bg_footer_header_tel.css">
-    <link rel="stylesheet" href="/styles/style_base.css/style_3bg.css">
-    <title>Document</title>
-   <style>
-        /* ===== BASE STYLES ===== */
-        :root {
-        --footer-height: 200px; /* Default footer height */
-    }
-
-    /* Шрифты */
-    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
-
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-
-    body {
-        font-family: "Montserrat", sans-serif;
-        margin: 0;
-        padding-bottom: var(--footer-height);
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-    }
+    <title>Korean Numbers Guide</title>
+    <!-- <link rel="stylesheet" href="/styles/style_base.css/style_osnova.css"> -->
+    <style>
 
 
-    /* Корейский текст */
-    .korean-text {
-        font-family: "Noto Sans KR", sans-serif;
-    }
+/* Font imports */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
-    .container {
-        max-width: 1288px;
-        margin: 0 auto;
-    }
+/* Base styles */
+* {
+    font-family: "Montserrat", sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-    .logo:hover {
-        left: 150px;
-        top: 55px;
-        transform: scale(1.5);
-    }
-
-    .lk {
-        width: 54px;
-        height: 54px;
-    }
-
-    .lk:hover {
-        transform: scale(1.5);
-        border-radius: 100px solid rgb(49, 36, 105);
-    }
-
-    
-        /* Бургер-меню */
-        .burger-menu {
-            display: flex;
-            flex-direction: column;
-            cursor: pointer;
-            gap: 5px;
-            z-index: 1000;
-        }
-
-        .burger-menu div {
-            width: 25px;
-            height: 3px;
-            background-color: #000;
-        }
-
-        .nav-burger {
-            position: fixed;
-            top: 0;
-            left: -100%;
-            width: 250px;
-            height: 100vh;
-            background-color: rgba(200, 186, 141, 0.95);
-            transition: left 0.3s ease;
-            z-index: 999;
-            padding-top: 80px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .nav-burger.active {
-            left: 0;
-        }
-
-        .nav-burger .ul-header {
-            list-style: none;
-            padding: 20px;
-            margin: 0;
-            flex-direction: column;
-        }
-
-        .nav-burger .li-header {
-            margin-bottom: 20px;
-        }
-
-        .nav-burger .a-header {
-            color: hsla(47, 18%, 20%, 0.814);
-            text-decoration: none;
-            font-size: 18px;
-            display: block;
-        }
-
-        .nav-burger .a-header:hover {
-            color: rgb(4, 1, 48);
-        }
-
-        header .container {
-            max-width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: #c8ba8d;
-            padding-right: 110px;
-            padding-left: 110px;
-            padding-top: 20px;
-            padding-bottom: 20px;
-            margin-bottom: 50px;
-        }
-
-        .nav-header {
-            padding: 20px;
-        }
-
-        .ul-header {
-            display: flex;
-            list-style: none;
-        }
-
-        .li-header {
-            display: flex;
-            margin-right: 45px;
-        }
-
-        .a-header {
-            color: hsla(47, 18%, 20%, 0.814);
-            text-decoration: none;
-            font-size: 18px;
-            font-style: normal; /* Убрал курсив */
-        }
-
-        .a-header:hover {
-            color: rgb(4, 1, 48);
-        }
-
-        .perehod {
-            display: flex;
-            justify-content: space-between;
-            padding: 0 20px;
-            margin: 20px 0;
-        }
-
-        .perehod img {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            border: 1px solid rgb(49, 36, 105);
-            transition: transform 0.3s;
-        }
-
-        .perehod>a:hover {
-            transform: scale(1.5);
-        }
-
-        .perehod {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            padding: 0 120px 0 120px;
-            margin-bottom: 20px;
-        }
-
-        
-        /* ===== FOOTER STYLES ===== */
-        footer {
-            background-color: #c8ba8d;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            height: var(--footer-height);
-            z-index: 900;
-            padding: 15px 0;
-        }
-
-        .footer .container {
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            position: relative;
-        }
-
-        address {
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-            font-style: normal;
-        }
-
-        /* Footer Columns */
-       /* Footer Columns */
-       .footer1 {
-            display: flex;
-            flex-direction: column;
-            width: 35%;
-            gap: 10px;
-            position: absolute;
-            left: 110px;
-        }
-
-        .footer2 {
-            width: 60%;
-            position: absolute;
-            right: 110px;
-            text-align: right;
-        }
-
-        /* Footer1 Elements */
-        .tel, .mail {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            font-size: 14px;
-        }
-
-        .tel img {
-            width: 10px;
-            height: 10px;
-        }
-
-        .footer-icon {
-            display: flex;
-            gap: 15px;
-            margin-top: 10px;
-        }
-
-        .footer-icon img {
-            width: 30px;
-            height: 30px;
-        }
-
-        /* Footer2 Elements */
-       
-        .ul-footer {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .a-footer {
-            color: hsla(47, 18%, 20%, 0.814);
-            text-decoration: none;
-            font-size: 12px;
-            white-space: nowrap;
-            font-style: normal; /* Убрал курсив */
-        }
-
-        /* Copyright Styles */
-        .copyright {
-            display: flex;
-            align-items: center;
-        
-            gap: 5px;
-            font-size: 14px;
-            color: hsla(47, 18%, 20%, 0.814);
-            margin-top: 15px;
-            font-style: normal; /* Убрал курсив */
-        }
-
-
- /* Copyright Styles */
- .copyright.desktop-only {
-            position: relative;
-            margin-top: 15px;
-            left: 0;
-            display: flex;
-        }
-
-        .copyright.mobile-only {
-            display: none;
-        }
-
-        #copyright {
-            height: 15px;
-            width: 15px;
-        }
-
-        /* Hover Effects */
-        .tel:hover p,
-        .mail:hover p,
-        .copyright:hover p,
-        .a-footer:hover {
-            color: rgb(4, 1, 48);
-            transition: all 0.3s ease;
-        }
-
-        .tel:hover p,
-        .mail:hover p,
-        .copyright:hover p {
-            font-size: 1.1em;
-        }
-
-
-/* Burger menu styles */
-.burger {
+body {
+    margin: 0;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    padding: 20px;
-    background-color: #f0f0f0;
-    border-radius: 10px;
-    margin: 20px;
-  }
-  
-  .burger-part1, 
-  .burger-part2 {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  
-  .burger-part2 {
-    display: none;
-  }
-  
-  .iconDown, 
-  .iconUp {
+}
+
+/* Korean text styling */
+.korean-text {
+    font-family: "Noto Sans KR", sans-serif;
     cursor: pointer;
-    text-align: center;
-    font-size: 20px;
-    font-weight: bold;
-  }
-  
-  /* Side panels */
-  .left-bookmark-icon,
-  .bookmark-icon,
-  .bottom-bookmark-icon {
-    width: 70px;
-    height: 20px;
-    /* background-color: rgba(49, 36, 105, 0.2); */
-    background-color: none;
-    color: white;
+    color: inherit;
+    text-decoration: none;
+}
+
+.korean-text:hover {
+    text-decoration: underline;
+}
+
+
+
+
+
+.logo:hover {
+    left: 150px;
+    top: 55px;
+    transform: scale(1.5);
+}
+
+.lk {
+    width: 54px;
+    height: 54px;
+}
+
+.lk:hover {
+    transform: scale(1.5);
+    border-radius: 100px solid rgb(49, 36, 105);
+}
+
+/* Бургер-меню */
+.burger-menu {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+    z-index: 1000;
+}
+
+.burger-menu div {
+    width: 25px;
+    height: 3px;
+    background-color: #000;
+}
+
+.nav-burger {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 250px;
+    height: 100vh;
+    background-color: rgba(200, 186, 141, 0.95);
+    transition: left 0.3s ease;
+    z-index: 999;
+    padding-top: 80px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.nav-burger.active {
+    left: 0;
+}
+
+.nav-burger .ul-header {
+    list-style: none;
+    padding: 20px;
+    margin: 0;
+    flex-direction: column;
+}
+
+.nav-burger .li-header {
+    margin-bottom: 20px;
+}
+
+.nav-burger .a-header {
+    color: hsla(47, 18%, 20%, 0.814);
+    text-decoration: none;
+    font-size: 18px;
+    display: block;
+}
+
+.nav-burger .a-header:hover {
+    color: rgb(4, 1, 48);
+}
+
+
+/* Header styles */
+header .container {
+    max-width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #c8ba8d;
+    padding: 20px 110px;
+    margin-bottom: 50px;
+}
+
+.nav-header {
+    padding: 20px;
+}
+
+.ul-header {
+    display: flex;
+    list-style: none;
+}
+
+.li-header {
+    display: flex;
+    margin-right: 45px;
+}
+
+.a-header {
+    color: hsla(47, 18%, 20%, 0.814);
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.a-header:hover {
+    color: rgb(4, 1, 48);
+}
+
+
+/* Footer */
+footer {
+    background-color: #c8ba8d;
+    padding: 20px 0;
+}
+
+.footer1, .footer2 {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.mail,
+.tel {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    gap: 5px;
+    /* margin-bottom: 5px; */
+}
+
+.tel img {
+    width: 12px;
+    height: 12px;
+    /* margin-right: 5px; */
+}
+
+
+.footer-icon {
+    display: flex;
+    gap: 15px;
+   
+}
+
+     .footer-icon img {
+        width: 30px;
+        height: 30px;
+    } 
+
+address{
+    display: flex;
+    flex-direction: row;
+
+    justify-content: space-around;
+    /* padding-left: 10px;
+    padding-right: 10px; */
+}
+.footer2 {
+    display: flex;
+   
+    align-items: flex-start;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.ul-footer {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+       
+.li-footer {
+    margin: 0;
+}
+ 
+.a-footer {
+    color: hsla(47, 18%, 20%, 0.814);
+    text-decoration: none;
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+.a-footer:hover {
+    color: rgb(4, 1, 48);
+}
+
+.copyright {
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 5px;
+    color: hsla(47, 18%, 20%, 0.814);
     font-size: 14px;
-    cursor: pointer;
-    z-index: 1000;
-    border-radius: 20px 20px 0 0;
-    position: fixed;
-  }
-
-
-    
-  .left-burger,
-  .right-burger,
-  .bottom-burger {
-    display: none;
-    position: fixed;
-    background-color: white;
-
-    padding: 20px;
-    z-index: 999;
-  }
-  
-  .left-bookmark-icon {
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%) rotate(90deg);
-    border: 1px solid #000;
-    margin-left: -30px;
-    background-color: none;
-  }
-  
-  .bookmark-icon {
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%) rotate(270deg);
-    border: 1px solid #000;
-    margin-right: -30px;
-    background-color: none;
-  }
-  
- 
-
-  
-  .left-burger {
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 25%;
-    border: 4px solid rgba(4, 4, 57, 0.473);
-    border-radius: 0 20px 20px 0;
-    background-color: none;
-  }
-  
-  .right-burger {
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 25%;
-    border: 4px solid rgba(4, 4, 57, 0.473);
-    border-radius: 20px 0 0 20px;
-    background-color: none;
-  }
-  
-
-
-  .bottom-burger {
-    bottom: calc(var(--footer-height) + 20px);
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80%;
-    max-width: 500px;
-    border: 4px solid rgba(4, 4, 57, 0.473);
-    border-radius: 10px 10px 0 0;
-   
-   
-  }
-  
-
-  .bottom-bookmark-icon {
-    bottom: var(--footer-height);
-    left: 50%;
-  
-    transform: translateX(-50%);
-    border: 1px solid #000; 
-    background-color: none;
-  }
-
-  /* Добавляем текст "важно" */
-.left-bookmark-icon::after,
-.bookmark-icon::after,
-.bottom-bookmark-icon::after {
-    content: "важно";
-    display: block;
-    color: rgb(2, 14, 39);
-    font-size: 12px;
-    font-weight: bold;
-    text-align: center;
 }
 
-            /* Добавим стили для кликабельных корейских слов  - произносятся только при нажатиии */
-       .korean-text {
-            cursor: pointer;
-            transition: background-color 0.2s;
-            padding: 2px 5px;
-            border-radius: 3px;
-        }
-        .korean-text:hover {
-            background-color: #f0f0f0;
-        }
-        .korean-text:active {
-            transform: scale(0.98);
-        }
+#copyright {
+    height: 15px;
+    width: 15px;
+    margin-right: 5px;
+}
+/* Телефон */
+.tel:hover p {
+     color: rgb(4, 1, 48);
+    font-size: 1.1em;
+    transition: all 0.3s ease;
+}
 
-                                                                          /* адаптация для футера и шапки */
-        
-        /* 1440px and above - Desktop layout */
-        @media (min-width: 1441px) {
-            :root {
-                --footer-height: 180px;
-            }
-            
-            .footer1 {
-                width: 35%;
-            }
-            
-            .footer2 {
-                width: 60%;
-                text-align: right;
-            }
-            
-            .ul-footer {
-                text-align: right;
-            }
-        }
+/* Почта */
+.mail:hover p {
+    color: rgb(4, 1, 48);
+    font-size: 1.1em;
+    transition: all 0.3s ease;
+}
 
-        /* 1200px-1440px */
-        @media (max-width: 1440px) {
-            :root {
-                --footer-height: 200px;
-            }
-            
-            .footer1 {
-                left: 60px;
-            }
-            
-            .footer2 {
-                right: 60px;
-            }
-     
-          
-            .ul-footer {
-                text-align: right;
-            }
-        }
+/* Копирайт */
+.copyright:hover p {
+    color: rgb(4, 1, 48);
+    font-size: 1.1em;
+    transition: all 0.3s ease;
+}
 
-        /* 992px-1200px */
-        @media (max-width: 1200px) {
-            :root {
-                --footer-height: 200px;
-            }
-            
-            .footer1 {
-                width: 35%;
-            }
-            
-            .footer2 {
-                width: 60%;
-                text-align: right;
-            }
-            
-            .ul-footer {
-                text-align: right;
-            }
-        }
+/* Для плавности перехода при убирании курсора */
+.tel p,
+.mail p,
+.copyright p {
+    transition: all 0.3s ease;
+}
+.perehod {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    margin: 20px 0;
+}
 
-        /* 768px-992px - Tablet layout */
-        @media (max-width: 992px) {
-          :root {
-                --footer-height: 220px;
-            }
-            
-            .footer1 {
-                left: 40px;
-            }
-            
-            .footer2 {
-                right: 40px;
-            }
-            
-        
-            
-            .ul-footer {
-                text-align: right;
-            }
-            
+.perehod img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid rgb(49, 36, 105);
+    transition: transform 0.3s;
+}
 
-            .copyright.mobile-only {
-                display: none;
-                justify-content: center;
-                margin-top: 20px;
-            }
-        }
+.perehod>a:hover {
+    transform: scale(1.5);
+}
+
+.perehod {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-self: flex-end;
+    padding: 0 120px 0 120px;
+    margin-bottom: 20px;
+}
 
 
+@media(max-width:1250px) {
 
+    header,
+    .container,
 
+    .copyright{
+        justify-content: center;
+        text-align: center;
+    }
+    
 
-      /* 786px and below - Mobile layout */
-      @media (max-width: 786px) {
-            :root {
-                --footer-height: 280px;
-            }
-            
-            address {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .footer1, 
-            .footer2 {
-                position: static;
-                width: 100%;
-                text-align: center;
-                
-            }
-            
-            .footer1 {
-                order: 1;
-                padding: 0 20px;
-                align-items: center;
-            }
-            
-            .footer2 {
-                order: 2;
-                margin: 15px 0;
-                text-align: center;
-            }
-            
-            .ul-footer {
-                align-items: center;
-            }
-            
-            .footer-icon {
-                justify-content: center;
-            }
-            
-            .copyright.desktop-only {
-                display: none;
-            }
-            
-            .copyright.mobile-only {
-                display: flex;
-                order: 3;
-                justify-content: center;
-                margin-top: 20px;
-                position: static;
-            }
-        }
+}
+  /* Добавьте свои стили здесь */
+    
+  @media (max-width: 1100px) {
+    .footer {
+        flex-direction: column;
+    }
 
+    .footer1, .footer2 {
+        width: 100%;
+    }
 
+    .footer-icon {
+        justify-content: center;
+        margin-bottom: 20px;
+    }
 
-       /* 786px and below - Mobile layout */
-       @media (max-width: 786px) {
-            :root {
-                --footer-height: 360px;
-            }
-            
+    .footer2 {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+    }
 
-            .logo {
+    .nav1-footer, .nav2-footer, .nav3-footer {
+        margin-bottom: 10px;
+    }
+
+    .copyright {
+        margin-top: 10px;
+    }
+}
+
+@media(max-width:1024px) {
+
+    header,
+    .container,
+  footer,
+    .copyright {
+        justify-content: center;
+        text-align: center;
+    }
+
+    .footer3 ul {
+        flex-wrap: wrap;
+    }
+
+    .footer>ul {
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .header_ul {
+        justify-content: flex-start;
+    }
+
+    nav {
+        padding: 0;
+    }
+
+}  
+
+/* @media (max-width: 750px) {
+  
+} */
+
+@media (max-width: 600px) {
+    .logo {
     width: 54px; /* Уменьшено в 2 раза */
     height: 54px; /* Уменьшено в 2 раза */
     transition: transform 0.3s;
@@ -633,425 +394,1017 @@
     transition: transform 0.3s;
 }
 
+/* Кнопки и карточки */
+.btn-proba {
+    width: 200px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 50px; /* Центрирование */
+    /* остальные стили */
+}
 
-            address {
+
+/* Подвал */
+footer {
+    text-align: center;
+}
+
+address {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer1, .footer2 {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.footer-icon {
+    justify-content: center;
+}
+  
+    /* Подвал - центрируем все элементы */
+    .footer1, .footer2, .copyright {
+        align-items: center;
+        text-align: center;
+    }
+    
+    .ul-footer {
+        justify-content: center;
+    }
+    
+    /* Еще больше уменьшаем логотип и ЛК на мобильных */
+    .logo {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .lk {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+       
+/* Burger menu styles */
+.burger-menu {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+    z-index: 1000;
+}
+
+        .burger-part1,
+        .burger-part2 {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .burger-part2 {
+            display: none;
+        }
+
+        .iconDown,
+        .iconUp {
+            cursor: pointer;
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .iconDown:hover,
+        .iconUp:hover {
+            color: #000;
+        }
+
+        /* Общие стили для всех вкладок */
+     /* Bookmark styles */
+.left-bookmark-icon,
+.bookmark-icon,
+.bottom-bookmark-icon {
+    width: 70px;
+    height: 20px;
+    background-color: rgba(49, 36, 105, 0.2);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    text-align: center;
+    cursor: pointer;
+    z-index: 1000;
+    margin: 0;
+    border-radius: 20px 20px 0 0;
+    position: fixed;
+}
+
+        /* Стили для левой вкладки */
+        .left-bookmark-icon {
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%) rotate(90deg);
+            border: 1px solid #000;
+            margin-left: -30px;
+        }
+
+        /* Стили для правой вкладки */
+        .bookmark-icon {
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%) rotate(270deg);
+            border: 1px solid #000;
+            margin-right: -30px;
+        }
+        .bottom-bookmark-icon {
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%) rotate(0deg);
+    border: 1px solid #000;
+}
+
+/* Burger panels */
+.bottom-burger {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 25%;
+    background-color: white;
+    border: 2px solid rgb(4, 1, 48);
+    border-radius: 50px 50px 0 0;
+    padding: 20px;
+    z-index: 999;
+    margin: 0;
+}
+
+        /* Добавляем текст "важно" */
+        .left-bookmark-icon::after,
+        .bookmark-icon::after,
+        .bottom-bookmark-icon::after {
+            content: "важно";
+            display: block;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .left-burger {
+            display: none;
+            position: fixed;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 25%;
+            background-color: white;
+            border: 2px solid rgb(4, 1, 48);
+            border-radius: 0 50px 50px 0;
+            padding: 20px;
+            z-index: 999;
+            margin: 0;
+        }
+
+        .right-burger {
+            display: none;
+            position: fixed;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 25%;
+            background-color: white;
+            border: 2px solid rgb(4, 1, 48);
+            border-radius: 50px 0 0 50px;
+            padding: 20px;
+            z-index: 999;
+            margin: 0;
+        }
+
+   
+
+        .bottom-burger div {
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .bottom-burger div:hover {
+            background-color: #e0e0e0;
+        }
+
+        .korean-text {
+            cursor: pointer;
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .korean-text:hover {
+            text-decoration: underline;
+        }
+
+        /* стили 1 бургера с корейскими числительными */
+        .korea-number {
+            display: flex;
+            justify-content: space-between;
+            padding-bottom: 30px;
+            width: 100%;
+        }
+
+        .korea-number-left,
+        .korea-number-right {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 48%;
+        }
+
+        .korea-number-left h3,
+        .korea-number-right h3 {
+            margin-bottom: 15px;
+            width: 100%;
+            text-align: center;
+        }
+
+        h2,
+        h3 {
+            text-align: center;
+        }
+
+        .p,
+        p {
+            display: flex;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .kor-number-change {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+
+        /* Стили для китайских чисел */
+        .china-number {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            gap: 20px;
+        }
+
+        .china-number-small {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            padding-bottom: 20px;
+        }
+
+        .china-number-small-column {
+            display: flex;
+            flex-direction: column;
+            width: 48%;
+        }
+
+        .china-number-big {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            width: 100%;
+            padding-bottom: 20px;
+        }
+
+        .china-number-small1,
+        .china-number-small2,
+        .china-number-small3,
+        .china-number-small4,
+        .china-number-big1,
+        .china-number-big2 {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 15px;
+            align-items: center;
+        }
+
+        .number-china-11-90 {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            gap: 20px;
+        }
+
+        .number-china-11,
+        .number-china-90,
+        .number-china-21-100 {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 32%;
+        }
+
+        .number-china-11 .p,
+        .number-china-90 .p,
+        .number-china-21-100 .p {
+            width: 100%;
+            text-align: center;
+        }
+
+        .number-china-101-1000,
+        .number-china-111-1111 {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            align-items: center;
+        }
+
+        .number-china-101-1000-1,
+        .number-china-101-1000-2,
+        .number-china-111-1111-1,
+        .number-china-111-1111-2 {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: center;
+            width: 100%;
+        }
+
+
+        /* Footer styles */
+footer {
+    background-color: #c8ba8d;
+    padding: 20px 0;
+    margin-top: auto;
+    position: relative;
+}
+
+        /* Адаптация для больших экранов (1440px и больше) */
+        @media (min-width: 1440px) {
+            .china-number-small {
+                justify-content: space-around;
+            }
+
+            .china-number-big {
+                flex-direction: row;
+                justify-content: space-around;
+            }
+
+            .china-number-big1,
+            .china-number-big2 {
+                width: 30%;
+            }
+
+            .number-china-11,
+            .number-china-90,
+            .number-china-21-100 {
+                width: 32%;
+            }
+        }
+
+
+        /* @media (min-width: 1250px){
+            .kor-number-change{
+                text-align: start;
+            }
+        } */
+
+        /* Адаптация для планшетов (768px - 1023px) */
+        @media (max-width: 1023px) {
+            header .container {
+                padding: 20px 50px;
+            }
+
+            .perehod {
+                padding: 0 50px;
+            }
+
+            .left-burger,
+            .right-burger {
+                width: 35%;
+            }
+
+            .bottom-burger {
+                width: 35%;
+            }
+
+            .china-number {
+                flex-direction: column;
+            }
+
+            .footer1,
+            .footer2 {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+
+        /* Адаптация для мобильных устройств (600px и меньше) */
+        @media (max-width: 600px) {
+
+            .number-china-101-1000-1,
+            .number-china-101-1000-2,
+            .number-china-111-1111-1,
+            .number-china-111-1111-2 {
                 flex-direction: column;
                 align-items: center;
             }
-            
-            .footer1, 
-            .footer2 {
-                position: static;
-                width: 100%;
-                text-align: center;
-            }
-            
-            .footer1 {
-                order: 1;
-                padding: 0 20px;
-            }
-            
-            .footer2 {
-                order: 2;
-                margin: 15px 0;
-                text-align: center;
-               
-            }
-            
-            .ul-footer {
+
+            .china-number-small {
+                flex-direction: column;
                 align-items: center;
             }
-            
+
+            .china-number-small-column {
+                width: 100%;
+            }
+
+            .china-number-big {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .china-number-big1,
+            .china-number-big2 {
+                width: 100%;
+            }
+
+            .number-china-11-90 {
+                flex-direction: column;
+            }
+
+            .number-china-11,
+            .number-china-90,
+            .number-china-21-100 {
+                width: 100%;
+            }
+        }
+
+        /* Адаптация для мобильных устройств (481px - 767px) */
+        @media (max-width: 767px) {
+            header .container {
+                padding: 15px 20px;
+            }
+
+            .perehod {
+                padding: 0 20px;
+            }
+
+            .left-burger,
+            .right-burger {
+                width: 45%;
+                font-size: 14px;
+            }
+
+            .bottom-burger {
+                width: 45%;
+                font-size: 14px;
+            }
+
+            .china-number-small {
+                flex-direction: column;
+                padding-left: 0;
+                gap: 10px;
+            }
+
+            .china-number-big {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .number-china-11-90 {
+                flex-direction: column;
+            }
+
+            .ul-header {
+                flex-direction: column;
+            }
+
+            .li-header {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+        }
+
+        /* Адаптация для мобильных устройств (700px и меньше) */
+        @media (max-width: 700px) {
+            header .container {
+                padding: 15px 20px;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .nav-burger {
+                display: none;
+            }
+
+            .perehod {
+                padding: 0 20px;
+            }
+
+            .left-burger,
+            .right-burger {
+                width: 45%;
+                font-size: 14px;
+            }
+
+            .bottom-burger {
+                width: 45%;
+                font-size: 14px;
+            }
+
+            .china-number {
+                flex-direction: column;
+            }
+
+            .china-number-small,
+            .china-number-big {
+                width: 100%;
+                align-items: center;
+            }
+
+            .number-china-11-90 {
+                flex-direction: column;
+            }
+
+            .number-china-11,
+            .number-china-90,
+            .number-china-21-100 {
+                width: 100%;
+            }
+
+            .footer1 {
+                flex-direction: column;
+                align-items: center;
+            }
+
             .footer-icon {
                 justify-content: center;
             }
-            
-            .copyright.desktop-only {
-                display: none;
-            }
-            
-            .copyright.mobile-only {
-                display: flex;
-                order: 3;
-                justify-content: center;
-                margin-top: 20px;
-                width: 100%;
-           
-            }
-        }
 
-
-        @media (orientation: landscape) and (max-height: 600px) {
-   
-   .bottom-burger {
-     max-height: 40vh;
-     overflow-y: auto;
-   }
- }
-
-
-
-        /* 500px-700px */
-        @media (max-width: 500px) {
-        
-            
-            .container {
-                padding: 0 20px;
-            }
-            
-           
-
-  /* Добавляем отступы между элементами */
-  .burger-menu,
-            .logo,
-            .user {
-                margin: 0 20px; /* Отступы по 20px с каждой стороны = 40px между элементами */
-            }
-            
-       
-            :root {
-                --footer-height: 340px;
-            }
-            
-            header .container {
-                padding: 20px;
-                justify-content: space-between;
-                position: relative;
-            }
-            
-            /* Бургер-меню и иконка пользователя */
-            .burger-menu, .user {
-                position: absolute;
-                top: 50%;
-                transform: translateY(-50%);
-                z-index: 1001;
-            }
-            
-            .burger-menu {
-                left: 20px;
-            }
-            
-            .user {
-                right: 20px;
-            }
-            
-            /* Логотип по центру */
-            .logo {
-                position: absolute;
-                left: 50%;
-                transform: translateX(-50%);
-                width: 54px;
-                height: 54px;
-                margin: 0 auto;
-            }
-            
-            /* Отступы для контента */
-            .container {
-                padding: 0 20px;
-            }
-            
-            .footer-icon img {
-                width: 25px;
-                height: 25px;
-            }
-            
-            .lk {
-                width: 27px;
-                height: 27px;
-            }
-        }
-
-        /* Below 400px */
-        @media (max-width: 400px) {
-            :root {
-                --footer-height: 360px;
-            }
-            
             .ul-footer {
-                gap: 8px;
+                flex-direction: column;
+                align-items: center;
             }
         }
-   
 
+        /* Адаптация для маленьких мобильных устройств (250px - 480px) */
+        @media (max-width: 480px) {
+            header .container {
+                padding: 10px;
+            }
+
+            .logo {
+                width: 40px;
+                height: 40px;
+            }
+
+            .lk {
+                width: 40px;
+                height: 40px;
+            }
+
+            .left-burger,
+            .right-burger {
+                width: 60%;
+                font-size: 12px;
+            }
+
+            .bottom-burger {
+                width: 60%;
+                font-size: 12px;
+            }
+
+            .burger {
+                padding: 10px;
+                margin: 10px;
+            }
+
+            .korea-number {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .korea-number-left,
+            .korea-number-right {
+                width: 100%;
+            }
+
+            .footer-icon img {
+                width: 24px;
+                height: 24px;
+            }
+
+            .copyright {
+                font-size: 12px;
+            }
+        }
+
+        /* Адаптация для очень маленьких устройств (до 250px) */
         @media (max-width: 250px) {
-  
-  .bottom-burger {
-    width: 95%;
-    padding: 10px;
-  }
-}
-   </style>
+            header .container {
+                flex-direction: column;
+                gap: 10px;
+            }
 
+            .left-burger,
+            .right-burger {
+                width: 80%;
+                font-size: 10px;
+            }
+
+            .bottom-burger {
+                width: 80%;
+                font-size: 10px;
+            }
+
+            .burger {
+                font-size: 12px;
+            }
+
+            .korean-text {
+                min-width: 120px;
+                font-size: 12px;
+            }
+
+            .footer1 {
+                flex-direction: column;
+                gap: 5px;
+            }
+
+            .footer-icon {
+                gap: 5px;
+            }
+
+            .footer-icon img {
+                width: 20px;
+                height: 20px;
+            }
+
+            .ul-footer {
+                flex-direction: column;
+            }
+
+            .li-footer {
+                margin-right: 0;
+                margin-bottom: 5px;
+            }
+        }
+    </style>
 </head>
 
 
-    <body>
-        <header>
-            <div class="container">
-                <div class="burger-menu" id="burgerMenu">
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                </div>
-                <img class="logo" src="/image/logo krug.svg" alt="Логотип">
-                <a href="#" class="user" id="userBtn"> 
-                    <img class="lk" src="/image/userrblur.svg" alt="Пользователь">
-                </a>
+<body>
+    <header>
+        <div class="container">
+            <div class="burger-menu" id="burgerMenu">
+                <div></div>
+                <div></div>
+                <div></div>
             </div>
-            <nav class="nav-burger" id="navBurger">
-                <ul class="ul-header">
-                    <li class="li-header"> <a href="" class="a-header">онлайн - переводчик</a></li>
-                    <li class="li-header"> <a href="" class="a-header">контакты</a></li>
-                    <li class="li-header"> <a href="" class="a-header">светлая тема</a></li>
-                </ul>
-            </nav>
-        </header>
-        <main>
-            <div class="container">
-                <article>
-                    <!-- Burger Menu -->
-                    <div class="burger">
-                        <div class="burger-part1">
-                            <h3>подсказка</h3>
-                            <div><p><b>творительный падеж </b>образуется путем присоединения к основе имени окончаний: <b> 로 / 으로</b></p></div>
-                            <div><p> если основа имени оканчивается на согласный: <b>으로</b></p></div>
-                            <div class="korean-text" data-korean="신문으로">신문으로 - газетой</div>
-                            <div class="korean-text" data-korean="지우개로">지우개로 - тряпкой</div>
-                            <div><p>если основа имени оканчивается на гласный: <b>로</b></p></div>
-                            <div class="korean-text" data-korean="편지로">편지로 - письмом</div>
-                            <div class="korean-text" data-korean="영어로">영어로 - по - английски</div>
-                            <div><p>если основа имени оканчивается на <b>ㄹ</b>: <b>로</b></p></div>
-                            <div class="korean-text" data-korean="한국말로">한국말로 - по - корейски</div>
-                            <div class="korean-text" data-korean="연필로">연필로</div>
-                            <div><p><b>творительный падеж имеет несколько функций:</b></p></div>
-                            <div><p><b>а) обозначение орудия или средства, с помощью которого совершается какое - либо действие (кем? чем?):</b></p></div>
-                            <div class="korean-text" data-korean="나는 만년필로 씁니다">나는 만년필로 씁니다 - я пишу ручкой</div>
-                            <div class="korean-text" data-korean="우리는 한국말로 말합니다">우리는 한국말로 말합니다 - мы говорим по - корейски </div>
-                            <div class="iconDown" onclick="toggleBurger()">▼</div>
+            <img class="logo" src="/image/logo krug.svg" alt="Логотип">
+            <a href="" class="user"> <img class="lk" src="/image/userrblur.svg" alt="Пользователь"></a>
+        </div>
+        <nav class="nav-burger" id="navBurger">
+            <ul class="ul-header">
+                <li class="li-header"> <a href="" class="a-header">онлайн - переводчик</a></li>
+                <li class="li-header"> <a href="" class="a-header">контакты</a></li>
+                <li class="li-header"> <a href="" class="a-header">светлая тема</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="container">
+            <article>
+                <!-- Burger Menu -->
+                <div class="burger">
+                    <div class="burger-part1">
+                        <h3>подсказка</h3>
+                        <p>в корейском языке применяются две системы: корейская система и система китайского
+                            происхождения</p>
+                        <h2>корейские числительные</h2>
+
+                        <div class="korea-number">
+                            <div class="korea-number-left">
+                                <h3>единицы</h3>
+                                <div class="korea-number-left-center">
+                                    <div class="korean-text" data-korean="하나"><b>1 - 하나</b></div>
+                                    <div class="korean-text" data-korean="둘"><b>2 - 둘</b></div>
+                                    <div class="korean-text" data-korean="셋"><b>3 - 셋</b></div>
+                                    <div class="korean-text" data-korean="넷"><b>4 - 넷</b></div>
+                                    <div class="korean-text" data-korean="다섯"><b>5 - 다섯</b></div>
+                                    <div class="korean-text" data-korean="여섯"><b>6 - 여섯</b></div>
+                                    <div class="korean-text" data-korean="일곱"><b>7 - 일곱</b></div>
+                                    <div class="korean-text" data-korean="여덟"><b>8 - 여덟</b></div>
+                                    <div class="korean-text" data-korean="아홉"><b>9 - 아홉</b></div>
+                                </div>
+                            </div>
+                            <div class="korea-number-right">
+                                <h3>десятки</h3>
+                                <div class="korea-number-right-center">
+                                    <div class="korean-text" data-korean="열"><b>10 - 열</b></div>
+                                    <div class="korean-text" data-korean="스물"><b>20 - 스물</b></div>
+                                    <div class="korean-text" data-korean="서른"><b>30 - 서른</b></div>
+                                    <div class="korean-text" data-korean="마흔"><b>40 - 마흔</b></div>
+                                    <div class="korean-text" data-korean="쉰"><b>50 - 쉰</b></div>
+                                    <div class="korean-text" data-korean="예순"><b>60 - 예순</b></div>
+                                    <div class="korean-text" data-korean="일흔"><b>70 - 일흔</b></div>
+                                    <div class="korean-text" data-korean="여든"><b>80 - 여든</b></div>
+                                    <div class="korean-text" data-korean="아흔"><b>90 - 아흔</b></div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="burger-part2">
-                            <div><p><b>б) обозначение места, по направлению к которому совершается движение (куда?):</b></p></div>
-                            <div class="korean-text" data-korean="나는 도서관으로 갑니다">나는 도서관으로 갑니다 - я иду в библиотеку </div>
-                            <div><p><b>в)обозначение промежуточного пункта движения ("мимо", "через")</b></p></div>
-                            <div class="korean-text" data-korean="공원으로 갑시다">공원으로 갑시다 - пойдем через парк</div>
-                            <div><p><b>г) обозначение образа или способа действия (каким образом?)</b></p></div>
-                            <div class="korean-text" data-korean="큰 소리로 말하다">큰 소리로 말하다 - говорить громко (громким голосом) </div>
-                            <div><p><b>д) обозначение признака лица или предмета</b></p></div>
-                            <div class="korean-text" data-korean="기사로 일하다">기사로 일하다 - работать инжинером</div>
-                            <div><p><b>е) обозначение причины действия (так, как)</b></p></div>
-                            <div class="korean-text" data-korean="그녀는 병으로 오지 못합니다">그녀는 병으로 오지 못합니다 - она не может прийти из-за болезни</div>
+
+                        <div class="kor-number-change">
+                            <div class="p"><b>некоторые числительные изменяются:</b></div>
+                            <div class="kor-number-change-center">
+                                <div class="korean-text" data-korean="한"><b>1 - 하나 = 한</b></div>
+                                <div class="korean-text" data-korean="두"><b>2 - 둘 = 두</b></div>
+                                <div class="korean-text" data-korean="세, 석, 서"><b>3 - 셋 = 세 (석, 서)</b></div>
+                                <div class="korean-text" data-korean="네, 넉, 너"><b>4 - 넷 = 네 (넉, 너)</b></div>
+                                <div class="korean-text" data-korean="닷"><b>5 - 다섯 = 닷</b></div>
+                                <div class="korean-text" data-korean="엿"><b>6 - 여섯 = 엿</b></div>
+                                <div class="korean-text" data-korean="스무"><b>20 - 스물 = 스무</b></div>
+                            </div>
+                        </div>
+
+                        <div class="iconDown" onclick="toggleBurger()">▼</div>
+                    </div>
+                    <div class="burger-part2">
+                        <h3>с помощью китайских числительных можно посчитать любое количество</h3>
+                        <div class="china-number">
+
+                            <div class="china-number-small">
+                                <div class="china-number-small-column">
+                                    <div class="china-number-small1">
+                                        <div class="korean-text" data-korean="영"><b>0 - 영</b></div>
+                                        <div class="korean-text" data-korean="일"><b>1 - 일</b></div>
+                                        <div class="korean-text" data-korean="이"><b>2 - 이</b></div>
+                                    </div>
+                                    <div class="china-number-small2">
+                                        <div class="korean-text" data-korean="삼"><b>3 - 삼</b></div>
+                                        <div class="korean-text" data-korean="사"><b>4 - 사</b></div>
+                                        <div class="korean-text" data-korean="오"><b>5 - о</b></div>
+                                    </div>
+                                </div>
+                                <div class="china-number-small-column">
+                                    <div class="china-number-small3">
+                                        <div class="korean-text" data-korean="육"><b>6 - 육</b></div>
+                                        <div class="korean-text" data-korean="칠"><b>7 - 칠</b></div>
+                                        <div class="korean-text" data-korean="팔"><b>8 - 팔</b></div>
+                                    </div>
+                                    <div class="china-number-small4">
+                                        <div class="korean-text" data-korean="구"><b>9 - 구</b></div>
+                                        <div class="korean-text" data-korean="십"><b>10 - 십</b></div>
+                                        <div class="korean-text" data-korean="백"><b>100 - 백</b></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="china-number-big">
+                                <div class="china-number-big1">
+                                    <div class="korean-text" data-korean="천"><b>1.000 (тысяча) - 천</b></div>
+                                    <div class="korean-text" data-korean="만"><b>10.000 (10 тыс.) - 만</b></div>
+                                </div>
+
+                                <div class="china-number-big2">
+                                    <div class="korean-text" data-korean="십만"><b>100.000 (100 тысяч) - 십만</b></div>
+                                    <div class="korean-text" data-korean="백만"><b>1.000.000 (1 млн.) - 백만</b></div>
+                                </div>
+                                <div class="china-number-big1">
+                                    <div class="korean-text" data-korean="천만"><b>10.000.000 (10 млн.) - 천만</b></div>
+                                    <div class="korean-text" data-korean="억"><b>100.000.000 (100 млн.) - 억</b></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="number-china-11-90">
+                            <div class="number-china-11">
+                                <div class="p">
+                                    <p><b>образование двузначных<br> чисел от 11 до 19</b></p>
+                                </div>
+                                <div class="korean-text" data-korean="십일"><b>11 - 십일</b></div>
+                                <div class="korean-text" data-korean="십이"><b>12 - 십이</b></div>
+                                <div class="korean-text" data-korean="십삼"><b>13 - 십삼</b></div>
+                                <div class="korean-text" data-korean="십사"><b>14 - 십사</b></div>
+                                <div class="korean-text" data-korean="십오"><b>15 - 십오</b></div>
+                                <div class="korean-text" data-korean="십육"><b>16 - 십육</b></div>
+                                <div class="korean-text" data-korean="십팔"><b>18 - 십팔</b></div>
+                                <div class="korean-text" data-korean="십구"><b>19 - 십구</b></div>
+                            </div>
+                            <div class="number-china-90">
+                                <div class="p">
+                                    <p><b>образование круглых<br> чисел от 20 до 90</b></p>
+                                </div>
+                                <div class="korean-text" data-korean="이십"><b>20 - 이십</b></div>
+                                <div class="korean-text" data-korean="삼십"><b>30 - 삼십</b></div>
+                                <div class="korean-text" data-korean="사십"><b>40 - 사십</b></div>
+                                <div class="korean-text" data-korean="오십"><b>50 - 오십</b></div>
+                                <div class="korean-text" data-korean="육십"><b>60 - 육십</b></div>
+                                <div class="korean-text" data-korean="칠십"><b>70 - 칠십</b></div>
+                                <div class="korean-text" data-korean="팔십"><b>80 - 팔십</b></div>
+                                <div class="korean-text" data-korean="구십"><b>90 - 구십</b></div>
+                            </div>
+
+                            <div class="number-china-21-100">
+                                <div class="p">
+                                    <p><b>образование не круглых<br> двузначных чисел</b></p>
+                                </div>
+                                <div class="korean-text" data-korean="이십일"><b>21 - 이십일</b></div>
+                                <div class="korean-text" data-korean="이십이"><b>22 - 이십이</b></div>
+                                <div class="korean-text" data-korean="삼십칠"><b>37 - 삼십칠</b></div>
+                                <div class="korean-text" data-korean="사십이"><b>42 - 사십이</b></div>
+                                <div class="korean-text" data-korean="오십삼"><b>53 -오십삼</b></div>
+                                <div class="korean-text" data-korean="육십사"><b>64 - 육십사</b></div>
+                                <div class="korean-text" data-korean="팔십구"><b>89 - 팔십구</b></div>
+                                <div class="korean-text" data-korean="구십이"><b>92 - 구십이</b></div>
+                            </div>
+                        </div>
+
+                        <div class="number-china-101-1000">
+                            <div class="p"><p><b>образование чисел свыше 100</b></p></div>
+                            <div class="china-number-big">
+                                <div class="number-china-101-1000-1">
+                                    <div class="korean-text" data-korean="이백사십칠"><b>247 - 이백사십칠</b></div>
+                                    <div class="korean-text" data-korean="사백삼십팔"><b>438 - 사백삼십팔</b></div>
+                                    <div class="korean-text" data-korean="오백칠십구"><b>579 - 오백칠십구</b></div>
+                                </div>
+                                <div class="number-china-101-1000-2">
+                                    <div class="korean-text" data-korean="구백육십이"><b>962 - 구백육십이</b></div>
+                                    <div class="korean-text" data-korean="삼백사십육"><b>346 - 삼백사십육</b></div>
+                                    <div class="korean-text" data-korean="칠백팔십사"><b>784 - 칠백팔십사</b></div>
+                                </div>
+                            </div>
+
+
+                            <div class="number-china-111-1111">
+                                <div class="p"><p><b>если количество десятков и сотен равно единице, то их число не обозначается</b></p></div>
+                                <div class="china-number-big">
+                                    <div class="number-china-111-1111-1">
+                                        <div class="korean-text" data-korean="백사십삼"><b>143 - 백사십삼</b></div>
+                                        <div class="korean-text" data-korean="백십구"><b>119 - 백십구</b></div>
+                                        <div class="korean-text" data-korean="사백십구"><b>415 - 사백십구</b></div>
+                                    </div>
+                                    <div class="number-china-111-1111-2">
+                                        <div class="korean-text" data-korean="천백십칠"><b>1.117 - 천백십칠</b></div>
+                                        <div class="korean-text" data-korean="이천백오십이"><b>2.152 - 이천백오십이</b></div>
+                                        <div class="korean-text" data-korean="삼만이백십칠"><b>30.211 - 삼만이백십칠</b></div>
+                                    </div>
+                                </div>
+                          
+                            </div>
+
+
                             <div class="iconUp" onclick="toggleBurger()">▲</div>
                         </div>
                     </div>
-                </article>
-            </div>
-        </main>
-    
-        <!-- Левый бургер -->
-        <div class="left-burger">
-            
-            <div><b>чередование ㄹ - 0</b></div>
-            <div> <b>ㄹ перед ㄴ, ㅂ, ㅅ, 오 </b> - <b>исчезает</b></div>
+            </article>
+        </div>
+    </main>
 
-            <div class="korean-text" data-korean="알다, 아는">알다 - 아는</div>
-            <div class="korean-text" data-korean="알다, 압니다">알다 - 압니다</div>
-            <div><p>к таким корням <b>чередование ㄹ - 0</b> относятся:</p></div>
+    <!-- Левый бургер -->
+    <div class="left-burger">
+        <div><b>чередование ㄹ - 0</b></div>
+        <div> <b>ㄹ перед ㄴ, ㅂ, ㅅ, 오 </b> - <b>исчезает</b></div>
+        <div class="korean-text" data-korean="알다, 아는">알다 - 아는</div>
+        <div class="korean-text" data-korean="알다, 압니다">알다 - 압니다</div>
+        <div>
+            <p>к таким корням <b>чередование ㄹ - 0</b> относятся:</p>
+        </div>
+        <div class="korean-text" data-korean="알다">알다 - знать</div>
+        <div class="korean-text" data-korean="불다">불다 - дуть</div>
+        <div class="korean-text" data-korean="살다">살다 - жить</div>
+        <div class="korean-text" data-korean="길다">길다 - длинный</div>
+        <div class="korean-text" data-korean="잘다">잘다 - мелкий</div>
+        <div class="korean-text" data-korean="멀다">멀다 - короткий</div>
+    </div>
 
-            <div class="korean-text" data-korean="알다">알다 - знать</div>
-            <div class="korean-text" data-korean="불다">불다 - дуть</div>
-            <div class="korean-text" data-korean="살다">살다 - жить</div>
-            <div class="korean-text" data-korean="길다">길다 - длинный</div>
-            <div class="korean-text" data-korean="잘다">잘다 - мелкий</div>
-            <div class="korean-text" data-korean="멀다">멀다 - короткий</div>
+    <!-- Левая закладка -->
+    <div class="left-bookmark-icon"></div>
 
-        </div>
-    
-        <!-- Левая закладка -->
-        <div class="left-bookmark-icon"></div>
-    
-        <!-- Нижний бургер -->
-        <div class="bottom-burger">
-            <div><b>чередования предикативных корней: ㄶ, ㅀ, ㅎ</b></div>
-            <div><p><b>предикативы, у которых в конце корня: ㄶ, ㅀ, ㅎ</b><br>
-                 а после этих корней следует окончание, начинающееся на: <br> <b>ㄱ, ㄷ, ㅈ</b></p>
-        <p>то произносится:<b>ㅋ, ㅌ, ㅊ</b></p>
-        </div>
-        <div class="korean-text" data-korean="많다">많다</div>
-        <div class="korean-text" data-korean="많고">많고</div>
-        <div class="korean-text" data-korean="많지">많지</div>
-       
-            <div><p>если после <b>ㅎ</b> стоит <b>ㅅ</b> то произносится<b> ㅆ</b></p></div>
-            <div class="korean-text" data-korean="많습니다">많습니다</div>
-            <div><p>в остальных случаях <b>ㅎ</b> никак не отображается</p></div>
-        
-        </div>
-    
-        <!-- Нижняя закладка -->
-        <div class="bottom-bookmark-icon"></div>
-    
-        <!-- Правая закладка -->
-        <div class="bookmark-icon"></div>
-    
-        <!-- Правый бургер -->
-        <div class="right-burger">
-            <div><b>обстоятельство места при глаголе <br>살다 (жить)</b> - может быть выражено именем в дательном <b>에</b> либо в дательно - местном падеже <b>에서</b></div>
-            <div class="korean-text" data-korean="안나는 서울에 삽니다">안나는 서울에 삽니다 - Анна живет в Сеуле</div>
-            <div class="korean-text" data-korean="그녀는 호텔에서 삽니다">그녀는 호텔에서 삽니다 - она живет в отеле</div>
-        </div>
-    
-        <div class="perehod">
-            <a href="/index/index_grammatika.html/index_vin_zvuk.html"><img src="/image/vlevo2.svg" alt=""></a>
-            <a href="/index.html"><img src="/image/vpravo2.svg" alt=""></a>
-        </div>
-    
-        <footer>
-            <section class="footer container">
-                <address>
-                    <div class="footer1">
-                        <div class="tel">
-                            <img src="/image/tel_blue.svg" alt="">
-                            <p>8-925-685-52-39</p>
-                        </div>
-                        <div class="mail">
-                            <p>anastasiya3000@yandex.ru</p>
-                        </div>
-                        <div class="footer-icon">
-                            <a href="" class="social-icon"><img src="/image/telegram_icon 1.svg" alt=""></a>
-                            <a href="" class="social-icon"><img src="/image/skype_icon 1.svg" alt=""></a>
-                            <a href="" class="social-icon"><img src="/image/whatsapp_green.png" alt=""></a>
-                            <a href="" class="social-icon"><img src="/image/license.svg" alt=""></a>
-                        </div>
-                        <div class="copyright desktop-only">
-                            <img id="copyright" src="/image/Copyright2 _ blue.svg" alt="copyright">
-                            <p>takiza, 2025</p>
-                        </div>
-                    </div>
-            
-                    <div class="footer2">
-                        <nav class="nav1-footer">
-                            <ul class="ul-footer">
-                                <li class="li-footer"><a href="" class="a-footer"><b>Правила оплаты</b></a></li>
-                                <li class="li-footer"><a href="" class="a-footer"><b>Договор оферты</b></a></li>
-                                <li class="li-footer"><a href="" class="a-footer"><b>Согласие с рассылкой</b></a></li>
-                                <li class="li-footer"><a href="" class="a-footer"><b>Пользовательское соглашение</b></a></li>
-                                <li class="li-footer"><a href="" class="a-footer"><b>Политика конфиденциальности</b></a></li>
-                                <li class="li-footer"><a href="" class="a-footer"><b>Положение о защите персональных данных</b></a></li>
-                            </ul>
-                        </nav>
-                    </div>
-                    
-                    <div class="copyright mobile-only">
-                        <img id="copyright" src="/image/Copyright2 _ blue.svg" alt="copyright">
-                        <p>takiza, 2025</p>
-                    </div>
-                </address>
-            </section>
-        </footer>
+    <!-- Нижний бургер -->
+    <div class="bottom-burger">
+        <div><b>чередование ㄹ - 0</b></div>
       
+        <div class="korean-text" data-korean="알다, 아는">알다 - 아는</div>
+        <div class="korean-text" data-korean="알다, 압니다">알다 - 압니다</div>
+      
+       
+    </div>
+
+    <!-- Нижняя закладка -->
+    <div class="bottom-bookmark-icon"></div>
+
+    <!-- Правая закладка -->
+    <div class="bookmark-icon"></div>
+
+    <!-- Правый бургер -->
+    <div class="right-burger">
+        <div><b>обстоятельство места при глаголе <br>살다 (жить)</b> - может быть выражено именем в дательном <b>에</b>
+            либо в дательно - местном падеже <b>에서</b></div>
+        <div class="korean-text" data-korean="안나는 서울에 삽니다">안나는 서울에 삽니다 - Анна живет в Сеуле</div>
+        <div class="korean-text" data-korean="그녀는 호텔에서 삽니다">그녀는 호텔에서 삽니다 - она живет в отеле</div>
+    </div>
+
+    <div class="perehod">
+        <a href="/index/index_grammatika.html/index_tvor_zvuk.html"><img src="/image/vlevo2.svg" alt=""></a>
+        <a href="/index/index_grammatika.html/index_prilag.html"><img src="/image/vpravo2.svg" alt=""></a>
+    </div>
+
+    <footer>
+        <section class="footer container">
+            <address>
+                <div class="footer1">
+                    <div class="tel">
+                        <img src="/image/tel_blue.svg" alt="">
+                        <p>8-925-685-52-39 </p>
+                    </div>
+                    <div class="mail">
+                        <p>anastasiya3000@yandex.ru</p>
+                    </div>
+                    <div class="footer-icon">
+                        <a href="" class="social-icon"> <img src="/image/telegram_icon 1.svg" alt=""></a>
+                        <a href="" class="social-icon"> <img src="/image/skype_icon 1.svg" alt=""></a>
+                        <a href="" class="social-icon"><img src="/image/whatsapp_green.png" alt=""></a>
+                        <a href="" class="social-icon"> <img src="/image/license.svg" alt=""></a>
+                    </div>
+                </div>
+
+                <div class="footer2">
+                    <nav class="nav1-footer">
+                        <ul class="ul-footer">
+                            <div class="f-li">
+                                <li class="li-footer"> <a href="" class="a-footer"><b>Правила оплаты</b></a></li>
+                                <li class="li-footer"> <a href="" class="a-footer"><b>Договор оферты</b></a></li>
+                                <li class="li-footer"> <a href="" class="a-footer"><b>Согласие с рассылкой</b></a></li>
+                                <li class="li-footer"><a href="" class="a-footer"><b>Пользовательское соглашение</b></a>
+                                </li>
+                                <li class="li-footer"> <a href="" class="a-footer"><b>Политика
+                                            конфиденциальности</b></a></li>
+                                <li class="li-footer"> <a href="" class="a-footer"><b>Положение о защите персональных
+                                            данных</b></a></li>
+                            </div>
+                        </ul>
+                    </nav>
+                </div>
+            </address>
+        </section>
+
+        <div class="copyright">
+            <img id="copyright" src="/image/Copyright2 _ blue.svg" alt="copyright">
+            <p>takiza, 2025</p>
+        </div>
+    </footer>
+
+
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-    // Функция для озвучки корейского текста
-    function speakKorean(text) {
-        if ('speechSynthesis' in window) {
-            // Остановить текущее воспроизведение
-            window.speechSynthesis.cancel();
-            
-            const utterance = new SpeechSynthesisUtterance(text);
-            utterance.lang = 'ko-KR';
-            utterance.rate = 0.9;
-            
-            // Попробовать найти корейский голос
-            const voices = window.speechSynthesis.getVoices();
-            const koreanVoice = voices.find(voice => 
-                voice.lang === 'ko-KR' || voice.lang === 'ko'
-            );
-            
-            if (koreanVoice) {
-                utterance.voice = koreanVoice;
+        const burgerMenu = document.getElementById("burgerMenu");
+        const navBurger = document.getElementById("navBurger");
+
+        burgerMenu.addEventListener("click", function (event) {
+            event.stopPropagation(); // Предотвращаем всплытие события
+            navBurger.classList.toggle("active"); // Переключаем класс active
+        });
+
+        document.addEventListener("click", function (event) {
+            if (!navBurger.contains(event.target) && !burgerMenu.contains(event.target)) {
+                navBurger.classList.remove("active"); // Закрываем меню, если клик вне его
             }
-            
-            window.speechSynthesis.speak(utterance);
+        });
+
+        /* Свайп для мобильных устройств */
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            const swipeThreshold = 50; // Минимальное расстояние для свайпа
+            if (touchEndX < touchStartX - swipeThreshold) {
+                nextWord(); // Свайп влево
+            } else if (touchEndX > touchStartX + swipeThreshold) {
+                previousWord(); // Свайп вправо
+            }
         }
-    }
-
-    // Обработчики для корейского текста
-    document.querySelectorAll('.korean-text').forEach(element => {
-        element.addEventListener('click', function(e) {
-            e.stopPropagation();
-            
-            const koreanText = this.getAttribute('data-korean');
-            if (koreanText) {
-                // Визуальная обратная связь
-                this.classList.add('active');
-                setTimeout(() => {
-                    this.classList.remove('active');
-                }, 300);
-                
-                speakKorean(koreanText);
-            }
-        });
-    });
-
-    // Функция для управления бургерами
-    function setupBurger(iconClass, burgerClass) {
-        const icon = document.querySelector(iconClass);
-        const burger = document.querySelector(burgerClass);
-
-        if (!icon || !burger) return;
-
-        icon.addEventListener('click', function(event) {
-            event.stopPropagation();
-            icon.style.display = 'none';
-            burger.style.display = 'block';
-        });
-
-        document.addEventListener('click', function(event) {
-            if (!burger.contains(event.target) && event.target !== icon) {
-                burger.style.display = 'none';
-                icon.style.display = 'block';
-            }
-        });
-    }
-
-    // Инициализация всех бургеров
-    setupBurger('.left-bookmark-icon', '.left-burger');
-    setupBurger('.bookmark-icon', '.right-burger');
-    setupBurger('.bottom-bookmark-icon', '.bottom-burger');
-
-    // Функция для переключения частей бургера
-    function toggleBurger() {
-        const part1 = document.querySelector('.burger-part1');
-        const part2 = document.querySelector('.burger-part2');
-
-        if (!part1 || !part2) return;
-
-        if (part2.style.display === 'none' || !part2.style.display) {
-            part1.style.display = 'none';
-            part2.style.display = 'flex';
-        } else {
-            part1.style.display = 'flex';
-            part2.style.display = 'none';
-        }
-    }
-
-    // Назначение обработчика для кнопок переключения
-    document.querySelectorAll('.iconDown, .iconUp').forEach(icon => {
-        icon.addEventListener('click', toggleBurger);
-    });
-
-    // Загрузка голосов (необходимо для некоторых браузеров)
-    if (speechSynthesis.onvoiceschanged !== undefined) {
-        speechSynthesis.onvoiceschanged = function() {
-            // Голоса загружены
-        };
-    }
-});
     </script>
-        <!-- <script src="/scripts/script_svipe_nav.bg.js"></script> -->
-    </body>
-    
-    </html>
 
-     <!-- исправь ошибки в коде (напиши раздельно html, css, script):
-     исправь подвал - подвал должен автоматически перемещаться и находиться под <main></main>,
-     однако нижний бургер должен оставаться по центру верхней части подвала, вне зависимости от перемещений на экране -->
+    <script src="/script_zvuk_clik.js"></script>
+
+
+</body>
+
+</html>
