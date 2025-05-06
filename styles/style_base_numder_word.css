@@ -1,0 +1,661 @@
+
+/* Font imports */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* Base styles */
+* {
+    font-family: "Montserrat", sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Korean text styling */
+.korean-text {
+    font-family: "Noto Sans KR", sans-serif;
+    cursor: pointer;
+    color: inherit;
+    text-decoration: none;
+}
+
+.korean-text:hover {
+    text-decoration: underline;
+}
+
+
+
+
+
+.logo:hover {
+    left: 150px;
+    top: 55px;
+    transform: scale(1.5);
+}
+
+.lk {
+    width: 54px;
+    height: 54px;
+}
+
+.lk:hover {
+    transform: scale(1.5);
+    border-radius: 100px solid rgb(49, 36, 105);
+}
+
+/* Бургер-меню */
+.burger-menu {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+    z-index: 1000;
+}
+
+.burger-menu div {
+    width: 25px;
+    height: 3px;
+    background-color: #000;
+}
+
+.nav-burger {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 250px;
+    height: 100vh;
+    background-color: rgba(200, 186, 141, 0.95);
+    transition: left 0.3s ease;
+    z-index: 999;
+    padding-top: 80px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.nav-burger.active {
+    left: 0;
+}
+
+.nav-burger .ul-header {
+    list-style: none;
+    padding: 20px;
+    margin: 0;
+    flex-direction: column;
+}
+
+.nav-burger .li-header {
+    margin-bottom: 20px;
+}
+
+.nav-burger .a-header {
+    color: hsla(47, 18%, 20%, 0.814);
+    text-decoration: none;
+    font-size: 18px;
+    display: block;
+}
+
+.nav-burger .a-header:hover {
+    color: rgb(4, 1, 48);
+}
+
+
+/* Header styles */
+header .container {
+    max-width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #c8ba8d;
+    padding: 20px 110px;
+    margin-bottom: 50px;
+}
+
+.nav-header {
+    padding: 20px;
+}
+
+.ul-header {
+    display: flex;
+    list-style: none;
+}
+
+.li-header {
+    display: flex;
+    margin-right: 45px;
+}
+
+.a-header {
+    color: hsla(47, 18%, 20%, 0.814);
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.a-header:hover {
+    color: rgb(4, 1, 48);
+}
+
+
+
+
+       
+/* Burger menu styles */
+.burger-menu {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+    z-index: 1000;
+}
+
+        .burger-part1,
+        .burger-part2 {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .burger-part2 {
+            display: none;
+        }
+
+        .iconDown,
+        .iconUp {
+            cursor: pointer;
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .iconDown:hover,
+        .iconUp:hover {
+            color: #000;
+        }
+
+        /* Общие стили для всех вкладок */
+     /* Bookmark styles */
+.left-bookmark-icon,
+.bookmark-icon,
+.bottom-bookmark-icon {
+    width: 70px;
+    height: 20px;
+    background-color: rgba(49, 36, 105, 0.2);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    text-align: center;
+    cursor: pointer;
+    z-index: 1000;
+    margin: 0;
+    border-radius: 20px 20px 0 0;
+    position: fixed;
+}
+
+        /* Стили для левой вкладки */
+        .left-bookmark-icon {
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%) rotate(90deg);
+            border: 1px solid #000;
+            margin-left: -30px;
+        }
+
+        /* Стили для правой вкладки */
+        .bookmark-icon {
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%) rotate(270deg);
+            border: 1px solid #000;
+            margin-right: -30px;
+        }
+        .bottom-bookmark-icon {
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%) rotate(0deg);
+    border: 1px solid #000;
+}
+
+/* Burger panels */
+.bottom-burger {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 25%;
+    background-color: white;
+    border: 2px solid rgb(4, 1, 48);
+    border-radius: 50px 50px 0 0;
+    padding: 20px;
+    z-index: 999;
+    margin: 0;
+}
+
+        /* Добавляем текст "важно" */
+        .left-bookmark-icon::after,
+        .bookmark-icon::after,
+        .bottom-bookmark-icon::after {
+            content: "важно";
+            display: block;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .left-burger {
+            display: none;
+            position: fixed;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 25%;
+            background-color: white;
+            border: 2px solid rgb(4, 1, 48);
+            border-radius: 0 50px 50px 0;
+            padding: 20px;
+            z-index: 999;
+            margin: 0;
+        }
+
+        .right-burger {
+            display: none;
+            position: fixed;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 25%;
+            background-color: white;
+            border: 2px solid rgb(4, 1, 48);
+            border-radius: 50px 0 0 50px;
+            padding: 20px;
+            z-index: 999;
+            margin: 0;
+        }
+
+   
+
+        .bottom-burger div {
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .bottom-burger div:hover {
+            background-color: #e0e0e0;
+        }
+
+        .korean-text {
+            cursor: pointer;
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .korean-text:hover {
+            text-decoration: underline;
+        }
+
+        /* стили 1 бургера с корейскими числительными */
+        .korea-number {
+            display: flex;
+            justify-content: space-between;
+            padding-bottom: 30px;
+            width: 100%;
+        }
+
+        .korea-number-left,
+        .korea-number-right {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 48%;
+        }
+
+        .korea-number-left h3,
+        .korea-number-right h3 {
+            margin-bottom: 15px;
+            width: 100%;
+            text-align: center;
+        }
+
+        h2,
+        h3 {
+            text-align: center;
+        }
+
+        .p,
+        p {
+            display: flex;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .kor-number-change {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+
+      
+
+
+        /* Footer styles */
+footer {
+    background-color: #c8ba8d;
+    padding: 20px 0;
+    margin-top: auto;
+    position: relative;
+}
+
+
+
+/* Footer */
+footer {
+    background-color: #c8ba8d;
+    padding: 20px 0;
+}
+
+.footer1, .footer2 {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.mail,
+.tel {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    gap: 5px;
+    /* margin-bottom: 5px; */
+}
+
+.tel img {
+    width: 12px;
+    height: 12px;
+    /* margin-right: 5px; */
+}
+
+
+.footer-icon {
+    display: flex;
+    gap: 15px;
+   
+}
+
+     .footer-icon img {
+        width: 30px;
+        height: 30px;
+    } 
+
+address{
+    display: flex;
+    flex-direction: row;
+
+    justify-content: space-around;
+    /* padding-left: 10px;
+    padding-right: 10px; */
+}
+.footer2 {
+    display: flex;
+   
+    align-items: flex-start;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.ul-footer {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+       
+.li-footer {
+    margin: 0;
+}
+ 
+.a-footer {
+    color: hsla(47, 18%, 20%, 0.814);
+    text-decoration: none;
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+.a-footer:hover {
+    color: rgb(4, 1, 48);
+}
+
+.copyright {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    color: hsla(47, 18%, 20%, 0.814);
+    font-size: 14px;
+}
+
+#copyright {
+    height: 15px;
+    width: 15px;
+    margin-right: 5px;
+}
+/* Телефон */
+.tel:hover p {
+     color: rgb(4, 1, 48);
+    font-size: 1.1em;
+    transition: all 0.3s ease;
+}
+
+/* Почта */
+.mail:hover p {
+    color: rgb(4, 1, 48);
+    font-size: 1.1em;
+    transition: all 0.3s ease;
+}
+
+/* Копирайт */
+.copyright:hover p {
+    color: rgb(4, 1, 48);
+    font-size: 1.1em;
+    transition: all 0.3s ease;
+}
+
+/* Для плавности перехода при убирании курсора */
+.tel p,
+.mail p,
+.copyright p {
+    transition: all 0.3s ease;
+}
+
+
+
+.perehod img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid rgb(49, 36, 105);
+    transition: transform 0.3s;
+}
+
+.perehod>a:hover {
+    transform: scale(1.5);
+}
+
+.perehod {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    padding: 0 120px 0 120px;
+    margin-bottom: 20px;
+}
+
+
+@media(max-width:1250px) {
+
+    header,
+    .container,
+
+    .copyright{
+        justify-content: center;
+        text-align: center;
+    }
+    
+
+}
+  /* Добавьте свои стили здесь */
+    
+  @media (max-width: 1100px) {
+    .footer {
+        flex-direction: column;
+    }
+
+    .footer1, .footer2 {
+        width: 100%;
+    }
+
+    .footer-icon {
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+
+    .footer2 {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+    }
+
+    .nav1-footer, .nav2-footer, .nav3-footer {
+        margin-bottom: 10px;
+    }
+
+    .copyright {
+        margin-top: 10px;
+    }
+}
+
+@media(max-width:1024px) {
+
+    header,
+    .container,
+  footer,
+    .copyright {
+        justify-content: center;
+        text-align: center;
+    }
+
+    .footer3 ul {
+        flex-wrap: wrap;
+    }
+
+    .footer>ul {
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .header_ul {
+        justify-content: flex-start;
+    }
+
+    nav {
+        padding: 0;
+    }
+
+}  
+
+/* @media (max-width: 750px) {
+  
+} */
+
+@media (max-width: 600px) {
+    .logo {
+    width: 54px; /* Уменьшено в 2 раза */
+    height: 54px; /* Уменьшено в 2 раза */
+    transition: transform 0.3s;
+}
+
+.lk {
+    width: 27px; /* Уменьшено в 2 раза */
+    height: 27px; /* Уменьшено в 2 раза */
+    transition: transform 0.3s;
+}
+
+/* Кнопки и карточки */
+.btn-proba {
+    width: 200px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 50px; /* Центрирование */
+    /* остальные стили */
+}
+
+
+/* Подвал */
+footer {
+    text-align: center;
+}
+
+address {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer1, .footer2 {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.footer-icon {
+    justify-content: center;
+}
+  
+    /* Подвал - центрируем все элементы */
+    .footer1, .footer2, .copyright {
+        align-items: center;
+        text-align: center;
+    }
+    
+    .ul-footer {
+        justify-content: center;
+    }
+    
+    /* Еще больше уменьшаем логотип и ЛК на мобильных */
+    .logo {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .lk {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+
+
+    
