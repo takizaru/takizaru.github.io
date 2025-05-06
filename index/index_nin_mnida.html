@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Korean Numbers Guide</title>
+    <!-- <link rel="stylesheet" href="/styles/style_base.css/style_osnova.css"> -->
+    <link rel="stylesheet" href="/styles/style_base_numder_word.css">
+    <style>
+  .rule {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f8f8f8;
+            border-radius: 8px;
+        }
+
+        .grammatika,
+        .center-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f8f8f8;
+            border-radius: 8px;
+        }
+
+        .grammatika h2 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .grammatika p {
+            line-height: 1.5;
+            color: #555;
+            text-align: center;
+            width: 100%;
+        }
+
+        .rule-face {
+            width: 100%;
+            margin: 15px 0;
+        }
+
+        .rule-word {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            padding: 15px 0;
+        }
+
+        h5,
+        h2 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .ri-highlight {
+            font-weight: 900;
+            color: #ff0000;
+        }
+
+        .ri-highlight:first-letter {
+            color: #000000;
+            font-weight: normal;
+        }
+
+        .neun-highlight {
+            font-weight: 900;
+            color: #044404;
+        }
+
+        .korean-text b {
+            font-weight: normal;
+        }
+
+        .left-spesial-word,
+        .right-primer {
+            flex: 1;
+            padding: 15px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        /* Left burger styles */
+        .left-burger {
+            position: fixed;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: #f8f8f8;
+            padding: 15px;
+            border-radius: 0 8px 8px 0;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+            width: 200px;
+            z-index: 100;
+        }
+
+        /* Right burger styles */
+        .right-burger {
+            position: fixed;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: #f8f8f8;
+            padding: 15px;
+            border-radius: 8px 0 0 8px;
+            box-shadow: -2px 2px 5px rgba(0,0,0,0.1);
+            width: 200px;
+            z-index: 100;
+        }
+
+        /* Bottom burger styles */
+        .bottom-burger {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #f8f8f8;
+            padding: 15px;
+            border-radius: 8px 8px 0 0;
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+            width: 300px;
+            z-index: 100;
+        }
+
+    
+        
+        .iconDown, .iconUp {
+            cursor: pointer;
+            text-align: center;
+            /* padding: 10px; */
+            /* background-color: #eee; */
+            border-radius: 5px;
+            margin: 10px auto;
+            width: 30px;
+        }
+
+        @media (min-width: 768px) {
+            .left-spesial-word {
+                text-align: left;
+                border-right: 1px solid #ddd;
+            }
+            .right-primer {
+                text-align: left;
+                padding-left: 20px;
+                border-left: 1px solid #ddd;
+            }
+            .rule-word {
+                flex-direction: row;
+            }
+            
+            /* Adjust burger widths for larger screens */
+            .left-burger,
+            .right-burger {
+                width: 80%;
+                max-width: 300px;
+            }
+            
+            .bottom-burger {
+                width: 80%;
+                max-width: 500px;
+            }
+        }
+
+     
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="burger-menu" id="burgerMenu">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <img class="logo" src="/image/logo krug.svg" alt="Логотип">
+            <a href="" class="user"> <img class="lk" src="/image/userrblur.svg" alt="Пользователь"></a>
+        </div>
+        <nav class="nav-burger" id="navBurger">
+            <ul class="ul-header">
+                <li class="li-header"> <a href="" class="a-header">онлайн - переводчик</a></li>
+                <li class="li-header"> <a href="" class="a-header">контакты</a></li>
+                <li class="li-header"> <a href="" class="a-header">светлая тема</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="container">
+            <article>
+                <div class="burger">
+                    <div class="burger-part1">
+                       
+                        <div class="rule"> 
+                            <h2>основной падеж</h2>                       
+                        существительное (имя) с частицами  <b> 는 / 은</b> - обычно в предложении выступает в роли подлежащего
+                        </div>
+
+                        <div class="rule-face">
+                            <div class="rule-word">
+                                <div class="left-spesial-word">
+                                    <div class="korean-text" data-korean="">если существительное (имя) оканчивается на
+                                        гласную – после нее ставим частицу <b>는</b></div>
+                                    <div class="korean-text" data-korean="">если существительное (имя) оканчивается на
+                                        согласную – после нее ставим частицу <b>은</b></div>
+                                </div>
+                                <div class="right-primer">
+                                    <div class="korean-text" data-korean="우리는">
+                                        <b>우<span class="ri-highlight">리</span> + <span
+                                                class="neun-highlight">는</span></b> - у-ри-нын
+                                    </div>
+                                    <div class="korean-text" data-korean="그분은">
+                                        <b>그<span class="ri-highlight">분</span> + <span
+                                                class="neun-highlight">은</span></b> - кы-бун-ын
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="rule">
+                                <h2>вежливо - официальный стиль речи</h2>
+                                <p>используется, при обращении к выше стоящему по статусу (ученик к учителю, младший к старшему, ребенок к родителю …) или статус говорящего равен</p>
+                            повествовательная форма (настоящее время): <b>ㅂ니다 / 습니다</b>
+                            </div>
+                            
+                            <div class="rule-word">
+                                <div class="left-spesial-word">
+                                    <div class="korean-text" data-korean="">если основа (корень) предикатива оканчивается на согласный, присоединяется окончание <b>습니다</b></div>
+                                    <div class="korean-text" data-korean="">если основа (корень) предикатива оканчивается на гласный, присоединяется окончание <b>ㅂ니다</b></div>
+                                </div>
+                                <div class="right-primer">
+                                    <div class="korean-text" data-korean="먹습니다">
+                                        <b>먹다 - 다 = <span class="ri-highlight">먹</span> + <span
+                                                class="neun-highlight">습니다</span> = 먹습니다</b> - мок-сы-мни-да
+                                    </div>
+                                    <div class="korean-text" data-korean="갑니다">
+                                        <b>가다 - 다 = <span class="ri-highlight">가</span> + <span
+                                                class="neun-highlight">ㅂ니다</span> = 갑니다</b> - ка-мни-да
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <p class="center-text">вопросительная форма (настоящее время): <b>ㅂ니까 / 습니까</b></p>
+                            
+                            <div class="rule-word">
+                                <div class="left-spesial-word">
+                                    <div class="korean-text" data-korean="습니까">если основа (корень) предикатива оканчивается на согласный, присоединяется окончание <b>습니까</b></div>
+                                    <div class="korean-text" data-korean="ㅂ니까">если основа (корень) предикатива оканчивается на гласный, присоединяется окончание <b>ㅂ니까</b></div>
+                                </div>
+                                <div class="right-primer">
+                                    <div class="korean-text" data-korean="먹습니까?">
+                                        <b>먹다 - 다 = <span class="ri-highlight">먹</span> + <span
+                                                class="neun-highlight">습니까</span> = 먹습니까?</b> - мок-сы-мни-кка?
+                                    </div>
+                                    <div class="korean-text" data-korean="갑니까?">
+                                        <b>가다 - да = <span class="ri-highlight">가</span> + <span
+                                                class="neun-highlight">ㅂ니까</span> = 갑니까?</b> - ка-мни-кка?
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="iconDown" onclick="toggleBurger()">▼</div>
+                    </div>
+                    <!-- <div class="burger-part2">
+                        <h5>с помощью китайских числительных можно посчитать любое количество</h5>
+                        <div class="rule">
+                            <p>китайские числительные используются для перечисления минут, секунд, денег, возраста,
+                                дат, (кол - ва) месяцев
+                            </p>
+                        </div>
+                        <div class="rule-face">
+                            <div class="rule-word">
+                                <div class="left-spesial-word">
+                                    <p class="center-text"><b>счетные слова</b></p>
+                                    <div>
+                                        <p>세 - при исчислени возраста</p>
+                                    </div>
+                                </div>
+                                <div class="right-primer">
+                                    <p class="center-text"><b>примеры:</b></p>
+                                    <div class="korean-text" data-korean="육개월"><b>육개월</b> - 6 месяцев</div>
+                                </div>
+                            </div>
+
+                            <div class="iconUp" onclick="toggleBurger()">▲</div>
+                        </div>
+                    </div> -->
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <!-- Левый бургер -->
+    <div class="left-burger">
+        <div><b>предикатив -</b> глагол, прилагательное, связки ...</div>
+        <div> <b>предикатив</b> всегда замыкает предложение и является главным словом в предложении</div>
+        <div><b>предложение</b> всегда переводится с конца</div>
+    </div>
+
+    <!-- Левая закладка -->
+    <div class="left-bookmark-icon"></div>
+
+    <!-- Нижний бургер -->
+    <div class="bottom-burger">
+        <h2>ступени вежливости:</h2>
+        <div>вежливо - официальная речь</div>
+        <div>вежливо - неофициальная речь</div>
+        <div>авторитарная речь</div>
+            <div>фамильярная речь</div>
+                <div> интимная речь</div>
+                    <div>простая речь</div>
+    </div>
+
+    <!-- Нижняя закладка -->
+    <div class="bottom-bookmark-icon"></div>
+
+    <!-- Правая закладка -->
+    <div class="bookmark-icon"></div>
+
+    <!-- Правый бургер -->
+    <!-- <div class="right-burger">
+        <div><b>время (границы) суток</b></div>
+    </div> -->
+
+    <div class="perehod">
+        <a href="/index.html"><img src="/image/vlevo2.svg" alt=""></a>
+        <a href="/index/index_tvor_zvuk.html"><img src="/image/vpravo2.svg" alt=""></a>
+    </div>
+
+    <footer>
+        <section class="footer container">
+            <address>
+                <div class="footer1">
+                    <div class="tel">
+                        <img src="/image/tel_blue.svg" alt="">
+                        <p>8-925-685-52-39 </p>
+                    </div>
+                    <div class="mail">
+                        <p>anastasiya3000@yandex.ru</p>
+                    </div>
+                    <div class="footer-icon">
+                        <a href="" class="social-icon"> <img src="/image/telegram_icon 1.svg" alt=""></a>
+                        <a href="" class="social-icon"> <img src="/image/skype_icon 1.svg" alt=""></a>
+                        <a href="" class="social-icon"><img src="/image/whatsapp_green.png" alt=""></a>
+                        <a href="" class="social-icon"> <img src="/image/license.svg" alt=""></a>
+                    </div>
+                </div>
+
+                <div class="footer2">
+                    <nav class="nav1-footer">
+                        <ul class="ul-footer">
+                            <div class="f-li">
+                                <li class="li-footer"> <a href="" class="a-footer"><b>Правила оплаты</b></a></li>
+                                <li class="li-footer"> <a href="" class="a-footer"><b>Договор оферты</b></a></li>
+                                <li class="li-footer"> <a href="" class="a-footer"><b>Согласие с рассылкой</b></a></li>
+                                <li class="li-footer"><a href="" class="a-footer"><b>Пользовательское соглашение</b></a>
+                                </li>
+                                <li class="li-footer"> <a href="" class="a-footer"><b>Политика
+                                            конфиденциальности</b></a></li>
+                                <li class="li-footer"> <a href="" class="a-footer"><b>Положение о защите персональных
+                                            данных</b></a></li>
+                            </div>
+                        </ul>
+                    </nav>
+                </div>
+            </address>
+        </section>
+
+        <div class="copyright">
+            <img id="copyright" src="/image/Copyright2 _ blue.svg" alt="copyright">
+            <p>takiza, 2025</p>
+        </div>
+    </footer>
+
+    <script>
+        const burgerMenu = document.getElementById("burgerMenu");
+        const navBurger = document.getElementById("navBurger");
+
+        burgerMenu.addEventListener("click", function (event) {
+            event.stopPropagation();
+            navBurger.classList.toggle("active");
+        });
+
+        document.addEventListener("click", function (event) {
+            if (!navBurger.contains(event.target) && !burgerMenu.contains(event.target)) {
+                navBurger.classList.remove("active");
+            }
+        });
+
+        function toggleBurger() {
+            const part1 = document.querySelector('.burger-part1');
+            const part2 = document.querySelector('.burger-part2');
+            
+            if (part1.style.display === 'none') {
+                part1.style.display = 'block';
+                part2.style.display = 'none';
+            } else {
+                part1.style.display = 'none';
+                part2.style.display = 'block';
+            }
+        }
+
+        /* Свайп для мобильных устройств */
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            if (touchEndX < touchStartX - swipeThreshold) {
+                nextWord();
+            } else if (touchEndX > touchStartX + swipeThreshold) {
+                previousWord();
+            }
+        }
+
+        function nextWord() {
+            // Implement next word functionality
+        }
+
+        function previousWord() {
+            // Implement previous word functionality
+        }
+    </script>
+
+    <script src="/scripts/script_zvuk_clik.js"></script>
+</body>
+</html>
