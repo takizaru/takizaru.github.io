@@ -4,13 +4,355 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/styles/style_assimil_kor.css">
+    <!-- <link rel="stylesheet" href="/styles/style_assimil_kor.css"> -->
+      <link rel="stylesheet" href="/styles/style_base_numder_word.css">
  
+ <title></title>
+ <style>
+ /* Main container styles */
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.box {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+/* Flex container for table and player */
+.alltable {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 200px; /* 200px spacing between table and player */
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* Table styles */
+.table-container {
+    width: 500px;
+    height: 600px;
+    overflow: auto;
+    padding: 10px;
+    background: linear-gradient(45deg, rgba(179, 153, 99, 0.886), rgb(146, 197, 154), rgb(159, 159, 113), rgb(160, 127, 160));
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+table {
+    width: 100%;
+    height: 100%;
+    border-collapse: separate;
+    border-spacing: 5px;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    font-size: 16px;
+    table-layout: fixed;
+}
+
+th, td {
+    padding: 5px;
+    text-align: center;
+    position: relative;
+    background: linear-gradient(135deg, #e7e8dce9, #e3ebe5, #fafbfa);
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+}
+
+/* Cell content styles - Korean above Russian */
+.cell-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.korean-text {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.russian-text {
+    font-size: 14px;
+    color: #666;
+}
+
+/* Diagonal split cell style */
+.split-cell {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.split-cell::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top right, transparent 49.5%, #000 49.5%, #000 50.5%, transparent 50.5%);
+    z-index: 1;
+}
+
+.top-text,
+.bottom-text {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    text-align: center;
+}
+
+.top-text {
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.bottom-text {
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+/* Player styles */
+.word-window {
+    width: 300px;
+    height: 250px;
+    background-color: rgba(201, 201, 72, 0.737);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    box-sizing: border-box;
+}
+
+.word-display {
+    font-size: 28px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.audio-icon img {
+    width: 40px;
+    height: 40px;
+}
+
+.audio-icon{
+   margin: 20px;
+}
+
+.navigation-buttons img {
+    width: 40px;
+    height: 40px;
+}
+
+.navigation-buttons{
+    flex-direction: row;
+    display: flex;
+    gap: 30px;
+}
+
+/* Responsive adaptations */
+@media (max-width: 1440px) {
+    .alltable {
+        gap: 150px;
+    }
+    
+    .table-container {
+        width: 450px;
+        height: 450px;
+    }
+    
+    .word-window {
+        width: 280px;
+        height: 230px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .alltable {
+        gap: 100px;
+    }
+    
+    .table-container {
+        width: 400px;
+        height: 400px;
+    }
+    
+    .word-window {
+        width: 260px;
+        height: 210px;
+        font-size: 22px;
+    }
+    
+    .word-display {
+        font-size: 24px;
+    }
+    
+    .korean-text {
+        font-size: 17px;
+    }
+    
+    .russian-text {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .alltable {
+        gap: 80px;
+    }
+    
+    .table-container {
+        width: 380px;
+        height: 380px;
+    }
+    
+    .word-window {
+        width: 240px;
+        height: 190px;
+        font-size: 20px;
+    }
+    
+    .word-display {
+        font-size: 22px;
+    }
+    
+    .audio-icon img, 
+    .navigation-buttons img {
+        width: 35px;
+        height: 35px;
+    }
+}
+
+/* Switch to column layout at 786px */
+@media (max-width: 786px) {
+.box{
+    flex-direction: column;
+}
+
+    .alltable {
+        flex-direction: column;
+        gap: 40px;
+        margin-bottom: 40px;
+    }
+    
+    .table-container {
+        width: 100%;
+        max-width: 500px;
+        height: auto;
+        min-height: 400px;
+    }
+    
+    .word-window {
+        width: 80%;
+        max-width: 300px;
+        height: 200px;
+        font-size: 16px;
+    }
+    
+    .word-display {
+        font-size: 22px;
+    }
+
+    .audio-icon{
+   margin: 20px;
+}
+    
+    .korean-text {
+        font-size: 16px;
+    }
+    
+    .russian-text {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .table-container {
+        min-height: 350px;
+    }
+    
+    .word-window {
+        height: 180px;
+        font-size: 18px;
+           width: 50%;
+    }
+    
+    .word-display {
+        font-size: 20px;
+      
+    }
+    
+    .korean-text {
+        font-size: 15px;
+    }
+    
+    .russian-text {
+        font-size: 11px;
+    }
+    
+    .audio-icon img, 
+    .navigation-buttons img {
+        width: 30px;
+        height: 30px;
+    }
+
  
+}
+
+@media (max-width: 374px) {
+    .table-container {
+        min-height: 300px;
+    }
+    
+    .word-window {
+        height: 160px;
+        font-size: 16px;
+    }
+    
+    .word-display {
+        font-size: 18px;
+    }
+    
+    .korean-text {
+        font-size: 14px;
+    }
+    
+    .russian-text {
+        font-size: 10px;
+    }
+    
+    .audio-icon img, 
+    .navigation-buttons img {
+        width: 28px;
+        height: 28px;
+    }
+}
+
+ </style>
 </head>
 
 <body>
-    <header>
+     <header>
         <div class="container">
             <div class="burger-menu" id="burgerMenu">
                 <div></div>
@@ -322,14 +664,13 @@
 </div>
     </main>
     <div class="perehod">
-        <a href="/index_chitat1_zvuk.html"><img src="/image/vlevo2.svg" alt=""></a>
-        <a href="/index_l-0.html"><img src="/image/vpravo2.svg" alt=""></a>
+        <a href="/index.html"><img src="/image/vlevo2.svg" alt=""></a>
+        <a href="/index.html"><img src="/image/vpravo2.svg" alt=""></a>
     </div>
-    <footer>
+       <footer>
         <section class="footer container">
             <address>
                 <div class="footer1">
-                    
                     <div class="tel">
                         <img src="/image/tel_blue.svg" alt="">
                         <p>8-925-685-52-39 </p>
@@ -344,32 +685,91 @@
                         <a href="" class="social-icon"> <img src="/image/license.svg" alt=""></a>
                     </div>
                 </div>
+
+                <div class="footer2">
+                    <nav class="nav1-footer">
+                        <ul class="ul-footer">
+                            <div class="f-li">
+                                <li class="li-footer"> <a href="" class="a-footer"><b>Правила оплаты</b></a></li>
+                                <li class="li-footer"> <a href="" class="a-footer"><b>Договор оферты</b></a></li>
+                                <li class="li-footer"> <a href="" class="a-footer"><b>Согласие с рассылкой</b></a></li>
+                                <li class="li-footer"><a href="" class="a-footer"><b>Пользовательское соглашение</b></a>
+                                </li>
+                                <li class="li-footer"> <a href="" class="a-footer"><b>Политика
+                                            конфиденциальности</b></a></li>
+                                <li class="li-footer"> <a href="" class="a-footer"><b>Положение о защите персональных
+                                            данных</b></a></li>
+                            </div>
+                        </ul>
+                    </nav>
+                </div>
             </address>
         </section>
-            <div class="footer2">
-                <nav class="nav1-footer">
-                    <ul class="ul-footer">
-                        <div class="f-li">
-                            <li class="li-footer"> <a href="" class="a-footer"><b>Правила оплаты</b></a></li>
-                            <li class="li-footer"> <a href="" class="a-footer"><b>Договор оферты</b></a></li>
-                            <li class="li-footer"> <a href="" class="a-footer"><b>Согласие с рассылкой</b></a></li>
-                            <li class="li-footer"><a href="" class="a-footer"><b>Пользовательское соглашение</b></a>
-                            </li>
-                            <li class="li-footer"> <a href="" class="a-footer"><b>Политика конфиденциальности</b></a>
-                            </li>
-                            <li class="li-footer"> <a href="" class="a-footer"><b>Положение о защите персональных
-                                        данных</b></a></li>
-                        </div>
-                    </ul>
-                </nav>
-            </div>
-            <div class="copyright">
-                <img id="copyright" src="/image/Copyright2 _ blue.svg" alt="copyright">
-                <p>takiza, 2025</p>
-            </div>
-      
+
+        <div class="copyright">
+            <img id="copyright" src="/image/Copyright2 _ blue.svg" alt="copyright">
+            <p>takiza, 2025</p>
+        </div>
     </footer>
-    <script src="/scripts/script_svipe_nav.bg.js"></script>
+
+    <script>
+        const burgerMenu = document.getElementById("burgerMenu");
+        const navBurger = document.getElementById("navBurger");
+
+        burgerMenu.addEventListener("click", function (event) {
+            event.stopPropagation();
+            navBurger.classList.toggle("active");
+        });
+
+        document.addEventListener("click", function (event) {
+            if (!navBurger.contains(event.target) && !burgerMenu.contains(event.target)) {
+                navBurger.classList.remove("active");
+            }
+        });
+
+        function toggleBurger() {
+            const part1 = document.querySelector('.burger-part1');
+            const part2 = document.querySelector('.burger-part2');
+
+            if (part1.style.display === 'none') {
+                part1.style.display = 'block';
+                part2.style.display = 'none';
+            } else {
+                part1.style.display = 'none';
+                part2.style.display = 'block';
+            }
+        }
+
+        /* Свайп для мобильных устройств */
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            if (touchEndX < touchStartX - swipeThreshold) {
+                nextWord();
+            } else if (touchEndX > touchStartX + swipeThreshold) {
+                previousWord();
+            }
+        }
+
+        function nextWord() {
+            // Implement next word functionality
+        }
+
+        function previousWord() {
+            // Implement previous word functionality
+        }
+    </script>
     <script src="/scripts/script_assimil_kor.js"></script>
 </body>
 
