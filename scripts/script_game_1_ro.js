@@ -24,7 +24,7 @@ const sentences = [
     {
         task: "Он режет хлеб ножом.",
         words: ["그", "는", "은", "로", "으로", "칼",  "빵", "을","를", "자릅니다."],
-        correctOrder: ["그는", "빵을", "칼로", "자릅니다."],
+        correctOrder: ["그는", "칼로", "빠을", "자릅니다."],
         combinations: [
             { parts: ["그", "는"], result: "그는" },
             { parts: ["칼", "로"], result: "칼로" },
