@@ -12,13 +12,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 const sentences = [
-    {
+     {
         task: "Я еду на автобусе (автобусом).",
         words: ["나", "는", "은", "버스", "로", "으로", "갑니다."],
         correctOrder: ["나는", "버스로", "갑니다."],
         combinations: [
             { parts: ["나", "는"], result: "나는" },
-            { parts: ["버스", "로"], result: "버스로" }
+            { parts: ["버스", "로"], result: "버스로" },
            ]
     },
     {
@@ -28,7 +28,7 @@ const sentences = [
         combinations: [
             { parts: ["그", "는"], result: "그는" },
             { parts: ["칼", "로"], result: "칼로" },
-            { parts: ["빵", "을"], result: "빵을" }
+            { parts: ["빵", "을"], result: "빵을" },
            ]
     },
     {
@@ -38,7 +38,7 @@ const sentences = [
         combinations: [
             { parts: ["그", "는"], result: "그는" },
             { parts: ["그녀", "를"], result: "그녀를" },
-            { parts: ["마음", "으로"], result: "마음으로" }
+            { parts: ["마음", "으로"], result: "마음으로" },
             ]
     },
     {
@@ -48,7 +48,7 @@ const sentences = [
         combinations: [
             { parts: ["친구", "는"], result: "친구는" },
             { parts: ["지하철", "로"], result: "지하철로" },
-            { parts: ["집", "에"], result: "집에" }
+            { parts: ["집", "에"], result: "집에" },
         ]
     },
     {
@@ -57,7 +57,7 @@ const sentences = [
         correctOrder: ["엄마는",  "의사로", "일합니다."],
         combinations: [
             { parts: ["엄마", "는"], result: "엄마는" },
-            { parts: ["의사", "로"], result: "의사로" }
+            { parts: ["의사", "로"], result: "의사로" },
       ]
     },
     {
@@ -66,16 +66,16 @@ const sentences = [
         correctOrder: ["나", "는", "만년필로", "씁니다."],
         combinations: [
             { parts: ["나", "는"], result: "그는" },
-            { parts: ["만년필", "로"], result: "만년필로" }
+            { parts: ["만년필", "로"], result: "만년필로" },
         ]
     },
     {
         task: "Я мою руки водой.",
-        words: ["나는", "로", "으로", "을", "를", "물", "손", "씻습니다."],
-        correctOrder: ["나는", "손을", "물로", "씻습니다."],
+        words: ["로", "으로","물", "손들이", "씻습니다."],
+        correctOrder: ["손들이", "물로",  "씻습니다."],
         combinations: [
-            { parts: ["손", "을"], result: "손을" },
-            { parts: ["물", "로"], result: "물로" }
+            // { parts: ["손들이"], result: "손들이" },
+            { parts: ["물", "로"], result: "물로" },
         ]
     }
 ];
