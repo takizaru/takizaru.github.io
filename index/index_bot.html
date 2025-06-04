@@ -37,6 +37,7 @@
             padding: 8px 12px;
             border-radius: 18px;
             max-width: 70%;
+            word-wrap: break-word;
         }
         
         .bot-message {
@@ -93,6 +94,38 @@
         .hidden {
             display: none;
         }
+        
+        .typing-indicator {
+            display: inline-block;
+            margin-left: 5px;
+        }
+        
+        .typing-dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #888;
+            margin-right: 3px;
+            animation: typingAnimation 1.4s infinite ease-in-out;
+        }
+        
+        .typing-dot:nth-child(1) {
+            animation-delay: 0s;
+        }
+        
+        .typing-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        
+        .typing-dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        
+        @keyframes typingAnimation {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-5px); }
+        }
     </style>
 </head>
 
@@ -120,25 +153,67 @@
     </div>
 
     <script>
-        // База ответов бота
+        // Расширенная база ответов бота
         const responses = {
             'ru': {
-                'greetings': ["Привет, друг!", "Здравствуй!", "Рад тебя видеть!"],
-                'how_are_you': ["Отлично, спасибо! А у тебя?", "Всё хорошо! Как твои дела?"],
-                'good': ["Это радует!", "Здорово!", "Я так и знал!"],
-                'bad': ["Не переживай, всё наладится", "Мне жаль это слышать", "Хочешь поговорить об этом?"],
-                'farewell': ["Пока!", "До встречи!", "Увидимся!"],
-                'unknown': ["Не совсем понял тебя", "Можешь повторить?", "Я ещё учусь"],
+                'greetings': ["Привет, друг!", "Здравствуй!", "Рад тебя видеть!", "Приветствую тебя!"],
+                'how_are_you': ["Отлично, спасибо! А у тебя?", "Всё хорошо! Как твои дела?", "Прекрасно! Как ты?"],
+                'good': ["Это радует!", "Здорово!", "Я так и знал!", "Отличные новости!"],
+                'bad': ["Не переживай, всё наладится", "Мне жаль это слышать", "Хочешь поговорить об этом?", "Я здесь, чтобы помочь"],
+                'farewell': ["Пока!", "До встречи!", "Увидимся!", "Хорошего дня!"],
+                'thanks': ["Не за что!", "Всегда пожалуйста!", "Обращайся!", "Рад помочь!"],
+                'weather': ["Сегодня прекрасный день!", "На улице солнечно!", "Похоже, будет дождь", "Лучше оденься потеплее"],
+                'food': ["Я люблю корейскую кухню!", "Попробуй кимчи, это вкусно", "Ты любишь суши?", "Как насчет пиццы?"],
+                'hobby': ["Чем ты любишь заниматься?", "У меня есть хобби - изучать языки", "Ты рисуешь или поешь?", "Спорт - это отличное хобби"],
+                'music': ["Какую музыку ты слушаешь?", "K-pop - это круто!", "Я люблю классическую музыку", "Ты знаешь BTS?"],
+                'travel': ["Ты любишь путешествовать?", "Я мечтаю побывать в Корее", "Какая твоя любимая страна?", "Путешествия расширяют кругозор"],
+                'unknown': ["Не совсем понял тебя", "Можешь повторить?", "Я ещё учусь", "Давай поговорим о чем-то другом"],
                 'default': "Привет! Я твой дружелюбный нейробот. Говори со мной на русском или корейском!"
             },
             'ko': {
-                'greetings': ["안녕 친구!", "안녕하세요!", "만나서 반가워요!"],
-                'how_are_you': ["저는 잘 지내요! 너는 어때요?", "좋아요! 너는 어떻게 지냈어요?"],
-                'good': ["다행이네요!", "잘 됐어요!", "기뻐요!"],
-                'bad': ["걱정하지 마세요, 다 잘 될 거예요", "유감이에요", "이것에 대해 얘기하고 싶어요?"],
-                'farewell': ["안녕!", "다음에 봐요!", "또 만나요!"],
-                'unknown': ["잘 이해하지 못했어요", "다시 말해 줄 수 있어요?", "아직 배우고 있어요"],
+                'greetings': ["안녕 친구!", "안녕하세요!", "만나서 반가워요!", "반갑습니다!"],
+                'how_are_you': ["저는 잘 지내요! 너는 어때요?", "좋아요! 너는 어떻게 지냈어요?", "기분이 좋아요! 당신은요?"],
+                'good': ["다행이네요!", "잘 됐어요!", "기뻐요!", "정말 좋은 소식이에요!"],
+                'bad': ["걱정하지 마세요, 다 잘 될 거예요", "유감이에요", "이것에 대해 얘기하고 싶어요?", "제가 도와드릴게요"],
+                'farewell': ["안녕!", "다음에 봐요!", "또 만나요!", "좋은 하루 보내세요!"],
+                'thanks': ["천만에요!", "별 말씀을요!", "언제든지 물어보세요!", "도움이 되어 기뻐요"],
+                'weather': ["오늘 날씨가 좋네요!", "밖에 화창해요!", "비가 올 것 같아요", "따뜻하게 입으세요"],
+                'food': ["저는 한국 음식을 좋아해요!", "김치를 먹어보세요, 맛있어요", "스시 좋아하세요?", "피자 어때요?"],
+                'hobby': ["취미가 뭐예요?", "제 취미는 언어를 배우는 거예요", "그림 그리거나 노래 부르는 거 좋아해요?", "스포츠는 좋은 취미예요"],
+                'music': ["어떤 음악을 들어요?", "K-pop 정말 멋져요!", "저는 클래식 음악을 좋아해요", "BTS 알아요?"],
+                'travel': ["여행 좋아해요?", "한국에 가보고 싶어요", "가장 좋아하는 나라는 어디예요?", "여행은 시야를 넓혀줘요"],
+                'unknown': ["잘 이해하지 못했어요", "다시 말해 줄 수 있어요?", "아직 배우고 있어요", "다른 주제로 얘기해볼까요?"],
                 'default': "안녕하세요! 저는 친근한 챗봇입니다. 러시아어나 한국어로 대화해요!"
+            }
+        };
+
+        // Словари для распознавания ключевых слов
+        const keywords = {
+            'ru': {
+                'greetings': ['привет', 'здравствуй', 'добрый', 'здорово', 'хай'],
+                'how_are_you': ['как дела', 'как ты', 'как жизнь', 'как настроение'],
+                'good': ['хорошо', 'отлично', 'прекрасно', 'замечательно', 'супер'],
+                'bad': ['плохо', 'грустно', 'ужасно', 'отвратительно', 'печально'],
+                'farewell': ['пока', 'до свидания', 'прощай', 'до встречи', 'спокойной ночи'],
+                'thanks': ['спасибо', 'благодарю', 'мерси', 'thanks'],
+                'weather': ['погода', 'дождь', 'солнце', 'снег', 'ветер', 'температура'],
+                'food': ['еда', 'кухня', 'есть', 'голоден', 'вкусно', 'ресторан', 'кафе'],
+                'hobby': ['хобби', 'увлечение', 'занятие', 'интерес', 'увлекаешься'],
+                'music': ['музыка', 'песня', 'плейлист', 'исполнитель', 'группа', 'k-pop'],
+                'travel': ['путешествие', 'поездка', 'отпуск', 'страна', 'город', 'отдых']
+            },
+            'ko': {
+                'greetings': ['안녕', '하이', '안녕하세요', '반갑다', '반가워'],
+                'how_are_you': ['어떻게 지내', '잘 지내', '어때', '기분이 어때'],
+                'good': ['좋아', '기뻐', '행복해', '만족해', '최고야'],
+                'bad': ['나빠', '슬퍼', '힘들어', '피곤해', '지루해'],
+                'farewell': ['안녕', '잘 가', '다음에 봐', '또 만나', '잘 자'],
+                'thanks': ['감사', '고마워', '고맙다', 'thank you'],
+                'weather': ['날씨', '비', '해', '눈', '바람', '온도'],
+                'food': ['음식', '밥', '먹다', '배고파', '맛있어', '레스토랑', '카페'],
+                'hobby': ['취미', '관심사', '좋아하는 것', '흥미', '취미생활'],
+                'music': ['음악', '노래', '플레이리스트', '가수', '그룹', '케이팝'],
+                'travel': ['여행', '여행하다', '휴가', '나라', '도시', '휴식']
             }
         };
 
@@ -160,6 +235,7 @@
         
         // Текущий язык
         let currentLanguage = 'ru';
+        let detectedLanguage = 'ru';
         
         // Приветственное сообщение
         window.onload = function() {
@@ -197,18 +273,18 @@
             micBtn.textContent = '🔴';
             micBtn.style.backgroundColor = '#f44336';
             
-            if (currentLanguage === 'ru') {
-                recognition.lang = 'ru-RU';
-            } else {
-                recognition.lang = 'ko-KR';
-            }
+            // Пытаемся определить язык перед началом распознавания
+            recognition.lang = 'ru-RU, ko-KR';
             
             recognition.start();
             
             recognition.onresult = function(event) {
                 const speechResult = event.results[0][0].transcript;
+                
+                // Определяем язык введенного текста
+                detectedLanguage = detectLanguage(speechResult);
                 addUserMessage(speechResult);
-                processUserInput(speechResult);
+                processUserInput(speechResult, detectedLanguage);
             };
             
             recognition.onspeechend = function() {
@@ -225,35 +301,63 @@
             };
         }
         
-        function processUserInput(input) {
+        function detectLanguage(text) {
+            // Простая проверка на корейские символы
+            const koreanPattern = /[\uAC00-\uD7AF\u1100-\u11FF\u3130-\u318F]/;
+            return koreanPattern.test(text) ? 'ko' : 'ru';
+        }
+        
+        function processUserInput(input, detectedLang = null) {
+            const processingLanguage = detectedLang || currentLanguage;
+            
+            // Показываем индикатор набора сообщения
+            showTypingIndicator();
+            
             // Имитация обработки естественного языка
             setTimeout(() => {
-                const response = generateBotResponse(input, currentLanguage);
+                hideTypingIndicator();
+                const response = generateBotResponse(input, processingLanguage);
                 addBotMessage(response);
-                speak(response);
-            }, 500);
+                speak(response, processingLanguage);
+            }, 1000 + Math.random() * 1000); // Случайная задержка для естественности
         }
         
         function generateBotResponse(input, lang) {
             const inputLower = input.toLowerCase();
             
-            if (inputLower.includes('привет') || inputLower.includes('здравствуй') || 
-                inputLower.includes('안녕') || inputLower.includes('하세요')) {
-                return randomChoice(responses[lang]['greetings']);
-            } else if (inputLower.includes('как дела') || inputLower.includes('어떻게 지내') || 
-                      inputLower.includes('잘 지내')) {
-                return randomChoice(responses[lang]['how_are_you']);
-            } else if (inputLower.includes('хорошо') || inputLower.includes('отлично') || 
-                      inputLower.includes('좋아') || inputLower.includes('잘 지내')) {
-                return randomChoice(responses[lang]['good']);
-            } else if (inputLower.includes('плохо') || inputLower.includes('грустно') || 
-                      inputLower.includes('나빠') || inputLower.includes('슬퍼')) {
-                return randomChoice(responses[lang]['bad']);
-            } else if (inputLower.includes('пока') || inputLower.includes('до свидания') || 
-                      inputLower.includes('안녕') || inputLower.includes('잘 가')) {
-                return randomChoice(responses[lang]['farewell']);
-            } else {
-                return randomChoice(responses[lang]['unknown']);
+            // Проверяем все категории
+            for (const category in keywords[lang]) {
+                for (const keyword of keywords[lang][category]) {
+                    if (inputLower.includes(keyword)) {
+                        return randomChoice(responses[lang][category]);
+                    }
+                }
+            }
+            
+            // Если не нашли подходящей категории
+            return randomChoice(responses[lang]['unknown']);
+        }
+        
+        function showTypingIndicator() {
+            const indicator = document.createElement('div');
+            indicator.id = 'typingIndicator';
+            indicator.classList.add('message', 'bot-message');
+            
+            const dots = document.createElement('span');
+            dots.classList.add('typing-indicator');
+            dots.innerHTML = '<span class="typing-dot"></span><span class="typing-dot"></span><span class="typing-dot"></span>';
+            
+            indicator.appendChild(document.createTextNode('Бот печатает '));
+            indicator.appendChild(dots);
+            
+            chatArea.appendChild(indicator);
+            chatArea.scrollTop = chatArea.scrollHeight;
+        }
+        
+        function hideTypingIndicator() {
+            const indicator = document.getElementById('typingIndicator');
+            if (indicator) {
+                indicator.remove();
             }
         }
         
@@ -277,7 +381,7 @@
             chatArea.scrollTop = chatArea.scrollHeight;
         }
         
-        function speak(text) {
+        function speak(text, lang) {
             if (synth.speaking) {
                 synth.cancel();
             }
@@ -288,7 +392,7 @@
             const voices = synth.getVoices();
             let voice;
             
-            if (currentLanguage === 'ko') {
+            if (lang === 'ko') {
                 voice = voices.find(v => v.lang.includes('ko'));
             } else {
                 voice = voices.find(v => v.lang.includes('ru')) || 
@@ -297,17 +401,22 @@
             
             if (voice) {
                 utterance.voice = voice;
+                utterance.lang = voice.lang;
+            } else {
+                utterance.lang = lang === 'ko' ? 'ko-KR' : 'ru-RU';
             }
             
-            utterance.rate = 1.0;
+            utterance.rate = 0.9 + Math.random() * 0.2; // Случайная скорость для естественности
             synth.speak(utterance);
         }
         
         // Загрузка голосов при загрузке страницы
-        window.speechSynthesis.onvoiceschanged = function() {
-            const voices = synth.getVoices();
-            console.log('Доступные голоса:', voices);
-        };
+        if (speechSynthesis.onvoiceschanged !== undefined) {
+            speechSynthesis.onvoiceschanged = function() {
+                const voices = synth.getVoices();
+                console.log('Доступные голоса:', voices);
+            };
+        }
     </script>
 </body>
 
