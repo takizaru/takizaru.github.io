@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Дружелюбный нейробот</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .chat-container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .chat-area {
+            height: 400px;
+            overflow-y: auto;
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #fafafa;
+        }
+        
+        .message {
+            margin-bottom: 10px;
+            padding: 8px 12px;
+            border-radius: 18px;
+            max-width: 70%;
+        }
+        
+        .bot-message {
+            background-color: #e3f2fd;
+            align-self: flex-start;
+            margin-right: auto;
+        }
+        
+        .user-message {
+            background-color: #dcf8c6;
+            align-self: flex-end;
+            margin-left: auto;
+        }
+        
+        .controls {
+            display: flex;
+            gap: 10px;
+        }
+        
+        textarea {
+            flex-grow: 1;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            resize: none;
+            height: 60px;
+        }
+        
+        button {
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        button:hover {
+            background-color: #45a049;
+        }
+        
+        .mic-btn {
+            background-color: #2196F3;
+        }
+        
+        .mic-btn:hover {
+            background-color: #0b7dda;
+        }
+        
+        .language-selector {
+            margin-bottom: 15px;
+        }
+        
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="chat-container">
+        <h1>Дружелюбный нейробот</h1>
+        <p>Общайтесь на русском или корейском языке (голосом или текстом)</p>
+        
+        <div class="language-selector">
+            <label>
+                <input type="radio" name="language" value="ru" checked> Русский
+            </label>
+            <label>
+                <input type="radio" name="language" value="ko"> 한국어 (Корейский)
+            </label>
+        </div>
+        
+        <div class="chat-area" id="chatArea"></div>
+        
+        <div class="controls">
+            <textarea id="userInput" placeholder="Введите ваше сообщение..."></textarea>
+            <button id="sendBtn">Отправить</button>
+            <button id="micBtn" class="mic-btn">🎤</button>
+        </div>
+    </div>
+
+    <script>
+        // База ответов бота
+        const responses = {
+            'ru': {
+                'greetings': ["Привет, друг!", "Здравствуй!", "Рад тебя видеть!"],
+                'how_are_you': ["Отлично, спасибо! А у тебя?", "Всё хорошо! Как твои дела?"],
+                'good': ["Это радует!", "Здорово!", "Я так и знал!"],
+                'bad': ["Не переживай, всё наладится", "Мне жаль это слышать", "Хочешь поговорить об этом?"],
+                'farewell': ["Пока!", "До встречи!", "Увидимся!"],
+                'unknown': ["Не совсем понял тебя", "Можешь повторить?", "Я ещё учусь"],
+                'default': "Привет! Я твой дружелюбный нейробот. Говори со мной на русском или корейском!"
+            },
+            'ko': {
+                'greetings': ["안녕 친구!", "안녕하세요!", "만나서 반가워요!"],
+                'how_are_you': ["저는 잘 지내요! 너는 어때요?", "좋아요! 너는 어떻게 지냈어요?"],
+                'good': ["다행이네요!", "잘 됐어요!", "기뻐요!"],
+                'bad': ["걱정하지 마세요, 다 잘 될 거예요", "유감이에요", "이것에 대해 얘기하고 싶어요?"],
+                'farewell': ["안녕!", "다음에 봐요!", "또 만나요!"],
+                'unknown': ["잘 이해하지 못했어요", "다시 말해 줄 수 있어요?", "아직 배우고 있어요"],
+                'default': "안녕하세요! 저는 친근한 챗봇입니다. 러시아어나 한국어로 대화해요!"
+            }
+        };
+
+        // Элементы DOM
+        const chatArea = document.getElementById('chatArea');
+        const userInput = document.getElementById('userInput');
+        const sendBtn = document.getElementById('sendBtn');
+        const micBtn = document.getElementById('micBtn');
+        const languageRadios = document.querySelectorAll('input[name="language"]');
+        
+        // Инициализация SpeechRecognition
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        const recognition = new SpeechRecognition();
+        recognition.interimResults = false;
+        recognition.maxAlternatives = 1;
+        
+        // Инициализация SpeechSynthesis
+        const synth = window.speechSynthesis;
+        
+        // Текущий язык
+        let currentLanguage = 'ru';
+        
+        // Приветственное сообщение
+        window.onload = function() {
+            addBotMessage(responses[currentLanguage]['default']);
+        };
+        
+        // Обработчики событий
+        sendBtn.addEventListener('click', sendMessage);
+        userInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+        
+        micBtn.addEventListener('click', startListening);
+        
+        languageRadios.forEach(radio => {
+            radio.addEventListener('change', function() {
+                currentLanguage = this.value;
+                addBotMessage(responses[currentLanguage]['default']);
+            });
+        });
+        
+        // Функции
+        function sendMessage() {
+            const message = userInput.value.trim();
+            if (message) {
+                addUserMessage(message);
+                userInput.value = '';
+                processUserInput(message);
+            }
+        }
+        
+        function startListening() {
+            micBtn.textContent = '🔴';
+            micBtn.style.backgroundColor = '#f44336';
+            
+            if (currentLanguage === 'ru') {
+                recognition.lang = 'ru-RU';
+            } else {
+                recognition.lang = 'ko-KR';
+            }
+            
+            recognition.start();
+            
+            recognition.onresult = function(event) {
+                const speechResult = event.results[0][0].transcript;
+                addUserMessage(speechResult);
+                processUserInput(speechResult);
+            };
+            
+            recognition.onspeechend = function() {
+                recognition.stop();
+                micBtn.textContent = '🎤';
+                micBtn.style.backgroundColor = '#2196F3';
+            };
+            
+            recognition.onerror = function(event) {
+                console.error('Ошибка распознавания речи', event.error);
+                micBtn.textContent = '🎤';
+                micBtn.style.backgroundColor = '#2196F3';
+                addBotMessage(responses[currentLanguage]['unknown'][0]);
+            };
+        }
+        
+        function processUserInput(input) {
+            // Имитация обработки естественного языка
+            setTimeout(() => {
+                const response = generateBotResponse(input, currentLanguage);
+                addBotMessage(response);
+                speak(response);
+            }, 500);
+        }
+        
+        function generateBotResponse(input, lang) {
+            const inputLower = input.toLowerCase();
+            
+            if (inputLower.includes('привет') || inputLower.includes('здравствуй') || 
+                inputLower.includes('안녕') || inputLower.includes('하세요')) {
+                return randomChoice(responses[lang]['greetings']);
+            } else if (inputLower.includes('как дела') || inputLower.includes('어떻게 지내') || 
+                      inputLower.includes('잘 지내')) {
+                return randomChoice(responses[lang]['how_are_you']);
+            } else if (inputLower.includes('хорошо') || inputLower.includes('отлично') || 
+                      inputLower.includes('좋아') || inputLower.includes('잘 지내')) {
+                return randomChoice(responses[lang]['good']);
+            } else if (inputLower.includes('плохо') || inputLower.includes('грустно') || 
+                      inputLower.includes('나빠') || inputLower.includes('슬퍼')) {
+                return randomChoice(responses[lang]['bad']);
+            } else if (inputLower.includes('пока') || inputLower.includes('до свидания') || 
+                      inputLower.includes('안녕') || inputLower.includes('잘 가')) {
+                return randomChoice(responses[lang]['farewell']);
+            } else {
+                return randomChoice(responses[lang]['unknown']);
+            }
+        }
+        
+        function randomChoice(array) {
+            return array[Math.floor(Math.random() * array.length)];
+        }
+        
+        function addUserMessage(text) {
+            const messageDiv = document.createElement('div');
+            messageDiv.classList.add('message', 'user-message');
+            messageDiv.textContent = text;
+            chatArea.appendChild(messageDiv);
+            chatArea.scrollTop = chatArea.scrollHeight;
+        }
+        
+        function addBotMessage(text) {
+            const messageDiv = document.createElement('div');
+            messageDiv.classList.add('message', 'bot-message');
+            messageDiv.textContent = text;
+            chatArea.appendChild(messageDiv);
+            chatArea.scrollTop = chatArea.scrollHeight;
+        }
+        
+        function speak(text) {
+            if (synth.speaking) {
+                synth.cancel();
+            }
+            
+            const utterance = new SpeechSynthesisUtterance(text);
+            
+            // Установка голоса
+            const voices = synth.getVoices();
+            let voice;
+            
+            if (currentLanguage === 'ko') {
+                voice = voices.find(v => v.lang.includes('ko'));
+            } else {
+                voice = voices.find(v => v.lang.includes('ru')) || 
+                        voices.find(v => v.lang.includes('en'));
+            }
+            
+            if (voice) {
+                utterance.voice = voice;
+            }
+            
+            utterance.rate = 1.0;
+            synth.speak(utterance);
+        }
+        
+        // Загрузка голосов при загрузке страницы
+        window.speechSynthesis.onvoiceschanged = function() {
+            const voices = synth.getVoices();
+            console.log('Доступные голоса:', voices);
+        };
+    </script>
+</body>
+
+</html>
