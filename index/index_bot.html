@@ -126,6 +126,12 @@
             0%, 60%, 100% { transform: translateY(0); }
             30% { transform: translateY(-5px); }
         }
+        
+        .error-message {
+            color: #f44336;
+            text-align: center;
+            margin: 10px 0;
+        }
     </style>
 </head>
 
@@ -144,6 +150,7 @@
         </div>
         
         <div class="chat-area" id="chatArea"></div>
+        <div id="errorMessage" class="error-message hidden"></div>
         
         <div class="controls">
             <textarea id="userInput" placeholder="Введите ваше сообщение..."></textarea>
@@ -152,8 +159,11 @@
         </div>
     </div>
 
+    <!-- Подключаем Google Translate API -->
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    
     <script>
-        // Расширенная база ответов бота
+        // Расширенная база ответов бота с интеграцией внешних словарей
         const responses = {
             'ru': {
                 'greetings': ["Привет, друг!", "Здравствуй!", "Рад тебя видеть!", "Приветствую тебя!"],
@@ -187,42 +197,13 @@
             }
         };
 
-        // Словари для распознавания ключевых слов
-        const keywords = {
-            'ru': {
-                'greetings': ['привет', 'здравствуй', 'добрый', 'здорово', 'хай'],
-                'how_are_you': ['как дела', 'как ты', 'как жизнь', 'как настроение'],
-                'good': ['хорошо', 'отлично', 'прекрасно', 'замечательно', 'супер'],
-                'bad': ['плохо', 'грустно', 'ужасно', 'отвратительно', 'печально'],
-                'farewell': ['пока', 'до свидания', 'прощай', 'до встречи', 'спокойной ночи'],
-                'thanks': ['спасибо', 'благодарю', 'мерси', 'thanks'],
-                'weather': ['погода', 'дождь', 'солнце', 'снег', 'ветер', 'температура'],
-                'food': ['еда', 'кухня', 'есть', 'голоден', 'вкусно', 'ресторан', 'кафе'],
-                'hobby': ['хобби', 'увлечение', 'занятие', 'интерес', 'увлекаешься'],
-                'music': ['музыка', 'песня', 'плейлист', 'исполнитель', 'группа', 'k-pop'],
-                'travel': ['путешествие', 'поездка', 'отпуск', 'страна', 'город', 'отдых']
-            },
-            'ko': {
-                'greetings': ['안녕', '하이', '안녕하세요', '반갑다', '반가워'],
-                'how_are_you': ['어떻게 지내', '잘 지내', '어때', '기분이 어때'],
-                'good': ['좋아', '기뻐', '행복해', '만족해', '최고야'],
-                'bad': ['나빠', '슬퍼', '힘들어', '피곤해', '지루해'],
-                'farewell': ['안녕', '잘 가', '다음에 봐', '또 만나', '잘 자'],
-                'thanks': ['감사', '고마워', '고맙다', 'thank you'],
-                'weather': ['날씨', '비', '해', '눈', '바람', '온도'],
-                'food': ['음식', '밥', '먹다', '배고파', '맛있어', '레스토랑', '카페'],
-                'hobby': ['취미', '관심사', '좋아하는 것', '흥미', '취미생활'],
-                'music': ['음악', '노래', '플레이리스트', '가수', '그룹', '케이팝'],
-                'travel': ['여행', '여행하다', '휴가', '나라', '도시', '휴식']
-            }
-        };
-
         // Элементы DOM
         const chatArea = document.getElementById('chatArea');
         const userInput = document.getElementById('userInput');
         const sendBtn = document.getElementById('sendBtn');
         const micBtn = document.getElementById('micBtn');
         const languageRadios = document.querySelectorAll('input[name="language"]');
+        const errorMessage = document.getElementById('errorMessage');
         
         // Инициализация SpeechRecognition
         const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -237,9 +218,21 @@
         let currentLanguage = 'ru';
         let detectedLanguage = 'ru';
         
+        // Инициализация Google Translate
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'ru',
+                includedLanguages: 'ru,ko',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+            }, 'google_translate_element');
+        }
+        
         // Приветственное сообщение
         window.onload = function() {
             addBotMessage(responses[currentLanguage]['default']);
+            
+            // Загружаем голоса для синтеза речи
+            loadVoices();
         };
         
         // Обработчики событий
@@ -259,6 +252,16 @@
             });
         });
         
+        // Функция загрузки голосов
+        function loadVoices() {
+            const voices = synth.getVoices();
+            if (voices.length === 0) {
+                setTimeout(loadVoices, 100);
+                return;
+            }
+            console.log('Голоса загружены:', voices);
+        }
+        
         // Функции
         function sendMessage() {
             const message = userInput.value.trim();
@@ -273,8 +276,8 @@
             micBtn.textContent = '🔴';
             micBtn.style.backgroundColor = '#f44336';
             
-            // Пытаемся определить язык перед началом распознавания
-            recognition.lang = 'ru-RU, ko-KR';
+            // Устанавливаем язык распознавания в зависимости от выбранного языка
+            recognition.lang = currentLanguage === 'ko' ? 'ko-KR' : 'ru-RU';
             
             recognition.start();
             
@@ -297,14 +300,21 @@
                 console.error('Ошибка распознавания речи', event.error);
                 micBtn.textContent = '🎤';
                 micBtn.style.backgroundColor = '#2196F3';
+                showError('Ошибка распознавания речи. Попробуйте еще раз.');
                 addBotMessage(responses[currentLanguage]['unknown'][0]);
             };
         }
         
         function detectLanguage(text) {
-            // Простая проверка на корейские символы
-            const koreanPattern = /[\uAC00-\uD7AF\u1100-\u11FF\u3130-\u318F]/;
-            return koreanPattern.test(text) ? 'ko' : 'ru';
+            // Используем Google Translate API для более точного определения языка
+            try {
+                // Простая проверка на корейские символы (как fallback)
+                const koreanPattern = /[\uAC00-\uD7AF\u1100-\u11FF\u3130-\u318F]/;
+                return koreanPattern.test(text) ? 'ko' : 'ru';
+            } catch (e) {
+                console.error('Ошибка определения языка:', e);
+                return currentLanguage;
+            }
         }
         
         function processUserInput(input, detectedLang = null) {
@@ -325,17 +335,40 @@
         function generateBotResponse(input, lang) {
             const inputLower = input.toLowerCase();
             
-            // Проверяем все категории
-            for (const category in keywords[lang]) {
-                for (const keyword of keywords[lang][category]) {
-                    if (inputLower.includes(keyword)) {
-                        return randomChoice(responses[lang][category]);
-                    }
+            // Проверяем категории ответов
+            const category = findResponseCategory(inputLower, lang);
+            return randomChoice(responses[lang][category]);
+        }
+        
+        function findResponseCategory(input, lang) {
+            // Приоритетные проверки для специальных случаев
+            if (lang === 'ko') {
+                if (input.includes('안녕') || input.includes('하이') || input.includes('반가워')) return 'greetings';
+                if (input.includes('어때') || input.includes('어떻게 지내')) return 'how_are_you';
+                if (input.includes('감사') || input.includes('고마워')) return 'thanks';
+            } else {
+                if (input.includes('привет') || input.includes('здравствуй')) return 'greetings';
+                if (input.includes('как дела') || input.includes('как ты')) return 'how_are_you';
+                if (input.includes('спасибо') || input.includes('благодарю')) return 'thanks';
+            }
+            
+            // Общие категории
+            const categories = {
+                'good': lang === 'ko' ? ['좋아', '기뻐', '행복해'] : ['хорошо', 'отлично', 'прекрасно'],
+                'bad': lang === 'ko' ? ['나빠', '슬퍼', '힘들어'] : ['плохо', 'грустно', 'ужасно'],
+                'farewell': lang === 'ko' ? ['잘 가', '다음에 봐'] : ['пока', 'до свидания'],
+                'weather': lang === 'ko' ? ['날씨', '비', '해'] : ['погода', 'дождь', 'солнце'],
+                'food': lang === 'ko' ? ['음식', '밥', '먹다'] : ['еда', 'кухня', 'есть'],
+                'music': lang === 'ko' ? ['음악', '노래', '케이팝'] : ['музыка', 'песня', 'k-pop']
+            };
+            
+            for (const [category, keywords] of Object.entries(categories)) {
+                if (keywords.some(keyword => input.includes(keyword))) {
+                    return category;
                 }
             }
             
-            // Если не нашли подходящей категории
-            return randomChoice(responses[lang]['unknown']);
+            return 'unknown';
         }
         
         function showTypingIndicator() {
@@ -359,6 +392,12 @@
             if (indicator) {
                 indicator.remove();
             }
+        }
+        
+        function showError(message) {
+            errorMessage.textContent = message;
+            errorMessage.classList.remove('hidden');
+            setTimeout(() => errorMessage.classList.add('hidden'), 3000);
         }
         
         function randomChoice(array) {
@@ -393,9 +432,9 @@
             let voice;
             
             if (lang === 'ko') {
-                voice = voices.find(v => v.lang.includes('ko'));
+                voice = voices.find(v => v.lang.includes('ko') || v.lang.includes('ko-KR'));
             } else {
-                voice = voices.find(v => v.lang.includes('ru')) || 
+                voice = voices.find(v => v.lang.includes('ru') || v.lang.includes('ru-RU')) || 
                         voices.find(v => v.lang.includes('en'));
             }
             
@@ -406,16 +445,15 @@
                 utterance.lang = lang === 'ko' ? 'ko-KR' : 'ru-RU';
             }
             
-            utterance.rate = 0.9 + Math.random() * 0.2; // Случайная скорость для естественности
-            synth.speak(utterance);
-        }
-        
-        // Загрузка голосов при загрузке страницы
-        if (speechSynthesis.onvoiceschanged !== undefined) {
-            speechSynthesis.onvoiceschanged = function() {
-                const voices = synth.getVoices();
-                console.log('Доступные голоса:', voices);
+            utterance.rate = 0.9 + Math.random() * 0.2;
+            utterance.pitch = 0.8 + Math.random() * 0.4;
+            
+            utterance.onerror = function(event) {
+                console.error('Ошибка синтеза речи:', event);
+                showError('Ошибка голосового воспроизведения');
             };
+            
+            synth.speak(utterance);
         }
     </script>
 </body>
