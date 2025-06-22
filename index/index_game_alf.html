@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/style_base_numder_word.css">
+    <title>Korean Alphabet Practice</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+        }
+
+ 
+        .container {
+            padding: 0 20px;
+            max-width: 100%;
+        }
+
+        article {
+            width: 100%;
+            margin: 0 auto;
+            padding: 20px;
+            box-sizing: border-box;
+            position: relative;
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .letters-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            font-size: 36px;
+            font-weight: 900;
+        }
+
+        .letter-cube {
+            width: 60px;
+            height: 60px;
+            background-color: #e0f7e0;
+            border: 2px solid #4CAF50;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 28px;
+            font-weight: 900;
+            cursor: pointer;
+            user-select: none;
+            transition: all 0.3s;
+            margin: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .letter-cube:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            background-color: #d0f0d0;
+        }
+
+        .syllable {
+            background-color: rgba(178, 223, 219, 0.7);
+            border-color: #00796b;
+        }
+
+        .slog {
+            width: 200px;
+            height: 200px;
+            background-color: rgba(245, 245, 245, 0.7);
+            border: 2px solid #4CAF50;
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 48px;
+            position: relative;
+            z-index: 10;
+            margin: 20px 0;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px);
+        }
+
+        .slog.empty::after {
+            content: "Drop letters here";
+            font-size: 16px;
+            color: #666;
+            font-style: italic;
+        }
+
+        .clear-btn {
+            padding: 8px 16px;
+            background-color: #03066f5b;
+            color: white;
+            border: 1px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+
+        .clear-btn:hover {
+            background-color: #005c6886;
+        }
+
+        /* New layout with Flexbox */
+        .letter-flex-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+
+        .top-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .middle-section {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .bottom-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+
+        .top-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .bottom-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin: 10px 0;
+        }
+
+        .left-column {
+            display: flex;
+            flex-direction: column;
+            margin-right: 20px;
+        }
+
+        .right-column {
+            display: flex;
+            flex-direction: column;
+            margin-left: 20px;
+        }
+
+        .center-area {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0 20px;
+        }
+
+        /* Адаптация для разных разрешений */
+        @media (max-width: 1440px) {
+            .letter-cube {
+                width: 55px;
+                height: 55px;
+                font-size: 26px;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .letter-cube {
+                width: 50px;
+                height: 50px;
+                font-size: 24px;
+            }
+
+            .slog {
+                width: 180px;
+                height: 180px;
+                font-size: 42px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .letter-cube {
+                width: 45px;
+                height: 45px;
+                font-size: 22px;
+            }
+
+            .slog {
+                width: 160px;
+                height: 160px;
+                font-size: 36px;
+            }
+
+
+            .bottom-section {
+                order: 3;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .letter-cube {
+                width: 40px;
+                height: 40px;
+                font-size: 20px;
+            }
+
+            .slog {
+                width: 140px;
+                height: 140px;
+                font-size: 32px;
+            }
+
+            .top-row,
+            .bottom-row {
+                gap: 5px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .letter-cube {
+                width: 35px;
+                height: 35px;
+                font-size: 18px;
+            }
+
+            .slog {
+                width: 120px;
+                height: 120px;
+                font-size: 28px;
+            }
+        }
+
+        @media (max-width: 250px) {
+            .letter-cube {
+                width: 30px;
+                height: 30px;
+                font-size: 16px;
+                margin: 2px;
+            }
+
+            .slog {
+                width: 100px;
+                height: 100px;
+                font-size: 24px;
+            }
+
+            .clear-btn {
+                padding: 5px 10px;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="burger-menu" id="burgerMenu">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <img class="logo" src="/image/logo krug.svg" alt="Логотип">
+            <a href="" class="user"> <img class="lk" src="/image/userrblur.svg" alt="Пользователь"></a>
+        </div>
+        <nav class="nav-burger" id="navBurger">
+            <ul class="ul-header">
+                <li class="li-header"> <a href="" class="a-header">онлайн - переводчик</a></li>
+                <li class="li-header"> <a href="" class="a-header">контакты</a></li>
+                <li class="li-header"> <a href="" class="a-header">светлая тема</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article class="container" id="alphabetContainer">
+            <div class="letters-container">
+                <div class="letter-flex-container">
+                    <!-- Top section with consonants and vowels -->
+                    <div class="top-section">
+                        <div class="top-row" id="topRow1"></div>
+                        <div class="bottom-row" id="bottomRow1"></div>
+                    </div>
+
+                    <!-- Middle section with columns and center -->
+                    <div class="middle-section">
+                        <div class="left-column" id="leftColumn"></div>
+
+                        <div class="center-area">
+                            <div class="slog empty" id="slog"></div>
+                            <button class="clear-btn" id="clearBtn">Очистить</button>
+                        </div>
+
+                        <div class="right-column" id="rightColumn"></div>
+                    </div>
+
+                    <!-- Bottom section with additional vowels -->
+                    <div class="bottom-section">
+                        <div class="bottom-row" id="bottomRow2"></div>
+                        <div class="bottom-row" id="bottomRow3"></div>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <div class="perehod">
+        <a href="/index/index_alf6_tel.html"><img src="/image/vlevo2.svg" alt=""></a>
+        <a href="/index.html"><img src="/image/vpravo2.svg" alt=""></a>
+    </div>
+
+    <footer>
+        <section class="footer container">
+            <address>
+                <div class="footer1">
+                    <div class="tel">
+                        <img src="/image/tel_blue.svg" alt="">
+                        <p>8-925-685-52-39 </p>
+                    </div>
+                    <div class="mail">
+                        <p>anastasiya3000@yandex.ru</p>
+                    </div>
+                    <div class="footer-icon">
+                        <a href="" class="social-icon"> <img src="/image/telegram_icon 1.svg" alt=""></a>
+                        <a href="" class="social-icon"> <img src="/image/skype_icon 1.svg" alt=""></a>
+                        <a href="" class="social-icon"><img src="/image/whatsapp_green.png" alt=""></a>
+                        <a href="" class="social-icon"> <img src="/image/license.svg" alt=""></a>
+                    </div>
+                </div>
+
+                <div class="footer2">
+                    <nav class="nav1-footer">
+                        <ul class="ul-footer">
+                            <div class="f-li">
+                                <li class="li-footer"> <a href="" class="a-footer"><b>Правила оплаты</b></a></li>
+                                <li class="li-footer"> <a href="" class="a-footer"><b>Договор оферты</b></a></li>
+                                <li class="li-footer"> <a href="" class="a-footer"><b>Согласие с рассылкой</b></a></li>
+                                <li class="li-footer"><a href="" class="a-footer"><b>Пользовательское соглашение</b></a>
+                                </li>
+                                <li class="li-footer"> <a href="" class="a-footer"><b>Политика
+                                            конфиденциальности</b></a></li>
+                                <li class="li-footer"> <a href="" class="a-footer"><b>Положение о защите персональных
+                                            данных</b></a></li>
+                            </div>
+                        </ul>
+                    </nav>
+                </div>
+            </address>
+        </section>
+
+        <div class="copyright">
+            <img id="copyright" src="/image/Copyright2 _ blue.svg" alt="copyright">
+            <p>takiza, 2025</p>
+        </div>
+    </footer>
+
+   <script>
+    // Korean alphabet letters
+    const koreanConsonants = [
+        'ㄱ', 'ㄲ', 'ㄴ', 'ㄷ', 'ㄸ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅃ', 'ㅅ',
+        'ㅆ', 'ㅇ', 'ㅈ', 'ㅉ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'
+    ];
+
+    const koreanVowels = [
+        'ㅏ', 'ㅐ', 'ㅑ', 'ㅒ', 'ㅓ', 'ㅔ', 'ㅕ', 'ㅖ', 'ㅗ', 'ㅘ',
+        'ㅙ', 'ㅚ', 'ㅛ', 'ㅜ', 'ㅝ', 'ㅞ', 'ㅟ', 'ㅠ', 'ㅡ', 'ㅢ', 'ㅣ'
+    ];
+
+    const doubleConsonants = [
+        'ㄳ', 'ㄵ', 'ㄶ', 'ㄺ', 'ㄻ', 'ㄼ', 'ㄽ', 'ㄾ', 'ㄿ', 'ㅀ', 'ㅄ'
+    ];
+
+    // Pronunciation for each letter with Russian as primary and English as fallback
+    const letterPronunciations = {
+        // Consonants
+        'ㄱ': { rus: 'к/г', eng: 'g/k' },
+        'ㄲ': { rus: 'кк', eng: 'kk' },
+        'ㄴ': { rus: 'н', eng: 'n' },
+        'ㄷ': { rus: 'т/д', eng: 'd/t' },
+        'ㄸ': { rus: 'тт', eng: 'tt' },
+        'ㄹ': { rus: 'р/л', eng: 'r/l' },
+        'ㅁ': { rus: 'м', eng: 'm' },
+        'ㅂ': { rus: 'п/б', eng: 'b/p' },
+        'ㅃ': { rus: 'пп', eng: 'pp' },
+        'ㅅ': { rus: 'с', eng: 's' },
+        'ㅆ': { rus: 'сс', eng: 'ss' },
+        'ㅇ': { rus: 'нъ', eng: 'ng' },
+        'ㅈ': { rus: 'ч/дж', eng: 'j/ch' },
+        'ㅉ': { rus: 'чч', eng: 'jj' },
+        'ㅊ': { rus: 'чх', eng: 'ch' },
+        'ㅋ': { rus: 'кх', eng: 'k' },
+        'ㅌ': { rus: 'тх', eng: 't' },
+        'ㅍ': { rus: 'пх', eng: 'p' },
+        'ㅎ': { rus: 'х', eng: 'h' },
+        
+        // Vowels
+        'ㅏ': { rus: 'а', eng: 'a' },
+        'ㅐ': { rus: 'э', eng: 'ae' },
+        'ㅑ': { rus: 'я', eng: 'ya' },
+        'ㅒ': { rus: 'йэ', eng: 'yae' },
+        'ㅓ': { rus: 'о', eng: 'eo' },
+        'ㅔ': { rus: 'е', eng: 'e' },
+        'ㅕ': { rus: 'ё', eng: 'yeo' },
+        'ㅖ': { rus: 'йе', eng: 'ye' },
+        'ㅗ': { rus: 'о', eng: 'o' },
+        'ㅘ': { rus: 'ва', eng: 'wa' },
+        'ㅙ': { rus: 'вэ', eng: 'wae' },
+        'ㅚ': { rus: 'ве', eng: 'oe' },
+        'ㅛ': { rus: 'ё', eng: 'yo' },
+        'ㅜ': { rus: 'у', eng: 'u' },
+        'ㅝ': { rus: 'во', eng: 'wo' },
+        'ㅞ': { rus: 'ве', eng: 'we' },
+        'ㅟ': { rus: 'ви', eng: 'wi' },
+        'ㅠ': { rus: 'ю', eng: 'yu' },
+        'ㅡ': { rus: 'ы', eng: 'eu' },
+        'ㅢ': { rus: 'ый', eng: 'ui' },
+        'ㅣ': { rus: 'и', eng: 'i' },
+        
+        // Double consonants
+        'ㄳ': { rus: 'кс', eng: 'gs' },
+        'ㄵ': { rus: 'нч', eng: 'nj' },
+        'ㄶ': { rus: 'нх', eng: 'nh' },
+        'ㄺ': { rus: 'лк', eng: 'lg' },
+        'ㄻ': { rus: 'лм', eng: 'lm' },
+        'ㄼ': { rus: 'лп', eng: 'lb' },
+        'ㄽ': { rus: 'лс', eng: 'ls' },
+        'ㄾ': { rus: 'лт', eng: 'lt' },
+        'ㄿ': { rus: 'лп', eng: 'lp' },
+        'ㅀ': { rus: 'лх', eng: 'lh' },
+        'ㅄ': { rus: 'пс', eng: 'bs' }
+    };
+
+
+        // Common syllable combinations (including double consonants)
+          // Common syllable combinations
+    const syllableCombinations = {
+            // 2-letter combinations (consonant + vowel)
+            'ㄱㅏ': '가', 'ㄲㅏ': '까', 'ㅋㅏ': '카', 'ㄹㅏ': '라', 'ㅁㅏ': '마',
+            'ㄴㅏ': '나', 'ㄸㅏ': '따', 'ㅌㅏ': '타', 'ㅅㅏ': '사', 'ㅎㅏ': '하',
+            'ㅂㅏ': '바', 'ㅃㅏ': '빠', 'ㅍㅏ': '파', 'ㅆㅏ': '싸', 'ㅈㅏ': '자', 'ㅉㅏ': '짜', 'ㅊㅏ': '차',
+            'ㄱㅣ': '기', 'ㄲㅣ': '끼', 'ㅋㅣ': '키', 'ㄹㅣ': '리', 'ㅁㅣ': '미',
+            'ㄴㅣ': '니', 'ㄸㅣ': '띠', 'ㅌㅣ': '티', 'ㅅㅣ': '시', 'ㅎㅣ': '히',
+            'ㅂㅣ': '비', 'ㅃㅣ': '삐', 'ㅍㅣ': '피', 'ㅆㅣ': '씨', 'ㅈㅣ': '지', 'ㅉㅣ': '찌', 'ㅊㅣ': '치',
+            'ㄱㅓ': '거', 'ㄲㅓ': '꺼', 'ㅋㅓ': '커', 'ㄹㅓ': '러', 'ㅁㅓ': '머',
+            'ㄴㅓ': '너', 'ㄸㅓ': '떠', 'ㅌㅓ': '터', 'ㅅㅓ': '서', 'ㅎㅓ': '허',
+            'ㅂㅓ': '버', 'ㅃㅓ': '뻐', 'ㅍㅓ': '퍼', 'ㅆㅓ': '써', 'ㅈㅓ': '저', 'ㅉㅓ': '쩌', 'ㅊㅓ': '처',
+            'ㄱㅔ': '게', 'ㄲㅔ': '께', 'ㅋㅔ': '케', 'ㄹㅔ': '레', 'ㅁㅔ': '메',
+            'ㄴㅔ': '네', 'ㄸㅔ': '떼', 'ㅌㅔ': '테', 'ㅅㅔ': '세', 'ㅎㅔ': '헤',
+            'ㅂㅔ': '베', 'ㅃㅔ': '뻬', 'ㅍㅔ': '페', 'ㅆㅔ': '쎄', 'ㅈㅔ': '제', 'ㅉㅔ': '쩨', 'ㅊㅔ': '체',
+            'ㄱㅐ': '개', 'ㄲㅐ': '깨', 'ㅋㅐ': '캐', 'ㄹㅐ': '래', 'ㅁㅐ': '매',
+            'ㄴㅐ': '내', 'ㄸㅐ': '때', 'ㅌㅐ': '태', 'ㅅㅐ': '새', 'ㅎㅐ': '해',
+            'ㅂㅐ': '배', 'ㅃㅐ': '빼', 'ㅍㅐ': '패', 'ㅆㅐ': '쌔', 'ㅈㅐ': '재', 'ㅉㅐ': '째', 'ㅊㅐ': '채',
+            'ㄱㅖ': '계', 'ㄲㅖ': '꼐', 'ㅋㅖ': '켸', 'ㄹㅖ': '례', 'ㅁㅖ': '몌',
+            'ㄴㅖ': '녜', 'ㄸㅖ': '뗴', 'ㅌㅖ': '톄', 'ㅅㅖ': '셰', 'ㅎㅖ': '혜',
+            'ㅂㅖ': '볘', 'ㅃㅖ': '뼤', 'ㅍㅖ': '폐', 'ㅆㅖ': '쎼', 'ㅈㅖ': '졔', 'ㅉㅖ': '쪠', 'ㅊㅖ': '쳬',
+            'ㄱㅒ': '걔', 'ㄲㅒ': '꺠', 'ㅋㅒ': '컈', 'ㄹㅒ': '럐', 'ㅁㅒ': '먜',
+            'ㄴㅒ': '냬', 'ㄸㅒ': '떄', 'ㅌㅒ': '턔', 'ㅅㅒ': '섀', 'ㅎㅒ': '햬',
+            'ㅂㅒ': '뱨', 'ㅃㅒ': '뺴', 'ㅍㅒ': '퍠', 'ㅆㅒ': '썌', 'ㅈㅒ': '쟤', 'ㅉㅒ': '쨰', 'ㅊㅒ': '챼',
+            'ㄱㅕ': '겨', 'ㄲㅕ': '껴', 'ㅋㅕ': '켜', 'ㄹㅕ': '려', 'ㅁㅕ': '며',
+            'ㄴㅕ': '녀', 'ㄸㅕ': '뗘', 'ㅌㅕ': '텨', 'ㅅㅕ': '셔', 'ㅎㅕ': '혀',
+            'ㅂㅕ': '벼', 'ㅃㅕ': '뼈', 'ㅍㅕ': '펴', 'ㅆㅕ': '쎠', 'ㅈㅕ': '져', 'ㅉㅕ': '쪄', 'ㅊㅕ': '쳐',
+            'ㄱㅡ': '그', 'ㄲㅡ': '끄', 'ㅋㅡ': '크', 'ㄹㅡ': '르', 'ㅁㅡ': '므',
+            'ㄴㅡ': '느', 'ㄸㅡ': '뜨', 'ㅌㅡ': '트', 'ㅅㅡ': '스', 'ㅎㅡ': '흐',
+            'ㅂㅡ': '브', 'ㅃㅡ': '쁘', 'ㅍㅡ': '프', 'ㅆㅡ': '쓰', 'ㅈㅡ': '즈', 'ㅉㅡ': '쯔', 'ㅊㅡ': '츠',
+            'ㄱㅜ': '구', 'ㄲㅜ': '꾸', 'ㅋㅜ': '쿠', 'ㄹㅜ': '루', 'ㅁㅜ': '무',
+            'ㄴㅜ': '누', 'ㄸㅜ': '뚜', 'ㅌㅜ': '투', 'ㅅㅜ': '수', 'ㅎㅜ': '후',
+            'ㅂㅜ': '부', 'ㅃㅜ': '뿌', 'ㅍㅜ': '푸', 'ㅆㅜ': '쑤', 'ㅈㅜ': '주', 'ㅉㅜ': '쭈', 'ㅊㅜ': '추',
+            'ㄱㅠ': '규', 'ㄲㅠ': '뀨', 'ㅋㅠ': '큐', 'ㄹㅠ': '류', 'ㅁㅠ': '뮤',
+            'ㄴㅠ': '뉴', 'ㄸㅠ': '뜌', 'ㅌㅠ': '튜', 'ㅅㅠ': '슈', 'ㅎㅠ': '휴',
+            'ㅂㅠ': '뷰', 'ㅃㅠ': '쀼', 'ㅍㅠ': '퓨', 'ㅆㅠ': '쓔', 'ㅈㅠ': '쥬', 'ㅉㅠ': '쮸', 'ㅊㅠ': '츄',
+            'ㄱㅗ': '고', 'ㄲㅗ': '꼬', 'ㅋㅗ': '코', 'ㄹㅗ': '로', 'ㅁㅗ': '모',
+            'ㄴㅗ': '노', 'ㄸㅗ': '또', 'ㅌㅗ': '토', 'ㅅㅗ': '소', 'ㅎㅗ': '호',
+            'ㅂㅗ': '보', 'ㅃㅗ': '뽀', 'ㅍㅗ': '포', 'ㅆㅗ': '쏘', 'ㅈㅗ': '조', 'ㅉㅗ': '쪼', 'ㅊㅗ': '초',
+            'ㄱㅛ': '교', 'ㄲㅛ': '꾜', 'ㅋㅛ': '쿄', 'ㄹㅛ': '료', 'ㅁㅛ': '묘',
+            'ㄴㅛ': '뇨', 'ㄸㅛ': '뚀', 'ㅌㅛ': '툐', 'ㅅㅛ': '쇼', 'ㅎㅛ': '효',
+            'ㅂㅛ': '뵤', 'ㅃㅛ': '뾰', 'ㅍㅛ': '표', 'ㅆㅛ': '쑈', 'ㅈㅛ': '죠', 'ㅉㅛ': '쬬', 'ㅊㅛ': '쵸',
+            'ㅇㅏ': '아', 'ㅇㅗ': '오',
+
+
+            // 3-letter combinations (consonant + vowel + consonant)
+            'ㄱㅏㄱ': '각', 'ㄴㅏㄴ': '난', 'ㄷㅏㄷ': '닫', 'ㄹㅏㄹ': '랄', 'ㅁㅏㅁ': '맘',
+            'ㅂㅏㅂ': '밥', 'ㅅㅏㅅ': '삿', 'ㅇㅏㅇ': '앙', 'ㅈㅏㅈ': '잦', 'ㅊㅏㅊ': '찿',
+            'ㅋㅏㅋ': '칸', 'ㅌㅏㅌ': '탓', 'ㅍㅏㅍ': '팥', 'ㅎㅏㅎ': '핳',
+            'ㄱㅗㄱ': '곡', 'ㄴㅗㄴ': '논', 'ㄷㅗㄷ': '돋', 'ㄹㅗㄹ': '롤', 'ㅁㅗㅁ': '몸',
+            'ㅂㅗㅂ': '봅', 'ㅅㅗㅅ': '솟', 'ㅇㅗㅇ': '옹', 'ㅈㅗㅈ': '졷', 'ㅊㅗㅊ': '촛',
+            'ㅋㅗㅋ': '콕', 'ㅌㅗㅌ': '톳', 'ㅍㅗㅍ': '폿', 'ㅎㅗㅎ': '홧',
+
+            // 4-letter combinations with double consonants
+            'ㄱㅏㄳ': '갃', 'ㄴㅏㄵ': '낟', 'ㄷㅏㄶ': '닣', 'ㄹㅏㄺ': '랅', 'ㅁㅏㄻ': '맒',
+            'ㅂㅏㄼ': '밟', 'ㅅㅏㄽ': '삳', 'ㄹㅏㄾ': '랇', 'ㄹㅏㄿ': '랆', 'ㄹㅏㅀ': '랃',
+            'ㅂㅏㅄ': '밥',
+
+            'ㄱㅗㄳ': '곧', 'ㄴㅗㄵ': '놋', 'ㄷㅗㄶ': '돟', 'ㄹㅗㄺ': '롣', 'ㅁㅗㄻ': '몪',
+            'ㅂㅗㄼ': '볍', 'ㅅㅗㄽ': '솧', 'ㄹㅗㄾ': '롷', 'ㄹㅗㄿ': '롶', 'ㄹㅗㅀ': '롳',
+            'ㅂㅗㅄ': '봇',
+
+            'ㄱㅜㄳ': '굳', 'ㄴㅜㄵ': '눋', 'ㄷㅜㄶ': '둗', 'ㄹㅜㄺ': '룩', 'ㅁㅜㄻ': '뭆',
+            'ㅂㅜㄼ': '붑', 'ㅅㅜㄽ': '숫', 'ㄹㅜㄾ': '룻', 'ㄹㅜㄿ': '룺', 'ㄹㅜㅀ': '룯',
+            'ㅂㅜㅄ': '붓',
+
+            // Common words with double consonants
+            'ㄱㅡㄺ': '극', 'ㄹㅡㄺ': '륵', 'ㅂㅡㄿ': '븆', 'ㅈㅡㄵ': '즏',
+            'ㄱㅡㄻ': '금', 'ㄹㅡㄼ': '률', 'ㅂㅡㄽ': '븋', 'ㅈㅡㄾ': '즏',
+            'ㄱㅡㄼ': '급', 'ㄹㅡㄽ': '륻', 'ㅂㅡㄾ': '븓', 'ㅈㅡㄿ': '즆',
+            'ㄱㅡㄽ': '긷', 'ㄹㅡㄾ': '륿', 'ㅂㅡㅀ': '븃', 'ㅈㅡㅀ': '즏',
+            'ㄱㅡㄾ': '긿', 'ㄹㅡㄿ': '륶', 'ㅂㅡㅄ': '븟',
+            'ㄱㅡㄿ': '긶', 'ㄹㅡㅀ': '륳',
+            'ㄱㅡㅀ': '긳', 'ㄹㅡㅄ': '륱',
+            'ㄱㅡㅄ': '긷',
+
+            // Examples from user request
+            'ㅇㅡㄺ': '읽', 'ㅈㅓㄻ': '젊', 'ㅇㅡㄿ': '읊',
+
+            // Combinations with ㅇ + vowels
+            'ㅇㅏ': '아', 'ㅇㅐ': '애', 'ㅇㅑ': '야', 'ㅇㅒ': '얘', 'ㅇㅓ': '어',
+            'ㅇㅔ': '에', 'ㅇㅕ': '여', 'ㅇㅖ': '예', 'ㅇㅗ': '오', 'ㅇㅘ': '와',
+            'ㅇㅙ': '왜', 'ㅇㅚ': '외', 'ㅇㅛ': '요', 'ㅇㅜ': '우', 'ㅇㅝ': '워',
+            'ㅇㅞ': '웨', 'ㅇㅟ': '위', 'ㅇㅠ': '유', 'ㅇㅡ': '으', 'ㅇㅢ': '의',
+            'ㅇㅣ': '이'
+        };
+
+        // Pronunciation rules for double consonants
+        const doubleConsonantPronunciations = {
+            'ㄳ': 'k', 'ㄵ': 'n', 'ㄶ': 'n', 'ㄺ': 'k', 'ㄻ': 'm',
+            'ㄼ': 'p', 'ㄽ': 't', 'ㄾ': 't', 'ㄿ': 'p', 'ㅀ': 'l', 'ㅄ': 'p'
+        };
+
+     // DOM elements
+    const topRow1 = document.getElementById('topRow1');
+    const leftColumn = document.getElementById('leftColumn');
+    const rightColumn = document.getElementById('rightColumn');
+    const bottomRow1 = document.getElementById('bottomRow1');
+    const bottomRow2 = document.getElementById('bottomRow2');
+    const bottomRow3 = document.getElementById('bottomRow3');
+    const slog = document.getElementById('slog');
+    const clearBtn = document.getElementById('clearBtn');
+
+    let lettersInSlog = [];
+    let draggedCube = null;
+    let currentLanguage = 'rus'; // По умолчанию русский
+
+    // Initialize the app
+    initializeLetters();
+
+    function initializeLetters() {
+        // Top row 1: 'ㄱ','ㄴ', 'ㄷ','ㄹ', 'ㅁ', 'ㅂ','ㅅ','ㅇ', 'ㅈ'
+        ['ㄱ', 'ㄴ', 'ㄷ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅅ', 'ㅇ', 'ㅈ'].forEach(letter => {
+            topRow1.appendChild(createLetterCube(letter));
+        });
+
+        // Bottom row 1: 'ㅣ', 'ㅡ', 'ㅓ', 'ㅗ', 'ㅏ', 'ㅜ', 'ㅔ', 'ㅐ'
+        ['ㅣ', 'ㅡ', 'ㅓ', 'ㅗ', 'ㅏ', 'ㅜ', 'ㅔ', 'ㅐ'].forEach(letter => {
+            bottomRow1.appendChild(createLetterCube(letter));
+        });
+
+        // Left column: 'ㄲ', 'ㄸ', 'ㅃ', 'ㅆ', 'ㅉ'
+        ['ㄲ', 'ㄸ', 'ㅃ', 'ㅆ', 'ㅉ'].forEach(letter => {
+            leftColumn.appendChild(createLetterCube(letter));
+        });
+
+        // Right column: 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ','ㅎ'
+        ['ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'].forEach(letter => {
+            rightColumn.appendChild(createLetterCube(letter));
+        });
+
+        // Bottom row 2: 'ㅑ', 'ㅕ', 'ㅠ', 'ㅛ', 'ㅖ', 'ㅒ'
+        ['ㅑ', 'ㅕ', 'ㅠ', 'ㅛ', 'ㅖ', 'ㅒ'].forEach(letter => {
+            bottomRow2.appendChild(createLetterCube(letter));
+        });
+
+        // Bottom row 3: 'ㅘ', 'ㅙ', 'ㅚ', 'ㅝ', 'ㅞ', 'ㅟ', 'ㅢ'
+        ['ㅘ', 'ㅙ', 'ㅚ', 'ㅝ', 'ㅞ', 'ㅟ', 'ㅢ'].forEach(letter => {
+            bottomRow3.appendChild(createLetterCube(letter));
+        });
+    }
+
+    function createLetterCube(letter) {
+        const cube = document.createElement('div');
+        cube.className = 'letter-cube';
+        cube.textContent = letter;
+        cube.dataset.letter = letter;
+        cube.dataset.type = koreanConsonants.includes(letter) ? 'consonant' : 'vowel';
+
+        cube.draggable = true;
+        cube.addEventListener('dragstart', handleDragStart);
+        cube.addEventListener('click', () => pronounceLetter(cube));
+
+        return cube;
+    }
+
+    function handleDragStart(e) {
+        draggedCube = this;
+        e.dataTransfer.setData('text/plain', this.dataset.letter);
+    }
+
+    // Language management
+    function setLanguage(lang) {
+        if (lang === 'rus' || lang === 'eng') {
+            currentLanguage = lang;
+        }
+    }
+
+    function getPronunciation(letter) {
+        const pron = letterPronunciations[letter];
+        if (!pron) return letter;
+        
+        // Сначала пытаемся получить транскрипцию для текущего языка
+        if (pron[currentLanguage] && pron[currentLanguage].trim() !== '') {
+            return pron[currentLanguage];
+        }
+        
+        // Если для текущего языка нет, пробуем другой язык
+        const fallbackLang = currentLanguage === 'rus' ? 'eng' : 'rus';
+        if (pron[fallbackLang] && pron[fallbackLang].trim() !== '') {
+            return pron[fallbackLang];
+        }
+        
+        // Если ничего нет, возвращаем саму букву
+        return letter;
+    }
+
+    function pronounceLetter(element) {
+        const text = element.textContent;
+        if (text.length === 1) {
+            const pronunciation = getPronunciation(text);
+            speak(pronunciation);
+        } else {
+            pronounceSyllable(text);
+        }
+    }
+
+    function pronounceSyllable(syllable) {
+        if (syllableCombinations[syllable]) {
+            speak(syllableCombinations[syllable]);
+            return;
+        }
+
+        // Проверяем комбинации для двойных согласных
+        if (syllable.length >= 3) {
+            for (let len = Math.min(4, syllable.length); len >= 2; len--) {
+                const combo = syllable.slice(0, len).join('');
+                if (syllableCombinations[combo]) {
+                    speak(syllableCombinations[combo]);
+                    return;
+                }
+            }
+        }
+
+        // По умолчанию произносим как есть
+        speak(syllable);
+    }
+
+    function speak(text) {
+        if (window.speechSynthesis) {
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'ko-KR';
+            speechSynthesis.speak(utterance);
+        } else {
+            alert(`Произношение: ${text}`);
+        }
+    }
+
+    // Остальные функции (clearSlog, addLetterToSlog и т.д.) остаются без изменений
+    clearBtn.addEventListener('click', clearSlog);
+
+    function clearSlog() {
+        lettersInSlog = [];
+        updateSlog();
+    }
+
+    function updateSlog() {
+        if (lettersInSlog.length === 0) {
+            slog.textContent = '';
+            slog.classList.add('empty');
+        } else {
+            slog.textContent = lettersInSlog.join('');
+            slog.classList.remove('empty');
+        }
+    }
+
+    slog.addEventListener('dragover', function(e) {
+        e.preventDefault();
+        this.style.backgroundColor = 'rgba(240, 255, 240, 0.5)';
+    });
+
+    slog.addEventListener('dragleave', function() {
+        this.style.backgroundColor = 'rgba(245, 245, 245, 0.7)';
+    });
+
+    slog.addEventListener('drop', function(e) {
+        e.preventDefault();
+        this.style.backgroundColor = 'rgba(245, 245, 245, 0.7)';
+
+        if (draggedCube && lettersInSlog.length < 4) {
+            addLetterToSlog(draggedCube.dataset.letter);
+        } else if (lettersInSlog.length >= 4) {
+            alert("Корейские слоги могут содержать максимум 4 буквы для двойных корней");
+        }
+    });
+
+    slog.addEventListener('click', function() {
+        if (lettersInSlog.length > 0) {
+            pronounceSyllable(this.textContent);
+        }
+    });
+
+    function addLetterToSlog(letter) {
+        // Проверка правил формирования корейских слогов
+        if (lettersInSlog.length === 0 && !koreanConsonants.includes(letter)) {
+            alert("Корейские слоги должны начинаться с согласной");
+            return;
+        }
+
+        // Добавляем букву и проверяем возможные комбинации
+        lettersInSlog.push(letter);
+        updateSlog();
+        checkForSyllableCombination();
+    }
+
+    function checkForSyllableCombination() {
+        for (let len = Math.min(4, lettersInSlog.length); len >= 2; len--) {
+            const combo = lettersInSlog.slice(0, len).join('');
+            if (syllableCombinations[combo]) {
+                combineIntoSyllableInSlog(0, len, combo, syllableCombinations[combo]);
+                return;
+            }
+        }
+    }
+
+    function combineIntoSyllableInSlog(start, length, combo, syllable) {
+        lettersInSlog.splice(start, length, syllable);
+        updateSlog();
+        pronounceSyllable(syllable);
+    }
+
+ 
+    function nextWord() {
+        // Implement next word functionality
+    }
+
+    function previousWord() {
+        // Implement previous word functionality
+    }
+</script>
+    <script>
+        const burgerMenu = document.getElementById("burgerMenu");
+        const navBurger = document.getElementById("navBurger");
+
+        burgerMenu.addEventListener("click", function (event) {
+            event.stopPropagation();
+            navBurger.classList.toggle("active");
+        });
+
+        document.addEventListener("click", function (event) {
+            if (!navBurger.contains(event.target) && !burgerMenu.contains(event.target)) {
+                navBurger.classList.remove("active");
+            }
+        });
+
+        function toggleBurger() {
+            const part1 = document.querySelector('.burger-part1');
+            const part2 = document.querySelector('.burger-part2');
+
+            if (part1.style.display === 'none') {
+                part1.style.display = 'block';
+                part2.style.display = 'none';
+            } else {
+                part1.style.display = 'none';
+                part2.style.display = 'block';
+            }
+        }
+
+        /* Свайп для мобильных устройств */
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            if (touchEndX < touchStartX - swipeThreshold) {
+                nextWord();
+            } else if (touchEndX > touchStartX + swipeThreshold) {
+                previousWord();
+            }
+        }
+
+        function nextWord() {
+            // Implement next word functionality
+        }
+
+        function previousWord() {
+            // Implement previous word functionality
+        }
+    </script>
+</body>
+
+</html>
+
+
