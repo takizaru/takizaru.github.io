@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Korean Numbers Guide</title>
+    <!-- <link rel="stylesheet" href="/styles/style_base.css/style_osnova.css"> -->
+    <link rel="stylesheet" href="/styles/style_base_numder_word.css">
+    <style>
+        .container {
+            padding: 0 20px;
+            max-width: 1440px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+
+
+        }
+
+        /* Новый контейнер для вертикального расположения */
+        .right-column {
+            width: 38%;
+            min-width: 400px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .slova-assimil {
+            width: 100%;
+            border: 3px solid #000539;
+            border-radius: 15px;
+            padding: 20px;
+            background-color: #fffaf0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 25px;
+        }
+
+        .game-container {
+            width: 100%;
+            border: 3px solid #000538;
+            border-radius: 15px;
+            padding: 20px;
+            background-color: #fffaf0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+         /* Стили для таблицы */
+    .table-container {
+        width: 38%;
+        min-width: 400px;
+    }
+
+    .elegant-table {
+        width: 100%;
+        border-collapse: collapse;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+        border-radius: 10px;
+        overflow: hidden;
+        border: 3px solid #01063f;
+    }
+
+    .elegant-table thead tr {
+        background: linear-gradient(135deg, #e0e0e0, #c0c0c0, #e0e0e0);
+        color: #000000;
+        font-weight: bold;
+    }
+
+    .elegant-table th,
+    .elegant-table td {
+        border: 1px solid #010747;
+        font-size: 34px;
+        font-weight: 900;
+        color: #000000;
+        text-align: center;
+        vertical-align: middle;
+        padding: 2px 4px;
+        transition: all 0.3s ease;
+    }
+
+    /* Уменьшаем 1 и 3 колонки в 2 раза */
+    .elegant-table td:nth-child(1),
+    .elegant-table td:nth-child(3) {
+        width: 15%;
+        min-width: 60px;
+    }
+
+    /* 5 колонку оставляем как есть */
+    .elegant-table td:nth-child(5) {
+        width: auto;
+    }
+
+    .elegant-table tbody tr:first-child td {
+        font-size: 26px;
+        font-weight: 400;
+        background: linear-gradient(135deg, #e0e0e0, #c0c0c0, #e0e0e0);
+    }
+
+    .elegant-table tr:not(:first-child) td:nth-child(1),
+    .elegant-table tr:not(:first-child) td:nth-child(3) {
+        background-color: #fffacd;
+    }
+
+    .elegant-table tbody tr:nth-of-type(even) {
+        background: linear-gradient(135deg, #f8f8f8, #e0e0e0, #f8f8f8);
+    }
+
+    .elegant-table tr:not(:first-child) td:nth-child(5) {
+        background: linear-gradient(135deg, #800020, #a00030, #800020);
+        color: #ffd700;
+    }
+
+    /* Темно-серебристая подсветка строк при наведении и нажатии */
+    .elegant-table tbody tr:hover,
+    .elegant-table tbody tr:active {
+        background: linear-gradient(135deg, #848181, #b0b0b0, #d0d0d0) !important;
+        box-shadow: inset 0 0 15px rgba(180, 180, 180, 0.7);
+        animation: dark-shimmer 2s infinite;
+    }
+    
+    @keyframes dark-shimmer {
+        0% { background: linear-gradient(135deg, #d0d0d0, #b0b0b0, #d0d0d0); }
+        50% { background: linear-gradient(135deg, #b0b0b0, #d0d0d0, #b0b0b0); }
+        100% { background: linear-gradient(135deg, #d0d0d0, #b0b0b0, #d0d0d0); }
+    }
+    
+    .elegant-table tbody tr:hover td,
+    .elegant-table tbody tr:active td {
+        color: #000000 !important;
+        font-weight: bold;
+        text-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Анимация при нажатии */
+    .elegant-table tbody tr:active {
+        transform: scale(0.99);
+        transition: transform 0.1s;
+        box-shadow: inset 0 0 20px rgba(150, 150, 150, 0.9);
+    }
+  
+
+        .game-container h3 {
+            color: #010647;
+            margin-bottom: 20px;
+            font-family: "Montserrat", sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .input-area {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            justify-content: center;
+        }
+
+        #koreanInput {
+            padding: 10px 15px;
+            font-size: 18px;
+            border: 2px solid #010647;
+            border-radius: 8px;
+            width: 100%;
+            font-family: "Noto Sans KR", sans-serif;
+        }
+
+        #checkBtn {
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #010647, #010647);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        #checkBtn:hover {
+            background: linear-gradient(135deg, #010647, #010647);
+            transform: translateY(-2px);
+        }
+
+        .transcription-word {
+            font-size: 20px;
+            margin: 10px 0;
+            color: #010647;
+            font-family: "Montserrat", sans-serif;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .transcription-word:hover {
+            background-color: #e0e0e0;
+        }
+
+        .result-area {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f8f8f8;
+            border-radius: 10px;
+            min-height: 150px;
+        }
+
+        .original-word,
+        .assimilated-word {
+            font-size: 40px;
+            margin: 10px 0;
+            font-family: "Noto Sans KR", sans-serif;
+            font-weight: 900;
+        }
+
+        .assimilated-word {
+            color: #800020;
+            font-weight: bold;
+        }
+
+        #playBtn {
+            margin-top: 15px;
+            padding: 8px 15px;
+            background: linear-gradient(135deg, #800020, #a00030);
+            color: #ffd700;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 15px auto 0;
+        }
+
+        #playBtn:hover {
+            background: linear-gradient(135deg, #a00030, #800020);
+        }
+
+
+       
+
+        .slova-assimil h3 {
+            color: #01063d;
+            margin-bottom: 15px;
+            font-family: "Montserrat", sans-serif;
+            font-size: 24px;
+            font-weight: 900;
+            text-align: center;
+        }
+
+        .words-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            font-size: 26px;
+            font-weight: 900;
+            font-family: "Noto Sans KR", sans-serif;
+        }
+
+        .word-item {
+            cursor: pointer;
+            transition: all 0.2s;
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        .word-item:hover {
+            background-color: #e0e0e0;
+            transform: translateY(-2px);
+        }
+
+        /* Адаптация для экранов меньше 1441px */
+        @media (max-width: 1440px) {
+            .container {
+                max-width: 1200px;
+            }
+
+            .elegant-table th,
+            .elegant-table td {
+                font-size: 30px;
+            }
+
+            .original-word,
+            .assimilated-word {
+                font-size: 36px;
+            }
+        }
+
+        /* Адаптация для экранов меньше 1024px */
+        @media (max-width: 1024px) {
+            .container {
+                max-width: 900px;
+            }
+
+            .elegant-table th,
+            .elegant-table td {
+                font-size: 26px;
+            }
+
+            .original-word,
+            .assimilated-word {
+                font-size: 32px;
+            }
+        }
+
+        /* Адаптация для мобильных устройств */
+        @media (max-width: 786px) {
+            .container {
+                /* flex-direction: column; */
+                align-items: center;
+                justify-content: center;
+            }
+
+            .table-container,
+            .game-container {
+                width: 100%;
+                min-width: auto;
+                margin: 20px 0;
+            }
+
+            .elegant-table th,
+            .elegant-table td {
+                font-size: 22px;
+            }
+
+            .original-word,
+            .assimilated-word {
+                font-size: 28px;
+            }
+
+            .slova-assimil {
+                width: 38%;
+                min-width: 400px;
+                border: 3px solid #010647;
+                border-radius: 15px;
+                padding: 20px;
+                background-color: #fffaf0;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                margin: 25px 0;
+                height: auto;
+            }
+
+            .slova-assimil h3 {
+                color: #010647;
+                margin-bottom: 15px;
+                font-family: "Montserrat", sans-serif;
+                font-size: 24px;
+                font-weight: 700;
+                text-align: center;
+            }
+
+            .word-item {
+                font-size: 26px;
+                font-family: "Noto Sans KR", sans-serif;
+                cursor: pointer;
+                transition: all 0.2s;
+                padding: 10px;
+                border-radius: 5px;
+                line-height: 1.5;
+            }
+
+            .word-item:hover {
+                background-color: #e0e0e0;
+            }
+
+        }
+
+      
+      
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="burger-menu" id="burgerMenu">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <img class="logo" src="/image/logo krug.svg" alt="Логотип">
+            <a href="" class="user"> <img class="lk" src="/image/userrblur.svg" alt="Пользователь"></a>
+        </div>
+        <nav class="nav-burger" id="navBurger">
+            <ul class="ul-header">
+                <li class="li-header"> <a href="" class="a-header">онлайн - переводчик</a></li>
+                <li class="li-header"> <a href="" class="a-header">контакты</a></li>
+                <li class="li-header"> <a href="" class="a-header">светлая тема</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article class="container">
+            <div class="table-container">
+                <table class="elegant-table">
+                    <tbody>
+                        <tr>
+                            <td>1 звук</td>
+                            <td></td>
+                            <td>2 звук</td>
+                            <td></td>
+                            <td>итог</td>
+                        </tr>
+                        <tr>
+                            <td>ㄱ</td>
+                            <td>+</td>
+                            <td>ㄴ</td>
+                            <td>=</td>
+                            <td>ㅇㄴ</td>
+                        </tr>
+                        <tr>
+                            <td>ㄱ</td>
+                            <td>+</td>
+                            <td>ㄹ</td>
+                            <td>=</td>
+                            <td>ㅇㄴ</td>
+                        </tr>
+                        <tr>
+                            <td>ㄱ</td>
+                            <td>+</td>
+                            <td>ㅁ</td>
+                            <td>=</td>
+                            <td>ㅇㅁ</td>
+                        </tr>
+                        <tr>
+                            <td>ㄴ</td>
+                            <td>+</td>
+                            <td>ㄹ</td>
+                            <td>=</td>
+                            <td>ㄹㄹ</td>
+                        </tr>
+                        <tr>
+                            <td>ㄷ</td>
+                            <td>+</td>
+                            <td>ㄴ</td>
+                            <td>=</td>
+                            <td>ㄴㄴ</td>
+                        </tr>
+                        <tr>
+                            <td>ㄷ</td>
+                            <td>+</td>
+                            <td>ㅁ</td>
+                            <td>=</td>
+                            <td>ㄴㅁ</td>
+                        </tr>
+                        <tr>
+                            <td>ㄷ</td>
+                            <td>+</td>
+                            <td>ㅅ</td>
+                            <td>=</td>
+                            <td>ㅆ</td>
+                        </tr>
+                        <tr>
+                            <td>ㄹ</td>
+                            <td>+</td>
+                            <td>ㄴ</td>
+                            <td>=</td>
+                            <td>ㄹㄹ</td>
+                        </tr>
+                        <tr>
+                            <td>ㅁ</td>
+                            <td>+</td>
+                            <td>ㄹ</td>
+                            <td>=</td>
+                            <td>ㅁㄴ</td>
+                        </tr>
+                        <tr>
+                            <td>ㅂ</td>
+                            <td>+</td>
+                            <td>ㄴ</td>
+                            <td>=</td>
+                            <td>ㅁㄴ</td>
+                        </tr>
+                        <tr>
+                            <td>ㅂ</td>
+                            <td>+</td>
+                            <td>ㄹ</td>
+                            <td>=</td>
+                            <td>ㅁㄴ</td>
+                        </tr>
+                        <tr>
+                            <td>ㅂ</td>
+                            <td>+</td>
+                            <td>ㅁ</td>
+                            <td>=</td>
+                            <td>ㅁㅁ</td>
+                        </tr>
+                        <tr>
+                            <td>ㅇ</td>
+                            <td>+</td>
+                            <td>ㄹ</td>
+                            <td>=</td>
+                            <td>ㅇㄴ</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- Правая колонка с вертикальным расположением -->
+            <div class="right-column">
+                <div class="slova-assimil">
+                    <h3>Примеры слов с ассимиляцией</h3>
+                    <div class="word-item">
+                        학년, 독립, 받는다, 있는데, 한국말, 읽는, 먹는다, 듣는다, 듣습니다,
+                        잡는다, 십만, 할날, 감로, 음료수, 망라, 등록, 첫날, 끝나다, 있나,
+                        찾는, 못난, 받소, 있소, 잊소, 만리, 간략, 관람, 전력, 밥맛,
+                        십만, 업무, 작년, 막내, 국력, 국립, 법령, 답례, 합류,
+                        악마, 박물관, 학문, 막막, 식모, 한국말, 첫말, 합니다, 십년, 일년
+                    </div>
+                </div>
+
+                <div class="game-container">
+                    <h3>Практика ассимиляции корейских звуков</h3>
+                    <div class="input-area">
+                        <input type="text" id="koreanInput" placeholder="Введите корейское слово" autocomplete="off">
+                        <button id="checkBtn">Проверить</button>
+                    </div>
+                    <div class="result-area">
+                        <div class="original-word" id="originalWord"></div>
+                        <div class="transcription-word" id="transcriptionWord"></div>
+                        <div class="assimilated-word" id="assimilatedWord"></div>
+                        <button id="playBtn" disabled>
+                            <img src="/image/Speaker.svg" alt="Произнести" width="20">
+                            Произнести
+                        </button>
+                    </div>
+                </div>
+        </article>
+    </main>
+
+  
+
+
+    <div class="perehod">
+        <a href="/index.html"><img src="/image/vlevo2.svg" alt=""></a>
+        <a href="/index/index_assimil_kor.html"><img src="/image/vpravo2.svg" alt=""></a>
+    </div>
+
+   <footer>
+        <section class="footer container">
+            <address>
+                <div class="footer1">
+                    <div class="tel">
+                        <img src="/image/tel_blue.svg" alt="">
+                        <p>8-925-685-52-39 </p>
+                    </div>
+                    <div class="mail">
+                        <p>anastasiya3000@yandex.ru</p>
+                    </div>
+                    <div class="footer-icon">
+                        <a href="" class="social-icon"> <img src="/image/telegram_icon 1.svg" alt=""></a>
+                        <a href="" class="social-icon"> <img src="/image/skype_icon 1.svg" alt=""></a>
+                        <a href="" class="social-icon"><img src="/image/whatsapp_green.png" alt=""></a>
+                        <a href="" class="social-icon"> <img src="/image/license.svg" alt=""></a>
+                    </div>
+                </div>
+
+                <div class="footer2">
+                    <nav class="nav1-footer">
+                        <ul class="ul-footer">
+                            <div class="f-li">
+                                <li class="li-footer"> <a href="" class="a-footer"><b>Правила оплаты</b></a></li>
+                                <li class="li-footer"> <a href="" class="a-footer"><b>Договор оферты</b></a></li>
+                                <li class="li-footer"> <a href="" class="a-footer"><b>Согласие с рассылкой</b></a></li>
+                                <li class="li-footer"><a href="" class="a-footer"><b>Пользовательское соглашение</b></a>
+                                </li>
+                                <li class="li-footer"> <a href="" class="a-footer"><b>Политика
+                                            конфиденциальности</b></a></li>
+                                <li class="li-footer"> <a href="" class="a-footer"><b>Положение о защите персональных
+                                            данных</b></a></li>
+                            </div>
+                        </ul>
+                    </nav>
+                </div>
+            </address>
+        </section>
+
+        <div class="copyright">
+            <img id="copyright" src="/image/Copyright2 _ blue.svg" alt="copyright">
+            <p>takiza, 2025</p>
+        </div>
+    </footer>
+
+    <script>
+        const burgerMenu = document.getElementById("burgerMenu");
+        const navBurger = document.getElementById("navBurger");
+
+        burgerMenu.addEventListener("click", function (event) {
+            event.stopPropagation();
+            navBurger.classList.toggle("active");
+        });
+
+        document.addEventListener("click", function (event) {
+            if (!navBurger.contains(event.target) && !burgerMenu.contains(event.target)) {
+                navBurger.classList.remove("active");
+            }
+        });
+
+        function toggleBurger() {
+            const part1 = document.querySelector('.burger-part1');
+            const part2 = document.querySelector('.burger-part2');
+
+            if (part1.style.display === 'none') {
+                part1.style.display = 'block';
+                part2.style.display = 'none';
+            } else {
+                part1.style.display = 'none';
+                part2.style.display = 'block';
+            }
+        }
+
+        /* Свайп для мобильных устройств */
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            if (touchEndX < touchStartX - swipeThreshold) {
+                nextWord();
+            } else if (touchEndX > touchStartX + swipeThreshold) {
+                previousWord();
+            }
+        }
+
+        function nextWord() {
+            // Implement next word functionality
+        }
+
+        function previousWord() {
+            // Implement previous word functionality
+        }
+    </script>
+
+
+    <!-- <script>
+    // Бургер-меню
+    const burgerMenu = document.getElementById("burgerMenu");
+    const navBurger = document.getElementById("navBurger");
+
+    burgerMenu.addEventListener("click", function (event) {
+        event.stopPropagation();
+        navBurger.classList.toggle("active");
+    });
+
+    document.addEventListener("click", function (event) {
+        if (!navBurger.contains(event.target) && !burgerMenu.contains(event.target)) {
+            navBurger.classList.remove("active");
+        }
+    });
+
+    function toggleBurger() {
+        const part1 = document.querySelector('.burger-part1');
+        const part2 = document.querySelector('.burger-part2');
+
+        if (part1.style.display === 'none') {
+            part1.style.display = 'block';
+            part2.style.display = 'none';
+        } else {
+            part1.style.display = 'none';
+            part2.style.display = 'block';
+        }
+    }
+
+    /* Свайп для мобильных устройств */
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    document.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+    });
+
+    document.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    });
+
+    function handleSwipe() {
+        const swipeThreshold = 50;
+        if (touchEndX < touchStartX - swipeThreshold) {
+            nextWord();
+        } else if (touchEndX > touchStartX + swipeThreshold) {
+            previousWord();
+        }
+    } -->
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const koreanInput = document.getElementById('koreanInput');
+            const checkBtn = document.getElementById('checkBtn');
+            const originalWord = document.getElementById('originalWord');
+            const transcriptionWord = document.getElementById('transcriptionWord');
+            const assimilatedWord = document.getElementById('assimilatedWord');
+            const playBtn = document.getElementById('playBtn');
+
+
+
+            // Добавляем обработчик клика для слов
+            // const wordItems = document.querySelectorAll('.word-item');
+            // wordItems.forEach(item => {
+            //     item.addEventListener('click', function() {
+            //         const word = this.textContent.replace(',', '').trim();
+            //         document.getElementById('koreanInput').value = word;
+            //         processWord();
+            //     });
+            // });
+
+            // Добавляем обработчик клика для слов
+            const wordItem = document.querySelector('.word-item');
+            wordItem.addEventListener('click', function (e) {
+                if (e.target === this) return; // Клик по самому div, а не по слову
+
+                // Получаем текст до запятой
+                const text = window.getSelection().toString().trim();
+                if (text) {
+                    document.getElementById('koreanInput').value = text;
+                    processWord();
+                }
+            });
+
+            // Примеры слов с ассимиляцией и их транскрипцией
+            const wordExamples = {
+                "학년": ["항년", ""],
+                "독립": ["동닙", ""],
+                "받는다": ["반는다", ""],
+                "있는데": ["인는데", ""],
+                "한국말": ["한궁말", ""],
+                "읽는": ["잉는", ""],
+                "먹는다": ["멍는다", ""],
+                "듣는다": ["든는다", ""],
+                "듣습니다": ["드씀니다", ""],
+                "잡는다": ["잠는다", ""],
+                "십만": ["심만", ""],
+                "할날": ["할랄", ""],
+                "감로": ["감노", ""],
+                "음료수": ["음뇨수", ""],
+                "망라": ["망나", ""],
+                "등록": ["등녹", ""],
+                "첫날": ["천날", ""],
+                "끝나다": ["끈나다", ""],
+                "있나": ["인나", ""],
+                "찾는": ["찬는", ""],
+                "못난": ["몬난", ""],
+                "받소": ["바쏘", ""],
+                "있소": ["이쏘", ""],
+                "잊소": ["이쏘", ""],
+                "만리": ["말리", ""],
+                "간략": ["갈략", ""],
+                "관람": ["괄람", ""],
+                "전력": ["절력", ""],
+                "밥맛": ["밤맏", ""],
+                "십만": ["심만", ""],
+                "업무": ["엄무", ""],
+                "작년": ["장년", ""],
+              "막내": ["망내", ""],
+                "국력": ["궁녁", ""],
+                "국립": ["궁닙", ""],
+                "법령": ["범녕", ""],
+                "답례": ["담녜", ""],
+                "합류": ["함뉴", ""],
+                "악마": ["앙마", ""],
+                "박물관": ["방물관", ""],
+                "학문": ["항문", ""],
+                "막막": ["망막", ""],
+                "식모": ["싱모", ""],
+                "한국말": ["한궁말", ""],
+                "첫말": ["천말", ""],
+                "합니다": ["함니다", ""],
+                "십년": ["심년", ""],
+                "일년": ["일련", ""]
+            };
+
+            // Правила ассимиляции из таблицы
+            const assimilationRules = {
+                'ㄱㄴ': 'ㅇㄴ',
+                'ㄱㄹ': 'ㅇㄴ',
+                'ㄱㅁ': 'ㅇㅁ',
+                'ㄴㄹ': 'ㄹㄹ',
+                'ㄷㄴ': 'ㄴㄴ',
+                'ㄷㅁ': 'ㄴㅁ',
+                'ㄷㅅ': 'ㅆ',
+                'ㄹㄴ': 'ㄹㄹ',
+                'ㅁㄹ': 'ㅁㄴ',
+                'ㅂㄴ': 'ㅁㄴ',
+                'ㅂㄹ': 'ㅁㄴ',
+                'ㅂㅁ': 'ㅁㅁ',
+                'ㅇㄹ': 'ㅇㄴ'
+            };
+
+            checkBtn.addEventListener('click', processWord);
+            koreanInput.addEventListener('keypress', function (e) {
+                if (e.key === 'Enter') processWord();
+            });
+
+            // Клик по транскрипции для произношения
+            transcriptionWord.addEventListener('click', function () {
+                const word = originalWord.textContent;
+                if (word) {
+                    speakKorean(word);
+                }
+            });
+
+            playBtn.addEventListener('click', function () {
+                const word = assimilatedWord.textContent.replace(/[\[\]]/g, '');
+                if (word && word !== "В этом слове нет правил ассимиляции") {
+                    speakKorean(word);
+                }
+            });
+
+            function processWord() {
+                const inputWord = koreanInput.value.trim();
+                if (!inputWord) return;
+
+                originalWord.textContent = inputWord;
+
+                // Проверяем, есть ли слово в примерах
+                if (wordExamples[inputWord]) {
+                    transcriptionWord.textContent = wordExamples[inputWord][1];
+                    assimilatedWord.textContent = `[${wordExamples[inputWord][0]}]`;
+                    assimilatedWord.style.color = '#800020';
+                    playBtn.disabled = false;
+                    return;
+                }
+
+                // Анализируем слово на ассимиляцию
+                let result = inputWord;
+                let changed = false;
+
+                // Проверяем все возможные сочетания
+                for (let i = 0; i < inputWord.length - 1; i++) {
+                    const currentChar = inputWord[i];
+                    const nextChar = inputWord[i + 1];
+
+                    // Проверяем, является ли текущий символ согласной (받침)
+                    if (isConsonant(currentChar)) {
+                        const combination = currentChar + nextChar;
+
+                        if (assimilationRules[combination]) {
+                            // Применяем правило ассимиляции
+                            const newCombination = assimilationRules[combination];
+                            result = result.substring(0, i) + newCombination[0] +
+                                result.substring(i + 1, i + 2) + newCombination[1] +
+                                result.substring(i + 2);
+                            changed = true;
+                        }
+                    }
+                }
+
+                // Генерируем транскрипцию (упрощенная версия)
+                const transcription = generateTranscription(inputWord);
+                transcriptionWord.textContent = transcription;
+
+                if (changed) {
+                    assimilatedWord.textContent = `[${result}]`;
+                    assimilatedWord.style.color = '#800020';
+                    playBtn.disabled = false;
+                } else {
+                    assimilatedWord.textContent = "В этом слове нет правил ассимиляции";
+                    assimilatedWord.style.color = '#1a237e';
+                    playBtn.disabled = true;
+                }
+            }
+
+            function isConsonant(char) {
+                // Проверяем, является ли символ корейской согласной
+                const consonants = ['ㄱ', 'ㄴ', 'ㄷ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅅ', 'ㅇ', 'ㅈ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'];
+                return consonants.includes(char);
+            }
+
+            // Упрощенная функция генерации транскрипции
+            function generateTranscription(word) {
+                // Это упрощенная версия - в реальном приложении нужно использовать более точные правила
+                let transcription = '';
+                const rules = {
+                    'ㄱ': 'g', 'ㄴ': 'n', 'ㄷ': 'd', 'ㄹ': 'r/l', 'ㅁ': 'm',
+                    'ㅂ': 'b', 'ㅅ': 's', 'ㅇ': 'ng', 'ㅈ': 'j', 'ㅊ': 'ch',
+                    'ㅋ': 'k', 'ㅌ': 't', 'ㅍ': 'p', 'ㅎ': 'h',
+                    'ㅏ': 'a', 'ㅑ': 'ya', 'ㅓ': 'eo', 'ㅕ': 'yeo', 'ㅗ': 'o',
+                    'ㅛ': 'yo', 'ㅜ': 'u', 'ㅠ': 'yu', 'ㅡ': 'eu', 'ㅣ': 'i',
+                    'ㅐ': 'ae', 'ㅒ': 'yae', 'ㅔ': 'e', 'ㅖ': 'ye', 'ㅚ': 'oe',
+                    'ㅟ': 'wi', 'ㅢ': 'ui', 'ㅘ': 'wa', 'ㅝ': 'wo', 'ㅙ': 'wae',
+                    'ㅞ': 'we'
+                };
+
+                for (let char of word) {
+                    transcription += rules[char] || char;
+                }
+
+                // Добавляем дефисы между слогами для лучшей читаемости
+                return transcription.replace(/([aeiouy])([^aeiouy]+)/g, '$1-$2');
+            }
+
+            function speakKorean(text) {
+                // Удаляем квадратные скобки, если они есть
+                const cleanText = text.replace(/[\[\]]/g, '');
+
+                // Используем Web Speech API для произношения
+                if ('speechSynthesis' in window) {
+                    const utterance = new SpeechSynthesisUtterance(cleanText);
+                    utterance.lang = 'ko-KR';
+                    utterance.rate = 0.8;
+
+                    // Находим голос для корейского языка
+                    const voices = speechSynthesis.getVoices();
+                    const koreanVoice = voices.find(voice => voice.lang === 'ko-KR');
+
+                    if (koreanVoice) {
+                        utterance.voice = koreanVoice;
+                    } else if (voices.length > 0) {
+                        // Используем первый доступный голос, если корейский не найден
+                        utterance.voice = voices[0];
+                    }
+
+                    speechSynthesis.speak(utterance);
+                } else {
+                    alert('Ваш браузер не поддерживает синтез речи. Попробуйте Chrome или Edge.');
+                }
+            }
+
+            // Для корректной работы голосового синтеза в некоторых браузерах
+            if ('speechSynthesis' in window) {
+                // Загружаем голоса при загрузке страницы
+                speechSynthesis.onvoiceschanged = function () {
+                    console.log('Голоса загружены:', speechSynthesis.getVoices());
+                };
+
+                // Некоторые браузеры требуют этого для инициализации
+                setTimeout(() => {
+                    const voices = speechSynthesis.getVoices();
+                    console.log('Доступные голоса:', voices);
+                }, 1000);
+            }
+        });
+    </script>
+
+    <script src="/scripts/script_zvuk_clik.js"></script>
+</body>
+
+</html>
+
+<!-- 
+исправь код: 
+добавь в стиль:  при наведении или нажатии на строку (один из элементов ряда) в таблице - весь ряд окрашивается и преливается -  темно - серебристым цветом,
+а буквы стали  черными;
+1 и 3 колонки в таблице - уменьши на половину, 5 колонку оставь как есть -->
