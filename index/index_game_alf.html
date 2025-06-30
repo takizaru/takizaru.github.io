@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/styles/style_base_numder_word.css">
     <title>Korean Alphabet Practice</title>
-    <style>
+     <style>
         .container {
             padding: 0 20px;
             max-width: 100%;
@@ -221,8 +221,10 @@
             background-color: #00796b;
         }
 
+        /* Стили для блока с примерами слов */
         .slova {
             width: 600px;
+            max-width: 90%;
             height: 200px;
             border: 2px solid #1a237e;
             border-radius: 8px;
@@ -230,121 +232,210 @@
             margin: 20px auto;
             background-color: #f5f5f5;
             overflow: auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
         }
 
         .slova h3 {
             text-align: center;
-            margin-bottom: 10px;
-            color: #333;
+            margin-bottom: 15px;
+            color: #1a237e;
             font-size: 22px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .word-examples-container {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .word-examples-columns {
+            column-count: 2;
+            column-gap: 30px;
         }
 
         .word-examples {
-            font-size: 20px;
-            color: #000;
-            line-height: 1.4;
+            font-size: 18px;
+            color: #333;
+            line-height: 1.5;
+            margin-bottom: 5px;
+            break-inside: avoid;
+            cursor: pointer;
+            padding: 3px 5px;
+            border-radius: 4px;
+            transition: all 0.2s;
         }
 
-
-
-/* Адаптация для разных размеров экрана */
-@media (max-width: 1440px) {
-    .slova {
-        width: 550px;
-    }
-}
-
-@media (max-width: 1200px) {
-    .slova {
-        width: 500px;
-    }
-}
-
-@media (max-width: 992px) {
-    .slova {
-        width: 450px;
-        height: 180px;
-    }
-    .word-examples {
-        font-size: 18px;
-    }
-}
-
-@media (max-width: 768px) {
-    .slova {
-        width: 400px;
-        height: 160px;
-    }
-    .word-examples {
-        font-size: 16px;
-    }
-    .slova h3 {
-        font-size: 20px;
-    }
-}
-
-        @media (max-width: 600px) {
-
-
-
-        .center-area {
-            order: 0;
-            /* Основной контент остается сверху */
-            width: 100%;
+        .word-examples:hover {
+            background-color: #e3f2fd;
+            transform: translateX(3px);
         }
 
-        .controls {
-            margin-top: 30px;
-            /* Опускаем кнопки ниже */
+        .search-container {
+            display: flex;
             margin-bottom: 15px;
+            gap: 10px;
             flex-wrap: wrap;
         }
 
-        button {
-            padding: 8px 15px;
+        #wordSearch {
+            flex: 1;
+            min-width: 200px;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        .category-filter {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .category-btn {
+            padding: 6px 12px;
+            background-color: #e0e0e0;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
             font-size: 14px;
+            transition: all 0.2s;
         }
 
-        /* Остальные существующие стили для мобильных */
-        .letter-cube {
-            width: 35px;
-            height: 35px;
-            font-size: 20px;
+        .category-btn:hover, .category-btn.active {
+            background-color: #1a237e;
+            color: white;
         }
 
-        .word-card {
-            width: 220px;
-            height: 150px;
+        .mobile-toggle {
+            display: none;
+            background-color: #1a237e;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px auto;
+            cursor: pointer;
         }
 
-        .card-front {
-            font-size: 32px;
+        /* Адаптация */
+        @media (max-width: 1440px) {
+            .slova {
+                width: 550px;
+            }
         }
 
-        .card-front.long-word {
-            font-size: 24px;
+        @media (max-width: 1200px) {
+            .slova {
+                width: 500px;
+            }
         }
 
-        .card-front.very-long-word {
-            font-size: 20px;
+        @media (max-width: 992px) {
+            .word-examples-columns {
+                column-count: 2;
+            }
         }
 
-        .word-input {
-            font-size: 24px;
-            width: 120px;
-        }
+        @media (max-width: 768px) {
+            .slova {
+                width: 90%;
+                height: auto;
+                max-height: 200px;
+                position: relative;
+            }
+            
+            .mobile-toggle {
+                display: block;
+            }
+            
+            .slova.collapsed {
+                max-height: 60px;
+                overflow: hidden;
+            }
+            
+            .word-examples {
+                font-size: 16px;
+            }
         }
 
+        @media (max-width: 600px) {
+            .center-area {
+                order: 0;
+                width: 100%;
+            }
+
+            .controls {
+                margin-top: 30px;
+                margin-bottom: 15px;
+                flex-wrap: wrap;
+            }
+
+            button {
+                padding: 8px 15px;
+                font-size: 14px;
+            }
+
+            .letter-cube {
+                width: 35px;
+                height: 35px;
+                font-size: 20px;
+            }
+
+            .word-card {
+                width: 220px;
+                height: 150px;
+            }
+
+            .card-front {
+                font-size: 32px;
+            }
+
+            .card-front.long-word {
+                font-size: 24px;
+            }
+
+            .card-front.very-long-word {
+                font-size: 20px;
+            }
+
+            .word-input {
+                font-size: 24px;
+                width: 120px;
+            }
+        }
 
         @media (max-width: 576px) {
-    .slova {
-        width: 350px;
-        height: 150px;
-    }
-    .word-examples {
-        font-size: 15px;
-    }
-}
+            .word-examples-columns {
+                column-count: 1;
+            }
+            
+            .search-container {
+                flex-direction: column;
+            }
+            
+            #wordSearch {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .slova {
+                height: 180px;
+                padding: 10px;
+            }
+            .word-examples {
+                font-size: 14px;
+                line-height: 1.4;
+            }
+            .slova h3 {
+                font-size: 18px;
+                margin-bottom: 10px;
+            }
+        }
 
         @media (max-width: 400px) {
             .controls {
@@ -361,35 +452,22 @@
                 height: 30px;
                 font-size: 18px;
             }
-
-               .slova {
-        width: 300px;
-        height: 140px;
-    }
-    .word-examples {
-        font-size: 14px;
-    }
-    .slova h3 {
-        font-size: 18px;
-    }
         }
 
-@media (max-width: 360px) {
-    .slova {
-        width: 280px;
-        height: 130px;
-    }
-}
+        @media (max-width: 360px) {
+            .slova {
+                height: 160px;
+            }
+            .word-examples {
+                font-size: 13px;
+            }
+        }
 
-@media (max-width: 320px) {
-    .slova {
-        width: 250px;
-        height: 120px;
-    }
-    .word-examples {
-        font-size: 13px;
-    }
-}
+        @media (max-width: 320px) {
+            .slova {
+                height: 150px;
+            }
+        }
 
         @media (max-width: 300px) {
             .letter-cube {
@@ -410,28 +488,22 @@
         }
 
         @media (max-width: 280px) {
-    .slova {
-        width: 230px;
-        height: 110px;
-    }
-    .word-examples {
-        font-size: 12px;
-    }
-    .slova h3 {
-        font-size: 16px;
-    }
-}
+            .slova {
+                height: 140px;
+            }
+            .word-examples {
+                font-size: 12px;
+            }
+        }
 
-@media (max-width: 250px) {
-    .slova {
-        width: 200px;
-        height: 100px;
-    }
-    .word-examples {
-        font-size: 11px;
-    }
-}
-
+        @media (max-width: 250px) {
+            .slova {
+                height: 130px;
+            }
+            .word-examples {
+                font-size: 11px;
+            }
+        }
     </style>
 </head>
 
@@ -555,68 +627,27 @@
                 </div>
             </div>
 
-
+            <!-- Блок с примерами слов -->
+            <button class="mobile-toggle">Показать/скрыть примеры</button>
+            
             <div class="slova">
-                <h3>Примеры слов для ввода</h3>
-                <div class="word-examples">
-                    물 (вода), 음식 (еда), 학교 (школа), 친구 (друг), 가족 (семья), 시간 (время), 일 (работа), 가다 (идти), 오다 (идти
-                    к), 걱정하다 (беспокоиться), 건강하다 (быть здоровым), 계란 (яйцо), 계약 (договор), 계약서 (текст договора), 고기
-                    (мясо), 물고기 (рыба), 고맙다 (быть благодарным), 고양이 (кошка), 공부하다 (учиться), 공원 (парк), 과자 (кондитерское
-                    изделие), 괜찮다 (нормальный), 교수 (профессор), 국수 (лапша), 그 (тот), 그분 (он/она), 그녀 (она), 그래 (да), 그러나
-                    (но), 그릇 (посуда), 그리고 (и), 그만 (хватит), 기분 (настроение), 기쁘다 (радостный), 기쁨 (радость), 길 (дорога),
-                    길다 (длинный), 김치 (кимчи), 꼭 (обязательно), 끝 (конец), 끝나다 (заканчиваться), 끝내다 (заканчивать), 공부
-                    (учеба), 여행 (путешествие), 휴가 (отпуск), 영화 (фильм), 음악 (музыка), 책 (книга), 커피 (кофе), 차 (чай), 빵
-                    (хлеб), 과일 (фрукты), 야채 (овощи), 생선 (рыба), 우유 (молоко), 치즈 (сыр), 버터 (масло), 소금 (соль), 설탕
-                    (сахар), 나 (я), 나쁘다 (плохой), 나중에 (потом), 날 (день), 날다 (летать), 날씨 (погода), 남자 (мужчина), 남편
-                    (муж), 낮 (день), 내일 (завтра), 너 (ты), 놀다 (играть), 농담하다 (шутить), 누구 (кто), 늘 (всегда), 늦다
-                    (опаздывать), 달 (луна), 닭 (курица), 당신 (вы), 대학 (институт), 대학교 (университет), 돈 (деньги), 뛰다
-                    (бежать), 라디오 (радио), 러시아 (Россия), 러시아말 (русский язык), 러시아사람 (русский человек), 로봇 (робот), 만나다
-                    (встречать), 만들다 (делать), 많다 (много), 말 (язык), 말하다 (говорить), 매우 (очень), 매일 (каждый день), 머리
-                    (голова), 모르다 (не знать), 무엇 (что), 미국 (Америка), 미소 (улыбка), 거짓말 (ложь), 건강 (здоровье), 기억
-                    (память), 대통령 (президент), 박물관 (музей), 속도 (скорость), 식당 (ресторан), 일본 (Япония), 읽다 (читать), 점심
-                    (обед), 정류장 (остановка), 가을 (осень), 겨울 (зима), 교실 (класс), 금요일 (пятница), 년 (год), 달 (месяц), 월
-                    (месяц), 목요일 (четверг), 밤 (ночь), 봄 (весна), 분 (минута), 사람 (человек), 시 (час), 아침 (утро), 어제
-                    (вчера), 여름 (лето), 오늘 (сегодня), 월요일 (понедельник), 일요일 (воскресенье), 학생 (студент), 화요일 (вторник),
-                    안녕하세요 (здравствуйте), 감사합니다 (спасибо), 사랑해 (я тебя люблю), 강아지 (собака), 선생님 (учитель), 먹다 (есть),
-                    보다 (смотреть), 하다 (делать), 있다 (иметь), 없다 (не иметь), 좋다 (хороший), 크다 (большой), 작다 (маленький),
-                    맛있다 (вкусный), 맛없다 (невкусный), 비싸다 (дорогой), 싸다 (дешевый), 빠르다 (быстрый), 느리다 (медленный), 예쁘다
-                    (красивый), 똑똑하다 (умный), 행복하다 (счастливый), 슬프다 (грустный), 덥다 (жарко), 춥다 (холодно), 배고프다
-                    (голодный), 목마르다 (хотеть пить), 피곤하다 (усталый), 아프다 (больной), 재미있다 (интересный), 재미없다 (скучный),
-                    어렵다 (трудный), 쉽다 (легкий), 적다 (мало), 같다 (одинаковый), 다르다 (разный), 필요하다 (нужный), 중요하다 (важный),
-                    시작하다 (начинать), 열다 (открывать), 닫다 (закрывать), 들어오다 (входить), 나가다 (выходить), 앉다 (сидеть), 일어나다
-                    (вставать), 자다 (спать), 깨다 (просыпаться), 웃다 (смеяться), 울다 (плакать), 듣다 (слушать), 쓰다 (писать),
-                    생각하다 (думать), 알다 (знать), 기억하다 (помнить), 잊다 (забывать), 원하다 (хотеть), 좋아하다 (нравиться), 싫어하다 (не
-                    нравиться), 도와주다 (помогать), 기다리다 (ждать), 헤어지다 (расставаться), 사다 (покупать), 팔다 (продавать), 주다
-                    (давать), 받다 (получать), 가지다 (иметь), 찾다 (искать), 잃다 (терять), 보내다 (отправлять), 도착하다 (прибывать),
-                    출발하다 (отправляться), 이사하다 (переезжать), 살다 (жить), 죽다 (умирать), 태어나다 (рождаться), 가르치다 (учить), 쉬다
-                    (отдыхать), 운동하다 (заниматься спортом), 걷다 (гулять), 춤추다 (танцевать), 노래하다 (петь), 그리다 (рисовать),
-                    고치다 (чинить), 씻다 (мыть), 닦다 (вытирать), 요리하다 (готовить), 마시다 (пить), 입다 (надевать), 벗다 (снимать), 신다
-                    (надевать обувь), 빗다 (расчесывать), 자르다 (резать), 불다 (дуть), 비가 오다 (идти дождь), 눈이 오다 (идти снег),
-                    번개가 치다 (сверкать молния), 천둥이 치다 (греметь гром), 바람이 불다 (дует ветер), 아침 (утро), 점심 (день), 저녁
-                    (вечер), 지난주 (прошлая неделя), 이번주 (эта неделя), 다음주 (следующая неделя), 지난달 (прошлый месяц), 이번달
-                    (этот месяц), 다음달 (следующий месяц), 작년 (прошлый год), 올해 (этот год), 내년 (следующий год), 지금
-                    (сейчас), 이제 (теперь), 곧 (скоро), 나중에 (позже), 언제 (когда), 어디 (где), 무엇 (что), 어떻게 (как), 왜
-                    (почему), 얼마 (сколько), 몇 (сколько), 어느 (какой), 모든 (все), 많은 (много), 적은 (мало), 조금 (немного), 아이
-                    (ребенок), 어른 (взрослый), 노인 (пожилой), 아버지 (отец), 어머니 (мать), 아들 (сын), 딸 (дочь), 아내 (жена), 할아버지
-                    (дедушка), 할머니 (бабушка), 방 (комната), 주방 (кухня), 화장실 (туалет), 욕실 (ванная), 침실 (спальня), 문
-                    (дверь), 창문 (окно), 벽 (стена), 건물 (здание), 아파트 (квартира), 호텔 (отель), 도서관 (библиотека), 영화관
-                    (кинотеатр), 공원 (парк), 쇼핑몰 (торговый центр), 백화점 (универмаг), 슈퍼마켓 (супермаркет), 시장 (рынок), 카페
-                    (кафе), 병원 (больница), 약국 (аптека), 경찰서 (полиция), 우체국 (почта), 은행 (банк), 공항 (аэропорт), 역
-                    (станция), 버스 (автобус), 지하철 (метро), 기차 (поезд), 비행기 (самолет), 배 (корабль), 자동차 (машина), 택시
-                    (такси), 자전거 (велосипед), 강 (река), 호수 (озеро), 바다 (море), 산 (гора), 숲 (лес), 들 (поле), 하늘 (небо),
-                    구름 (облако), 비 (дождь), 눈 (снег), 바람 (ветер), 태양 (солнце), 별 (звезда), 불고기 (корейское жаркое), 이름
-                    (имя), 나이 (возраст), 생일 (день рождения), 여기 (здесь), 거기 (там), 뭐 (что), 예 (да), 아니요 (нет), 좋아요
-                    (хорошо), 싫어요 (не нравится), 맛있어요 (вкусно), 배고파요 (я голоден), 목말라요 (я хочу пить), 피곤해요 (я устал),
-                    기뻐요 (я рад), 슬퍼요 (мне грустно), 미안해요 (извините), 괜찮아요 (все в порядке), 실례합니다 (извините), 처음 뵙겠습니다
-                    (приятно познакомиться), 잘 부탁드립니다 (буду признателен), 잘 지냈어요? (как дела?), 몇 시예요? (который час?),
-                    얼마예요? (сколько стоит?), 도와주세요 (помогите), 알겠습니다 (я понял), 모르겠습니다 (я не знаю), 다시 말씀해 주세요
-                    (повторите), 천천히 말씀해 주세요 (говорите медленнее), 한국어 잘 못해요 (я плохо говорю по-корейски), 이거 주세요 (дайте
-                    мне это), 추천해 주세요 (посоветуйте), 건배 (ваше здоровье), 생일 축하합니다 (с днем рождения), 새해 복 많이 받으세요 (с
-                    Новым годом), 축하합니다 (поздравляю), 행운을 빌어요 (удачи), 힘내세요 (держитесь), 잘했어요 (молодец), 사진 찍어 주세요
-                    (сфотографируйте меня), 예쁘다 (красиво), 멋있다 (круто), 귀엽다 (мило)
+                <h3 onclick="toggleCategories()">Примеры слов для ввода ▽</h3>
+                
+                <div class="search-container">
+                    <input type="text" id="wordSearch" placeholder="Поиск слов...">
+                    <button onclick="clearSearch()">Очистить</button>
+                </div>
+                
+                <div class="category-filter" id="categoryFilter" style="display: none;">
+                    <!-- Кнопки категорий будут добавлены скриптом -->
+                </div>
+                
+                <div class="word-examples-container" id="wordExamplesContainer">
+                    <div class="word-examples-columns" id="wordExamplesColumns">
+                        <!-- Слова будут добавлены скриптом -->
+                    </div>
                 </div>
             </div>
-
         </div>
     </main>
 
@@ -625,6 +656,7 @@
         <a href="/index/index_slogi.html"><img src="/image/vpravo2.svg" alt=""></a>
     </div>
 
+ 
     <footer>
         <section class="footer container">
             <address>
@@ -670,10 +702,10 @@
         </div>
     </footer>
 
-
-    <script>
-        const koreanDictionary = {
-            "물": "вода",
+<script>
+    // Основной словарь корейских слов (сокращенная версия)
+    const koreanDictionary = {
+              "물": "вода",
             "음식": "еда",
             "학교": "школа",
             "친구": "друг",
@@ -1078,156 +1110,657 @@
             "예쁘다": "красиво",
             "멋있다": "круто",
             "귀엽다": "мило"
-        };
+    };
 
-        const syllableArea = document.getElementById('syllableArea');
-        const translationText = document.querySelector('.translation-text');
-        const originalText = document.querySelector('.original-text');
-        const clearBtn = document.getElementById('clearBtn');
-        const pronounceBtn = document.getElementById('pronounceBtn');
-        const flipBtn = document.getElementById('flipBtn');
-        const wordCard = document.getElementById('wordCard');
-        const letterCubes = document.querySelectorAll('.letter-cube');
-        const koreanInput = document.getElementById('koreanInput');
+// Словарь с категориями
+const wordsByCategory = {
+    "Основные": [
+        {korean: "물", russian: "вода"},
+        {korean: "음식", russian: "еда"},
+        {korean: "학교", russian: "школа"},
+        {korean: "친구", russian: "друг"},
+        {korean: "가족", russian: "семья"},
+        {korean: "시간", russian: "время"},
+        {korean: "일", russian: "работа"},
+        {korean: "공부", russian: "учеба"},
+        {korean: "여행", russian: "путешествие"},
+        {korean: "휴가", russian: "отпуск"},
+        {korean: "영화", russian: "фильм"},
+        {korean: "음악", russian: "музыка"},
+        {korean: "책", russian: "книга"},
+        {korean: "커피", russian: "кофе"},
+        {korean: "차", russian: "чай"},
+        {korean: "빵", russian: "хлеб"}
+    ],
+    "Еда": [
+        {korean: "고기", russian: "мясо"},
+        {korean: "물고기", russian: "рыба"},
+        {korean: "과일", russian: "фрукты"},
+        {korean: "야채", russian: "овощи"},
+        {korean: "생선", russian: "рыба"},
+        {korean: "우유", russian: "молоко"},
+        {korean: "치즈", russian: "сыр"},
+        {korean: "버터", russian: "масло"},
+        {korean: "소금", russian: "соль"},
+        {korean: "설탕", russian: "сахар"},
+        {korean: "계란", russian: "яйцо"},
+        {korean: "국수", russian: "лапша"},
+        {korean: "김치", russian: "кимчи"},
+        {korean: "불고기", russian: "корейское жаркое"},
+        {korean: "과자", russian: "кондитерское изделие"},
+        {korean: "사과", russian: "яблоко"},
+        {korean: "바나나", russian: "банан"}
+    ],
+    "Глаголы": [
+        {korean: "가다", russian: "идти (от говорящего)"},
+        {korean: "오다", russian: "идти (к говорящему)"},
+        {korean: "걱정하다", russian: "беспокоиться"},
+        {korean: "공부하다", russian: "учиться"},
+        {korean: "농담하다", russian: "шутить"},
+        {korean: "만나다", russian: "встречать"},
+        {korean: "만들다", russian: "делать"},
+        {korean: "말하다", russian: "говорить"},
+        {korean: "먹다", russian: "есть"},
+        {korean: "보다", russian: "смотреть"},
+        {korean: "하다", russian: "делать"},
+        {korean: "읽다", russian: "читать"},
+        {korean: "쓰다", russian: "писать"},
+        {korean: "생각하다", russian: "думать"},
+        {korean: "알다", russian: "знать"},
+        {korean: "모르다", russian: "не знать"},
+        {korean: "기억하다", russian: "помнить"},
+        {korean: "잊다", russian: "забывать"},
+        {korean: "원하다", russian: "хотеть"},
+        {korean: "좋아하다", russian: "нравиться"},
+        {korean: "싫어하다", russian: "не нравиться"},
+        {korean: "도와주다", russian: "помогать"},
+        {korean: "기다리다", russian: "ждать"},
+        {korean: "헤어지다", russian: "расставаться"},
+        {korean: "사다", russian: "покупать"},
+        {korean: "팔다", russian: "продавать"},
+        {korean: "주다", russian: "давать"},
+        {korean: "받다", russian: "получать"},
+        {korean: "가지다", russian: "иметь"},
+        {korean: "찾다", russian: "искать"},
+        {korean: "잃다", russian: "терять"},
+        {korean: "보내다", russian: "отправлять"},
+        {korean: "도착하다", russian: "прибывать"},
+        {korean: "출발하다", russian: "отправляться"},
+        {korean: "이사하다", russian: "переезжать"},
+        {korean: "살다", russian: "жить"},
+        {korean: "죽다", russian: "умирать"},
+        {korean: "태어나다", russian: "рождаться"},
+        {korean: "가르치다", russian: "учить"},
+        {korean: "일하다", russian: "работать"},
+        {korean: "쉬다", russian: "отдыхать"},
+        {korean: "놀다", russian: "играть"},
+        {korean: "운동하다", russian: "заниматься спортом"},
+        {korean: "걷다", russian: "гулять"},
+        {korean: "뛰다", russian: "бежать"},
+        {korean: "춤추다", russian: "танцевать"},
+        {korean: "노래하다", russian: "петь"},
+        {korean: "그리다", russian: "рисовать"},
+        {korean: "고치다", russian: "чинить"},
+        {korean: "씻다", russian: "мыть"},
+        {korean: "닦다", russian: "вытирать"},
+        {korean: "요리하다", russian: "готовить"},
+        {korean: "마시다", russian: "пить"},
+        {korean: "입다", russian: "надевать"},
+        {korean: "벗다", russian: "снимать"},
+        {korean: "신다", russian: "надевать (обувь)"},
+        {korean: "빗다", russian: "расчесывать"},
+        {korean: "자르다", russian: "резать"},
+        {korean: "불다", russian: "дуть"},
+        {korean: "시작하다", russian: "начинать"},
+        {korean: "끝나다", russian: "заканчивать"},
+        {korean: "열다", russian: "открывать"},
+        {korean: "닫다", russian: "закрывать"},
+        {korean: "들어오다", russian: "входить"},
+        {korean: "나가다", russian: "выходить"},
+        {korean: "앉다", russian: "сидеть"},
+        {korean: "일어나다", russian: "вставать"},
+        {korean: "자다", russian: "спать"},
+        {korean: "깨다", russian: "просыпаться"},
+        {korean: "웃다", russian: "смеяться"},
+        {korean: "울다", russian: "плакать"},
+        {korean: "듣다", russian: "слушать"}
+    ],
+    "Время": [
+        {korean: "시간", russian: "время"},
+        {korean: "오늘", russian: "сегодня"},
+        {korean: "내일", russian: "завтра"},
+        {korean: "아침", russian: "утро"},
+        {korean: "점심", russian: "обед"},
+        {korean: "저녁", russian: "ужин"},
+        {korean: "밤", russian: "ночь"},
+        {korean: "년", russian: "год"},
+        {korean: "달", russian: "месяц"},
+        {korean: "월", russian: "месяц (кит.)"},
+        {korean: "분", russian: "минута"},
+        {korean: "시", russian: "час"},
+        {korean: "지난주", russian: "прошлая неделя"},
+        {korean: "이번주", russian: "эта неделя"},
+        {korean: "다음주", russian: "следующая неделя"},
+        {korean: "지난달", russian: "прошлый месяц"},
+        {korean: "이번달", russian: "этот месяц"},
+        {korean: "다음달", russian: "следующий месяц"},
+        {korean: "작년", russian: "прошлый год"},
+        {korean: "올해", russian: "этот год"},
+        {korean: "내년", russian: "следующий год"},
+        {korean: "지금", russian: "сейчас"},
+        {korean: "이제", russian: "теперь"},
+        {korean: "곧", russian: "скоро"},
+        {korean: "나중에", russian: "позже"}
+    ],
+    "Природа": [
+        {korean: "봄", russian: "весна"},
+        {korean: "여름", russian: "лето"},
+        {korean: "가을", russian: "осень"},
+        {korean: "겨울", russian: "зима"},
+        {korean: "비", russian: "дождь"},
+        {korean: "눈", russian: "снег"},
+        {korean: "바람", russian: "ветер"},
+        {korean: "태양", russian: "солнце"},
+        {korean: "달", russian: "луна"},
+        {korean: "별", russian: "звезда"},
+        {korean: "강", russian: "река"},
+        {korean: "호수", russian: "озеро"},
+        {korean: "바다", russian: "море"},
+        {korean: "산", russian: "гора"},
+        {korean: "숲", russian: "лес"},
+        {korean: "들", russian: "поле"},
+        {korean: "하늘", russian: "небо"},
+        {korean: "구름", russian: "облако"},
+        {korean: "비가 오다", russian: "идти дождь"},
+        {korean: "눈이 오다", russian: "идти снег"},
+        {korean: "번개가 치다", russian: "сверкать молния"},
+        {korean: "천둥이 치다", russian: "греметь гром"},
+        {korean: "바람이 불다", russian: "дует ветер"}
+    ],
+    "Семья": [
+        {korean: "아버지", russian: "отец"},
+        {korean: "어머니", russian: "мать"},
+        {korean: "아들", russian: "сын"},
+        {korean: "딸", russian: "дочь"},
+        {korean: "남편", russian: "муж"},
+        {korean: "아내", russian: "жена"},
+        {korean: "할아버지", russian: "дедушка"},
+        {korean: "할머니", russian: "бабушка"},
+        {korean: "사람", russian: "человек"},
+        {korean: "남자", russian: "мужчина"},
+        {korean: "여자", russian: "женщина"},
+        {korean: "아이", russian: "ребенок"},
+        {korean: "어른", russian: "взрослый"},
+        {korean: "노인", russian: "пожилой"}
+    ],
+    "Места": [
+        {korean: "집", russian: "дом"},
+        {korean: "방", russian: "комната"},
+        {korean: "주방", russian: "кухня"},
+        {korean: "화장실", russian: "туалет"},
+        {korean: "욕실", russian: "ванная"},
+        {korean: "침실", russian: "спальня"},
+        {korean: "건물", russian: "здание"},
+        {korean: "아파트", russian: "квартира"},
+        {korean: "호텔", russian: "отель"},
+        {korean: "학교", russian: "школа"},
+        {korean: "대학교", russian: "университет"},
+        {korean: "도서관", russian: "библиотека"},
+        {korean: "박물관", russian: "музей"},
+        {korean: "영화관", russian: "кинотеатр"},
+        {korean: "공원", russian: "парк"},
+        {korean: "쇼핑몰", russian: "торговый центр"},
+        {korean: "백화점", russian: "универмаг"},
+        {korean: "슈퍼마켓", russian: "супермаркет"},
+        {korean: "시장", russian: "рынок"},
+        {korean: "식당", russian: "ресторан"},
+        {korean: "카페", russian: "кафе"},
+        {korean: "병원", russian: "больница"},
+        {korean: "약국", russian: "аптека"},
+        {korean: "경찰서", russian: "полиция"},
+        {korean: "우체국", russian: "почта"},
+        {korean: "은행", russian: "банк"},
+        {korean: "공항", russian: "аэропорт"},
+        {korean: "역", russian: "станция"},
+        {korean: "정류장", russian: "остановка"},
+        {korean: "교실", russian: "класс"}
+    ],
+    "Прилагательные": [
+        {korean: "좋다", russian: "хороший"},
+        {korean: "나쁘다", russian: "плохой"},
+        {korean: "크다", russian: "большой"},
+        {korean: "작다", russian: "маленький"},
+        {korean: "맛있다", russian: "вкусный"},
+        {korean: "맛없다", russian: "невкусный"},
+        {korean: "비싸다", russian: "дорогой"},
+        {korean: "싸다", russian: "дешевый"},
+        {korean: "빠르다", russian: "быстрый"},
+        {korean: "느리다", russian: "медленный"},
+        {korean: "예쁘다", russian: "красивый"},
+        {korean: "똑똑하다", russian: "умный"},
+        {korean: "행복하다", russian: "счастливый"},
+        {korean: "슬프다", russian: "грустный"},
+        {korean: "덥다", russian: "жарко"},
+        {korean: "춥다", russian: "холодно"},
+        {korean: "배고프다", russian: "голодный"},
+        {korean: "목마르다", russian: "хотеть пить"},
+        {korean: "피곤하다", russian: "усталый"},
+        {korean: "아프다", russian: "больной"},
+        {korean: "건강하다", russian: "здоровый"},
+        {korean: "재미있다", russian: "интересный"},
+        {korean: "재미없다", russian: "скучный"},
+        {korean: "어렵다", russian: "трудный"},
+        {korean: "쉽다", russian: "легкий"},
+        {korean: "많다", russian: "много"},
+        {korean: "적다", russian: "мало"},
+        {korean: "같다", russian: "одинаковый"},
+        {korean: "다르다", russian: "разный"},
+        {korean: "필요하다", russian: "нужный"},
+        {korean: "중요하다", russian: "важный"},
+        {korean: "괜찮다", russian: "нормальный, неплохой"},
+        {korean: "길다", russian: "длинный"},
+        {korean: "예쁘다", russian: "красиво"},
+        {korean: "멋있다", russian: "круто"},
+        {korean: "귀엽다", russian: "мило"}
+    ],
+    "Фразы": [
+        {korean: "안녕하세요", russian: "здравствуйте"},
+        {korean: "감사합니다", russian: "спасибо"},
+        {korean: "사랑해", russian: "я тебя люблю"},
+        {korean: "미안해요", russian: "извините"},
+        {korean: "괜찮아요", russian: "все в порядке"},
+        {korean: "실례합니다", russian: "извините"},
+        {korean: "처음 뵙겠습니다", russian: "приятно познакомиться"},
+        {korean: "잘 부탁드립니다", russian: "буду признателен"},
+        {korean: "잘 지냈어요?", russian: "как дела?"},
+        {korean: "몇 시예요?", russian: "который час?"},
+        {korean: "얼마예요?", russian: "сколько стоит?"},
+        {korean: "도와주세요", russian: "помогите"},
+        {korean: "알겠습니다", russian: "я понял"},
+        {korean: "모르겠습니다", russian: "я не знаю"},
+        {korean: "다시 말씀해 주세요", russian: "повторите"},
+        {korean: "천천히 말씀해 주세요", russian: "говорите медленнее"},
+        {korean: "한국어 잘 못해요", russian: "я плохо говорю по-корейски"},
+        {korean: "이거 주세요", russian: "дайте мне это"},
+        {korean: "추천해 주세요", russian: "посоветуйте"},
+        {korean: "건배", russian: "ваше здоровье"},
+        {korean: "생일 축하합니다", russian: "с днем рождения"},
+        {korean: "새해 복 많이 받으세요", russian: "с Новым годом"},
+        {korean: "축하합니다", russian: "поздравляю"},
+        {korean: "행운을 빌어요", russian: "удачи"},
+        {korean: "힘내세요", russian: "держитесь"},
+        {korean: "잘했어요", russian: "молодец"},
+        {korean: "사진 찍어 주세요", russian: "сфотографируйте меня"}
+    ],
+    "Животные": [
+        {korean: "고양이", russian: "кошка"},
+        {korean: "강아지", russian: "собака"},
+        {korean: "닭", russian: "курица"},
+        {korean: "물고기", russian: "рыба"},
+        {korean: "로봇", russian: "робот"}
+    ],
+    "Транспорт": [
+        {korean: "버스", russian: "автобус"},
+        {korean: "지하철", russian: "метро"},
+        {korean: "기차", russian: "поезд"},
+        {korean: "비행기", russian: "самолет"},
+        {korean: "자동차", russian: "машина"},
+        {korean: "택시", russian: "такси"},
+        {korean: "자전거", russian: "велосипед"},
+        {korean: "배", russian: "корабль"}
+    ],
+    "Страны": [
+        {korean: "러시아", russian: "Россия"},
+        {korean: "한국", russian: "Корея"},
+        {korean: "미국", russian: "Америка"},
+        {korean: "일본", russian: "Япония"},
+        {korean: "중국", russian: "Китай"},
+        {korean: "러시아말", russian: "русский язык"},
+        {korean: "러시아사람", russian: "русский человек"}
+    ],
+    "Дни недели": [
+        {korean: "월요일", russian: "понедельник"},
+        {korean: "화요일", russian: "вторник"},
+        {korean: "수요일", russian: "среда"},
+        {korean: "목요일", russian: "четверг"},
+        {korean: "금요일", russian: "пятница"},
+        {korean: "토요일", russian: "суббота"},
+        {korean: "일요일", russian: "воскресенье"}
+    ],
+    "Личные местоимения": [
+        {korean: "나", russian: "я"},
+        {korean: "너", russian: "ты"},
+        {korean: "우리", russian: "мы"},
+        {korean: "그", russian: "тот"},
+        {korean: "그분", russian: "он/она (вежл.)"},
+        {korean: "그녀", russian: "она"},
+        {korean: "당신", russian: "вы"},
+        {korean: "여기", russian: "здесь"},
+        {korean: "거기", russian: "там"},
+        {korean: "모든", russian: "все"},
+        {korean: "많은", russian: "много"},
+        {korean: "적은", russian: "мало"},
+        {korean: "조금", russian: "немного"}
+    ],
+    "Вопросы": [
+        {korean: "뭐", russian: "что"},
+        {korean: "예", russian: "да"},
+        {korean: "아니요", russian: "нет"},
+        {korean: "좋아요", russian: "хорошо"},
+        {korean: "싫어요", russian: "не нравится"},
+        {korean: "맛있어요", russian: "вкусно"},
+        {korean: "배고파요", russian: "я голоден"},
+        {korean: "목말라요", russian: "я хочу пить"},
+        {korean: "피곤해요", russian: "я устал"},
+        {korean: "기뻐요", russian: "я рад"},
+        {korean: "슬퍼요", russian: "мне грустно"},
+        {korean: "언제", russian: "когда"},
+        {korean: "어디", russian: "где"},
+        {korean: "누구", russian: "кто"},
+        {korean: "무엇", russian: "что"},
+        {korean: "어떻게", russian: "как"},
+        {korean: "왜", russian: "почему"},
+        {korean: "얼마", russian: "сколько"},
+        {korean: "몇", russian: "сколько (вопр.)"},
+        {korean: "어느", russian: "какой"}
+    ],
+    "Части дома": [
+        {korean: "문", russian: "дверь"},
+        {korean: "창문", russian: "окно"},
+        {korean: "벽", russian: "стена"},
+        {korean: "그릇", russian: "посуда"}
+    ],
+    "Прочее": [
+        {korean: "계약", russian: "договор, контракт"},
+        {korean: "계약서", russian: "текст договора, контракта"},
+        {korean: "고맙다", russian: "быть благодарным"},
+        {korean: "기분", russian: "настроение"},
+        {korean: "기쁘다", russian: "радостный"},
+        {korean: "기쁨", russian: "радость"},
+        {korean: "길", russian: "дорога"},
+        {korean: "꼭", russian: "обязательно"},
+        {korean: "끝", russian: "конец"},
+        {korean: "끝나다", russian: "заканчиваться"},
+        {korean: "끝내다", russian: "заканчивать"},
+        {korean: "날", russian: "день"},
+        {korean: "날다", russian: "летать"},
+        {korean: "날씨", russian: "погода"},
+        {korean: "낮", russian: "день"},
+        {korean: "늘", russian: "всегда"},
+        {korean: "늦다", russian: "опаздывать"},
+        {korean: "라디오", russian: "радио"},
+        {korean: "매우", russian: "очень"},
+        {korean: "매일", russian: "каждый день"},
+        {korean: "머리", russian: "голова"},
+        {korean: "미소", russian: "улыбка"},
+        {korean: "거짓말", russian: "ложь"},
+        {korean: "건강", russian: "здоровье"},
+        {korean: "기억", russian: "память"},
+        {korean: "대통령", russian: "президент"},
+        {korean: "속도", russian: "скорость"},
+        {korean: "학생", russian: "студент"},
+        {korean: "선생님", russian: "учитель"},
+        {korean: "교수", russian: "профессор"},
+        {korean: "그래", russian: "да, хорошо"},
+        {korean: "그러나", russian: "но"},
+        {korean: "그리고", russian: "и"},
+        {korean: "그만", russian: "хватит"},
+        {korean: "나쁘다", russian: "плохой"},
+        {korean: "나중에", russian: "потом"},
+        {korean: "돈", russian: "деньги"},
+        {korean: "이름", russian: "имя"},
+        {korean: "나이", russian: "возраст"},
+        {korean: "생일", russian: "день рождения"},
+        {korean: "있다", russian: "иметь"},
+        {korean: "없다", russian: "не иметь"}
+    ]
+};
 
-        let currentLetters = [];
-        let currentWord = '';
+    // DOM элементы
+    const syllableArea = document.getElementById('syllableArea');
+    const translationText = document.querySelector('.translation-text');
+    const originalText = document.querySelector('.original-text');
+    const clearBtn = document.getElementById('clearBtn');
+    const pronounceBtn = document.getElementById('pronounceBtn');
+    const flipBtn = document.getElementById('flipBtn');
+    const wordCard = document.getElementById('wordCard');
+    const letterCubes = document.querySelectorAll('.letter-cube');
+    const koreanInput = document.getElementById('koreanInput');
+    const mobileToggle = document.querySelector('.mobile-toggle');
+    const wordSearch = document.getElementById('wordSearch');
+    const categoryFilter = document.getElementById('categoryFilter');
+    const wordExamplesColumns = document.getElementById('wordExamplesColumns');
 
-        // Initialize letter cubes
+    let currentLetters = [];
+    let currentWord = '';
+
+    // Инициализация при загрузке
+    document.addEventListener('DOMContentLoaded', function() {
+        // Инициализация букв
         letterCubes.forEach(cube => {
-            cube.addEventListener('click', function () {
+            cube.addEventListener('click', function() {
                 addLetter(this.dataset.letter);
             });
         });
 
-        // Input field events
-        koreanInput.addEventListener('input', function () {
+        // Инициализация поля ввода
+        koreanInput.addEventListener('input', function() {
             currentLetters = Array.from(this.value);
             updateWord();
         });
 
-        function addLetter(letter) {
-            currentLetters.push(letter);
-            koreanInput.value = currentLetters.join('');
-            updateWord();
-        }
+        // Инициализация кнопок
+        clearBtn.addEventListener('click', clearAll);
+        pronounceBtn.addEventListener('click', pronounceWord);
+        flipBtn.addEventListener('click', flipCard);
 
-        function updateWord() {
-            currentWord = currentLetters.join('');
-
-            // Update card display
-            if (currentLetters.length === 0) {
-                syllableArea.textContent = '';
-                syllableArea.classList.add('empty');
-                syllableArea.classList.remove('long-word', 'very-long-word');
-                translationText.textContent = '';
-                originalText.textContent = '';
-                wordCard.classList.remove('flipped');
-                return;
+        // Инициализация примеров слов
+        renderAllWords();
+        renderCategoryButtons();
+        
+        // Поиск слов
+        wordSearch.addEventListener('input', function(e) {
+            filterWords(e.target.value);
+        });
+        
+        // Клик по слову
+        wordExamplesColumns.addEventListener('click', function(e) {
+            if (e.target.classList.contains('word-examples')) {
+                const koreanWord = e.target.getAttribute('data-korean');
+                koreanInput.value = koreanWord;
+                currentLetters = Array.from(koreanWord);
+                updateWord();
+                
+                // Анимация клика
+                e.target.style.backgroundColor = '#bbdefb';
+                setTimeout(() => {
+                    e.target.style.backgroundColor = '';
+                }, 200);
             }
+        });
+        
+        // Мобильное меню
+        mobileToggle.addEventListener('click', function() {
+            document.querySelector('.slova').classList.toggle('collapsed');
+        });
+    });
 
-            syllableArea.textContent = currentWord;
-            syllableArea.classList.remove('empty');
+    // Функции для работы с буквами и словами
+    function addLetter(letter) {
+        currentLetters.push(letter);
+        koreanInput.value = currentLetters.join('');
+        updateWord();
+    }
 
-            // Adjust font size based on word length
+    function updateWord() {
+        currentWord = currentLetters.join('');
+
+        if (currentLetters.length === 0) {
+            syllableArea.textContent = '';
+            syllableArea.classList.add('empty');
             syllableArea.classList.remove('long-word', 'very-long-word');
-            if (currentLetters.length > 3) {
-                syllableArea.classList.add('long-word');
-            }
-            if (currentLetters.length > 5) {
-                syllableArea.classList.add('very-long-word');
-            }
-
-            // Check dictionary
-            if (koreanDictionary[currentWord]) {
-                translationText.textContent = koreanDictionary[currentWord];
-                originalText.textContent = currentWord;
-            } else {
-                translationText.textContent = 'No translation';
-                originalText.textContent = currentWord;
-            }
+            translationText.textContent = '';
+            originalText.textContent = '';
+            wordCard.classList.remove('flipped');
+            return;
         }
 
-        // Button events
-        clearBtn.addEventListener('click', function () {
-            currentLetters = [];
-            koreanInput.value = '';
-            updateWord();
-        });
+        syllableArea.textContent = currentWord;
+        syllableArea.classList.remove('empty');
 
-        pronounceBtn.addEventListener('click', function () {
-            if (currentWord && window.speechSynthesis) {
-                const utterance = new SpeechSynthesisUtterance(currentWord);
-                utterance.lang = 'ko-KR';
-                speechSynthesis.speak(utterance);
-            }
-        });
+        // Настройка размера шрифта
+        syllableArea.classList.remove('long-word', 'very-long-word');
+        if (currentLetters.length > 3) syllableArea.classList.add('long-word');
+        if (currentLetters.length > 5) syllableArea.classList.add('very-long-word');
 
-        flipBtn.addEventListener('click', function () {
-            wordCard.classList.toggle('flipped');
-        });
-    </script>
-
-    <script>
-        const burgerMenu = document.getElementById("burgerMenu");
-        const navBurger = document.getElementById("navBurger");
-
-        burgerMenu.addEventListener("click", function (event) {
-            event.stopPropagation();
-            navBurger.classList.toggle("active");
-        });
-
-        document.addEventListener("click", function (event) {
-            if (!navBurger.contains(event.target) && !burgerMenu.contains(event.target)) {
-                navBurger.classList.remove("active");
-            }
-        });
-
-        function toggleBurger() {
-            const part1 = document.querySelector('.burger-part1');
-            const part2 = document.querySelector('.burger-part2');
-
-            if (part1.style.display === 'none') {
-                part1.style.display = 'block';
-                part2.style.display = 'none';
-            } else {
-                part1.style.display = 'none';
-                part2.style.display = 'block';
-            }
+        // Проверка словаря
+        if (koreanDictionary[currentWord]) {
+            translationText.textContent = koreanDictionary[currentWord];
+            originalText.textContent = currentWord;
+        } else {
+            translationText.textContent = 'Перевод не найден';
+            originalText.textContent = currentWord;
         }
+    }
 
-        /* Свайп для мобильных устройств */
-        let touchStartX = 0;
-        let touchEndX = 0;
+    function clearAll() {
+        currentLetters = [];
+        koreanInput.value = '';
+        updateWord();
+    }
 
-        document.addEventListener('touchstart', (e) => {
-            touchStartX = e.changedTouches[0].screenX;
+    function pronounceWord() {
+        if (currentWord && window.speechSynthesis) {
+            const utterance = new SpeechSynthesisUtterance(currentWord);
+            utterance.lang = 'ko-KR';
+            speechSynthesis.speak(utterance);
+        }
+    }
+
+    function flipCard() {
+        wordCard.classList.toggle('flipped');
+    }
+
+    // Функции для работы с примерами слов
+    function renderAllWords() {
+        wordExamplesColumns.innerHTML = '';
+        
+        for (const category in wordsByCategory) {
+            wordsByCategory[category].forEach(word => {
+                createWordElement(word.korean, word.russian, category);
+            });
+        }
+    }
+
+    function renderCategoryButtons() {
+        categoryFilter.innerHTML = '';
+        
+        for (const category in wordsByCategory) {
+            const btn = document.createElement('button');
+            btn.className = 'category-btn';
+            btn.textContent = category;
+            btn.onclick = () => filterByCategory(category);
+            categoryFilter.appendChild(btn);
+        }
+        
+        // Кнопка "Все"
+        const allBtn = document.createElement('button');
+        allBtn.className = 'category-btn active';
+        allBtn.textContent = 'Все';
+        allBtn.onclick = () => {
+            document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
+            allBtn.classList.add('active');
+            renderAllWords();
+        };
+        categoryFilter.appendChild(allBtn);
+    }
+
+    function toggleCategories() {
+        categoryFilter.style.display = categoryFilter.style.display === 'none' ? 'flex' : 'none';
+    }
+
+    function filterByCategory(category) {
+        // Удаляем активный класс у всех кнопок
+        document.querySelectorAll('.category-btn').forEach(btn => {
+            btn.classList.remove('active');
         });
-
-        document.addEventListener('touchend', (e) => {
-            touchEndX = e.changedTouches[0].screenX;
-            handleSwipe();
+        
+        // Добавляем активный класс текущей кнопке
+        event.target.classList.add('active');
+        
+        wordExamplesColumns.innerHTML = '';
+        
+        if (category === 'Все') {
+            renderAllWords();
+            return;
+        }
+        
+        wordsByCategory[category].forEach(word => {
+            createWordElement(word.korean, word.russian, category);
         });
+    }
 
-        function handleSwipe() {
-            const swipeThreshold = 50;
-            if (touchEndX < touchStartX - swipeThreshold) {
-                nextWord();
-            } else if (touchEndX > touchStartX + swipeThreshold) {
-                previousWord();
-            }
+    function filterWords(searchTerm) {
+        const words = document.querySelectorAll('.word-examples');
+        const term = searchTerm.toLowerCase();
+        
+        words.forEach(word => {
+            const text = word.textContent.toLowerCase();
+            word.style.display = text.includes(term) ? 'block' : 'none';
+        });
+    }
+
+    function clearSearch() {
+        wordSearch.value = '';
+        filterWords('');
+    }
+
+    function createWordElement(korean, russian, category) {
+        const wordElement = document.createElement('div');
+        wordElement.className = 'word-examples';
+        wordElement.setAttribute('data-korean', korean);
+        wordElement.setAttribute('data-category', category);
+        wordElement.textContent = `${korean} (${russian})`;
+        wordExamplesColumns.appendChild(wordElement);
+    }
+
+    // Бургер-меню
+    const burgerMenu = document.getElementById("burgerMenu");
+    const navBurger = document.getElementById("navBurger");
+
+    burgerMenu.addEventListener("click", function(event) {
+        event.stopPropagation();
+        navBurger.classList.toggle("active");
+    });
+
+    document.addEventListener("click", function(event) {
+        if (!navBurger.contains(event.target) && !burgerMenu.contains(event.target)) {
+            navBurger.classList.remove("active");
         }
+    });
 
-        function nextWord() {
-            // Implement next word functionality
+    // Свайп для мобильных устройств
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    document.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+    });
+
+    document.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    });
+
+    function handleSwipe() {
+        const swipeThreshold = 50;
+        if (touchEndX < touchStartX - swipeThreshold) {
+            // nextWord();
+        } else if (touchEndX > touchStartX + swipeThreshold) {
+            // previousWord();
         }
-
-        function previousWord() {
-            // Implement previous word functionality
-        }
-    </script>
-
-</body>
+    }
+</script>
+  </body>
 
 </html>
-
