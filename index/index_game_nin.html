@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="/styles/style_base_numder_word.css">
+    <title>Korean Particles Game - 는/은</title>
+    <style>
+  
+
+        .main-container {
+            display: flex;
+         
+            justify-content: center;
+            flex-direction: row;
+            gap: 20px;
+            max-width: 950px;
+            margin: 0 auto;
+        }
+        
+        .game-container {
+            width: 500px;
+            height: 600px;
+            background-color: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            border: 4px solid #1a237e;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .word-bank-container {
+            width: 400px;
+            height: 600px;
+            background-color: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            border: 4px solid #1a237e;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+        
+        .game-container::before,
+        .word-bank-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                rgba(255,255,255,0) 0%,
+                rgba(255,255,255,0.8) 50%,
+                rgba(255,255,255,0) 100%
+            );
+            animation: shine 3s infinite;
+            z-index: 0;
+        }
+        
+        @keyframes shine {
+            0% { transform: rotate(45deg) translate(-30%, -30%); }
+            100% { transform: rotate(45deg) translate(30%, 30%); }
+        }
+        
+        .game-section,
+        .word-bank-section {
+            position: relative;
+            z-index: 1;
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .word-bank {
+            margin-top: 20px;
+            background-color: #e8f4f8;
+            border-radius: 15px;
+            padding: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            flex-grow: 1;
+            overflow-y: auto;
+        }
+        
+        h2, h3 {
+            color: #2c3e50;
+            text-align: center;
+            margin-top: 0;
+        }
+        
+        /* Стили для кубиков */
+        .cube {
+            display: inline-block;
+            width: 60px;
+            height: 60px;
+            margin: 5px;
+            background-color: #3498db;
+            color: white;
+            font-size: 24px;
+            text-align: center;
+            line-height: 60px;
+            border-radius: 8px;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .cube.vowel {
+            background-color: #e74c3c;
+        }
+        
+        .cube.consonant {
+            background-color: #2980b9;
+        }
+        
+        .cube.ending {
+            background-color: #2ecc71;
+        }
+        
+        .cube.dark {
+            background-color: #34495e;
+        }
+        
+        .cube.merged {
+            background-color: #f1c40f;
+            color: #000;
+        }
+        
+        .cube.wrong {
+            background-color: #e74c3c;
+            position: relative;
+        }
+        
+        .cube.wrong::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background-color: black;
+            transform: rotate(0deg);
+        }
+        
+        .cube.particle {
+            cursor: pointer;
+        }
+        
+        .cube.particle.selected {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(0,0,0,0.3);
+        }
+        
+        .cube.particle-correct {
+            background-color: #27ae60;
+        }
+        
+        /* Анимации */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes celebrate {
+            0% { transform: scale(1); }
+            25% { transform: scale(1.2) rotate(10deg); }
+            50% { transform: scale(1.1) rotate(-10deg); }
+            75% { transform: scale(1.2) rotate(10deg); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes shake {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            50% { transform: translateX(10px); }
+            75% { transform: translateX(-10px); }
+            100% { transform: translateX(0); }
+        }
+        
+        /* Игровое поле */
+        .game-board {
+            min-height: 200px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        
+        /* Элементы управления */
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        
+        .sound-btn {
+            background-color: #2ecc71;
+            color: white;
+        }
+        
+        .reset-btn {
+            background-color: #e74c3c;
+            color: white;
+        }
+        
+        .input-btn {
+            background-color: #9b59b6;
+            color: white;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+        
+        /* Банк слов */
+        .word-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-top: 15px;
+            justify-content: center;
+        }
+        
+        .word-item {
+            padding: 5px 10px;
+            background-color: white;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            white-space: nowrap;
+            font-size: 14px;
+        }
+        
+        .word-item:hover {
+            background-color: #d6eaf8;
+            transform: translateY(-2px);
+        }
+        
+        /* Смайлики */
+        .emoji {
+            font-size: 40px;
+            text-align: center;
+            margin: 10px 0;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+        
+        .happy {
+            color: #f1c40f;
+        }
+        
+        .sad {
+            color: #7f8c8d;
+        }
+        
+        /* Форма ввода */
+        .input-form {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-bottom: 15px;
+            justify-content: center;
+        }
+        
+        .input-form input {
+            height: 50px;
+            width: 200px;
+            font-size: 30px;
+            font-weight: 700;
+            text-align: center;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+        }
+        
+        .particles-container {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+        
+        /* Адаптивность */
+        /* Большие экраны (1441px и выше) */
+        @media (min-width: 1441px) {
+            .main-container {
+                max-width: 1200px;
+            }
+            .game-container {
+                width: 600px;
+            }
+            .word-bank-container {
+                width: 500px;
+            }
+            .cube {
+                width: 70px;
+                height: 70px;
+                line-height: 70px;
+                font-size: 28px;
+            }
+            .word-item {
+                font-size: 16px;
+                padding: 8px 12px;
+            }
+        }
+        
+        /* Средние экраны (786px - 1440px) */
+        @media (max-width: 1440px) and (min-width: 786px) {
+            .main-container {
+                max-width: 950px;
+            }
+            .game-container {
+                width: 500px;
+            }
+            .word-bank-container {
+                width: 400px;
+            }
+            .cube {
+                width: 60px;
+                height: 60px;
+                line-height: 60px;
+                font-size: 24px;
+            }
+        }
+        
+        /* Мобильные устройства (250px - 785px) */
+        @media (max-width: 785px) {
+            .main-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .game-container,
+            .word-bank-container {
+                width: 100%;
+                max-width: 500px;
+            }
+            .input-form {
+                flex-direction: column;
+            }
+            .input-form input {
+                width: 100%;
+            }
+            .cube {
+                width: 50px;
+                height: 50px;
+                line-height: 50px;
+                font-size: 20px;
+            }
+            .word-item {
+                font-size: 12px;
+                padding: 4px 8px;
+            }
+            button {
+                padding: 8px 16px;
+                font-size: 14px;
+            }
+        }
+        
+        /* Очень маленькие экраны (до 250px) */
+        @media (max-width: 250px) {
+            .game-container,
+            .word-bank-container {
+                padding: 10px;
+            }
+            .cube {
+                width: 40px;
+                height: 40px;
+                line-height: 40px;
+                font-size: 16px;
+                margin: 3px;
+            }
+            .input-form input {
+                height: 40px;
+                font-size: 20px;
+            }
+            button {
+                padding: 6px 12px;
+                font-size: 12px;
+            }
+            .word-item {
+                font-size: 10px;
+                padding: 2px 4px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="burger-menu" id="burgerMenu">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <img class="logo" src="/image/logo krug.svg" alt="Логотип">
+            <a href="" class="user"> <img class="lk" src="/image/userrblur.svg" alt="Пользователь"></a>
+        </div>
+        <nav class="nav-burger" id="navBurger">
+            <ul class="ul-header">
+                <li class="li-header"> <a href="" class="a-header">онлайн - переводчик</a></li>
+                <li class="li-header"> <a href="" class="a-header">контакты</a></li>
+                <li class="li-header"> <a href="" class="a-header">светлая тема</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+    <div class="main-container">
+        <div class="game-container">
+            <div class="game-section">
+                <h2>Частицы 는/은</h2>
+                <div class="emoji" id="ninEmoji"></div>
+                <div class="game-board" id="ninBoard">
+                    <div id="ninOriginalCubes"></div>
+                    <div id="ninCombinedCubes" style="display:none;"></div>
+                </div>
+                
+                <div class="input-form" id="ninInputForm">
+                    <input type="text" id="ninWordInput" placeholder="Введите слово" onkeypress="handleKeyPress(event, 'nin')">
+                    <div class="particles-container">
+                        <div class="cube particle" onclick="selectParticle('은')">은</div>
+                        <div class="cube particle" onclick="selectParticle('는')">는</div>
+                    </div>
+                    <!-- <button class="input-btn" onclick="checkNinWord()">Проверить</button> -->
+                </div>
+                
+                <div class="controls">
+                      <button class="input-btn" onclick="checkNinWord()">Проверить</button>
+                    <button class="sound-btn" onclick="speakKorean(document.getElementById('ninCombinedCubes').textContent || '')">
+                        🔊 Произнести
+                    </button>
+                    <button class="reset-btn" onclick="resetNinGame()">Сбросить</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="word-bank-container">
+            <div class="word-bank-section">
+                <h3>Существительные для тренировки</h3>
+                <div class="word-bank">
+                    <div class="word-list" id="nounList">
+                        <!-- Слова будут добавлены через JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>
+ <div class="perehod">
+        <a href="/index/index_nin_mnida.html"><img src="/image/vlevo2.svg" alt=""></a>
+        <a href="/index/index_tvor_zvuk.html"><img src="/image/vpravo2.svg" alt=""></a>
+    </div>
+
+    <footer>
+        <section class="footer container">
+            <address>
+                <div class="footer1">
+                    <div class="tel">
+                        <img src="/image/tel_blue.svg" alt="">
+                        <p>8-925-685-52-39 </p>
+                    </div>
+                    <div class="mail">
+                        <p>anastasiya3000@yandex.ru</p>
+                    </div>
+                    <div class="footer-icon">
+                        <a href="" class="social-icon"> <img src="/image/telegram_icon 1.svg" alt=""></a>
+                        <a href="" class="social-icon"> <img src="/image/skype_icon 1.svg" alt=""></a>
+                        <a href="" class="social-icon"><img src="/image/whatsapp_green.png" alt=""></a>
+                        <a href="" class="social-icon"> <img src="/image/license.svg" alt=""></a>
+                    </div>
+                </div>
+
+                <div class="footer2">
+                    <nav class="nav1-footer">
+                        <ul class="ul-footer">
+                            <div class="f-li">
+                                <li class="li-footer"> <a href="" class="a-footer"><b>Правила оплаты</b></a></li>
+                                <li class="li-footer"> <a href="" class="a-footer"><b>Договор оферты</b></a></li>
+                                <li class="li-footer"> <a href="" class="a-footer"><b>Согласие с рассылкой</b></a></li>
+                                <li class="li-footer"><a href="" class="a-footer"><b>Пользовательское соглашение</b></a>
+                                </li>
+                                <li class="li-footer"> <a href="" class="a-footer"><b>Политика
+                                            конфиденциальности</b></a></li>
+                                <li class="li-footer"> <a href="" class="a-footer"><b>Положение о защите персональных
+                                            данных</b></a></li>
+                            </div>
+                        </ul>
+                    </nav>
+                </div>
+            </address>
+        </section>
+
+        <div class="copyright">
+            <img id="copyright" src="/image/Copyright2 _ blue.svg" alt="copyright">
+            <p>takiza, 2025</p>
+        </div>
+    </footer>
+
+    <script>
+        // Словарь существительных для тренировки
+        const nouns = [
+           {korean: "물", russian: "вода"},
+            {korean: "음식", russian: "еда"},
+            {korean: "학교", russian: "школа"},
+            {korean: "친구", russian: "друг"},
+            {korean: "가족", russian: "семья"},
+            {korean: "시간", russian: "время"},
+            {korean: "일", russian: "работа"},
+            {korean: "공부", russian: "учеба"},
+            {korean: "여행", russian: "путешествие"},
+            {korean: "휴가", russian: "отпуск"},
+            {korean: "영화", russian: "фильм"},
+            {korean: "음악", russian: "музыка"},
+            {korean: "책", russian: "книга"},
+            {korean: "커피", russian: "кофе"},
+            {korean: "차", russian: "чай"},
+            {korean: "빵", russian: "хлеб"},
+            {korean: "고기", russian: "мясо"},
+            {korean: "물고기", russian: "рыба"},
+            {korean: "과일", russian: "фрукты"},
+            {korean: "야채", russian: "овощи"},
+            {korean: "생선", russian: "рыба"},
+            {korean: "우유", russian: "молоко"},
+            {korean: "치즈", russian: "сыр"},
+            {korean: "버터", russian: "масло"},
+            {korean: "소금", russian: "соль"},
+            {korean: "설탕", russian: "сахар"},
+            {korean: "계란", russian: "яйцо"},
+            {korean: "국수", russian: "лапша"},
+            {korean: "김치", russian: "кимчи"},
+            {korean: "불고기", russian: "корейское жаркое"},
+            {korean: "과자", russian: "кондитерское изделие"},
+            {korean: "사과", russian: "яблоко"},
+            {korean: "바나나", russian: "банан"},
+            {korean: "봄", russian: "весна"},
+            {korean: "여름", russian: "лето"},
+            {korean: "가을", russian: "осень"},
+            {korean: "겨울", russian: "зима"},
+            {korean: "비", russian: "дождь"},
+            {korean: "눈", russian: "снег"},
+            {korean: "바람", russian: "ветер"},
+            {korean: "태양", russian: "солнце"},
+            {korean: "달", russian: "луна"},
+            {korean: "별", russian: "звезда"},
+            {korean: "강", russian: "река"},
+            {korean: "호수", russian: "озеро"},
+            {korean: "바다", russian: "море"},
+            {korean: "산", russian: "гора"},
+            {korean: "숲", russian: "лес"},
+            {korean: "들", russian: "поле"},
+            {korean: "하늘", russian: "небо"},
+            {korean: "구름", russian: "облако"},
+            {korean: "아버지", russian: "отец"},
+            {korean: "어머니", russian: "мать"},
+            {korean: "아들", russian: "сын"},
+            {korean: "딸", russian: "дочь"},
+            {korean: "남편", russian: "муж"},
+            {korean: "아내", russian: "жена"},
+            {korean: "할아버지", russian: "дедушка"},
+            {korean: "할머니", russian: "бабушка"},
+            {korean: "사람", russian: "человек"},
+            {korean: "남자", russian: "мужчина"},
+            {korean: "여자", russian: "женщина"},
+            {korean: "아이", russian: "ребенок"},
+            {korean: "어른", russian: "взрослый"},
+            {korean: "노인", russian: "пожилой"},
+            {korean: "집", russian: "дом"},
+            {korean: "방", russian: "комната"},
+            {korean: "주방", russian: "кухня"},
+            {korean: "화장실", russian: "туалет"},
+            {korean: "욕실", russian: "ванная"},
+            {korean: "침실", russian: "спальня"},
+            {korean: "건물", russian: "здание"},
+            {korean: "아파트", russian: "квартира"},
+            {korean: "호텔", russian: "отель"},
+            {korean: "대학교", russian: "университет"},
+            {korean: "도서관", russian: "библиотека"},
+            {korean: "박물관", russian: "музей"},
+            {korean: "영화관", russian: "кинотеатр"},
+            {korean: "공원", russian: "парк"},
+            {korean: "쇼핑몰", russian: "торговый центр"},
+            {korean: "백화점", russian: "универмаг"},
+            {korean: "슈퍼마켓", russian: "супермаркет"},
+            {korean: "시장", russian: "рынок"},
+            {korean: "식당", russian: "ресторан"},
+            {korean: "카페", russian: "кафе"},
+            {korean: "병원", russian: "больница"},
+            {korean: "약국", russian: "аптека"},
+            {korean: "경찰서", russian: "полиция"},
+            {korean: "우체국", russian: "почта"},
+            {korean: "은행", russian: "банк"},
+            {korean: "공항", russian: "аэропорт"},
+            {korean: "역", russian: "станция"},
+            {korean: "정류장", russian: "остановка"},
+            {korean: "교실", russian: "класс"},
+            {korean: "고양이", russian: "кошка"},
+            {korean: "강아지", russian: "собака"},
+            {korean: "닭", russian: "курица"},
+            {korean: "로봇", russian: "робот"},
+            {korean: "버스", russian: "автобус"},
+            {korean: "지하철", russian: "метро"},
+            {korean: "기차", russian: "поезд"},
+            {korean: "비행기", russian: "самолет"},
+            {korean: "자동차", russian: "машина"},
+            {korean: "택시", russian: "такси"},
+            {korean: "자전거", russian: "велосипед"},
+            {korean: "배", russian: "корабль"},
+            {korean: "러시아", russian: "Россия"},
+            {korean: "한국", russian: "Корея"},
+            {korean: "미국", russian: "Америка"},
+            {korean: "일본", russian: "Япония"},
+            {korean: "중국", russian: "Китай"},
+            {korean: "러시아말", russian: "русский язык"},
+            {korean: "러시아사람", russian: "русский человек"},
+            {korean: "월요일", russian: "понедельник"},
+            {korean: "화요일", russian: "вторник"},
+            {korean: "수요일", russian: "среда"},
+            {korean: "목요일", russian: "четверг"},
+            {korean: "금요일", russian: "пятница"},
+            {korean: "토요일", russian: "суббота"},
+            {korean: "일요일", russian: "воскресенье"},
+            {korean: "문", russian: "дверь"},
+            {korean: "창문", russian: "окно"},
+            {korean: "벽", russian: "стена"},
+            {korean: "그릇", russian: "посуда"},
+            {korean: "계약", russian: "договор, контракт"},
+            {korean: "계약서", russian: "текст договора, контракта"},
+            {korean: "기분", russian: "настроение"},
+            {korean: "기쁨", russian: "радость"},
+            {korean: "길", russian: "дорога"},
+            {korean: "끝", russian: "конец"},
+            {korean: "날", russian: "день"},
+            {korean: "날씨", russian: "погода"},
+            {korean: "낮", russian: "день"},
+            {korean: "라디오", russian: "радио"},
+            {korean: "머리", russian: "голова"},
+            {korean: "미소", russian: "улыбка"},
+            {korean: "거짓말", russian: "ложь"},
+            {korean: "건강", russian: "здоровье"},
+            {korean: "기억", russian: "память"},
+            {korean: "대통령", russian: "президент"},
+            {korean: "속도", russian: "скорость"},
+            {korean: "학생", russian: "студент"},
+            {korean: "선생님", russian: "учитель"},
+            {korean: "교수", russian: "профессор"},
+            {korean: "돈", russian: "деньги"},
+            {korean: "이름", russian: "имя"},
+            {korean: "나이", russian: "возраст"},
+            {korean: "생일", russian: "день рождения"}
+        ];
+
+        // Текущие выбранные слова и частицы
+        let currentNoun = "학교";
+        let selectedParticle = null;
+        let userAnswerCorrect = null;
+        
+        // Инициализация игры
+        function initGame() {
+            // Заполняем банк существительных
+            const nounList = document.getElementById('nounList');
+            nouns.forEach(item => {
+                addWordToBank(item.korean, item.russian);
+            });
+            
+            // Инициализируем игровое поле
+            resetNinGame();
+        }
+        
+        // Добавление слова в банк
+        function addWordToBank(word, meaning) {
+            const div = document.createElement('div');
+            div.className = 'word-item';
+            div.textContent = `${word} (${meaning})`;
+            div.onclick = () => {
+                currentNoun = word;
+                resetNinGame();
+                document.getElementById('ninWordInput').value = word;
+            };
+            document.getElementById('nounList').appendChild(div);
+        }
+        
+        // Выбор частицы
+        function selectParticle(particle) {
+            selectedParticle = particle;
+            document.querySelectorAll('.cube.particle').forEach(cube => {
+                cube.classList.remove('selected');
+            });
+            event.target.classList.add('selected');
+        }
+        
+        // Обработка нажатия клавиши Enter
+        function handleKeyPress(event, type) {
+            if (event.key === 'Enter') {
+                checkNinWord();
+            }
+        }
+        
+        // Функция для проверки, является ли символ корейской гласной
+        function isKoreanVowel(char) {
+            const vowels = ['ㅏ', 'ㅑ', 'ㅓ', 'ㅕ', 'ㅗ', 'ㅛ', 'ㅜ', 'ㅠ', 'ㅡ', 'ㅣ', 
+                           'ㅐ', 'ㅒ', 'ㅔ', 'ㅖ', 'ㅘ', 'ㅙ', 'ㅚ', 'ㅝ', 'ㅞ', 'ㅟ', 'ㅢ'];
+            
+            if (vowels.includes(char)) return true;
+            
+            if (char.charCodeAt(0) >= 0xAC00 && char.charCodeAt(0) <= 0xD7A3) {
+                const code = char.charCodeAt(0) - 0xAC00;
+                return code % 28 === 0;
+            }
+            
+            return false;
+        }
+        
+        // Функция для разбиения слова на кубики
+        function createWordCubes(word, highlightLastVowel = false, highlightLastConsonant = false) {
+            const container = document.createElement('div');
+            container.style.display = 'flex';
+            container.style.justifyContent = 'center';
+            container.style.flexWrap = 'wrap';
+            
+            for (let i = 0; i < word.length; i++) {
+                const cube = document.createElement('div');
+                cube.className = 'cube';
+                cube.textContent = word[i];
+                
+                // Проверяем, нужно ли выделять последнюю букву
+                if (i === word.length - 1) {
+                    if (highlightLastVowel && isKoreanVowel(word[i])) {
+                        cube.classList.add('vowel');
+                    } 
+                    else if (highlightLastConsonant && !isKoreanVowel(word[i])) {
+                        cube.classList.add('consonant');
+                    }
+                }
+                
+                container.appendChild(cube);
+            }
+            
+            return container;
+        }
+        
+        // Функция для создания кубика с частицей
+        function createParticleCube(particle, isCorrect = true) {
+            const cube = document.createElement('div');
+            cube.className = isCorrect ? 'cube particle-correct' : 'cube wrong';
+            cube.textContent = particle;
+            return cube;
+        }
+        
+        // Сбросить игру для частиц 는/은
+        function resetNinGame() {
+            const board = document.getElementById('ninBoard');
+            const originalCubes = document.getElementById('ninOriginalCubes');
+            const combinedCubes = document.getElementById('ninCombinedCubes');
+            const input = document.getElementById('ninWordInput');
+            
+            originalCubes.innerHTML = '';
+            combinedCubes.innerHTML = '';
+            combinedCubes.style.display = 'none';
+            originalCubes.style.display = 'flex';
+            
+            // Сбрасываем выбранную частицу
+            selectedParticle = null;
+            document.querySelectorAll('.cube.particle').forEach(cube => {
+                cube.classList.remove('selected');
+            });
+            
+            // Устанавливаем текущее слово в поле ввода
+            input.value = currentNoun;
+            
+            // Создаем кубики для слова
+            const wordCubes = createWordCubes(currentNoun);
+            originalCubes.appendChild(wordCubes);
+            
+            // Скрываем эмодзи
+            document.getElementById('ninEmoji').style.opacity = '0';
+        }
+        
+        // Проверить введенное слово для частиц 는/은
+        function checkNinWord() {
+            const inputWord = document.getElementById('ninWordInput').value.trim();
+            
+            if (!inputWord) {
+                alert('Пожалуйста, введите слово');
+                return;
+            }
+            
+            if (!selectedParticle) {
+                alert('Пожалуйста, выберите частицу');
+                return;
+            }
+            
+            const lastChar = inputWord[inputWord.length - 1];
+            const isVowel = isKoreanVowel(lastChar);
+            const correctParticle = isVowel ? '는' : '은';
+            
+            userAnswerCorrect = selectedParticle === correctParticle;
+            
+            currentNoun = inputWord;
+            
+            // Показываем только то, что ввел пользователь
+            const board = document.getElementById('ninBoard');
+            const originalCubes = document.getElementById('ninOriginalCubes');
+            const combinedCubes = document.getElementById('ninCombinedCubes');
+            
+            originalCubes.innerHTML = '';
+            const wordCubes = createWordCubes(inputWord, isVowel, !isVowel);
+            originalCubes.appendChild(wordCubes);
+            
+            const particleCube = createParticleCube(selectedParticle, userAnswerCorrect);
+            originalCubes.appendChild(particleCube);
+            
+            combinedCubes.innerHTML = '';
+            const combinedWord = inputWord + selectedParticle;
+            
+            // Создаем объединенный результат
+            if (userAnswerCorrect) {
+                const mergedCube = document.createElement('div');
+                mergedCube.className = 'cube merged';
+                mergedCube.textContent = combinedWord;
+                mergedCube.style.width = (combinedWord.length * 60) + 'px';
+                combinedCubes.appendChild(mergedCube);
+            } else {
+                // Для неправильного ответа показываем слово и частицу отдельно
+                combinedCubes.appendChild(createWordCubes(inputWord));
+                combinedCubes.appendChild(createParticleCube(selectedParticle, false));
+            }
+            
+            // Показываем реакцию
+            const emoji = document.getElementById('ninEmoji');
+            emoji.textContent = userAnswerCorrect ? '😊' : '😞';
+            emoji.className = `emoji ${userAnswerCorrect ? 'happy' : 'sad'}`;
+            emoji.style.animation = userAnswerCorrect ? 'celebrate 1s' : 'shake 0.5s';
+            emoji.style.opacity = '1';
+            
+            // Анимация появления частицы
+            setTimeout(() => {
+                particleCube.style.opacity = '1';
+                particleCube.style.transform = 'translateY(0)';
+                particleCube.style.transition = 'all 1s ease';
+                
+                setTimeout(() => {
+                    originalCubes.style.display = 'none';
+                    combinedCubes.style.display = 'flex';
+                    
+                    // Через 3 секунды скрываем эмодзи
+                    setTimeout(() => {
+                        emoji.style.opacity = '0';
+                    }, 3000);
+                }, 1000);
+            }, 500);
+        }
+        
+        // Функция для произношения (использует Web Speech API)
+        function speakKorean(text) {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'ko-KR';
+                utterance.rate = 0.8;
+                
+                const voices = window.speechSynthesis.getVoices();
+                const koreanVoice = voices.find(voice => voice.lang === 'ko-KR');
+                
+                if (koreanVoice) {
+                    utterance.voice = koreanVoice;
+                }
+                
+                speechSynthesis.speak(utterance);
+            } else {
+                alert('Ваш браузер не поддерживает синтез речи. Попробуйте использовать Chrome или Edge.');
+            }
+        }
+        
+        // Инициализация игры при загрузке страницы
+        window.addEventListener('load', initGame);
+    </script>
+
+      <script>
+        const burgerMenu = document.getElementById("burgerMenu");
+        const navBurger = document.getElementById("navBurger");
+
+        burgerMenu.addEventListener("click", function (event) {
+            event.stopPropagation();
+            navBurger.classList.toggle("active");
+        });
+
+        document.addEventListener("click", function (event) {
+            if (!navBurger.contains(event.target) && !burgerMenu.contains(event.target)) {
+                navBurger.classList.remove("active");
+            }
+        });
+
+        function toggleBurger() {
+            const part1 = document.querySelector('.burger-part1');
+            const part2 = document.querySelector('.burger-part2');
+
+            if (part1.style.display === 'none') {
+                part1.style.display = 'block';
+                part2.style.display = 'none';
+            } else {
+                part1.style.display = 'none';
+                part2.style.display = 'block';
+            }
+        }
+
+        /* Свайп для мобильных устройств */
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            if (touchEndX < touchStartX - swipeThreshold) {
+                nextWord();
+            } else if (touchEndX > touchStartX + swipeThreshold) {
+                previousWord();
+            }
+        }
+
+        function nextWord() {
+            // Implement next word functionality
+        }
+
+        function previousWord() {
+            // Implement previous word functionality
+        }
+    </script>
+</body>
+</html>
+
