@@ -304,8 +304,9 @@
             display: flex;
             justify-content: center;
             gap: 10px;
-            margin-top: 20px;
+            margin-top: 10px;
             flex-wrap: wrap;
+            margin-bottom: 20px;
         }
         
         button {
@@ -334,10 +335,11 @@
         }
         
         .input-btn {
-            background-color: #3498db;
+            background-color: #510068cf;
             color: white;
             padding: 10px 15px;
             font-size: 14px;
+            height: 40px;
         }
         
         button:hover {
@@ -480,9 +482,9 @@
                 width: 100%;
             }
             .cube {
-                width: 50px;
-                height: 50px;
-                line-height: 50px;
+                width: 40px;
+                height: 40px;
+                line-height: 40px;
                 font-size: 20px;
             }
             .word-item {
@@ -495,6 +497,16 @@
             }
         }
         
+ @media (max-width: 500px){
+     .cube {
+                width: 30px;
+                height:30px;
+                line-height: 30px;
+                font-size: 16px;
+            }
+
+ }
+
         /* Очень маленькие экраны (до 250px) */
         @media (max-width: 250px) {
             .game-container,
@@ -547,7 +559,7 @@
         <!-- Игровой контейнер -->
         <div class="game-container">
             <div class="game-section">
-                <h2>Окончания ㅂ니다/습니다</h2>
+                <h2>ㅂ니다/습니다</h2>
                 <div class="emoji" id="mnidaEmoji"></div>
                 <div class="game-board" id="mnidaBoard">
                     <div id="mnidaOriginalCubes"></div>
@@ -558,14 +570,16 @@
                 
                 <div class="input-form" id="mnidaInputForm">
                     <input type="text" id="mnidaWordInput" placeholder="Введите глагол/прилагательное" onkeypress="handleKeyPress(event, 'mnida')">
-                    <button class="input-btn" onclick="checkMnidaWord()">Проверить</button>
+                    <!-- <button class="input-btn" onclick="checkMnidaWord()">Проверить</button> -->
                     <div class="endings-container">
+                        
                         <button class="ending-btn" id="mnidaBtn" onclick="selectEnding('mnida')">ㅂ니다</button>
                         <button class="ending-btn" id="seumnidaBtn" onclick="selectEnding('seumnida')">습니다</button>
                     </div>
                 </div>
                 
                 <div class="controls">
+                       <button class="input-btn" onclick="checkMnidaWord()">Проверить</button>
                     <button class="sound-btn" onclick="speakKorean(document.getElementById('mnidaCombinedCubes')?.textContent || '')">
                         🔊 Произнести
                     </button>
