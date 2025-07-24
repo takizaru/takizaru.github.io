@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="/styles/style_base_numder_word.css">
+    <title>Korean Particles Game</title>
+    <style>
+          .main-container {
+            display: flex;
+            justify-content: center;
+            flex-direction: row;
+            gap: 20px;
+            max-width: 950px;
+            margin: 0 auto;
+        }
+        
+        .game-container {
+            width: 500px;
+            height: 600px;
+            background-color: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            border: 4px solid #1a237e;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .word-bank-container {
+            width: 400px;
+            height: 600px;
+            background-color: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            border: 4px solid #1a237e;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+        
+        .game-container::before,
+        .word-bank-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                rgba(255,255,255,0) 0%,
+                rgba(255,255,255,0.8) 50%,
+                rgba(255,255,255,0) 100%
+            );
+            animation: shine 3s infinite;
+            z-index: 0;
+        }
+        
+        @keyframes shine {
+            0% { transform: rotate(45deg) translate(-30%, -30%); }
+            100% { transform: rotate(45deg) translate(30%, 30%); }
+        }
+        
+        .game-section,
+        .word-bank-section {
+            position: relative;
+            z-index: 1;
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .word-bank {
+            margin-top: 20px;
+            background-color: #e8f4f8;
+            border-radius: 15px;
+            padding: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            flex-grow: 1;
+            overflow-y: auto;
+        }
+        
+        h2, h3 {
+            color: #2c3e50;
+            text-align: center;
+            margin-top: 0;
+        }
+        
+        /* Стили для кубиков */
+        .cube {
+            display: inline-block;
+            width: 60px;
+            height: 60px;
+            margin: 5px;
+            background-color: #3498db;
+            color: white;
+            font-size: 24px;
+            text-align: center;
+            line-height: 60px;
+            border-radius: 8px;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .cube.vowel {
+            background-color: #e74c3c;
+        }
+        
+        .cube.consonant {
+            background-color: #2980b9;
+        }
+        
+        .cube.ending {
+            background-color: #2ecc71;
+        }
+        
+        .cube.dark {
+            background-color: #34495e;
+        }
+        
+        .cube.merged {
+            background-color: #f1c40f;
+            color: #000;
+        }
+        
+        .cube.wrong {
+            background-color: #e74c3c;
+            position: relative;
+        }
+        
+        .cube.wrong::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background-color: black;
+            transform: rotate(-45deg);
+        }
+        
+        .cube.particle {
+            cursor: pointer;
+        }
+        
+        .cube.particle.selected {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(0,0,0,0.3);
+        }
+        
+        .cube.particle-correct {
+            background-color: #27ae60;
+        }
+        
+        .cube.correct-ending {
+            background-color: #1e6f3d;
+        }
+        
+        .cube.ending-wrong {
+            background-color: #e74c3c;
+        }
+        
+        .cube.ending-wrong::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background-color: black;
+            transform: rotate(-45deg);
+        }
+        
+        .cube.fade-out {
+            animation: fadeOut 0.5s forwards;
+        }
+        
+        @keyframes fadeOut {
+            from { opacity: 1; transform: scale(1); }
+            to { opacity: 0; transform: scale(0); }
+        }
+        
+        /* Стили для кнопок окончаний */
+        .ending-btn {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            background-color: #3498db;
+            color: white;
+            margin: 5px;
+        }
+        
+        .ending-btn.selected {
+            background-color: #1e6f3d;
+            transform: scale(1.05);
+        }
+        
+        .ending-btn.wrong {
+            background-color: #e74c3c;
+            position: relative;
+        }
+        
+        .ending-btn.wrong::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 10%;
+            right: 10%;
+            height: 3px;
+            background-color: black;
+            transform: rotate(-45deg);
+        }
+        
+        /* Анимации */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes celebrate {
+            0% { transform: scale(1); }
+            25% { transform: scale(1.2) rotate(10deg); }
+            50% { transform: scale(1.1) rotate(-10deg); }
+            75% { transform: scale(1.2) rotate(10deg); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes shake {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            50% { transform: translateX(10px); }
+            75% { transform: translateX(-10px); }
+            100% { transform: translateX(0); }
+        }
+        
+        @keyframes moveDown {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(60px); }
+        }
+        
+        @keyframes moveToVowel {
+            0% { transform: translateY(60px) translateX(0); }
+            100% { transform: translateY(60px) translateX(-60px); }
+        }
+        
+        @keyframes merge {
+            0% { transform: scale(1); margin: 5px; }
+            50% { transform: scale(1.05); margin: 0 2px; }
+            100% { transform: scale(1); margin: 0; }
+        }
+        
+        @keyframes slideIn {
+            0% { transform: translateX(100px); opacity: 0; }
+            100% { transform: translateX(0); opacity: 1; }
+        }
+        
+        @keyframes attachToWord {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); margin-left: 0; }
+        }
+        
+        /* Игровое поле */
+        .game-board {
+            min-height: 200px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        
+        /* Элементы управления */
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        
+        .sound-btn {
+            background-color: #2ecc71;
+            color: white;
+        }
+        
+        .reset-btn {
+            background-color: #e74c3c;
+            color: white;
+        }
+        
+        .input-btn {
+            background-color: #9b59b6;
+            color: white;
+        }
+        
+        .input-btn {
+            background-color: #510068cf;
+            color: white;
+            padding: 10px 15px;
+            font-size: 14px;
+            height: 40px;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+        
+        /* Банк слов */
+        .word-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .word-item {
+            padding: 10px;
+            background-color: white;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .word-item:hover {
+            background-color: #d6eaf8;
+            transform: translateY(-2px);
+        }
+        
+        /* Смайлики */
+        .emoji {
+            font-size: 40px;
+            text-align: center;
+            margin: 10px 0;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+        
+        .happy {
+            color: #f1c40f;
+        }
+        
+        .sad {
+            color: #7f8c8d;
+        }
+        
+        /* Форма ввода */
+        .input-form {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .input-form input {
+            height: 50px;
+            width: 200px;
+            font-size: 30px;
+            font-weight: 700;
+            text-align: center;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+        }
+        
+        .particles-container {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+        
+        .endings-container {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 10px;
+            width: 100%;
+        }
+        
+        /* Адаптивность */
+        /* Большие экраны (1441px и выше) */
+        @media (min-width: 1441px) {
+            .main-container {
+                max-width: 1200px;
+            }
+            .game-container {
+                width: 600px;
+            }
+            .word-bank-container {
+                width: 500px;
+            }
+            .cube {
+                width: 70px;
+                height: 70px;
+                line-height: 70px;
+                font-size: 28px;
+            }
+            .word-item {
+                font-size: 16px;
+                padding: 8px 12px;
+            }
+        }
+        
+        /* Средние экраны (786px - 1440px) */
+        @media (max-width: 1440px) and (min-width: 786px) {
+            .main-container {
+                max-width: 950px;
+            }
+            .game-container {
+                width: 500px;
+            }
+            .word-bank-container {
+                width: 400px;
+            }
+            .cube {
+                width: 60px;
+                height: 60px;
+                line-height: 60px;
+                font-size: 24px;
+            }
+        }
+        
+        /* Мобильные устройства (250px - 785px) */
+        @media (max-width: 785px) {
+            .main-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .game-container,
+            .word-bank-container {
+                width: 100%;
+                max-width: 500px;
+            }
+            .input-form {
+                flex-direction: column;
+            }
+            .input-form input {
+                width: 100%;
+            }
+            .cube {
+                width: 40px;
+                height: 40px;
+                line-height: 40px;
+                font-size: 20px;
+            }
+            .word-item {
+                font-size: 12px;
+                padding: 4px 8px;
+            }
+            button {
+                padding: 8px 16px;
+                font-size: 14px;
+            }
+        }
+        
+ @media (max-width: 500px){
+     .cube {
+                width: 30px;
+                height:30px;
+                line-height: 30px;
+                font-size: 16px;
+            }
+
+ }
+
+        /* Очень маленькие экраны (до 250px) */
+        @media (max-width: 250px) {
+            .game-container,
+            .word-bank-container {
+                padding: 10px;
+            }
+            .cube {
+                width: 40px;
+                height: 40px;
+                line-height: 40px;
+                font-size: 16px;
+                margin: 3px;
+            }
+            .input-form input {
+                height: 40px;
+                font-size: 20px;
+            }
+            button {
+                padding: 6px 12px;
+                font-size: 12px;
+            }
+            .word-item {
+                font-size: 10px;
+                padding: 2px 4px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="burger-menu" id="burgerMenu">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <img class="logo" src="/image/logo krug.svg" alt="Логотип">
+            <a href="" class="user"> <img class="lk" src="/image/userrblur.svg" alt="Пользователь"></a>
+        </div>
+        <nav class="nav-burger" id="navBurger">
+            <ul class="ul-header">
+                <li class="li-header"> <a href="" class="a-header">онлайн - переводчик</a></li>
+                <li class="li-header"> <a href="" class="a-header">контакты</a></li>
+                <li class="li-header"> <a href="" class="a-header">светлая тема</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+    <div class="main-container">
+        <!-- Игровой контейнер -->
+        <div class="game-container">
+            <div class="game-section">
+                <h2>ㅂ시다/읍시다</h2>
+                <div class="emoji" id="mnidaEmoji"></div>
+                <div class="game-board" id="mnidaBoard">
+                    <div id="mnidaOriginalCubes"></div>
+                    <div id="mnidaRootCubes" style="display:none;"></div>
+                    <div id="mnidaCombinedCubes" style="display:none;"></div>
+                    <div id="mnidaCorrectCubes" style="display:none;"></div>
+                </div>
+                
+                <div class="input-form" id="mnidaInputForm">
+                    <input type="text" id="mnidaWordInput" placeholder="Введите глагол/прилагательное" onkeypress="handleKeyPress(event, 'mnida')">
+                    <!-- <button class="input-btn" onclick="checkMnidaWord()">Проверить</button> -->
+                    <div class="endings-container">
+                        
+                        <button class="ending-btn" id="bsidaBtn" onclick="selectEnding('bsida')">ㅂ시다</button>
+                        <button class="ending-btn" id="eupsidaBtn" onclick="selectEnding('eupsida')">읍시다</button>
+                    </div>
+                </div>
+                
+                <div class="controls">
+                       <button class="input-btn" onclick="checkMnidaWord()">Проверить</button>
+                    <button class="sound-btn" onclick="speakKorean(document.getElementById('mnidaCombinedCubes')?.textContent || '')">
+                        🔊 Произнести
+                    </button>
+                    <button class="reset-btn" onclick="resetMnidaGame()">Сбросить</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Контейнер банка слов -->
+        <div class="word-bank-container">
+            <div class="word-bank-section">
+                <h3>Слова для тренировки</h3>
+                <div class="word-bank">
+                    <div class="word-list" id="verbList">
+                        <!-- Слова будут добавлены через JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </main>
+
+    <div class="perehod">
+        <a href="/index/index_game_ro.html"><img src="/image/vlevo2.svg" alt=""></a>
+        <a href="/index/index_nanin_imnida.html"><img src="/image/vpravo2.svg" alt=""></a>
+    </div>
+
+    <footer>
+        <section class="footer container">
+            <address>
+                <div class="footer1">
+                    <div class="tel">
+                        <img src="/image/tel_blue.svg" alt="">
+                        <p>8-925-685-52-39 </p>
+                    </div>
+                    <div class="mail">
+                        <p>anastasiya3000@yandex.ru</p>
+                    </div>
+                    <div class="footer-icon">
+                        <a href="" class="social-icon"> <img src="/image/telegram_icon 1.svg" alt=""></a>
+                        <a href="" class="social-icon"> <img src="/image/skype_icon 1.svg" alt=""></a>
+                        <a href="" class="social-icon"><img src="/image/whatsapp_green.png" alt=""></a>
+                        <a href="" class="social-icon"> <img src="/image/license.svg" alt=""></a>
+                    </div>
+                </div>
+
+                <div class="footer2">
+                    <nav class="nav1-footer">
+                        <ul class="ul-footer">
+                            <div class="f-li">
+                                <li class="li-footer"> <a href="" class="a-footer"><b>Правила оплаты</b></a></li>
+                                <li class="li-footer"> <a href="" class="a-footer"><b>Договор оферты</b></a></li>
+                                <li class="li-footer"> <a href="" class="a-footer"><b>Согласие с рассылкой</b></a></li>
+                                <li class="li-footer"><a href="" class="a-footer"><b>Пользовательское соглашение</b></a>
+                                </li>
+                                <li class="li-footer"> <a href="" class="a-footer"><b>Политика
+                                            конфиденциальности</b></a></li>
+                                <li class="li-footer"> <a href="" class="a-footer"><b>Положение о защите персональных
+                                            данных</b></a></li>
+                            </div>
+                        </ul>
+                    </nav>
+                </div>
+            </address>
+        </section>
+
+        <div class="copyright">
+            <img id="copyright" src="/image/Copyright2 _ blue.svg" alt="copyright">
+            <p>takiza, 2025</p>
+        </div>
+    </footer>
+
+    <script>
+        const burgerMenu = document.getElementById("burgerMenu");
+        const navBurger = document.getElementById("navBurger");
+
+        burgerMenu.addEventListener("click", function (event) {
+            event.stopPropagation();
+            navBurger.classList.toggle("active");
+        });
+
+        document.addEventListener("click", function (event) {
+            if (!navBurger.contains(event.target) && !burgerMenu.contains(event.target)) {
+                navBurger.classList.remove("active");
+            }
+        });
+
+        function toggleBurger() {
+            const part1 = document.querySelector('.burger-part1');
+            const part2 = document.querySelector('.burger-part2');
+
+            if (part1.style.display === 'none') {
+                part1.style.display = 'block';
+                part2.style.display = 'none';
+            } else {
+                part1.style.display = 'none';
+                part2.style.display = 'block';
+            }
+        }
+
+        /* Свайп для мобильных устройств */
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            if (touchEndX < touchStartX - swipeThreshold) {
+                nextWord();
+            } else if (touchEndX > touchStartX + swipeThreshold) {
+                previousWord();
+            }
+        }
+
+        function nextWord() {
+            // Implement next word functionality
+        }
+
+        function previousWord() {
+            // Implement previous word functionality
+        }
+    </script>
+
+    <script>
+  // Словарь слов для тренировки
+const trainingWords = {
+    verbs: [
+        { word: "공부하다", meaning: "учиться" },
+        { word: "농담하다", meaning: "шутить" },
+        { word: "만나다", meaning: "встречать" },
+        { word: "말하다", meaning: "говорить" },
+        { word: "먹다", meaning: "есть" },
+        { word: "보다", meaning: "смотреть" },
+        { word: "하다", meaning: "делать" },
+        { word: "읽다", meaning: "читать" },
+        { word: "쓰다", meaning: "писать" },
+        { word: "생각하다", meaning: "думать" },
+        { word: "기다리다", meaning: "ждать" },
+        { word: "사다", meaning: "покупать" },
+        { word: "주다", meaning: "давать" },
+        { word: "받다", meaning: "получать" },
+        { word: "찾다", meaning: "искать" },
+        { word: "이사하다", meaning: "переезжать" },
+        { word: "가르치다", meaning: "учить" },
+        { word: "일하다", meaning: "работать" },
+        { word: "쉬다", meaning: "отдыхать" },
+        { word: "운동하다", meaning: "заниматься спортом" },
+        { word: "뛰다", meaning: "бежать" },
+        { word: "춤추다", meaning: "танцевать" },
+        { word: "노래하다", meaning: "петь" },
+        { word: "그리다", meaning: "рисовать" },
+        { word: "고치다", meaning: "чинить" },
+        { word: "씻다", meaning: "мыть" },
+        { word: "닦다", meaning: "вытирать" },
+        { word: "요리하다", meaning: "готовить" },
+        { word: "마시다", meaning: "пить" },
+        { word: "입다", meaning: "надевать" },
+        { word: "벗다", meaning: "снимать" },
+        { word: "신다", meaning: "надевать (обувь)" },
+        { word: "시작하다", meaning: "начинать" },
+        { word: "끝나다", meaning: "заканчивать" },
+        { word: "열다", meaning: "открывать" },
+        { word: "닫다", meaning: "закрывать" },
+        { word: "들어오다", meaning: "входить" },
+        { word: "나가다", meaning: "выходить" },
+        { word: "앉다", meaning: "сидеть" },
+        { word: "일어나다", meaning: "вставать" },
+        { word: "자다", meaning: "спать" },
+        { word: "깨다", meaning: "просыпаться" },
+        { word: "듣다", meaning: "слушать" }
+    ]
+};
+
+// Текущие выбранные слова и частицы
+let currentVerb = "가다";
+let selectedEnding = null;
+
+// Инициализация игры
+function initGame() {
+    // Заполняем банк глаголов
+    const verbList = document.getElementById('verbList');
+    
+    // Добавляем глаголы
+    trainingWords.verbs.forEach(item => {
+        addWordToBank(item.word, item.meaning, 'verb');
+    });
+    
+    // Инициализируем игровое поле
+    resetMnidaGame();
+}
+
+// Выбор окончания
+function selectEnding(ending) {
+    selectedEnding = ending;
+    document.getElementById('bsidaBtn').classList.remove('selected', 'wrong');
+    document.getElementById('eupsidaBtn').classList.remove('selected', 'wrong');
+    document.getElementById(ending + 'Btn').classList.add('selected');
+}
+
+// Добавление слова в банк
+function addWordToBank(word, meaning, type) {
+    const listId = 'verbList';
+    const list = document.getElementById(listId);
+    
+    // Проверяем, нет ли уже такого слова
+    const existing = Array.from(list.children).find(item => 
+        item.textContent.startsWith(word)
+    );
+    if (existing) return;
+    
+    const div = document.createElement('div');
+    div.className = 'word-item';
+    div.textContent = `${word} (${meaning})`;
+    div.onclick = () => {
+        currentVerb = word;
+        resetMnidaGame();
+        document.getElementById('mnidaWordInput').value = word;
+    };
+    list.appendChild(div);
+}
+
+// Обработка нажатия клавиши Enter
+function handleKeyPress(event, type) {
+    if (event.key === 'Enter') {
+        checkMnidaWord();
+    }
+}
+
+// Функция для проверки, является ли символ корейской гласной
+function isKoreanVowel(char) {
+    const vowels = ['ㅏ', 'ㅑ', 'ㅓ', 'ㅕ', 'ㅗ', 'ㅛ', 'ㅜ', 'ㅠ', 'ㅡ', 'ㅣ', 
+                   'ㅐ', 'ㅒ', 'ㅔ', 'ㅖ', 'ㅘ', 'ㅙ', 'ㅚ', 'ㅝ', 'ㅞ', 'ㅟ', 'ㅢ'];
+    
+    if (vowels.includes(char)) return true;
+    
+    if (char.charCodeAt(0) >= 0xAC00 && char.charCodeAt(0) <= 0xD7A3) {
+        const code = char.charCodeAt(0) - 0xAC00;
+        return code % 28 === 0;
+    }
+    
+    return false;
+}
+
+// Функция для проверки, заканчивается ли слово на ㄹ
+function endsWithL(word) {
+    if (word.length === 0) return false;
+    
+    const lastChar = word[word.length - 1];
+    
+    // Проверяем, является ли последний символ ㄹ
+    if (lastChar === 'ㄹ') return true;
+    
+    // Проверяем, заканчивается ли последний слог на ㄹ
+    if (lastChar.charCodeAt(0) >= 0xAC00 && lastChar.charCodeAt(0) <= 0xD7A3) {
+        const code = lastChar.charCodeAt(0) - 0xAC00;
+        const finalConsonant = code % 28;
+        return finalConsonant === 8; // 8 соответствует ㄹ
+    }
+    
+    return false;
+}
+
+// Функция для разбиения слова на кубики
+function createWordCubes(word, highlightLastVowel = false, highlightLastConsonant = false) {
+    const container = document.createElement('div');
+    container.style.display = 'flex';
+    container.style.justifyContent = 'center';
+    container.style.flexWrap = 'wrap';
+    
+    for (let i = 0; i < word.length; i++) {
+        const cube = document.createElement('div');
+        cube.className = 'cube';
+        cube.textContent = word[i];
+        
+        // Проверяем, нужно ли выделять последнюю букву
+        if (i === word.length - 1) {
+            if (highlightLastVowel && isKoreanVowel(word[i])) {
+                cube.classList.add('vowel');
+            } 
+            else if (highlightLastConsonant && !isKoreanVowel(word[i])) {
+                cube.classList.add('consonant');
+            }
+        }
+        
+        container.appendChild(cube);
+    }
+    
+    return container;
+}
+
+// Функция для проверки введенного слова
+function checkMnidaWord() {
+    const inputWord = document.getElementById('mnidaWordInput').value.trim();
+    
+    if (!inputWord) {
+        alert('Пожалуйста, введите глагол или прилагательное');
+        return;
+    }
+    
+    if (!inputWord.endsWith('다')) {
+        alert('Слово должно оканчиваться на "다"');
+        return;
+    }
+    
+    if (!selectedEnding) {
+        alert('Пожалуйста, выберите окончание (ㅂ시다 или 읍시다)');
+        return;
+    }
+    
+    const root = inputWord.slice(0, -1);
+    const lastChar = root[root.length - 1];
+    const isVowel = isKoreanVowel(lastChar);
+    const hasL = endsWithL(root);
+    const correctEnding = (isVowel || hasL) ? 'bsida' : 'eupsida';
+    const isCorrect = selectedEnding === correctEnding;
+    
+    currentVerb = inputWord;
+    
+    // Очищаем все кубики
+    const originalCubes = document.getElementById('mnidaOriginalCubes');
+    const rootCubes = document.getElementById('mnidaRootCubes');
+    const combinedCubes = document.getElementById('mnidaCombinedCubes');
+    const correctCubes = document.getElementById('mnidaCorrectCubes');
+    
+    originalCubes.innerHTML = '';
+    rootCubes.innerHTML = '';
+    combinedCubes.innerHTML = '';
+    correctCubes.innerHTML = '';
+    
+    // Создаем кубики для оригинального слова
+    const verbCubes = createWordCubes(inputWord);
+    originalCubes.appendChild(verbCubes);
+    
+    // Показываем реакцию
+    const emoji = document.getElementById('mnidaEmoji');
+    emoji.textContent = isCorrect ? '😊' : '😢';
+    emoji.className = isCorrect ? 'emoji happy' : 'emoji sad';
+    emoji.style.animation = isCorrect ? 'celebrate 1s' : 'shake 0.5s';
+    emoji.style.opacity = '1';
+    
+    // Показываем оригинальное слово
+    originalCubes.style.display = 'flex';
+    rootCubes.style.display = 'none';
+    combinedCubes.style.display = 'none';
+    correctCubes.style.display = 'none';
+    
+    // Анимация зачеркивания "다"
+    setTimeout(() => {
+        const daCube = verbCubes.lastChild;
+        daCube.style.textDecoration = 'line-through';
+        daCube.style.opacity = '0.5';
+        daCube.style.transition = 'all 1s ease';
+        
+        // Показываем корень с окончанием
+        setTimeout(() => {
+            originalCubes.style.display = 'none';
+            
+            // Создаем кубики для корня
+            const rootCubesContainer = document.createElement('div');
+            rootCubesContainer.style.display = 'flex';
+            rootCubesContainer.style.justifyContent = 'center';
+            rootCubesContainer.style.flexWrap = 'wrap';
+            rootCubesContainer.style.alignItems = 'center';
+            
+            const rootWordCubes = createWordCubes(root, isVowel, !isVowel);
+            rootCubesContainer.appendChild(rootWordCubes);
+            
+            // Создаем кнопку для выбранного окончания
+            const endingBtn = document.createElement('button');
+            endingBtn.className = 'ending-btn';
+            endingBtn.textContent = selectedEnding === 'bsida' ? 'ㅂ시다' : '읍시다';
+            
+            if (isCorrect) {
+                endingBtn.classList.add('selected');
+            } else {
+                endingBtn.classList.add('wrong');
+            }
+            
+            rootCubesContainer.appendChild(endingBtn);
+            rootCubes.appendChild(rootCubesContainer);
+            rootCubes.style.display = 'flex';
+            
+            // Если выбор правильный
+            if (isCorrect) {
+                // Если окончание ㅂ시다
+                if (selectedEnding === 'bsida') {
+                    setTimeout(() => {
+                        rootCubes.style.display = 'none';
+                        
+                        // Создаем объединенный результат
+                        let combinedWord;
+                        if (hasL) {
+                            // Для слов, оканчивающихся на ㄹ
+                            combinedWord = root.slice(0, -1) + combineVowelWithBatchim(root[root.length - 1], 'ㅂ') + '시다';
+                        } else {
+                            // Для обычных случаев (оканчивающихся на гласную)
+                            combinedWord = combineVowelWithBatchim(root, 'ㅂ') + '시다';
+                        }
+                        
+                        const combinedWordCubes = createWordCubes(combinedWord);
+                        
+                        // Добавляем класс merged к объединенному слогу
+                        const mergedSyllableIndex = root.length - 1;
+                        if (combinedWordCubes.children[mergedSyllableIndex]) {
+                            combinedWordCubes.children[mergedSyllableIndex].classList.add('merged');
+                        }
+                        
+                        combinedCubes.appendChild(combinedWordCubes);
+                        combinedCubes.style.display = 'flex';
+                        
+                        // Анимация слияния всех слогов
+                        const cubes = Array.from(combinedWordCubes.children);
+                        cubes.forEach((cube, index) => {
+                            cube.style.animation = `merge 0.5s ${index * 0.1}s forwards`;
+                        });
+                    }, 1000);
+                } else {
+                    // Для 읍시다 показываем разбиение на слоги
+                    setTimeout(() => {
+                        rootCubes.style.display = 'none';
+                        
+                        // Создаем объединенный вариант
+                        const mergedWord = root + '읍시다';
+                        const mergedCubes = createWordCubes(mergedWord);
+                        
+                        // Добавляем класс merged к последнему слогу
+                        const lastSyllableIndex = root.length - 1;
+                        if (mergedCubes.children[lastSyllableIndex]) {
+                            mergedCubes.children[lastSyllableIndex].classList.add('merged');
+                        }
+                        
+                        // Заменяем кубики на объединенные
+                        combinedCubes.innerHTML = '';
+                        combinedCubes.appendChild(mergedCubes);
+                        combinedCubes.style.display = 'flex';
+                        
+                        // Анимация слияния
+                        const cubes = Array.from(mergedCubes.children);
+                        cubes.forEach((cube, index) => {
+                            cube.style.animation = `merge 0.5s ${index * 0.1}s forwards`;
+                        });
+                    }, 1000);
+                }
+            } else {
+                // Для неправильного ответа
+                setTimeout(() => {
+                    // Показываем правильный ответ
+                    rootCubes.style.display = 'none';
+                    
+                    const correctAnswerContainer = document.createElement('div');
+                    correctAnswerContainer.style.display = 'flex';
+                    correctAnswerContainer.style.justifyContent = 'center';
+                    correctAnswerContainer.style.flexWrap = 'wrap';
+                    correctAnswerContainer.style.alignItems = 'center';
+                    
+                    // Добавляем корень
+                    const rootCubes = createWordCubes(root);
+                    correctAnswerContainer.appendChild(rootCubes);
+                    
+                    // Добавляем правильное окончание
+                    const correctEndingBtn = document.createElement('button');
+                    correctEndingBtn.className = 'ending-btn selected';
+                    correctEndingBtn.textContent = correctEnding === 'bsida' ? 'ㅂ시다' : '읍시다';
+                    correctAnswerContainer.appendChild(correctEndingBtn);
+                    
+                    correctCubes.appendChild(correctAnswerContainer);
+                    correctCubes.style.display = 'flex';
+                    
+                    // Через 3 секунды скрываем эмодзи
+                    setTimeout(() => {
+                        emoji.style.opacity = '0';
+                    }, 3000);
+                }, 1000);
+            }
+        }, 1000);
+    }, 500);
+}
+
+
+// Функция для объединения гласной с ㅂ
+function combineVowelWithBatchim(char, batchim) {
+    if (char.length === 0) return char + batchim;
+    
+    const combinations = {
+        '가': '갑', '나': '납', '다': '답', '마': '맙', '바': '밥',
+        '사': '삽', '아': '압', '자': '잡', '차': '찹', '카': '칩',
+        '타': '탑', '파': '팝', '하': '합',
+        '개': '갭', '내': '냅', '대': '댑', '매': '맵', '배': '밥',
+        '새': '샙', '애': '앱', '재': '잡', '채': '챕', '캐': '캡',
+        '태': '탭', '패': '팝', 
+        '고': '곱', '노': '놉', '도': '돕', '모': '몹', '보': '봅',
+        '소': '솝', '오': '옵', '조': '좁', '초': '촙', '코': '콥',
+        '토': '톱', '포': '폽', '호': '홉',
+        '구': '굽', '누': '눕', '두': '둡', '무': '뭅', '부': '붑',
+        '수': '숩', '우': '웁', '주': '줍', '추': '춥', '쿠': '쿱',
+        '투': '툽', '푸': '풉', '후': '훕',
+        '기': '깁', '니': '닙', '디': '딥', '미': '밉', '비': '빕',
+        '시': '십', '이': '입', '지': '집', '치': '칩', '키': '킵',
+        '티': '팁', '피': '핍', '히': '힙',
+        '라': '랍', '러': '럽', '로': '롭', '루': '룹', '리': '립',
+        '르': '릅', '공부하': '공부합','쓰': '씁','나': '납','들': '듭','알': '압',
+        '걱정하': '걱정합', '농담하': '농담합', '만나': '만납', '말하': '말합', '생각하': '생각합', '모르': '모릅', 
+        '기억하': '기억합', '원하': '원합', '좋아하': '좋아합', '싫어하': '싫어합', '도와주': '도와줍', 
+        '기다리': '기다립', '헤어지': '헤어집', '팔': '팝', '가지': '가집', '보내': '보냅',
+        '도착하': '도착합', '출발하': '출발합', '이사하': '이사합', '살': '삽', '태어나': '태어납',
+        '가르치': '가르칩', '일하': '일합', '쉬': '쉽', '놀': '놉', '운동하': '운동합',
+        '뛰': '뜁', '춤추': '춤춥', '노래하': '노래합', '그리': '그립', '고치': '고칩', 
+        '하': '합', '하': '합', '하': '합', '하': '합', '하': '합', 
+        '요리하': '요리합', '마시': '마십', '자르': '자릅', '불': '붑', '시작하': '시작합', 
+        '끝나': '끝납', '열': '엽', '들어오': '들어옵', '나가': '나갑', '일어나': '일어납',
+        '깨': '깹', '울': '웁', '나쁘': '나쁩', '크': '큽', '비싸': '비쌉',
+        '싸': '쌉', '빠르': '빠릅', '느리': '느립', '예쁘': '예쁩', '똑똑하': '똑똑합',
+        '행복하': '행복합', '슬프': '슬픕', '배고프': '배고픕', '목마르': '목마릅', '피곤하': '피곤합',
+        '아프': '아픕', '건강하': '건강합', '다르': '다릅', '필요하': '필요합', '중요하': '중요합',
+        '길': '깁'
+    };
+    
+    if (combinations[char]) {
+        return combinations[char];
+    }
+    return char + batchim;
+}
+
+// Функция сброса игры
+function resetMnidaGame() {
+    const originalCubes = document.getElementById('mnidaOriginalCubes');
+    const rootCubes = document.getElementById('mnidaRootCubes');
+    const combinedCubes = document.getElementById('mnidaCombinedCubes');
+    const correctCubes = document.getElementById('mnidaCorrectCubes');
+    
+    originalCubes.innerHTML = '';
+    rootCubes.innerHTML = '';
+    combinedCubes.innerHTML = '';
+    correctCubes.innerHTML = '';
+    
+    const verbCubes = createWordCubes(currentVerb);
+    originalCubes.appendChild(verbCubes);
+    
+    originalCubes.style.display = 'flex';
+    rootCubes.style.display = 'none';
+    combinedCubes.style.display = 'none';
+    correctCubes.style.display = 'none';
+    
+    document.getElementById('mnidaEmoji').style.opacity = '0';
+    document.getElementById('mnidaWordInput').value = '';
+    selectedEnding = null;
+    document.getElementById('bsidaBtn').classList.remove('selected', 'wrong');
+    document.getElementById('eupsidaBtn').classList.remove('selected', 'wrong');
+}
+
+// Функция для произношения (использует Web Speech API)
+function speakKorean(text) {
+    if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'ko-KR';
+        utterance.rate = 0.8;
+        
+        const voices = window.speechSynthesis.getVoices();
+        const koreanVoice = voices.find(voice => voice.lang === 'ko-KR');
+        
+        if (koreanVoice) {
+            utterance.voice = koreanVoice;
+        }
+        
+        speechSynthesis.speak(utterance);
+    } else {
+        alert('Ваш браузер не поддерживает синтез речи. Попробуйте использовать Chrome или Edge.');
+    }
+}
+
+// Инициализация игры при загрузке страницы
+window.addEventListener('load', initGame);
+    </script>
+</body>
+</html>
