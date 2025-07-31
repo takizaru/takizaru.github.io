@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="/styles/style_base_numder_word.css">
     <title>Korean Sentence Builder</title>
     <style>
-        /* Основные стили */
+     /* Основные стили */
         .container {
             padding: 0 20px;
             max-width: 100%;
@@ -152,6 +152,7 @@
             cursor: pointer;
             font-size: 14px;
             font-weight: 900;
+            transition: all 0.3s;
         }
         
         .negative-btn {
@@ -284,6 +285,12 @@
         @keyframes wordAppear {
             0% { opacity: 0; transform: translateY(20px); }
             100% { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes blinkRed {
+            0% { background-color: #9b59b6; }
+            50% { background-color: #ff0000; }
+            100% { background-color: #9b59b6; }
         }
 
         /* Адаптация для разных разрешений */
@@ -671,6 +678,7 @@
         <a href="/index/index_tvor_zvuk.html"><img src="/image/vpravo2.svg" alt=""></a>
     </div>
 
+ 
     <footer>
         <section class="footer container">
             <address>
@@ -809,6 +817,7 @@
         let currentSentence = null;
         let currentTranslation = null;
         let currentParticle = null;
+        let correctParticle = null;
 
         // Инициализация игры
         function initGame() {
@@ -823,7 +832,7 @@
                     currentNoun = item.korean;
                     currentNounRussian = item.russian;
                     // Автоматически определяем правильную частицу
-                    determineParticle(item.korean);
+                    determineCorrectParticle(item.korean);
                 };
                 wordList.appendChild(div);
             });
@@ -831,15 +840,13 @@
             // Обработчики для кнопок частиц
             document.getElementById('iBtn').addEventListener('click', function() {
                 if (currentNoun) {
-                    currentParticle = '이';
-                    buildSentence();
+                    checkParticleSelection('이');
                 }
             });
             
             document.getElementById('gaBtn').addEventListener('click', function() {
                 if (currentNoun) {
-                    currentParticle = '가';
-                    buildSentence();
+                    checkParticleSelection('가');
                 }
             });
             
@@ -857,14 +864,14 @@
                     if (input) {
                         currentNoun = input;
                         currentNounRussian = input;
-                        determineParticle(input);
+                        determineCorrectParticle(input);
                     }
                 }
             });
         }
         
         // Определение правильной частицы (이/가) для существительного
-        function determineParticle(noun) {
+        function determineCorrectParticle(noun) {
             if (!noun) return;
             
             // Получаем последний символ слова
@@ -878,35 +885,75 @@
                 // Для хангыля определяем, заканчивается ли на согласную
                 const finalConsonant = (lastCharCode - 44032) % 28;
                 if (finalConsonant === 0) {
-                    // Нет конечной согласной - используем 가
-                    currentParticle = '가';
+                    // Нет конечной согласной - правильная частица 가
+                    correctParticle = '가';
                 } else {
-                    // Есть конечная согласная - используем 이
-                    currentParticle = '이';
+                    // Есть конечная согласная - правильная частица 이
+                    correctParticle = '이';
                 }
             } else {
                 // Для не-хангыля проверяем, является ли последний символ гласной
                 if (koreanVowels.includes(lastChar)) {
-                    currentParticle = '가';
+                    correctParticle = '가';
                 } else {
-                    currentParticle = '이';
+                    correctParticle = '이';
                 }
             }
             
+            // Сбрасываем текущую частицу
+            currentParticle = null;
+            
             // Подсвечиваем правильную кнопку
-            highlightParticleButton();
+            highlightParticleButtons();
         }
         
-        // Подсветка правильной кнопки частицы
-        function highlightParticleButton() {
+        // Проверка выбранной частицы
+        function checkParticleSelection(selectedParticle) {
+            if (!correctParticle) return;
+            
+            if (selectedParticle === correctParticle) {
+                // Правильный выбор
+                currentParticle = selectedParticle;
+                
+                // Скрываем неправильную кнопку
+                if (correctParticle === '이') {
+                    document.getElementById('gaBtn').style.display = 'none';
+                } else {
+                    document.getElementById('iBtn').style.display = 'none';
+                }
+                
+                // Подсвечиваем правильную кнопку
+                highlightParticleButtons();
+                
+                // Автоматически строим предложение
+                buildSentence();
+            } else {
+                // Неправильный выбор - мигаем красным
+                const wrongBtn = selectedParticle === '이' ? document.getElementById('iBtn') : document.getElementById('gaBtn');
+                wrongBtn.style.animation = 'blinkRed 0.5s 3';
+                
+                // Возвращаем нормальный цвет после анимации
+                setTimeout(() => {
+                    wrongBtn.style.animation = '';
+                    highlightParticleButtons();
+                }, 1500);
+            }
+        }
+        
+        // Подсветка кнопок частиц
+        function highlightParticleButtons() {
             document.getElementById('iBtn').style.backgroundColor = '#9b59b6';
             document.getElementById('gaBtn').style.backgroundColor = '#9b59b6';
             
-            if (currentParticle === '이') {
+            if (correctParticle === '이') {
                 document.getElementById('iBtn').style.backgroundColor = '#8e44ad';
-            } else if (currentParticle === '가') {
+            } else if (correctParticle === '가') {
                 document.getElementById('gaBtn').style.backgroundColor = '#8e44ad';
             }
+            
+            // Показываем обе кнопки (на случай, если они были скрыты)
+            document.getElementById('iBtn').style.display = 'block';
+            document.getElementById('gaBtn').style.display = 'block';
         }
         
         // Выбор указательного слова
@@ -939,7 +986,8 @@
             document.getElementById('koreanInput').focus();
             currentNoun = null;
             currentParticle = null;
-            highlightParticleButton();
+            correctParticle = null;
+            highlightParticleButtons();
         }
         
         // Построение предложения
@@ -957,7 +1005,7 @@
             }
             
             if (!currentParticle) {
-                alert('Пожалуйста, выберите частицу 이 или 가');
+                alert('Пожалуйста, выберите правильную частицу 이 или 가');
                 return;
             }
             
@@ -1021,21 +1069,6 @@
             }, 1200);
         }
         
-        // Проверка предложения
-        function checkSentence() {
-            if (!currentSentence) {
-                alert('Пожалуйста, сначала составьте предложение');
-                return;
-            }
-            
-            // Анимация подтверждения
-            const sentenceDisplay = document.getElementById('sentenceDisplay');
-            sentenceDisplay.style.animation = 'celebrate 1s';
-            setTimeout(() => {
-                sentenceDisplay.style.animation = '';
-            }, 1000);
-        }
-        
         // Сброс игры
         function resetGame() {
             currentDemonstrative = null;
@@ -1045,6 +1078,7 @@
             currentSentence = null;
             currentTranslation = null;
             currentParticle = null;
+            correctParticle = null;
             
             document.getElementById('demonstrativeDisplay').textContent = '';
             document.getElementById('demonstrativeDisplay').style.opacity = '0';
@@ -1059,7 +1093,11 @@
                 btn.style.backgroundColor = '#3498db';
             });
             
-            highlightParticleButton();
+            // Показываем обе кнопки частиц
+            document.getElementById('iBtn').style.display = 'block';
+            document.getElementById('gaBtn').style.display = 'block';
+            
+            highlightParticleButtons();
         }
         
         // Озвучивание корейского предложения
