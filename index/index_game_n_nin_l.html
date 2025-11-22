@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Korean Numbers Guide</title>
     <link rel="stylesheet" href="/styles/style_base_numder_word.css">
-    <style>
+   <style>
         .container {
             padding: 0 20px;
             max-width: 100%;
@@ -17,6 +17,11 @@
             margin: 0 auto;
             padding: 20px;
             box-sizing: border-box;
+            /* Адаптация для article */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
 
         .rule {
@@ -167,145 +172,7 @@
             text-decoration: underline;
         }
 
-        /* Стили для тренажера */
-        .trenazher-container {
-            max-width: 800px;
-            margin: 0 auto;
-            background-color: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .trenazher-title {
-            text-align: center;
-            color: #2c3e50;
-            margin-bottom: 20px;
-        }
-
-        .trenazher-description {
-            text-align: center;
-            margin-bottom: 30px;
-            color: #555;
-        }
-
-        .exercise-container {
-            margin-bottom: 30px;
-            padding: 20px;
-            border: 1px solid #e0e0e0;
-            border-radius: 8px;
-            background-color: #f9f9f9;
-        }
-
-        .sentence-number {
-            font-weight: bold;
-            color: #3498db;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .speaker-icon {
-            cursor: pointer;
-            font-size: 20px;
-            color: #3498db;
-            transition: color 0.3s;
-        }
-
-        .speaker-icon:hover {
-            color: #2980b9;
-        }
-
-        .russian-sentence {
-            font-size: 24px;
-            font-weight: 900;
-            margin-bottom: 15px;
-            padding: 10px;
-            background-color: white;
-            border-radius: 5px;
-            border-left: 4px solid #3498db;
-        }
-
-        .korean-sentence {
-            font-size: 20px;
-            font-weight: 900;
-            margin-bottom: 15px;
-            padding: 10px;
-            background-color: #e8f4fd;
-            border-radius: 5px;
-            border-left: 4px solid #2980b9;
-            display: none;
-        }
-
-        .input-container {
-            margin: 20px 0;
-        }
-
-        .korean-input {
-            width: 100%;
-            padding: 12px;
-            font-size: 24px;
-            font-weight: 900;
-            border: 2px solid #3498db;
-            border-radius: 5px;
-            font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
-        }
-
-        .result-message {
-            margin-top: 10px;
-            padding: 10px;
-            border-radius: 5px;
-            text-align: center;
-            font-weight: bold;
-            display: none;
-        }
-
-        .correct {
-            background-color: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
-        }
-
-        .incorrect {
-            background-color: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
-        }
-
-        .controls {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 20px;
-        }
-
-        .btn {
-            padding: 10px 20px;
-            background-color: #3498db;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: background-color 0.3s;
-        }
-
-        .btn:hover {
-            background-color: #2980b9;
-        }
-
-        .btn:disabled {
-            background-color: #bdc3c7;
-            cursor: not-allowed;
-        }
-
-        .hint {
-            font-size: 14px;
-            color: #7f8c8d;
-            margin-top: 10px;
-            text-align: center;
-        }
-
+   
         /* Стили для слов с подсказками */
         .russian-word {
             cursor: pointer;
@@ -342,6 +209,7 @@
             text-align: center;
             font-weight: bold;
             color: #2c3e50;
+            flex: 0 0 auto;
         }
 
         .perehod {
@@ -350,34 +218,291 @@
             margin: 20px 0;
         }
 
-        @media (min-width: 768px) {
-            .left-spesial-word {
-                text-align: left;
-                border-right: 1px solid #ddd;
-            }
+.trenazher-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 20px;
+}
 
-            .right-primer {
-                text-align: left;
-                padding-left: 20px;
-                border-left: 1px solid #ddd;
-            }
+/* Стили для поля ввода корейского текста */
+.korean-input {
+    width: 100%;
+    font-weight: 900;
+    font-size: 26px;
+    padding: 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    text-align: center;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+    margin-bottom: 20px;
+}
 
-            .rule-word {
-                flex-direction: row;
-            }
+.korean-input:focus {
+    border-color: #3498db;
+    outline: none;
+}
 
-            /* Adjust burger widths for larger screens */
-            .left-burger,
-            .right-burger {
-                width: 80%;
-                max-width: 300px;
-            }
+.sentence-number {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 50px; /* Расстояние 50px между элементами */
+}
 
-            .bottom-burger {
-                width: 80%;
-                max-width: 500px;
-            }
-        }
+.russian-sentence {
+    margin-bottom: 20px;
+}
+
+/* .hint {
+    margin-bottom: 20px;
+} */
+.btn {
+    margin-bottom: 20px;
+}
+                        
+                     /* input-container */
+
+/* Адаптация для всех режимов */
+
+/* 1441px и выше */
+@media (min-width: 1441px) {
+    .trenazher-container {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: stretch;
+        padding: 35px;
+    }
+    
+    .exercise-container {
+        flex: 1 1 100%;
+    }
+    
+    .korean-input {
+        font-size: 28px;
+        padding: 18px;
+    }
+    
+    .controls {
+        justify-content: center;
+        gap: 12px;
+    }
+    
+    .btn {
+        flex: 0 1 calc(25% - 12px);
+        padding: 12px 18px;
+        font-size: 16px;
+        min-width: 140px;
+    }
+}
+
+/* 1440px - 1025px */
+@media (max-width: 1440px) and (min-width: 1025px) {
+    .trenazher-container {
+        flex-direction: column;
+        align-items: center;
+        padding: 30px;
+    }
+    
+    .korean-input {
+        font-size: 26px;
+        padding: 16px;
+    }
+    
+    .controls {
+        justify-content: space-around;
+        gap: 10px;
+    }
+    
+    .btn {
+        flex: 0 1 calc(25% - 10px);
+        padding: 11px 16px;
+        font-size: 15px;
+        min-width: 130px;
+    }
+}
+
+/* 1024px - 769px */
+@media (max-width: 1024px) and (min-width: 769px) {
+    .trenazher-container {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 25px;
+    }
+    
+    .korean-input {
+        font-size: 24px;
+        padding: 14px;
+    }
+    
+    .controls {
+        justify-content: space-between;
+        gap: 8px;
+    }
+    
+    .btn {
+        flex: 1 1 calc(25% - 8px);
+        padding: 10px 14px;
+        font-size: 14px;
+        min-width: 110px;
+    }
+}
+
+/* 768px - 426px */
+@media (max-width: 768px) and (min-width: 426px) {
+    .trenazher-container {
+        flex-direction: column;
+        padding: 20px;
+        align-items: center;
+    }
+    
+    .korean-input {
+        font-size: 22px;
+        padding: 12px;
+    }
+    
+    .controls {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    
+    .btn {
+        flex: 1 1 calc(50% - 8px);
+        padding: 10px 12px;
+        font-size: 14px;
+        min-width: 0;
+    }
+}
+
+/* 425px - 376px */
+@media (max-width: 425px) and (min-width: 376px) {
+    .trenazher-container {
+        flex-direction: column;
+        padding: 18px;
+        align-items: stretch;
+    }
+    
+    .korean-input {
+        font-size: 20px;
+        padding: 11px;
+        font-weight: 800;
+    }
+    
+    .controls {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+    
+    .btn {
+        flex: 1 1 calc(50% - 6px);
+        padding: 9px 11px;
+        font-size: 13px;
+        min-width: 0;
+    }
+}
+
+/* 375px - 321px */
+@media (max-width: 375px) and (min-width: 321px) {
+    .trenazher-container {
+        flex-direction: column;
+        padding: 15px;
+        align-items: stretch;
+    }
+    
+    .korean-input {
+        font-size: 19px;
+        padding: 10px;
+        font-weight: 800;
+    }
+    
+    .controls {
+        flex-direction: column;
+        gap: 6px;
+    }
+    
+    .btn {
+        flex: 1 1 100%;
+        padding: 10px 12px;
+        font-size: 14px;
+        min-width: 0;
+        width: 100%;
+    }
+}
+
+/* 320px - 251px */
+@media (max-width: 320px) and (min-width: 251px) {
+    .trenazher-container {
+        flex-direction: column;
+        padding: 12px;
+        align-items: stretch;
+    }
+    
+    .korean-input {
+        font-size: 18px;
+        padding: 9px;
+        font-weight: 700;
+    }
+    
+    .controls {
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    .btn {
+        flex: 1 1 100%;
+        padding: 8px 10px;
+        font-size: 13px;
+        min-width: 0;
+        width: 100%;
+    }
+}
+
+/* 250px и меньше */
+@media (max-width: 250px) {
+    .trenazher-container {
+        flex-direction: column;
+        padding: 10px;
+        align-items: stretch;
+        gap: 15px;
+    }
+    
+    .korean-input {
+        font-size: 16px;
+        padding: 8px;
+        font-weight: 700;
+    }
+    
+    .controls {
+        flex-direction: column;
+        gap: 4px;
+    }
+    
+    .btn {
+        flex: 1 1 100%;
+        padding: 7px 9px;
+        font-size: 12px;
+        min-width: 0;
+        width: 100%;
+    }
+    
+    .trenazher-title {
+        font-size: 1.1em;
+    }
+}
+
+    
     </style>
 </head>
 
@@ -404,7 +529,7 @@
         <div class="container">
             <article>
                 <div class="trenazher-container">
-                    <h1 class="trenazher-title">Тренажер перевода с русского на корейский</h1>
+                    <!-- <h1 class="trenazher-title">Тренажер перевода с русского на корейский</h1> -->
                     
                     <div class="exercise-container">
                         <div class="sentence-number" id="sentence-number">
@@ -471,7 +596,6 @@
         <div class="korean-text" data-korean=""><b>셋</b> - три</div>
         <div class="korean-text" data-korean=""><b>넷</b> - четыре</div>
     </div> -->
-
     <div class="perehod">
         <a href="/index.html"><img src="/image/vlevo2.svg" alt=""></a>
         <a href="/index/index_game_pirothan.html"><img src="/image/vpravo2.svg" alt=""></a>
@@ -1362,3 +1486,4 @@
 </body>
 
 </html>
+
