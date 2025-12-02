@@ -1,0 +1,1386 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="/styles/style.css"> -->
+    <!-- <link rel="stylesheet" href="/styles/games.css"> -->
+    <title>Упражнения - Тренажеры корейского языка</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    font-family: "Montserrat", serif;
+    font-size: auto;
+    font-style: normal;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    max-height: 100vh;
+    max-width: 100%;
+    /* background-image: url('/image/fon.png'); */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+
+.container {
+    width: 100%;
+    max-width: 1288px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+main {
+    display: flex;
+    max-width: 100%;
+    margin-bottom: 50px;
+}
+
+.logo:hover {
+    left: 150px;
+    top: 55px;
+    transform: scale(1.5);
+}
+
+.lk {
+    width: 54px;
+    height: 54px;
+}
+
+.lk:hover {
+    transform: scale(1.5);
+    border-radius: 100px solid rgb(49, 36, 105);
+}
+
+/* Бургер-меню */
+.burger-menu {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+    z-index: 1000;
+}
+
+.burger-menu div {
+    width: 25px;
+    height: 3px;
+    background-color: #fff; /* Изменен на белый для контраста с темным фоном */
+}
+
+.nav-burger {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 250px;
+    height: 100vh;
+    background-color: rgba(44, 62, 80, 0.98); /* Цвет шапки */
+    transition: left 0.3s ease;
+    z-index: 999;
+    padding-top: 80px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.nav-burger.active {
+    left: 0;
+}
+
+.nav-burger .ul-header {
+    list-style: none;
+    padding: 20px;
+    margin: 0;
+    flex-direction: column;
+}
+
+.nav-burger .li-header {
+    margin-bottom: 20px;
+}
+
+.nav-burger .a-header {
+    color: #ecf0f1; /* Светлый текст для темного фона */
+    text-decoration: none;
+    font-size: 18px;
+    display: block;
+}
+
+.nav-burger .a-header:hover {
+    color: #3498db; /* Голубой при наведении */
+}
+
+
+
+header, .back-btn {
+    background: linear-gradient(45deg, #544848, #e3e3d2, #4a6545bb,  #a6c1ee, #928da7b8, #e3e3d2);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Обновляем контейнер в шапке */
+header .container {
+    max-width: 100%;
+    font-family: "Montserrat", serif;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* Убираем старый цвет фона */
+    /* background-color: #b1cbe5; */
+    padding-right: 110px;
+    padding-left: 110px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-bottom: 50px;
+}
+
+/* Делаем логотип белым для контраста с градиентом */
+.logo {
+    width: 50px;
+    height: 50px;
+    filter: brightness(0) invert(1); /* Белый цвет */
+}
+
+/* Делаем иконку пользователя белой */
+.user img.lk {
+    width: 40px;
+    height: 40px;
+    filter: brightness(0) invert(1); /* Белый цвет */
+    transition: transform 0.3s ease;
+}
+
+.user img.lk:hover {
+    transform: scale(1.1);
+}
+
+/* Обновляем цвет текста в шапке для лучшей читаемости */
+.a-header {
+    color: #2c3e50; /* Темный текст для контраста со светлым градиентом */
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500; /* Немного жирнее для читаемости */
+}
+
+.a-header:hover {
+    color: #1a252f; /* Еще темнее при наведении */
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5); /* Легкое свечение */
+}
+
+/* Бургер-меню также обновляем */
+.burger-menu div {
+    width: 25px;
+    height: 3px;
+    background-color: #2c3e50; /* Темный цвет для контраста */
+}
+
+.nav-header {
+    padding: 20px;
+}
+
+.ul-header {
+    display: flex;
+    list-style: none;
+}
+
+.li-header {
+    display: flex;
+    margin-right: 45px;
+}
+
+.a-header {
+    color: #ecf0f1; /* Светлый текст */
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.a-header:hover {
+    color: #3498db; /* Голубой при наведении */
+}
+
+h1:hover {
+    color: rgb(4, 1, 48);
+}
+
+/* Footer */
+footer {
+    background-color: #1a252f; /* Более темный цвет подвала */
+    padding: 20px 0;
+}
+
+.footer1 {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.mail,
+.tel {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    gap: 5px;
+    color: #ecf0f1; /* Светлый текст */
+}
+
+.tel img {
+    width: 12px;
+    height: 12px;
+}
+
+.footer-icon {
+    display: flex;
+    gap: 15px;
+}
+
+.footer-icon img {
+    width: 30px;
+    height: 30px;
+}
+address{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    /* padding-left: 10px;
+    padding-right: 10px; */
+}
+.footer2 {
+    display: flex;
+    align-items: flex-start;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.ul-footer {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+.li-footer {
+    margin: 0;
+}
+
+.a-footer {
+    color: #ecf0f1; /* Светлый текст */
+    text-decoration: none;
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+.a-footer:hover {
+    color: #3498db; /* Голубой при наведении */
+}
+
+.copyright {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    color: #ecf0f1; /* Светлый текст */
+    font-size: 14px;
+}
+
+#copyright {
+    height: 18px;
+    width: 18px;
+}
+/* Телефон */
+.tel:hover p {
+    color: #3498db; /* Голубой при наведении */
+   font-size: 1.1em;
+   transition: all 0.3s ease;
+}
+
+/* Почта */
+.mail:hover p {
+   color: #3498db; /* Голубой при наведении */
+   font-size: 1.1em;
+   transition: all 0.3s ease;
+}
+
+/* Копирайт */
+.copyright:hover p {
+   color: #3498db; /* Голубой при наведении */
+   font-size: 1.1em;
+   transition: all 0.3s ease;
+}
+
+/* Для плавности перехода при убирании курсора */
+.tel p,
+.mail p,
+.copyright p {
+   transition: all 0.3s ease;
+}
+.perehod {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    margin: 20px 0;
+}
+
+.perehod img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid rgb(49, 36, 105);
+    transition: transform 0.3s;
+}
+
+
+.perehod>a:hover {
+    transform: scale(1.5);
+}
+
+/* .perehod {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-self: flex-end;
+    padding: 0 120px 0 120px;
+    margin-bottom: 20px;
+} */
+
+.baner {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    font-weight: 900;
+    margin-bottom: 50px;
+}
+
+h1 {
+    /* color: hsla(47, 18%, 20%, 0.814); */
+    
+    font-family: "Montserrat", sans-serif;
+    font-weight: 900; /* Жирный текст */
+    font-size: 36px;
+    background: linear-gradient(45deg, #544848,  #e3e3d2, #4a6545, #fbc2eb, #a6c1ee, #928da7, #e3e3d2); /* Переливающийся градиент */
+    -webkit-background-clip: text; /* Применяем градиент к тексту */
+    -webkit-text-fill-color: transparent; /* Делаем текст прозрачным */
+    background-size: 300% 300%; /* Увеличиваем размер градиента для анимации */
+    animation: gradient-shift 5s ease infinite; /* Анимация перелива */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Тень для лучшей читаемости */
+}
+@keyframes gradient-shift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+.box {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding-left: 45px;
+    padding-right: 45px;
+    margin-top: 20px;
+}
+
+.card1, .card2 {
+    width: 48%;
+    background-color: #f5f2e860;
+    border: 1px solid #0f0520;
+    border-radius: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+    padding-top: 50px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5); /* Тень */
+    backdrop-filter: blur(2px); /* Размытие для эффекта стекла */
+}
+
+.card1 a:hover, .card2 a:hover {
+    color: rgb(4, 1, 48);
+    font-size: 22px;
+}
+
+.card1 a, .card2 a {
+    color: hsla(60, 33%, 99%, 0.814);
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 600;
+
+}
+
+.btn-vibor {
+    width: 200px;
+    height: 50px;
+     background: linear-gradient(360deg, rgba(55, 58, 70, 0.8), rgb(122, 134, 113),  rgba(111, 115, 104, 0.43), rgb(122, 134, 113), rgba(37, 73, 52, 0.8), rgba(55, 58, 70, 0.8)); /* Изумрудно-голубой градиент */
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5); /* Тень */
+    backdrop-filter: blur(10px); /* Размытие для эффекта стекла */
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    text-align: center;
+    color: rgb(49, 36, 105);
+    border: 2px solid #0f0520;
+    border-radius: 15px;
+    gap: 20px;
+}
+
+.btn-proba:hover {
+    animation: puls 5s 3;
+}
+
+@keyframes puls {
+    0% {
+        transform: scale(0.5);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+
+.btn-vibor, .btn-proba {
+    margin-bottom: 10px;
+}
+.btn-proba {
+    width: 200px;
+    height: 50px;
+    display: flex;
+    font-size: 10px;
+    text-align: center;
+    border: 2px solid #0f0520;
+    border-radius: 16px;
+    padding: auto;
+    align-items: center;
+    justify-content: center;
+    margin-left: 150px;
+    margin-bottom: 50px;
+    background: linear-gradient(360deg, rgba(55, 58, 70, 0.8), rgb(122, 134, 113),  rgba(111, 115, 104, 0.43), rgb(122, 134, 113), rgba(37, 73, 52, 0.8), rgba(55, 58, 70, 0.8)); /* Изумрудно-голубой градиент */
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5); /* Тень */
+    backdrop-filter: blur(10px); /* Размытие для эффекта стекла */
+}
+.proba a {
+    font-size: 14px;
+}
+.proba a:hover {
+    color: rgb(49, 36, 105);
+}
+
+@media(max-width:1250px) {
+
+    header,
+    .container,
+
+    .copyright,
+    .box {
+        justify-content: center;
+        text-align: center;
+    }
+
+    .card {
+        width: 100%;
+        margin-bottom: 45px;
+    }
+
+    .baner>h1 {
+        font-size: 20px;
+    }
+
+    .box {
+        flex-direction: column;
+    }
+
+    .card1,
+    .card2 {
+        width: 70%;
+        margin-bottom: 45px;
+    }
+}
+  /* Добавьте свои стили здесь */
+    
+  @media (max-width: 1100px) {
+    .footer {
+        flex-direction: column;
+    }
+
+    .footer1, .footer2 {
+        width: 100%;
+    }
+
+    .footer-icon {
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+
+    .footer2 {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+    }
+
+    .nav1-footer, .nav2-footer, .nav3-footer {
+        margin-bottom: 10px;
+    }
+
+    .copyright {
+        margin-top: 10px;
+    }
+}
+
+@media(max-width:1024px) {
+
+    header,
+    .container,
+  footer,
+    .copyright,
+    .box {
+        justify-content: center;
+        text-align: center;
+    }
+
+    .footer3 ul {
+        flex-wrap: wrap;
+    }
+
+    .baner>h1 {
+        font-size: 20px;
+    }
+
+    .footer>ul {
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .header_ul {
+        justify-content: flex-start;
+    }
+
+    nav {
+        padding: 0;
+    }
+
+    .box {
+        flex-direction: column;
+    }
+
+    .card {
+        width: 100%;
+        margin-bottom: 45px;
+    }
+}  
+
+@media (max-width: 750px) {
+    .btn-proba {
+        margin-left: 0; /* Убираем отступ слева */
+        width: 180px; /* Немного уменьшаем */
+    }
+}
+
+@media (max-width: 600px) {
+    .logo {
+    width: 54px; /* Уменьшено в 2 раза */
+    height: 54px; /* Уменьшено в 2 раза */
+    transition: transform 0.3s;
+}
+
+.lk {
+    width: 27px; /* Уменьшено в 2 раза */
+    height: 27px; /* Уменьшено в 2 раза */
+    transition: transform 0.3s;
+}
+
+/* Кнопки и карточки */
+.btn-proba {
+    width: 200px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 50px; /* Центрирование */
+    /* остальные стили */
+}
+
+.card1, .card2 {
+    width: 48%;
+    /* остальные стили */
+}
+
+/* Подвал */
+footer {
+    text-align: center;
+}
+
+address {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer1, .footer2 {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.footer-icon {
+    justify-content: center;
+}
+   
+   
+    /* Уменьшаем карточки */
+    
+    .card1, .card2 {
+        width: 80%;
+        padding-top: 30px;
+        gap: 20px;
+    }
+    
+    /* Уменьшаем кнопки */
+    .btn-vibor, .btn-proba {
+        width: 120px;
+        height: 30px;
+        font-size: 14px;
+    }
+    
+    /* Уменьшаем шрифты */
+    a.a-card {
+        font-size: 10px;
+    }
+    
+    h1 {
+        font-size: 20px;
+    }
+    
+    /* Подвал - центрируем все элементы */
+    .footer1, .footer2, .copyright {
+        align-items: center;
+        text-align: center;
+    }
+    
+    .ul-footer {
+        justify-content: center;
+    }
+    
+    /* Еще больше уменьшаем логотип и ЛК на мобильных */
+    .logo {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .lk {
+        width: 20px;
+        height: 20px;
+    }
+}
+        /* Основной фон с анимированными корейскими буквами */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #E0F2E1; /* Светло-зеленый цвет молодого бамбука */
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        #background-letters {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .korean-letter {
+            position: absolute;
+            font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+            font-size: 40px;
+            font-weight: bold;
+            opacity: 0;
+            animation: letterFloat 8s ease-in-out infinite;
+            color: transparent;
+            background: linear-gradient(45deg, #78909C, #546E7A, #90A4AE);
+            background-clip: text;
+            -webkit-background-clip: text;
+            user-select: none;
+        }
+
+        @keyframes letterFloat {
+            0% {
+                opacity: 0;
+                transform: scale(0.1) translate(0, 0) rotate(0deg);
+            }
+            10% {
+                opacity: 0.7;
+                transform: scale(1) translate(0, -100px) rotate(5deg);
+            }
+            80% {
+                opacity: 0.7;
+                transform: scale(1) translate(0, -300px) rotate(5deg);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(1) translate(0, -400px) rotate(5deg);
+            }
+        }
+
+        /* Шапка с цветом как у заголовка "Выберите тренажер" */
+        header {
+            background-color: #2c3e50; /* Цвет заголовка */
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            filter: brightness(0) invert(1); /* Делаем лого белым для контраста */
+        }
+
+        .user img.lk {
+            width: 40px;
+            height: 40px;
+            transition: transform 0.3s ease;
+            filter: brightness(0) invert(1); /* Делаем иконку пользователя белой */
+        }
+
+        .user img.lk:hover {
+            transform: scale(1.1);
+        }
+
+        /* Основной контейнер */
+        .games-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 30px 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .page-title {
+            text-align: center;
+            margin-bottom: 50px;
+            color: #2c3e50;
+            font-size: 2.8em;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Сетка карточек */
+        .games-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+            margin-bottom: 50px;
+        }
+        
+        /* Карточки с эффектом стекла */
+        .game-card {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            padding: 30px 25px;
+            text-align: center;
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.05);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            flex: 0 0 calc(25% - 30px);
+            max-width: calc(25% - 30px);
+            min-width: 280px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 280px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .game-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, 
+                rgba(192, 192, 192, 0.8), 
+                rgba(255, 255, 255, 0.6), 
+                rgba(192, 192, 192, 0.8));
+        }
+        
+        .game-card:hover {
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.25);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+        
+        .game-title {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            color: #2c3e50;
+            font-weight: 700;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .game-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 25%;
+            width: 50%;
+            height: 2px;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(52, 152, 219, 0.7), 
+                transparent);
+        }
+        
+        .game-description {
+            color: #34495e;
+            margin-bottom: 25px;
+            font-size: 1em;
+            line-height: 1.5;
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
+        }
+        
+        /* Кнопка с серебряным градиентом */
+        .play-btn {
+            background: linear-gradient(
+                135deg,
+                rgba(220, 220, 220, 0.9) 0%,      /* Светло-серебряный */
+                rgba(192, 192, 192, 0.9) 25%,     /* Серебряный */
+                rgba(169, 169, 169, 0.9) 50%,     /* Темно-серебряный */
+                rgba(192, 192, 192, 0.9) 75%,     /* Серебряный */
+                rgba(220, 220, 220, 0.9) 100%     /* Светло-серебряный */
+            );
+            color: #2c3e50;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            padding: 14px 35px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 
+                0 4px 15px rgba(0, 0, 0, 0.1),
+                inset 0 2px 0 rgba(255, 255, 255, 0.3);
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .play-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg, 
+                transparent, 
+                rgba(255, 255, 255, 0.4), 
+                transparent
+            );
+            transition: left 0.7s;
+            z-index: -1;
+        }
+        
+        .play-btn:hover {
+            transform: scale(1.08);
+            box-shadow: 
+                0 8px 25px rgba(0, 0, 0, 0.2),
+                inset 0 2px 0 rgba(255, 255, 255, 0.4);
+            background: linear-gradient(
+                135deg,
+                rgba(240, 240, 240, 0.95) 0%,
+                rgba(220, 220, 220, 0.95) 25%,
+                rgba(200, 200, 200, 0.95) 50%,
+                rgba(220, 220, 220, 0.95) 75%,
+                rgba(240, 240, 240, 0.95) 100%
+            );
+            color: #1a252f;
+        }
+        
+        .play-btn:hover::before {
+            left: 100%;
+        }
+        
+        /* Кнопка назад */
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin: 60px auto 20px;
+            padding: 14px 30px;
+            background: linear-gradient(
+                135deg,
+                rgba(173, 216, 230, 0.9) 0%,     /* Светло-голубой */
+                rgba(135, 206, 250, 0.9) 50%,    /* Небесно-голубой */
+                rgba(100, 149, 237, 0.9) 100%    /* Королевский синий */
+            );
+            color: #2c3e50;
+            text-decoration: none;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            font-size: 1.1em;
+            max-width: 250px;
+            box-shadow: 0 4px 15px rgba(135, 206, 250, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .back-btn:hover {
+            background: linear-gradient(
+                135deg,
+                rgba(100, 149, 237, 0.9) 0%,
+                rgba(135, 206, 250, 0.9) 50%,
+                rgba(173, 216, 230, 0.9) 100%
+            );
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(135, 206, 250, 0.4);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Подвал - более темный цвет */
+        footer {
+            background-color: #1a252f; /* Более темный цвет подвала */
+            color: #ecf0f1; /* Светлый текст */
+            padding: 30px 20px;
+            text-align: center;
+            margin-top: 60px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 -4px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-logo {
+            width: 40px;
+            height: 40px;
+            filter: brightness(0) invert(1); /* Делаем лого белым */
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .footer-links a {
+            color: #ecf0f1; /* Светлый текст */
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #3498db; /* Голубой при наведении */
+            text-decoration: underline;
+        }
+
+        .copyright {
+            width: 100%;
+            margin-top: 20px;
+            font-size: 0.9em;
+            opacity: 0.8;
+            color: #ecf0f1; /* Светлый текст */
+        }
+
+        /* Бургер-меню стили */
+        .burger-menu {
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            cursor: pointer;
+        }
+
+        .burger-menu div {
+            width: 25px;
+            height: 3px;
+            background-color: #ecf0f1; /* Белый для контраста с темным фоном */
+            transition: 0.3s;
+        }
+
+        .nav-burger {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background: rgba(44, 62, 80, 0.98); /* Цвет шапки с прозрачностью */
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .nav-burger.active {
+            display: block;
+        }
+
+        .ul-header {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .li-header {
+            margin-bottom: 15px;
+        }
+
+        .a-header {
+            color: #ecf0f1; /* Светлый текст */
+            text-decoration: none;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        .a-header:hover {
+            color: #3498db; /* Голубой при наведении */
+        }
+
+        /* АДАПТИВНОСТЬ */
+        @media (max-width: 1200px) {
+            .game-card {
+                flex: 0 0 calc(33.333% - 30px);
+                max-width: calc(33.333% - 30px);
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .game-card {
+                flex: 0 0 calc(50% - 30px);
+                max-width: calc(50% - 30px);
+            }
+            
+            .page-title {
+                font-size: 2.3em;
+            }
+
+            .burger-menu {
+                display: flex;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .games-grid {
+                gap: 25px;
+            }
+            
+            .game-card {
+                flex: 0 0 calc(50% - 25px);
+                max-width: calc(50% - 25px);
+                min-width: 250px;
+                height: 260px;
+                padding: 25px 20px;
+            }
+            
+            .page-title {
+                font-size: 2em;
+                margin-bottom: 40px;
+            }
+            
+            .game-title {
+                font-size: 1.6em;
+            }
+        }
+        
+        @media (max-width: 650px) {
+            .games-grid {
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
+            
+            .game-card {
+                flex: 0 0 100%;
+                max-width: 100%;
+                width: 90%;
+                height: auto;
+                min-height: 220px;
+            }
+            
+            .games-container {
+                padding: 20px 15px;
+            }
+            
+            .page-title {
+                font-size: 1.8em;
+                margin-bottom: 30px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .games-grid {
+                gap: 15px;
+            }
+            
+            .game-card {
+                width: 95%;
+                padding: 20px 15px;
+            }
+            
+            .page-title {
+                font-size: 1.6em;
+            }
+            
+            .game-title {
+                font-size: 1.4em;
+            }
+            
+            .play-btn {
+                padding: 12px 25px;
+                font-size: 1em;
+            }
+
+            .container {
+                padding: 10px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Фон с анимированными корейскими буквами -->
+    <div id="background-letters"></div>
+
+    <header>
+        <div class="container">
+            <div class="burger-menu" id="burgerMenu">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <img class="logo" src="/image/logo krug.svg" alt="Логотип">
+            <a href="#" class="user" id="userBtn"> 
+                <img class="lk" src="/image/userrblur.svg" alt="Пользователь">
+            </a>
+        </div>
+        <nav class="nav-burger" id="navBurger">
+            <ul class="ul-header">
+                <li class="li-header"> <a href="" class="a-header">онлайн - переводчик</a></li>
+                <li class="li-header"> <a href="" class="a-header">контакты</a></li>
+                <li class="li-header"> <a href="" class="a-header">светлая тема</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="games-container">
+            <h1 class="page-title">Выберите тренажер</h1>
+            <div id="gamesGrid" class="games-grid">
+                <!-- Игры будут добавляться через JavaScript -->
+            </div>
+            <div style="text-align: center;">
+                <a href="/index.html" class="back-btn">← Вернуться на главную</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <!-- <img src="/image/logo krug.svg" alt="Логотип" class="footer-logo"> -->
+            <div class="footer-links">
+                <a href="#">О проекте</a>
+                <a href="#">Политика конфиденциальности</a>
+                <a href="#">Контакты</a>
+            </div>
+            <div class="copyright">
+                © 2024 Тренажеры корейского языка. Все права защищены.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Массив с корейскими буквами
+        const koreanLetters = [
+            '가', '나', '다', '라', '마', '바', '사', '아', '자', '차',
+            '카', '타', '파', '하', '거', '너', '더', '러', '머', '버',
+            '서', '어', '저', '처', '커', '터', '퍼', '허', '고', '노',
+            '도', '로', '모', '보', '소', '오', '조', '초', '코', '토'
+        ];
+
+        // Функция для создания анимированных букв
+        function createBackgroundLetters() {
+            const container = document.getElementById('background-letters');
+            
+            for (let i = 0; i < 25; i++) { // Создаем 25 букв
+                const letter = document.createElement('div');
+                letter.className = 'korean-letter';
+                
+                // Выбираем случайную букву
+                const randomLetter = koreanLetters[Math.floor(Math.random() * koreanLetters.length)];
+                letter.textContent = randomLetter;
+                
+                // Случайная позиция
+                const left = Math.random() * 100;
+                const top = Math.random() * 100;
+                
+                // Случайная задержка анимации
+                const delay = Math.random() * 15;
+                
+                // Применяем стили
+                letter.style.left = `${left}%`;
+                letter.style.top = `${top}%`;
+                letter.style.animationDelay = `${delay}s`;
+                letter.style.fontSize = `${30 + Math.random() * 40}px`;
+                
+                // Добавляем легкое вращение
+                letter.style.transform += ` rotate(${Math.random() * 20 - 10}deg)`;
+                
+                container.appendChild(letter);
+            }
+        }
+
+        // Массив с тренажерами
+        const games = [
+         {
+                id: 7,
+                title: "아 / 어 / 여",
+                description: "гармония гласных",
+                link: "/index/games/past_tense.html"
+            },
+            {
+                id: 1,
+                title: "았 / 었 / 였",
+                description: "Тренажер для практики прошедшего времени",
+                link: "/index/games/past_tense.html"
+            },
+            {
+                id: 2,
+                title: "면 / 으면",
+                description: "Условные конструкции",
+                link: "/index/games/conditional.html"
+            },
+            {
+                id: 3,
+                title: "위한 / 위하여",
+                description: "Выражение цели и назначения",
+                link: "/index/games/purpose.html"
+            },
+            {
+                id: 4,
+                title: "고 싶다",
+                description: "Выражение желания",
+                link: "/index_game_sipta.html"
+            },
+            {
+                id: 5,
+                title: "ㄹ/을 수 있다",
+                description: "Выражение возможности",
+                link: "/index/games/ability.html"
+            },
+            {
+                id: 6,
+                title: "아/어야 하다",
+                description: "Выражение необходимости",
+                link: "/index/games/necessity.html"
+            }
+        ];
+
+        // Функция для создания карточек игр
+        function createGameCards() {
+            const gamesGrid = document.getElementById('gamesGrid');
+            gamesGrid.innerHTML = '';
+            
+            games.forEach(game => {
+                const gameCard = document.createElement('div');
+                gameCard.className = 'game-card';
+                
+                gameCard.innerHTML = `
+                    <div>
+                        <h3 class="game-title">${game.title}</h3>
+                        <p class="game-description">${game.description}</p>
+                    </div>
+                    <a href="${game.link}" class="play-btn">Начать тренировку</a>
+                `;
+                
+                gamesGrid.appendChild(gameCard);
+            });
+        }
+
+        // Инициализация при загрузке страницы
+        document.addEventListener('DOMContentLoaded', function() {
+            createBackgroundLetters();
+            createGameCards();
+            
+            // Бургер-меню
+            const burgerMenu = document.getElementById('burgerMenu');
+            const navBurger = document.getElementById('navBurger');
+            
+            if (burgerMenu && navBurger) {
+                burgerMenu.addEventListener('click', function() {
+                    navBurger.classList.toggle('active');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
+
+<!-- 
+исправь ошибки в коде:
+
+header . - переделай цвет с градиентом, как "выберите тренажер" - пропиши исправления только для этого -->
