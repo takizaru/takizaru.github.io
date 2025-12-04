@@ -1,0 +1,1902 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Korean Numbers Guide</title>
+    <link rel="stylesheet" href="/styles/style_base_numder_word.css">
+   <style>
+        .container {
+            padding: 0 20px;
+            max-width: 100%;
+        }
+
+        article {
+            width: 90%;
+            margin: 0 auto;
+            padding: 20px;
+            box-sizing: border-box;
+            /* Адаптация для article */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .rule {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f8f8f8;
+            border-radius: 8px;
+        }
+
+        .grammatika,
+        .center-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f8f8f8;
+            border-radius: 8px;
+        }
+
+        .grammatika h2 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .grammatika p {
+            line-height: 1.5;
+            color: #555;
+            text-align: center;
+            width: 100%;
+        }
+
+        .rule-face {
+            width: 100%;
+            margin: 15px 0;
+        }
+
+        .rule-word {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            padding: 15px 0;
+        }
+
+        h4,
+        h5,
+        h2 {
+            text-align: center;
+            margin-bottom: 10px;
+            margin-top: 10px;
+        }
+
+        .korean-text b {
+            font-weight: bold;
+        }
+
+        .left-spesial-word,
+        .right-primer {
+            flex: 1;
+            padding: 15px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        /* Left burger styles */
+        .left-burger {
+            position: fixed;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: #f8f8f8;
+            padding: 15px;
+            border-radius: 0 8px 8px 0;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+            width: 200px;
+            z-index: 100;
+        }
+
+        /* Style for h4 in burgers */
+        .left-burger h4,
+        .right-burger h4,
+        .bottom-burger h4 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        /* Style for paragraphs in burgers */
+        .left-burger p,
+        .right-burger p,
+        .bottom-burger p {
+            text-align: left;
+            margin: 10px 0;
+        }
+
+        /* Right burger styles */
+        .right-burger {
+            position: fixed;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: #f8f8f8;
+            padding: 15px;
+            border-radius: 8px 0 0 8px;
+            box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.1);
+            width: 200px;
+            z-index: 100;
+        }
+
+        /* Bottom burger styles */
+        .bottom-burger {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #f8f8f8;
+            padding: 15px;
+            border-radius: 8px 8px 0 0;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            z-index: 100;
+        }
+
+        .iconDown,
+        .iconUp {
+            cursor: pointer;
+            text-align: center;
+            border-radius: 5px;
+            margin: 10px auto;
+            width: 30px;
+        }
+
+        /* для перехода по ссылке на гармонию гласных */
+        .rule_garmoniya a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .rule_garmoniya b {
+            cursor: pointer;
+            color: rgb(81, 7, 8);
+            text-decoration: underline;
+        }
+
+   
+        /* Стили для слов с подсказками */
+        .russian-word {
+            cursor: pointer;
+            position: relative;
+            padding: 2px 4px;
+            border-radius: 3px;
+            transition: background-color 0.2s;
+            font-weight: 700;
+        }
+
+        .russian-word:hover {
+            background-color: rgba(52, 152, 219, 0.2);
+        }
+
+        .russian-word:hover::after {
+            content: attr(data-translation);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #2c3e50;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            white-space: nowrap;
+            z-index: 10;
+            font-size: 20px;
+            font-weight: 900;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .progress {
+            margin-top: 20px;
+            text-align: center;
+            font-weight: bold;
+            color: #2c3e50;
+            flex: 0 0 auto;
+        }
+
+        .perehod {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+        }
+
+.trenazher-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 20px;
+}
+
+/* Стили для поля ввода корейского текста */
+.korean-input {
+    width: 100%;
+    font-weight: 900;
+    font-size: 26px;
+    padding: 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    text-align: center;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+    margin-bottom: 20px;
+}
+
+.korean-input:focus {
+    border-color: #3498db;
+    outline: none;
+}
+
+.sentence-number {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 50px; /* Расстояние 50px между элементами */
+}
+
+.russian-sentence {
+    margin-bottom: 20px;
+}
+
+/* .hint {
+    margin-bottom: 20px;
+} */
+.btn {
+    margin-bottom: 20px;
+}
+                        
+                     /* input-container */
+
+/* Адаптация для всех режимов */
+
+/* 1441px и выше */
+@media (min-width: 1441px) {
+    .trenazher-container {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: stretch;
+        padding: 35px;
+    }
+    
+    .exercise-container {
+        flex: 1 1 100%;
+    }
+    
+    .korean-input {
+        font-size: 28px;
+        padding: 18px;
+    }
+    
+    .controls {
+        justify-content: center;
+        gap: 12px;
+    }
+    
+    .btn {
+        flex: 0 1 calc(25% - 12px);
+        padding: 12px 18px;
+        font-size: 16px;
+        min-width: 140px;
+    }
+}
+
+/* 1440px - 1025px */
+@media (max-width: 1440px) and (min-width: 1025px) {
+    .trenazher-container {
+        flex-direction: column;
+        align-items: center;
+        padding: 30px;
+    }
+    
+    .korean-input {
+        font-size: 26px;
+        padding: 16px;
+    }
+    
+    .controls {
+        justify-content: space-around;
+        gap: 10px;
+    }
+    
+    .btn {
+        flex: 0 1 calc(25% - 10px);
+        padding: 11px 16px;
+        font-size: 15px;
+        min-width: 130px;
+    }
+}
+
+/* 1024px - 769px */
+@media (max-width: 1024px) and (min-width: 769px) {
+    .trenazher-container {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 25px;
+    }
+    
+    .korean-input {
+        font-size: 24px;
+        padding: 14px;
+    }
+    
+    .controls {
+        justify-content: space-between;
+        gap: 8px;
+    }
+    
+    .btn {
+        flex: 1 1 calc(25% - 8px);
+        padding: 10px 14px;
+        font-size: 14px;
+        min-width: 110px;
+    }
+}
+
+/* 768px - 426px */
+@media (max-width: 768px) and (min-width: 426px) {
+    .trenazher-container {
+        flex-direction: column;
+        padding: 20px;
+        align-items: center;
+    }
+    
+    .korean-input {
+        font-size: 22px;
+        padding: 12px;
+    }
+    
+    .controls {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    
+    .btn {
+        flex: 1 1 calc(50% - 8px);
+        padding: 10px 12px;
+        font-size: 14px;
+        min-width: 0;
+    }
+}
+
+/* 425px - 376px */
+@media (max-width: 425px) and (min-width: 376px) {
+    .trenazher-container {
+        flex-direction: column;
+        padding: 18px;
+        align-items: stretch;
+    }
+    
+    .korean-input {
+        font-size: 20px;
+        padding: 11px;
+        font-weight: 800;
+    }
+    
+    .controls {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+    
+    .btn {
+        flex: 1 1 calc(50% - 6px);
+        padding: 9px 11px;
+        font-size: 13px;
+        min-width: 0;
+    }
+}
+
+/* 375px - 321px */
+@media (max-width: 375px) and (min-width: 321px) {
+    .trenazher-container {
+        flex-direction: column;
+        padding: 15px;
+        align-items: stretch;
+    }
+    
+    .korean-input {
+        font-size: 19px;
+        padding: 10px;
+        font-weight: 800;
+    }
+    
+    .controls {
+        flex-direction: column;
+        gap: 6px;
+    }
+    
+    .btn {
+        flex: 1 1 100%;
+        padding: 10px 12px;
+        font-size: 14px;
+        min-width: 0;
+        width: 100%;
+    }
+}
+
+/* 320px - 251px */
+@media (max-width: 320px) and (min-width: 251px) {
+    .trenazher-container {
+        flex-direction: column;
+        padding: 12px;
+        align-items: stretch;
+    }
+    
+    .korean-input {
+        font-size: 18px;
+        padding: 9px;
+        font-weight: 700;
+    }
+    
+    .controls {
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    .btn {
+        flex: 1 1 100%;
+        padding: 8px 10px;
+        font-size: 13px;
+        min-width: 0;
+        width: 100%;
+    }
+}
+
+/* 250px и меньше */
+@media (max-width: 250px) {
+    .trenazher-container {
+        flex-direction: column;
+        padding: 10px;
+        align-items: stretch;
+        gap: 15px;
+    }
+    
+    .korean-input {
+        font-size: 16px;
+        padding: 8px;
+        font-weight: 700;
+    }
+    
+    .controls {
+        flex-direction: column;
+        gap: 4px;
+    }
+    
+    .btn {
+        flex: 1 1 100%;
+        padding: 7px 9px;
+        font-size: 12px;
+        min-width: 0;
+        width: 100%;
+    }
+    
+    .trenazher-title {
+        font-size: 1.1em;
+    }
+}
+
+    
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="burger-menu" id="burgerMenu">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <img class="logo" src="/image/logo krug.svg" alt="Логотип">
+            <a href="" class="user"> <img class="lk" src="/image/userrblur.svg" alt="Пользователь"></a>
+        </div>
+        <nav class="nav-burger" id="navBurger">
+            <ul class="ul-header">
+                <li class="li-header"> <a href="" class="a-header">онлайн - переводчик</a></li>
+                <li class="li-header"> <a href="" class="a-header">контакты</a></li>
+                <li class="li-header"> <a href="" class="a-header">светлая тема</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="container">
+            <article>
+                <div class="trenazher-container">
+                    <!-- <h1 class="trenazher-title">Тренажер перевода с русского на корейский</h1> -->
+                    
+                    <div class="exercise-container">
+                        <div class="sentence-number" id="sentence-number">
+                            <span>Пример 1 из 10</span>
+                            <span class="speaker-icon" id="speaker-icon">🔊</span>
+                        </div>
+                        <div class="russian-sentence" id="russian-sentence"></div>
+                        
+                        <div class="input-container">
+                            <input type="text" class="korean-input" id="korean-input" placeholder="Введите перевод на корейском языке...">
+                            <div class="result-message" id="result-message"></div>
+                        </div>
+                        
+                        <div class="korean-sentence" id="korean-sentence"></div>
+                        
+                        <div class="controls">
+                            <button class="btn" id="prev-btn" disabled>Предыдущее</button>
+                            <button class="btn" id="check-btn">Проверить</button>
+                            <button class="btn" id="show-btn">Показать ответ</button>
+                            <button class="btn" id="next-btn">Следующее</button>
+                        </div>
+                        
+                        <div class="hint">Наведите на русское слово, чтобы увидеть перевод на корейский</div>
+                    </div>
+                    
+                    <div class="progress" id="progress">Прогресс: 0/10</div>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <!-- Левый бургер -->
+    <div class="left-burger">
+        <h4>Полезные фразы</h4>
+        <div class="korean-text" data-korean=""><b>안녕하세요</b> - Здравствуйте</div>
+        <div class="korean-text" data-korean=""><b>감사합니다</b> - Спасибо</div>
+        <div class="korean-text" data-korean=""><b>미안합니다</b> - Извините</div>
+        <div class="korean-text" data-korean=""><b>네</b> - Да</div>
+    </div>
+
+    <!-- Левая закладка -->
+    <div class="left-bookmark-icon"></div>
+
+    <!-- Нижний бургер -->
+    <div class="bottom-burger">
+        <h4>Грамматические подсказки</h4>
+        <div class="korean-text" data-korean=""><b>은/는</b> - тематические частицы</div>
+        <div class="korean-text" data-korean=""><b>이/가</b> - подлежащие частицы</div>
+        <div class="korean-text" data-korean=""><b>을/를</b> - объектные частицы</div>
+        <div class="korean-text" data-korean=""><b>에/에서</b> - локативные частицы</div>
+    </div>
+
+    <!-- Нижняя закладка -->
+    <div class="bottom-bookmark-icon"></div>
+
+    <!-- Правая закладка -->
+    <div class="bookmark-icon"></div>
+
+    <!-- Правый бургер -->
+    <!-- <div class="right-burger">
+        <h4>Числительные</h4>
+        <div class="korean-text" data-korean=""><b>하나</b> - один</div>
+        <div class="korean-text" data-korean=""><b>둘</b> - два</div>
+        <div class="korean-text" data-korean=""><b>셋</b> - три</div>
+        <div class="korean-text" data-korean=""><b>넷</b> - четыре</div>
+    </div> -->
+
+    <div class="perehod">
+        <a href="/index.html"><img src="/image/vlevo2.svg" alt=""></a>
+        <a href="/index.html"><img src="/image/vpravo2.svg" alt=""></a>
+    </div>
+
+    <footer>
+        <section class="footer container">
+            <address>
+                <div class="footer1">
+                    <div class="tel">
+                        <img src="/image/tel_blue.svg" alt="">
+                        <p>8-925-685-52-39 </p>
+                    </div>
+                    <div class="mail">
+                        <p>anastasiya3000@yandex.ru</p>
+                    </div>
+                    <div class="footer-icon">
+                        <a href="" class="social-icon"> <img src="/image/telegram_icon 1.svg" alt=""></a>
+                        <a href="" class="social-icon"> <img src="/image/skype_icon 1.svg" alt=""></a>
+                        <a href="" class="social-icon"><img src="/image/whatsapp_green.png" alt=""></a>
+                        <a href="" class="social-icon"> <img src="/image/license.svg" alt=""></a>
+                    </div>
+                </div>
+
+                <div class="footer2">
+                    <nav class="nav1-footer">
+                        <ul class="ul-footer">
+                            <div class="f-li">
+                                <li class="li-footer"> <a href="" class="a-footer"><b>Правила оплаты</b></a></li>
+                                <li class="li-footer"> <a href="" class="a-footer"><b>Договор оферты</b></a></li>
+                                <li class="li-footer"> <a href="" class="a-footer"><b>Согласие с рассылкой</b></a></li>
+                                <li class="li-footer"><a href="" class="a-footer"><b>Пользовательское соглашение</b></a>
+                                </li>
+                                <li class="li-footer"> <a href="" class="a-footer"><b>Политика
+                                            конфиденциальности</b></a></li>
+                                <li class="li-footer"> <a href="" class="a-footer"><b>Положение о защите персональных
+                                            данных</b></a></li>
+                            </div>
+                        </ul>
+                    </nav>
+                </div>
+            </address>
+        </section>
+
+        <div class="copyright">
+            <img id="copyright" src="/image/Copyright2 _ blue.svg" alt="copyright">
+            <p>takiza, 2025</p>
+        </div>
+    </footer>
+
+   <script>
+
+// Массив предложений для тренажера
+const sentences = [
+    {
+        russian: "Я хочу есть корейскую еду.",
+        korean: "저는 한국 음식을 먹고 싶습니다.",
+        words: {
+            "Я": "저",
+            "хочу": "싶다",
+            "есть": "먹다",
+            "корейскую еду": "한국 음식"
+        }
+    },
+    {
+        russian: "Я хочу прочитать ту книгу.",
+        korean: "저는 그 책을 읽고 싶습니다.",
+        words: {
+            "Я": "저",
+            "хочу": "싶다",
+            "прочитать": "읽다",
+            "ту книгу": "그 책"
+        }
+    },
+    {
+        russian: "Я хочу купить новый компьютер.",
+        korean: "저는 새로운 컴퓨터를 사고 싶습니다.",
+        words: {
+            "Я": "저",
+            "хочу": "싶다",
+            "купить": "사다",
+            "новый компьютер": "새로운 컴퓨터"
+        }
+    },
+    {
+        russian: "Ученики хотят встретиться с учителем.",
+        korean: "학생들은 선생님을 만나고 싶습니다.",
+        words: {
+            "Ученики": "학생들",
+            "хотят": "싶다",
+            "встретиться": "만나다",
+            "с учителем": "선생님"
+        }
+    },
+    {
+        russian: "Я хочу отправить электронное письмо.",
+        korean: "저는 이메일을 보내고 싶습니다.",
+        words: {
+            "Я": "저",
+            "хочу": "싶다",
+            "отправить": "보내다",
+            "электронное письмо": "이메일"
+        }
+    },
+    {
+        russian: "Я хочу посмотреть тот фильм.",
+        korean: "저는 그 영화를 보고 싶습니다.",
+        words: {
+            "Я": "저",
+            "хочу": "싶다",
+            "посмотреть": "보다",
+            "тот фильм": "그 영화"
+        }
+    },
+    {
+        russian: "Туристы хотят посетить дворец.",
+        korean: "관광객들은 궁전을 방문하고 싶습니다.",
+        words: {
+            "Туристы": "관광객들",
+            "хотят": "싶다",
+            "посетить": "방문하다",
+            "дворец": "궁전"
+        }
+    },
+    {
+        russian: "Я хочу учить корейский язык.",
+        korean: "저는 한국어를 배우고 싶습니다.",
+        words: {
+            "Я": "저",
+            "хочу": "싶다",
+            "учить": "배우다",
+            "корейский язык": "한국어"
+        }
+    },
+    {
+        russian: "Я хочу выпить кофе.",
+        korean: "저는 커피를 마시고 싶습니다.",
+        words: {
+            "Я": "저",
+            "хочу": "싶다",
+            "выпить": "마시다",
+            "кофе": "커피"
+        }
+    },
+    {
+        russian: "Дети хотят получить подарок.",
+        korean: "아이들은 선물을 받고 싶습니다.",
+        words: {
+            "Дети": "아이들",
+            "хотят": "싶다",
+            "получить": "받다",
+            "подарок": "선물"
+        }
+    },
+    {
+        russian: "Я хочу петь песню.",
+        korean: "저는 노래를 부르고 싶습니다.",
+        words: {
+            "Я": "저",
+            "хочу": "싶다",
+            "петь": "부르다",
+            "песню": "노래"
+        }
+    },
+    {
+        russian: "Я хочу найти сумку.",
+        korean: "저는 가방을 찾고 싶습니다.",
+        words: {
+            "Я": "저",
+            "хочу": "싶다",
+            "найти": "찾다",
+            "сумку": "가방"
+        }
+    },
+    {
+        russian: "Я хочу написать письмо.",
+        korean: "저는 편지를 쓰고 싶습니다.",
+        words: {
+            "Я": "저",
+            "хочу": "싶다",
+            "написать": "쓰다",
+            "письмо": "편지"
+        }
+    },
+    {
+        russian: "Я хочу понять эту проблему.",
+        korean: "저는 이 문제를 이해하고 싶습니다.",
+        words: {
+            "Я": "저",
+            "хочу": "싶다",
+            "понять": "이해하다",
+            "эту проблему": "이 문제"
+        }
+    },
+    {
+        russian: "Я хочу позвонить семье.",
+        korean: "저는 가족에게 전화하고 싶습니다.",
+        words: {
+            "Я": "저",
+            "хочу": "싶다",
+            "позвонить": "전화하다",
+            "семье": "가족"
+        }
+    },
+    {
+        russian: "Я хочу повидать моего младшего брата/сестру.",
+        korean: "저는 동생이 보고 싶습니다.",
+        words: {
+            "Я": "저",
+            "хочу": "싶다",
+            "повидать": "보다",
+            "младшего брата/сестру": "동생"
+        }
+    },
+    {
+        russian: "Я хочу встретиться с другом.",
+        korean: "저는 친구가 만나고 싶습니다.",
+        words: {
+            "Я": "저",
+            "хочу": "싶다",
+            "встретиться": "만나다",
+            "с другом": "친구"
+        }
+    },
+    {
+        russian: "Я хочу встретиться с учителем.",
+        korean: "저는 선생님이 뵙고 싶습니다.",
+        words: {
+            "Я": "저",
+            "хочу": "싶다",
+            "встретиться": "뵙다",
+            "с учителем": "선생님"
+        }
+    },
+    {
+        russian: "Я хочу скучать по родителям.",
+        korean: "저는 부모님이 그리웁고 싶습니다.",
+        words: {
+            "Я": "저",
+            "хочу": "싶다",
+            "скучать": "그리워하다",
+            "по родителям": "부모님"
+        }
+    },
+    {
+        russian: "Я хочу помочь тому человеку.",
+        korean: "저는 그 사람이 도와주고 싶습니다.",
+        words: {
+            "Я": "저",
+            "хочу": "싶다",
+            "помочь": "도와주다",
+            "тому человеку": "그 사람"
+        }
+    },
+    {
+        russian: "Я сейчас хочу спать.",
+        korean: "저는 지금 잠을 자고 싶습니다.",
+        words: {
+            "Я": "저",
+            "сейчас": "지금",
+            "хочу": "싶다",
+            "спать": "자다"
+        }
+    },
+    {
+        russian: "Я хочу быстро пойти домой.",
+        korean: "저는 빨리 집에 가고 싶습니다.",
+        words: {
+            "Я": "저",
+            "хочу": "싶다",
+            "быстро": "빨리",
+            "пойти": "가다",
+            "домой": "집"
+        }
+    },
+    {
+        russian: "Я хочу отправиться в путешествие.",
+        korean: "저는 여행을 떠나고 싶습니다.",
+        words: {
+            "Я": "저",
+            "хочу": "싶다",
+            "отправиться": "떠나다",
+            "в путешествие": "여행"
+        }
+    },
+    {
+        russian: "Я хочу отдохнуть в отпуске.",
+        korean: "저는 휴가를 위해 쉬고 싶습니다.",
+        words: {
+            "Я": "저",
+            "хочу": "싶다",
+            "отдохнуть": "쉬다",
+            "в отпуске": "휴가"
+        }
+    },
+    {
+        russian: "Все сотрудники хотят уйти с работы пораньше.",
+        korean: "모든 직원들이 일찍 퇴근하고 싶습니다.",
+        words: {
+            "Все сотрудники": "모든 직원들",
+            "хотят": "싶다",
+            "уйти": "퇴근하다",
+            "с работы": "퇴근",
+            "пораньше": "일찍"
+        }
+    },
+    {
+        russian: "Я завтра утром хочу встать поздно.",
+        korean: "저는 내일 아침에 늦게 일어나고 싶습니다.",
+        words: {
+            "Я": "저",
+            "завтра утром": "내일 아침에",
+            "хочу": "싶다",
+            "встать": "일어나다",
+            "поздно": "늦게"
+        }
+    },
+    {
+        russian: "Дети хотят побегать и поиграть в парке.",
+        korean: "아이들이 공원에서 뛰어놀고 싶습니다.",
+        words: {
+            "Дети": "아이들",
+            "хотят": "싶다",
+            "побегать и поиграть": "뛰어놀다",
+            "в парке": "공원에서"
+        }
+    },
+    {
+        russian: "Я хочу побыть один/одна.",
+        korean: "저는 혼자 있고 싶습니다.",
+        words: {
+            "Я": "저",
+            "хочу": "싶다",
+            "побыть": "있 다",
+            "один/одна": "혼자"
+        }
+    },
+    {
+        russian: "Он хочет жить за границей.",
+        korean: "그는 외국에서 살고 싶습니다.",
+        words: {
+            "Он": "그는",
+            "хочет": "싶다",
+            "жить": "살다",
+            "за границей": "외국에서"
+        }
+    },
+    {
+        russian: "Я хочу продолжать работать в этой компании.",
+        korean: "저는 이 회사에서 계속 일하고 싶습니다.",
+        words: {
+            "Я": "저",
+            "хочу": "싶다",
+            "продолжать работать": "계속 일하다",
+            "в этой компании": "이 회사에서"
+        }
+    },
+    {
+        russian: "Что вы хотите съесть/выпить?",
+        korean: "무엇을 드시고 싶습니까?",
+        words: {
+            "Что": "무엇",
+            "вы хотите": "싶습니까",
+            "съесть/выпить": "드시다"
+        }
+    },
+    {
+        russian: "Куда вы хотите пойти?",
+        korean: "어디에 가고 싶습니까?",
+        words: {
+            "Куда": "어디에",
+            "вы хотите": "싶습니까",
+            "пойти": "가다"
+        }
+    },
+    {
+        russian: "Вы хотите есть корейскую еду?",
+        korean: "한국 음식을 먹고 싶습니까?",
+        words: {
+            "Вы хотите": "싶습니까",
+            "есть": "먹다",
+            "корейскую еду": "한국 음식"
+        }
+    },
+    {
+        russian: "Вы хотите прочитать эту книгу?",
+        korean: "이 책을 읽고 싶습니까?",
+        words: {
+            "Вы хотите": "싶습니까",
+            "прочитать": "읽다",
+            "эту книгу": "이 책"
+        }
+    },
+    {
+        russian: "Вы сейчас хотите спать?",
+        korean: "지금 자고 싶습니까?",
+        words: {
+            "Вы хотите": "싶습니까",
+            "сейчас": "지금",
+            "спать": "자다"
+        }
+    },
+    {
+        russian: "Какой фильм вы хотите посмотреть?",
+        korean: "무슨 영화를 보고 싶습니까?",
+        words: {
+            "Какой": "무슨",
+            "фильм": "영화",
+            "вы хотите": "싶습니까",
+            "посмотреть": "보다"
+        }
+    },
+    {
+        russian: "Что вы хотите делать на выходных?",
+        korean: "주말에 무엇을 하고 싶습니까?",
+        words: {
+            "Что": "무엇",
+            "вы хотите": "싶습니까",
+            "делать": "하다",
+            "на выходных": "주말에"
+        }
+    },
+    {
+        russian: "Вы хотите встретиться с младшим братом/сестрой?",
+        korean: "동생을 만나고 싶습니까?",
+        words: {
+            "Вы хотите": "싶습니까",
+            "встретиться": "만나다",
+            "с младшим братом/сестрой": "동생"
+        }
+    },
+    {
+        russian: "Вы хотите выпить кофе?",
+        korean: "커피를 마시고 싶습니까?",
+        words: {
+            "Вы хотите": "싶습니까",
+            "выпить": "마시다",
+            "кофе": "커피"
+        }
+    },
+    {
+        russian: "Вы хотите учить корейский язык?",
+        korean: "한국어를 배우고 싶습니까?",
+        words: {
+            "Вы хотите": "싶습니까",
+            "учить": "배우다",
+            "корейский язык": "한국어"
+        }
+    },
+    {
+        russian: "Что он/она хочет купить?",
+        korean: "그분은 무엇을 사고 싶습니까?",
+        words: {
+            "он/она": "그분은",
+            "Что": "무엇",
+            "хочет": "싶습니까",
+            "купить": "사다"
+        }
+    },
+    {
+        russian: "Что хотят съесть дети?",
+        korean: "아이들이 무엇을 먹고 싶습니까?",
+        words: {
+            "дети": "아이들",
+            "Что": "무엇",
+            "хотят": "싶습니까",
+            "съесть": "먹다"
+        }
+    },
+    {
+        russian: "Когда офисные работники хотят уйти с работы?",
+        korean: "회사원들은 언제 퇴근하고 싶습니까?",
+        words: {
+            "офисные работники": "회사원들",
+            "Когда": "언제",
+            "хотят": "싶습니까",
+            "уйти с работы": "퇴근하다"
+        }
+    },
+    {
+        russian: "Куда учитель хочет пойти?",
+        korean: "선생님은 어디에 가고 싶습니까?",
+        words: {
+            "учитель": "선생님",
+            "Куда": "어디에",
+            "хочет": "싶습니까",
+            "пойти": "가다"
+        }
+    },
+    {
+        russian: "Почему они хотят посмотреть тот фильм?",
+        korean: "그들은 왜 그 영화를 보고 싶습니까?",
+        words: {
+            "они": "그들",
+            "Почему": "왜",
+            "хотят": "싶습니까",
+            "посмотреть": "보다",
+            "тот фильм": "그 영화"
+        }
+    },
+    {
+        russian: "Кого хочет встретить ваш друг?",
+        korean: "당신의 친구는 누구를 만나고 싶습니까?",
+        words: {
+            "ваш друг": "당신의 친구",
+            "Кого": "누구",
+            "хочет": "싶습니까",
+            "встретить": "만나다"
+        }
+    },
+    {
+        russian: "Чему хочет научиться тот студент?",
+        korean: "그 학생은 어떤 것을 배우고 싶습니까?",
+        words: {
+            "тот студент": "그 학생",
+            "Чему": "어떤 것",
+            "хочет": "싶습니까",
+            "научиться": "배우다"
+        }
+    },
+    {
+        russian: "Как туристы хотят добраться до того места?",
+        korean: "여행객들은 어떻게 그 곳에 가고 싶습니까?",
+        words: {
+            "туристы": "여행객들",
+            "Как": "어떻게",
+            "хотят": "싶습니까",
+            "добраться": "가다",
+            "до того места": "그 곳에"
+        }
+    },
+    {
+        russian: "Что вы хотите делать сегодня вечером?",
+        korean: "당신은 오늘 저녁에 무엇을 하고 싶습니까?",
+        words: {
+            "вы": "당신",
+            "Что": "무엇",
+            "хотите": "싶습니까",
+            "делать": "하다",
+            "сегодня вечером": "오늘 저녁에"
+        }
+    },
+    {
+        russian: "Куда она хочет поехать на выходные?",
+        korean: "그녀는 주말에 어디에 가고 싶습니까?",
+        words: {
+            "она": "그녀",
+            "Куда": "어디에",
+            "хочет": "싶습니까",
+            "поехать": "가다",
+            "на выходные": "주말에"
+        }
+    },
+    {
+        russian: "Я не хочу смотреть тот фильм.",
+        korean: "저는 그 영화를 안 보고 싶습니다.",
+        words: {
+            "Я": "저",
+            "не хочу": "안 싶다",
+            "смотреть": "보다",
+            "тот фильм": "그 영화"
+        }
+    },
+    {
+        russian: "Я не хочу выходить на улицу.",
+        korean: "저는 밖에 나가고 싶지 않습니다.",
+        words: {
+            "Я": "저",
+            "не хочу": "싶지 않다",
+            "выходить": "나가다",
+            "на улицу": "밖에"
+        }
+    },
+    {
+        russian: "Я не хочу встречаться с тем человеком.",
+        korean: "저는 그 사람을 만나고 싶지 않습니다.",
+        words: {
+            "Я": "저",
+            "не хочу": "싶지 않다",
+            "встречаться": "만나다",
+            "с тем человеком": "그 사람"
+        }
+    },
+    {
+        russian: "Ребёнок не хочет принимать лекарство.",
+        korean: "아이는 약을 먹고 싶지 않습니다.",
+        words: {
+            "Ребёнок": "아이",
+            "не хочет": "싶지 않다",
+            "принимать": "먹다",
+            "лекарство": "약"
+        }
+    },
+    {
+        russian: "Я не хочу слушать эту историю.",
+        korean: "저는 그 이야기를 듣고 싶지 않습니다.",
+        words: {
+            "Я": "저",
+            "не хочу": "싶지 않다",
+            "слушать": "듣다",
+            "эту историю": "그 이야기"
+        }
+    },
+    {
+        russian: "Они не хотят бросать работу.",
+        korean: "그들은 일을 그만두고 싶지 않습니다.",
+        words: {
+            "Они": "그들",
+            "не хотят": "싶지 않다",
+            "бросать": "그만두다",
+            "работу": "일"
+        }
+    },
+    {
+        russian: "Я не хочу покупать дорогую машину.",
+        korean: "저는 비싼 차를 사고 싶지 않습니다.",
+        words: {
+            "Я": "저",
+            "не хочу": "싶지 않다",
+            "покупать": "사다",
+            "дорогую машину": "비싼 차"
+        }
+    },
+    {
+        russian: "Я не хочу путешествовать один/одна.",
+        korean: "저는 혼자 여행하고 싶지 않습니다.",
+        words: {
+            "Я": "저",
+            "не хочу": "싶지 않다",
+            "путешествовать": "여행하다",
+            "один/одна": "혼자"
+        }
+    },
+    {
+        russian: "Студенты не хотят сдавать экзамен.",
+        korean: "학생들은 시험을 보고 싶지 않습니다.",
+        words: {
+            "Студенты": "학생들",
+            "не хотят": "싶지 않다",
+            "сдавать": "보다",
+            "экзамен": "시험"
+        }
+    },
+    {
+        russian: "Я не хочу ждать здесь.",
+        korean: "저는 여기서 기다리고 싶지 않습니다.",
+        words: {
+            "Я": "저",
+            "не хочу": "싶지 않다",
+            "ждать": "기다리다",
+            "здесь": "여기서"
+        }
+    },
+    {
+        russian: "Я не хочу присутствовать на собрании.",
+        korean: "저는 회의에 참석하고 싶지 않습니다.",
+        words: {
+            "Я": "저",
+            "не хочу": "싶지 않다",
+            "присутствовать": "참석하다",
+            "на собрании": "회의에"
+        }
+    },
+    {
+        russian: "Я не хочу говорить об этой проблеме.",
+        korean: "저는 그 문제에 대해 이야기하고 싶지 않습니다.",
+        words: {
+            "Я": "저",
+            "не хочу": "싶지 않다",
+            "говорить": "이야기하다",
+            "об этой проблеме": "그 문제에 대해"
+        }
+    },
+    {
+        russian: "Я не хочу поздно ложиться сегодня.",
+        korean: "저는 오늘 늦게 자고 싶지 않습니다.",
+        words: {
+            "Я": "저",
+            "не хочу": "싶지 않다",
+            "поздно ложиться": "늦게 자다",
+            "сегодня": "오늘"
+        }
+    },
+    {
+        russian: "Он не хочет делать эту работу.",
+        korean: "그는 그 일을 하고 싶지 않습니다.",
+        words: {
+            "Он": "그는",
+            "не хочет": "싶지 않다",
+            "делать": "하다",
+            "эту работу": "그 일"
+        }
+    },
+    {
+        russian: "Я не хочу переезжать.",
+        korean: "저는 이사를 가고 싶지 않습니다.",
+        words: {
+            "Я": "저",
+            "не хочу": "싶지 않다",
+            "переезжать": "이사 가다"
+        }
+    },
+    {
+        russian: "Дети не хотят есть овощи.",
+        korean: "아이들은 채소를 먹고 싶지 않습니다.",
+        words: {
+            "Дети": "아이들",
+            "не хотят": "싶지 않다",
+            "есть": "먹다",
+            "овощи": "채소"
+        }
+    },
+    {
+        russian: "Я не хочу звонить ему.",
+        korean: "저는 그에게 전화하고 싶지 않습니다.",
+        words: {
+            "Я": "저",
+            "не хочу": "싶지 않다",
+            "звонить": "전화하다",
+            "ему": "그에게"
+        }
+    },
+    {
+        russian: "Она не хочет встречаться с тем мужчиной.",
+        korean: "그녀는 그 남자를 만나고 싶지 않습니다.",
+        words: {
+            "Она": "그녀",
+            "не хочет": "싶지 않다",
+            "встречаться": "만나다",
+            "с тем мужчиной": "그 남자"
+        }
+    },
+    {
+        russian: "Я не хочу подписывать тот контракт.",
+        korean: "저는 그 계약서에 서명하고 싶지 않습니다.",
+        words: {
+            "Я": "저",
+            "не хочу": "싶지 않다",
+            "подписывать": "서명하다",
+            "тот контракт": "그 계약서"
+        }
+    },
+    {
+        russian: "Я не хочу выбрасывать эту еду.",
+        korean: "저는 이 음식을 버리고 싶지 않습니다.",
+        words: {
+            "Я": "저",
+            "не хочу": "싶지 않다",
+            "выбрасывать": "버리다",
+            "эту еду": "이 음식"
+        }
+    },
+    {
+        russian: "Он хочет поехать в зарубежную поездку.",
+        korean: "그는 해외 여행을 가고 싶어합니다.",
+        words: {
+            "Он": "그는",
+            "хочет": "싶어하다",
+            "поехать": "가다",
+            "в зарубежную поездку": "해외 여행"
+        }
+    },
+    {
+        russian: "Она хочет стать известной певицей.",
+        korean: "그녀는 유명한 가수가 되고 싶어합니다.",
+        words: {
+            "Она": "그녀",
+            "хочет": "싶어하다",
+            "стать": "되다",
+            "известной певицей": "유명한 가수"
+        }
+    },
+    {
+        russian: "Дети хотят пойти в зоопарк.",
+        korean: "아이들이 동물원에 가고 싶어합니다.",
+        words: {
+            "Дети": "아이들",
+            "хотят": "싶어하다",
+            "пойти": "가다",
+            "в зоопарк": "동물원에"
+        }
+    },
+    {
+        russian: "Директор хочет сейчас отдохнуть.",
+        korean: "부장님은 지금 휴식을 취하고 싶어합니다.",
+        words: {
+            "Директор": "부장님",
+            "хочет": "싶어하다",
+            "сейчас": "지금",
+            "отдохнуть": "휴식을 취하다"
+        }
+    },
+    {
+        russian: "Они хотят продать дом.",
+        korean: "그들은 집을 팔고 싶어합니다.",
+        words: {
+            "Они": "그들",
+            "хотят": "싶어하다",
+            "продать": "팔다",
+            "дом": "집"
+        }
+    },
+    {
+        russian: "Мой брат хочет стать врачом.",
+        korean: "제 동생은 의사가 되고 싶어합니다.",
+        words: {
+            "Мой брат": "제 동생",
+            "хочет": "싶어하다",
+            "стать": "되다",
+            "врачом": "의사"
+        }
+    },
+    {
+        russian: "Тот студент хочет поступить в университет.",
+        korean: "그 학생은 대학에 들어가고 싶어합니다.",
+        words: {
+            "Тот студент": "그 학생",
+            "хочет": "싶어하다",
+            "поступить": "들어가다",
+            "в университет": "대학에"
+        }
+    },
+    {
+        russian: "Дедушка хочет уехать в деревню.",
+        korean: "할아버지께서는 시골에 내려가고 싶어하십니다.",
+        words: {
+            "Дедушка": "할아버지",
+            "хочет": "싶어하시다",
+            "уехать": "내려가다",
+            "в деревню": "시골에"
+        }
+    },
+    {
+        russian: "Она хочет научиться играть на пианино.",
+        korean: "그녀는 피아노를 배우고 싶어합니다.",
+        words: {
+            "Она": "그녀",
+            "хочет": "싶어하다",
+            "научиться": "배우다",
+            "играть на пианино": "피아노"
+        }
+    },
+    {
+        russian: "Офисные работники хотят получить бонусы.",
+        korean: "회사원들이 보너스를 받고 싶어합니다.",
+        words: {
+            "Офисные работники": "회사원들",
+            "хотят": "싶어하다",
+            "получить": "받다",
+            "бонусы": "보너스"
+        }
+    },
+    {
+        russian: "Что он хочет делать?",
+        korean: "그는 무엇을 하고 싶어합니까?",
+        words: {
+            "он": "그는",
+            "Что": "무엇",
+            "хочет": "싶어합니까",
+            "делать": "하다"
+        }
+    },
+    {
+        russian: "Что хотят съесть дети?",
+        korean: "아이들은 뭐가 먹고 싶어합니까?",
+        words: {
+            "дети": "아이들",
+            "Что": "뭐",
+            "хотят": "싶어합니까",
+            "съесть": "먹다"
+        }
+    },
+    {
+        russian: "Куда учитель хочет пойти?",
+        korean: "선생님은 어디에 가고 싶어하십니까?",
+        words: {
+            "учитель": "선생님",
+            "Куда": "어디에",
+            "хочет": "싶어하십니까",
+            "пойти": "가다"
+        }
+    },
+    {
+        russian: "Какой подарок она хочет получить?",
+        korean: "그녀는 어떤 선물을 받고 싶어합니까?",
+        words: {
+            "она": "그녀",
+            "Какой": "어떤",
+            "подарок": "선물",
+            "хочет": "싶어합니까",
+            "получить": "받다"
+        }
+    },
+    {
+        russian: "Когда они хотят пожениться?",
+        korean: "그들은 언제 결혼하고 싶어합니까?",
+        words: {
+            "они": "그들",
+            "Когда": "언제",
+            "хотят": "싶어합니까",
+            "пожениться": "결혼하다"
+        }
+    },
+    {
+        russian: "Кем хочет стать ваш сын, когда вырастет?",
+        korean: "당신의 아들은 커서 무엇이 되고 싶어합니까?",
+        words: {
+            "ваш сын": "당신의 아들",
+            "Кем": "무엇",
+            "хочет": "싶어합니까",
+            "стать": "되다",
+            "когда вырастет": "커서"
+        }
+    },
+    {
+        russian: "Почему тот сотрудник хочет уволиться?",
+        korean: "그 회사원은 왜 퇴사하고 싶어합니까?",
+        words: {
+            "тот сотрудник": "그 회사원",
+            "Почему": "왜",
+            "хочет": "싶어합니까",
+            "уволиться": "퇴사하다"
+        }
+    },
+    {
+        russian: "С кем хочет встретиться тот уважаемый человек?",
+        korean: "그분은 누구를 만나고 싶어하십니까?",
+        words: {
+            "тот уважаемый человек": "그분",
+            "С кем": "누구",
+            "хочет": "싶어하십니까",
+            "встретиться": "만나다"
+        }
+    },
+    {
+        russian: "Как студенты хотят учиться?",
+        korean: "학생들은 어떻게 공부하고 싶어합니까?",
+        words: {
+            "студенты": "학생들",
+            "Как": "어떻게",
+            "хотят": "싶어합니까",
+            "учиться": "공부하다"
+        }
+    },
+    {
+        russian: "Что она хочет делать на выходных?",
+        korean: "그녀는 주말에 무엇을 하고 싶어합니까?",
+        words: {
+            "она": "그녀",
+            "Что": "무엇",
+            "хочет": "싶어합니까",
+            "делать": "하다",
+            "на выходных": "주말에"
+        }
+    },
+    {
+        russian: "Я хочу поехать в Корею и встретиться с корейскими друзьями.",
+        korean: "저는 한국에 가서 한국 친구들을 만나고 싶습니다.",
+        words: {
+            "Я": "저",
+            "хочу": "싶다",
+            "поехать": "가다",
+            "в Корею": "한국에",
+            "и": "서",
+            "встретиться": "만나다",
+            "с корейскими друзьями": "한국 친구들"
+        }
+    },
+    {
+        russian: "Он хочет окончить университет и поехать учиться за границу.",
+        korean: "그는 대학교를 졸업하고 유학을 가고 싶어합니다.",
+        words: {
+            "Он": "그는",
+            "хочет": "싶어하다",
+            "окончить": "졸업하다",
+            "университет": "대학교",
+            "и": "고",
+            "поехать учиться": "유학 가다",
+            "за границу": "유학"
+        }
+    },
+    {
+        russian: "Я хочу дочитать эту книгу и купить следующую.",
+        korean: "저는 이 책을 다 읽고 다음 책을 사고 싶습니다.",
+        words: {
+            "Я": "저",
+            "хочу": "싶다",
+            "дочитать": "다 읽다",
+            "эту книгу": "이 책",
+            "и": "고",
+            "купить": "사다",
+            "следующую": "다음 책"
+        }
+    },
+    {
+        russian: "Дети хотят поехать в парк развлечений и весело поиграть.",
+        korean: "아이들은 놀이공원에 가서 재미있게 놀고 싶어합니다.",
+        words: {
+            "Дети": "아이들",
+            "хотят": "싶어하다",
+            "поехать": "가다",
+            "в парк развлечений": "놀이공원에",
+            "и": "서",
+            "весело поиграть": "재미있게 놀다"
+        }
+    },
+    {
+        russian: "Я хочу накопить денег и купить хорошую машину.",
+        korean: "저는 돈을 모아서 좋은 차를 사고 싶습니다.",
+        words: {
+            "Я": "저",
+            "хочу": "싶다",
+            "накопить": "모으다",
+            "денег": "돈",
+            "и": "서",
+            "купить": "사다",
+            "хорошую машину": "좋은 차"
+        }
+    },
+    {
+        russian: "Она хочет поправить здоровье и снова заниматься спортом.",
+        korean: "그녀는 건강해져서 다시 운동을 하고 싶어합니다.",
+        words: {
+            "Она": "그녀",
+            "хочет": "싶어하다",
+            "поправить здоровье": "건강해지다",
+            "и": "서",
+            "снова": "다시",
+            "заниматься спортом": "운동하다"
+        }
+    },
+    {
+        russian: "Я хочу хорошо выучить корейский и устроиться на работу в корейскую компанию.",
+        korean: "저는 한국어를 잘 배워서 한국 회사에 취직하고 싶습니다.",
+        words: {
+            "Я": "저",
+            "хочу": "싶다",
+            "хорошо выучить": "잘 배우다",
+            "корейский": "한국어",
+            "и": "서",
+            "устроиться на работу": "취직하다",
+            "в корейскую компанию": "한국 회사에"
+        }
+    },
+    {
+        russian: "Они хотят быстро закончить работу и пойти домой.",
+        korean: "그들은 일을 빨리 마치고 집에 가고 싶어합니다.",
+        words: {
+            "Они": "그들",
+            "хотят": "싶어하다",
+            "быстро": "빨리",
+            "закончить": "마치다",
+            "работу": "일",
+            "и": "고",
+            "пойти": "가다",
+            "домой": "집에"
+        }
+    },
+    {
+        russian: "Я хочу поехать на море и отдохнуть в эти отпуск.",
+        korean: "저는 이번 휴가에 바다에 가서 쉬고 싶습니다.",
+        words: {
+            "Я": "저",
+            "хочу": "싶다",
+            "поехать": "가다",
+            "на море": "바다에",
+            "и": "서",
+            "отдохнуть": "쉬다",
+            "в эти отпуск": "이번 휴가에"
+        }
+    },
+    {
+        russian: "Учитель хочет поехать в тихое место и писать.",
+        korean: "선생님은 조용한 곳에 가서 글을 쓰고 싶어하십니다.",
+        words: {
+            "Учитель": "선생님",
+            "хочет": "싶어하시다",
+            "поехать": "가다",
+            "в тихое место": "조용한 곳에",
+            "и": "서",
+            "писать": "글을 쓰다"
+        }
+    }
+];
+
+
+     // Переменные для управления состоянием
+    let currentIndex = 0;
+    let usedIndices = new Set();
+    let isRandomMode = true;
+
+    // Элементы DOM
+    const russianSentenceEl = document.getElementById('russian-sentence');
+    const koreanSentenceEl = document.getElementById('korean-sentence');
+    const koreanInputEl = document.getElementById('korean-input');
+    const resultMessageEl = document.getElementById('result-message');
+    const sentenceNumberEl = document.getElementById('sentence-number');
+    const progressEl = document.getElementById('progress');
+    const checkBtn = document.getElementById('check-btn');
+    const showBtn = document.getElementById('show-btn');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const speakerIcon = document.getElementById('speaker-icon');
+
+   // Функция для форматирования русского предложения с подсказками
+function formatRussianSentence(sentence, words) {
+    let formattedSentence = sentence;
+    
+    // Сортируем ключи по длине (от самых длинных к самым коротким)
+    // чтобы сначала заменять составные выражения
+    const sortedKeys = Object.keys(words).sort((a, b) => b.length - a.length);
+    
+    // Заменяем все фразы из words в предложении
+    sortedKeys.forEach(phrase => {
+        const translation = words[phrase];
+        const regex = new RegExp(phrase.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g');
+        formattedSentence = formattedSentence.replace(regex, 
+            `<span class="russian-word" data-translation="${translation}">${phrase}</span>`
+        );
+    });
+    
+    return formattedSentence;
+}
+
+    // Функция для произношения корейского предложения
+    function speakKorean() {
+        const koreanText = sentences[currentIndex].korean;
+        
+        if ('speechSynthesis' in window) {
+            const utterance = new SpeechSynthesisUtterance(koreanText);
+            utterance.lang = 'ko-KR';
+            utterance.rate = 0.9;
+            utterance.pitch = 1;
+            
+            window.speechSynthesis.speak(utterance);
+        } else {
+            alert("Ваш браузер не поддерживает синтез речи");
+        }
+    }
+
+    // Функция для отображения текущего предложения
+    function displayCurrentSentence() {
+        const currentSentence = sentences[currentIndex];
+        
+        sentenceNumberEl.innerHTML = `<span>Пример ${currentIndex + 1} из ${sentences.length}</span><span class="speaker-icon" id="speaker-icon">🔊</span>`;
+        russianSentenceEl.innerHTML = formatRussianSentence(currentSentence.russian, currentSentence.words);
+        koreanSentenceEl.textContent = currentSentence.korean;
+        koreanSentenceEl.style.display = 'none';
+        koreanInputEl.value = '';
+        resultMessageEl.style.display = 'none';
+        
+        // Обновляем состояние кнопок
+        prevBtn.disabled = currentIndex === 0;
+        nextBtn.disabled = currentIndex === sentences.length - 1;
+        
+        // Обновляем прогресс
+        progressEl.textContent = `Прогресс: ${currentIndex + 1}/${sentences.length}`;
+        
+        // Обновляем обработчик для иконки рупора
+        document.getElementById('speaker-icon').addEventListener('click', speakKorean);
+        
+        // Фокус на поле ввода
+        koreanInputEl.focus();
+    }
+
+    // Функция для получения случайного индекса
+    function getRandomIndex() {
+        if (usedIndices.size >= sentences.length) {
+            usedIndices.clear(); // Начинаем заново, если все примеры использованы
+        }
+        
+        let randomIndex;
+        do {
+            randomIndex = Math.floor(Math.random() * sentences.length);
+        } while (usedIndices.has(randomIndex));
+        
+        usedIndices.add(randomIndex);
+        return randomIndex;
+    }
+
+    // Функция для проверки введенного ответа
+    function checkAnswer() {
+        const userAnswer = koreanInputEl.value.trim();
+        const correctAnswer = sentences[currentIndex].korean;
+        
+        // Нормализуем ответы для сравнения (убираем лишние пробелы, игнорируем регистр)
+        const normalizedUserAnswer = userAnswer.replace(/\s+/g, ' ').toLowerCase();
+        const normalizedCorrectAnswer = correctAnswer.replace(/\s+/g, ' ').toLowerCase();
+        
+        if (normalizedUserAnswer === normalizedCorrectAnswer) {
+            resultMessageEl.textContent = "Правильно!";
+            resultMessageEl.className = "result-message correct";
+        } else {
+            resultMessageEl.textContent = "Неправильно. Попробуйте еще раз.";
+            resultMessageEl.className = "result-message incorrect";
+        }
+        
+        resultMessageEl.style.display = 'block';
+    }
+
+    // Обработчики событий
+    checkBtn.addEventListener('click', checkAnswer);
+
+    koreanInputEl.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            checkAnswer();
+        }
+    });
+
+    showBtn.addEventListener('click', function() {
+        koreanSentenceEl.style.display = 'block';
+        resultMessageEl.style.display = 'none';
+    });
+
+    prevBtn.addEventListener('click', function() {
+        if (currentIndex > 0) {
+            currentIndex--;
+            displayCurrentSentence();
+        }
+    });
+
+    nextBtn.addEventListener('click', function() {
+        if (isRandomMode) {
+            currentIndex = getRandomIndex();
+        } else {
+            if (currentIndex < sentences.length - 1) {
+                currentIndex++;
+            }
+        }
+        displayCurrentSentence();
+    });
+
+    // Инициализация тренажера
+    displayCurrentSentence();
+
+    // Оригинальный код для бургер-меню
+    const burgerMenu = document.getElementById("burgerMenu");
+    const navBurger = document.getElementById("navBurger");
+
+    burgerMenu.addEventListener("click", function (event) {
+        event.stopPropagation();
+        navBurger.classList.toggle("active");
+    });
+
+    document.addEventListener("click", function (event) {
+        if (!navBurger.contains(event.target) && !burgerMenu.contains(event.target)) {
+            navBurger.classList.remove("active");
+        }
+    });
+
+    function toggleBurger() {
+        const part1 = document.querySelector('.burger-part1');
+        const part2 = document.querySelector('.burger-part2');
+
+        if (part1.style.display === 'none') {
+            part1.style.display = 'block';
+            part2.style.display = 'none';
+        } else {
+            part1.style.display = 'none';
+            part2.style.display = 'block';
+        }
+    }
+
+    /* Свайп для мобильных устройств */
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    document.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+    });
+
+    document.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    });
+
+    function handleSwipe() {
+        const swipeThreshold = 50;
+        if (touchEndX < touchStartX - swipeThreshold) {
+            // Переход к следующему предложению
+            if (isRandomMode) {
+                currentIndex = getRandomIndex();
+            } else {
+                if (currentIndex < sentences.length - 1) {
+                    currentIndex++;
+                }
+            }
+            displayCurrentSentence();
+        } else if (touchEndX > touchStartX + swipeThreshold) {
+            // Переход к предыдущему предложению
+            if (currentIndex > 0) {
+                currentIndex--;
+                displayCurrentSentence();
+            }
+        }
+    }
+    </script>
+
+    <!-- <script src="/scripts/script_zvuk_clik.js"></script> -->
+</body>
+
+</html>
+
