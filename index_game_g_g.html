@@ -1,0 +1,2657 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Korean Numbers Guide</title>
+    <link rel="stylesheet" href="/style_base_numder_word.css">
+   <style>
+        .container {
+            padding: 0 20px;
+            max-width: 100%;
+        }
+
+        article {
+            width: 90%;
+            margin: 0 auto;
+            padding: 20px;
+            box-sizing: border-box;
+            /* Адаптация для article */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .rule {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f8f8f8;
+            border-radius: 8px;
+        }
+
+        .grammatika,
+        .center-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f8f8f8;
+            border-radius: 8px;
+        }
+
+        .grammatika h2 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .grammatika p {
+            line-height: 1.5;
+            color: #555;
+            text-align: center;
+            width: 100%;
+        }
+
+        .rule-face {
+            width: 100%;
+            margin: 15px 0;
+        }
+
+        .rule-word {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            padding: 15px 0;
+        }
+
+        h4,
+        h5,
+        h2 {
+            text-align: center;
+            margin-bottom: 10px;
+            margin-top: 10px;
+        }
+
+        .korean-text b {
+            font-weight: bold;
+        }
+
+        .left-spesial-word,
+        .right-primer {
+            flex: 1;
+            padding: 15px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        /* Left burger styles */
+        .left-burger {
+            position: fixed;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: #f8f8f8;
+            padding: 15px;
+            border-radius: 0 8px 8px 0;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+            width: 200px;
+            z-index: 100;
+        }
+
+        /* Style for h4 in burgers */
+        .left-burger h4,
+        .right-burger h4,
+        .bottom-burger h4 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        /* Style for paragraphs in burgers */
+        .left-burger p,
+        .right-burger p,
+        .bottom-burger p {
+            text-align: left;
+            margin: 10px 0;
+        }
+
+        /* Right burger styles */
+        .right-burger {
+            position: fixed;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: #f8f8f8;
+            padding: 15px;
+            border-radius: 8px 0 0 8px;
+            box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.1);
+            width: 200px;
+            z-index: 100;
+        }
+
+        /* Bottom burger styles */
+        .bottom-burger {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #f8f8f8;
+            padding: 15px;
+            border-radius: 8px 8px 0 0;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            z-index: 100;
+        }
+
+        .iconDown,
+        .iconUp {
+            cursor: pointer;
+            text-align: center;
+            border-radius: 5px;
+            margin: 10px auto;
+            width: 30px;
+        }
+
+        /* для перехода по ссылке на гармонию гласных */
+        .rule_garmoniya a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .rule_garmoniya b {
+            cursor: pointer;
+            color: rgb(81, 7, 8);
+            text-decoration: underline;
+        }
+
+   
+        /* Стили для слов с подсказками */
+        .russian-word {
+            cursor: pointer;
+            position: relative;
+            padding: 2px 4px;
+            border-radius: 3px;
+            transition: background-color 0.2s;
+            font-weight: 700;
+        }
+
+        .russian-word:hover {
+            background-color: rgba(52, 152, 219, 0.2);
+        }
+
+        .russian-word:hover::after {
+            content: attr(data-translation);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #2c3e50;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            white-space: nowrap;
+            z-index: 10;
+            font-size: 20px;
+            font-weight: 900;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .progress {
+            margin-top: 20px;
+            text-align: center;
+            font-weight: bold;
+            color: #2c3e50;
+            flex: 0 0 auto;
+        }
+
+        .perehod {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+        }
+
+.trenazher-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 20px;
+}
+
+/* Стили для поля ввода корейского текста */
+.korean-input {
+    width: 100%;
+    font-weight: 900;
+    font-size: 26px;
+    padding: 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    text-align: center;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+    margin-bottom: 20px;
+}
+
+.korean-input:focus {
+    border-color: #3498db;
+    outline: none;
+}
+
+.sentence-number {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 50px; /* Расстояние 50px между элементами */
+}
+
+.russian-sentence {
+    margin-bottom: 20px;
+}
+
+/* .hint {
+    margin-bottom: 20px;
+} */
+.btn {
+    margin-bottom: 20px;
+}
+                        
+                     /* input-container */
+
+/* Адаптация для всех режимов */
+
+/* 1441px и выше */
+@media (min-width: 1441px) {
+    .trenazher-container {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: stretch;
+        padding: 35px;
+    }
+    
+    .exercise-container {
+        flex: 1 1 100%;
+    }
+    
+    .korean-input {
+        font-size: 28px;
+        padding: 18px;
+    }
+    
+    .controls {
+        justify-content: center;
+        gap: 12px;
+    }
+    
+    .btn {
+        flex: 0 1 calc(25% - 12px);
+        padding: 12px 18px;
+        font-size: 16px;
+        min-width: 140px;
+    }
+}
+
+/* 1440px - 1025px */
+@media (max-width: 1440px) and (min-width: 1025px) {
+    .trenazher-container {
+        flex-direction: column;
+        align-items: center;
+        padding: 30px;
+    }
+    
+    .korean-input {
+        font-size: 26px;
+        padding: 16px;
+    }
+    
+    .controls {
+        justify-content: space-around;
+        gap: 10px;
+    }
+    
+    .btn {
+        flex: 0 1 calc(25% - 10px);
+        padding: 11px 16px;
+        font-size: 15px;
+        min-width: 130px;
+    }
+}
+
+/* 1024px - 769px */
+@media (max-width: 1024px) and (min-width: 769px) {
+    .trenazher-container {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 25px;
+    }
+    
+    .korean-input {
+        font-size: 24px;
+        padding: 14px;
+    }
+    
+    .controls {
+        justify-content: space-between;
+        gap: 8px;
+    }
+    
+    .btn {
+        flex: 1 1 calc(25% - 8px);
+        padding: 10px 14px;
+        font-size: 14px;
+        min-width: 110px;
+    }
+}
+
+/* 768px - 426px */
+@media (max-width: 768px) and (min-width: 426px) {
+    .trenazher-container {
+        flex-direction: column;
+        padding: 20px;
+        align-items: center;
+    }
+    
+    .korean-input {
+        font-size: 22px;
+        padding: 12px;
+    }
+    
+    .controls {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    
+    .btn {
+        flex: 1 1 calc(50% - 8px);
+        padding: 10px 12px;
+        font-size: 14px;
+        min-width: 0;
+    }
+}
+
+/* 425px - 376px */
+@media (max-width: 425px) and (min-width: 376px) {
+    .trenazher-container {
+        flex-direction: column;
+        padding: 18px;
+        align-items: stretch;
+    }
+    
+    .korean-input {
+        font-size: 20px;
+        padding: 11px;
+        font-weight: 800;
+    }
+    
+    .controls {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+    
+    .btn {
+        flex: 1 1 calc(50% - 6px);
+        padding: 9px 11px;
+        font-size: 13px;
+        min-width: 0;
+    }
+}
+
+/* 375px - 321px */
+@media (max-width: 375px) and (min-width: 321px) {
+    .trenazher-container {
+        flex-direction: column;
+        padding: 15px;
+        align-items: stretch;
+    }
+    
+    .korean-input {
+        font-size: 19px;
+        padding: 10px;
+        font-weight: 800;
+    }
+    
+    .controls {
+        flex-direction: column;
+        gap: 6px;
+    }
+    
+    .btn {
+        flex: 1 1 100%;
+        padding: 10px 12px;
+        font-size: 14px;
+        min-width: 0;
+        width: 100%;
+    }
+}
+
+/* 320px - 251px */
+@media (max-width: 320px) and (min-width: 251px) {
+    .trenazher-container {
+        flex-direction: column;
+        padding: 12px;
+        align-items: stretch;
+    }
+    
+    .korean-input {
+        font-size: 18px;
+        padding: 9px;
+        font-weight: 700;
+    }
+    
+    .controls {
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    .btn {
+        flex: 1 1 100%;
+        padding: 8px 10px;
+        font-size: 13px;
+        min-width: 0;
+        width: 100%;
+    }
+}
+
+/* 250px и меньше */
+@media (max-width: 250px) {
+    .trenazher-container {
+        flex-direction: column;
+        padding: 10px;
+        align-items: stretch;
+        gap: 15px;
+    }
+    
+    .korean-input {
+        font-size: 16px;
+        padding: 8px;
+        font-weight: 700;
+    }
+    
+    .controls {
+        flex-direction: column;
+        gap: 4px;
+    }
+    
+    .btn {
+        flex: 1 1 100%;
+        padding: 7px 9px;
+        font-size: 12px;
+        min-width: 0;
+        width: 100%;
+    }
+    
+    .trenazher-title {
+        font-size: 1.1em;
+    }
+}
+
+    
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="burger-menu" id="burgerMenu">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <img class="logo" src="/image/logo krug.svg" alt="Логотип">
+            <a href="" class="user"> <img class="lk" src="/image/userrblur.svg" alt="Пользователь"></a>
+        </div>
+        <nav class="nav-burger" id="navBurger">
+            <ul class="ul-header">
+                <li class="li-header"> <a href="" class="a-header">онлайн - переводчик</a></li>
+                <li class="li-header"> <a href="" class="a-header">контакты</a></li>
+                <li class="li-header"> <a href="" class="a-header">светлая тема</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="container">
+            <article>
+                <div class="trenazher-container">
+                    <!-- <h1 class="trenazher-title">Тренажер перевода с русского на корейский</h1> -->
+                    
+                    <div class="exercise-container">
+                        <div class="sentence-number" id="sentence-number">
+                            <span>Пример 1 из 10</span>
+                            <span class="speaker-icon" id="speaker-icon">🔊</span>
+                        </div>
+                        <div class="russian-sentence" id="russian-sentence"></div>
+                        
+                        <div class="input-container">
+                            <input type="text" class="korean-input" id="korean-input" placeholder="Введите перевод на корейском языке...">
+                            <div class="result-message" id="result-message"></div>
+                        </div>
+                        
+                        <div class="korean-sentence" id="korean-sentence"></div>
+                        
+                        <div class="controls">
+                            <button class="btn" id="prev-btn" disabled>Предыдущее</button>
+                            <button class="btn" id="check-btn">Проверить</button>
+                            <button class="btn" id="show-btn">Показать ответ</button>
+                            <button class="btn" id="next-btn">Следующее</button>
+                        </div>
+                        
+                        <div class="hint">Наведите на русское слово, чтобы увидеть перевод на корейский</div>
+                    </div>
+                    
+                    <div class="progress" id="progress">Прогресс: 0/10</div>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <!-- Левый бургер -->
+    <div class="left-burger">
+        <h4>Полезные фразы</h4>
+        <div class="korean-text" data-korean=""><b>안녕하세요</b> - Здравствуйте</div>
+        <div class="korean-text" data-korean=""><b>감사합니다</b> - Спасибо</div>
+        <div class="korean-text" data-korean=""><b>미안합니다</b> - Извините</div>
+        <div class="korean-text" data-korean=""><b>네</b> - Да</div>
+    </div>
+
+    <!-- Левая закладка -->
+    <div class="left-bookmark-icon"></div>
+
+    <!-- Нижний бургер -->
+    <div class="bottom-burger">
+        <h4>Грамматические подсказки</h4>
+        <div class="korean-text" data-korean=""><b>은/는</b> - тематические частицы</div>
+        <div class="korean-text" data-korean=""><b>이/가</b> - подлежащие частицы</div>
+        <div class="korean-text" data-korean=""><b>을/를</b> - объектные частицы</div>
+        <div class="korean-text" data-korean=""><b>에/에서</b> - локативные частицы</div>
+    </div>
+
+    <!-- Нижняя закладка -->
+    <div class="bottom-bookmark-icon"></div>
+
+    <!-- Правая закладка -->
+    <div class="bookmark-icon"></div>
+
+    <!-- Правый бургер -->
+    <!-- <div class="right-burger">
+        <h4>Числительные</h4>
+        <div class="korean-text" data-korean=""><b>하나</b> - один</div>
+        <div class="korean-text" data-korean=""><b>둘</b> - два</div>
+        <div class="korean-text" data-korean=""><b>셋</b> - три</div>
+        <div class="korean-text" data-korean=""><b>넷</b> - четыре</div>
+    </div> -->
+
+    <div class="perehod">
+        <a href="/index.html"><img src="/image/vlevo2.svg" alt=""></a>
+        <a href="/index.html"><img src="/image/vpravo2.svg" alt=""></a>
+    </div>
+
+    <footer>
+        <section class="footer container">
+            <address>
+                <div class="footer1">
+                    <div class="tel">
+                        <img src="/image/tel_blue.svg" alt="">
+                        <p>8-925-685-52-39 </p>
+                    </div>
+                    <div class="mail">
+                        <p>anastasiya3000@yandex.ru</p>
+                    </div>
+                    <div class="footer-icon">
+                        <a href="" class="social-icon"> <img src="/image/telegram_icon 1.svg" alt=""></a>
+                        <a href="" class="social-icon"> <img src="/image/skype_icon 1.svg" alt=""></a>
+                        <a href="" class="social-icon"><img src="/image/whatsapp_green.png" alt=""></a>
+                        <a href="" class="social-icon"> <img src="/image/license.svg" alt=""></a>
+                    </div>
+                </div>
+
+                <div class="footer2">
+                    <nav class="nav1-footer">
+                        <ul class="ul-footer">
+                            <div class="f-li">
+                                <li class="li-footer"> <a href="" class="a-footer"><b>Правила оплаты</b></a></li>
+                                <li class="li-footer"> <a href="" class="a-footer"><b>Договор оферты</b></a></li>
+                                <li class="li-footer"> <a href="" class="a-footer"><b>Согласие с рассылкой</b></a></li>
+                                <li class="li-footer"><a href="" class="a-footer"><b>Пользовательское соглашение</b></a>
+                                </li>
+                                <li class="li-footer"> <a href="" class="a-footer"><b>Политика
+                                            конфиденциальности</b></a></li>
+                                <li class="li-footer"> <a href="" class="a-footer"><b>Положение о защите персональных
+                                            данных</b></a></li>
+                            </div>
+                        </ul>
+                    </nav>
+                </div>
+            </address>
+        </section>
+
+        <div class="copyright">
+            <img id="copyright" src="/image/Copyright2 _ blue.svg" alt="copyright">
+            <p>takiza, 2025</p>
+        </div>
+    </footer>
+
+   <script>
+
+// Массив предложений для тренажера
+const sentences = [
+    {
+        russian: "Я ем рис.",
+        korean: "저는 밥을 먹어요.",
+        words: {
+            "Я": "저",
+            "ем": "먹다",
+            "рис": "밥"
+        }
+    },
+    {
+        russian: "Он пьёт воду.",
+        korean: "그는 물을 마셔요.",
+        words: {
+            "Он": "그",
+            "пьёт": "마시다",
+            "воду": "물"
+        }
+    },
+    {
+        russian: "Мы идём в школу.",
+        korean: "우리는 학교에 가요.",
+        words: {
+            "Мы": "우리",
+            "идём": "가다",
+            "в школу": "학교"
+        }
+    },
+    {
+        russian: "Я читаю книгу.",
+        korean: "저는 책을 읽어요.",
+        words: {
+            "Я": "저",
+            "читаю": "읽다",
+            "книгу": "책"
+        }
+    },
+   
+    {
+        russian: "Я встречаюсь с другом.",
+        korean: "저는 친구를 만나요.",
+        words: {
+            "Я": "저",
+            "встречаюсь": "만나다",
+            "с другом": "친구를"
+        }
+    },
+   
+    {
+        russian: "Я встаю.",
+        korean: "저는 일어나요.",
+        words: {
+            "Я": "저",
+            "встаю": "일어나다"
+        }
+    },
+    {
+        russian: "Ребёнок спит.",
+        korean: "아이가 자요.",
+        words: {
+            "Ребёнок": "아이",
+            "спит": "자다"
+        }
+    },
+    {
+        russian: "Учитель учит.",
+        korean: "선생님이 가르쳐요.",
+        words: {
+            "Учитель": "선생님",
+            "учит": "가르치다"
+        }
+    },
+    {
+        russian: "Идёт дождь.",
+        korean: "비가 와요.",
+        words: {
+            "Идёт дождь": "비가 오다"
+        }
+    },
+    {
+        russian: "Я пою песню.",
+        korean: "저는 노래를 불러요.",
+        words: {
+            "Я": "저",
+            "пою": "부르다",
+            "песню": "노래"
+        }
+    },
+    {
+        russian: "Он открывает дверь.",
+        korean: "그는 문을 열어요.",
+        words: {
+            "Он": "그",
+            "открывает": "열다",
+            "дверь": "문"
+        }
+    },
+    {
+        russian: "Я надеваю одежду.",
+        korean: "저는 옷을 입어요.",
+        words: {
+            "Я": "저",
+            "надеваю": "입다",
+            "одежду": "옷"
+        }
+    },
+    {
+        russian: "Он надевает обувь.",
+        korean: "그는 신발을 신어요.",
+        words: {
+            "Он": "그",
+            "надевает": "신다",
+            "обувь": "신발"
+        }
+    },
+    {
+        russian: "Я мою яблоко.",
+        korean: "저는 사과를 씻어요.",
+        words: {
+            "Я": "저",
+            "мою": "씻다",
+            "яблоко": "사과"
+        }
+    },
+    {
+        russian: "Собака лает.",
+        korean: "강아지가 짖어요.",
+        words: {
+            "Собака": "강아지",
+            "лает": "짖다"
+        }
+    },
+    {
+        russian: "Я учу корейский язык.",
+        korean: "저는 한국어를 배워요.",
+        words: {
+            "Я": "저",
+            "учу": "배우다",
+            "корейский язык": "한국어"
+        }
+    },
+    
+    {
+        russian: "Я убираю комнату.",
+        korean: "저는 방을 치워요.",
+        words: {
+            "Я": "저",
+            "убираю": "치우다",
+            "комнату": "방"
+        }
+    },
+     {
+        russian: "Бабушка идёт.",
+        korean: "할머니께서 오셔요.",
+        words: {
+            "Бабушка": "할머니",
+            "идёт": "오다"
+        }
+    },
+ 
+
+    {
+        russian: "Я смотрю на цветы.",
+        korean: "저는 꽃을 봐요.",
+        words: {
+            "Я": "저",
+            "смотрю": "보다",
+            "на цветы": "꽃을"
+        }
+    },
+ 
+    {
+        russian: "Я начинаю работу.",
+        korean: "저는 일을 시작해요.",
+        words: {
+            "Я": "저",
+            "начинаю": "시작하다",
+            "работу": "일"
+        }
+    },
+    {
+        russian: "Я перевожу текст.",
+        korean: "저는 본문을 번역해요.",
+        words: {
+            "Я": "저",
+            "перевожу": "번역하다",
+            "текст": "본문"
+        }
+    },
+    {
+        russian: "Я закрываю дверь.",
+        korean: "저는 문을 닫아요.",
+        words: {
+            "Я": "저",
+            "закрываю": "닫다",
+            "дверь": "문"
+        }
+    },
+    {
+        russian: "Я верю ему.",
+        korean: "저는 그를 믿어요.",
+        words: {
+            "Я": "저",
+            "верю": "믿다",
+            "ему": "그를"
+        }
+    },
+    {
+        russian: "Я получаю подарок.",
+        korean: "저는 선물을 받아요.",
+        words: {
+            "Я": "저",
+            "получаю": "받다",
+            "подарок": "선물"
+        }
+    },
+    {
+        russian: "Я слушаю музыку.",
+        korean: "저는 음악을 들어요.",
+        words: {
+            "Я": "저",
+            "слушаю": "듣다",
+            "музыку": "음악"
+        }
+    },
+    
+    {
+        russian: "Я иду пешком.",
+        korean: "저는 걸어요.",
+        words: {
+            "Я": "저",
+            "иду пешком": "걷다"
+        }
+    },
+    {
+        russian: "Он следует за мной.",
+        korean: "그는 저를 따라와요.",
+        words: {
+            "Он": "그",
+            "следует": "따르다",
+            "за мной": "저를"
+        }
+    },
+
+    {
+        russian: "Я слышу этот звук.",
+        korean: "저는 그 소리를 들어요.",
+        words: {
+            "Я": "저",
+            "слышу": "듣다",
+            "этот звук": "그 소리"
+        }
+    },
+    {
+        russian: "Они разговаривают.",
+        korean: "그들은 이야기를 나눠요.",
+        words: {
+            "Они": "그들",
+            "разговаривают": "이야기를 나누다"
+        }
+    },
+    {
+        russian: "Он строит дом.",
+        korean: "그는 집을 지어요.",
+        words: {
+            "Он": "그",
+            "строит": "짓다",
+            "дом": "집"
+        }
+    },
+ 
+   
+    {
+        russian: "Я хорошо пользуюсь палочками.",
+        korean: "저는 젓가락을 잘 써요.",
+        words: {
+            "Я": "저",
+            "пользуюсь": "쓰다",
+            "палочками": "젓가락",
+            "хорошо": "잘"
+        }
+    },
+  
+  
+    {
+        russian: "Он использует голову.",
+        korean: "그는 머리를 써요.",
+        words: {
+            "Он": "그",
+            "использует": "쓰다",
+            "голову": "머리"
+        }
+    },
+
+    {
+        russian: "Я режу мясо.",
+        korean: "저는 고기를 썰어요.",
+        words: {
+            "Я": "저",
+            "режу": "썰다",
+            "мясо": "고기"
+        }
+    },
+   
+ 
+    {
+        russian: "Я развешиваю бельё.",
+        korean: "저는 빨래를 널어요.",
+        words: {
+            "Я": "저",
+            "развешиваю": "널다",
+            "бельё": "빨래"
+        }
+    },
+    {
+        russian: "Я мою руки.",
+        korean: "저는 손을 씻어요.",
+        words: {
+            "Я": "저",
+            "мою": "씻다",
+            "руки": "손"
+        }
+    },
+    {
+        russian: "Я накладываю рис.",
+        korean: "저는 밥을 푸어요.",
+        words: {
+            "Я": "저",
+            "накладываю": "푸다",
+            "рис": "밥"
+        }
+    },
+
+    {
+        russian: "Я люблю тебя.",
+        korean: "저는 당신을 사랑해요.",
+        words: {
+            "Я": "저",
+            "люблю": "사랑하다",
+            "тебя": "당신을"
+        }
+    },
+    {
+        russian: "Я рисую картину.",
+        korean: "저는 그림을 그려요.",
+        words: {
+            "Я": "저",
+            "рисую": "그리다",
+            "картину": "그림"
+        }
+    },
+    {
+        russian: "Я пью кофе.",
+        korean: "저는 커피를 마셔요.",
+        words: {
+            "Я": "저",
+            "пью": "마시다",
+            "кофе": "커피"
+        }
+    },
+    {
+        russian: "Я быстро бегу.",
+        korean: "저는 빨리 달려요.",
+        words: {
+            "Я": "저",
+            "бегу": "달리다",
+            "быстро": "빨리"
+        }
+    },
+    {
+        russian: "Я пишу письмо другу.",
+        korean: "저는 친구에게 편지를 써요.",
+        words: {
+            "Я": "저",
+            "пишу": "쓰다",
+            "письмо": "편지",
+            "другу": "친구에게"
+        }
+    },
+ 
+    
+
+
+    {
+        russian: "Река течёт в море.",
+        korean: "강이 바다로 흘러요.",
+        words: {
+            "Река": "강",
+            "течёт": "흐르다",
+            "в море": "바다로"
+        }
+    },
+    {
+        russian: "Я не знаю этот факт.",
+        korean: "저는 그 사실을 몰라요.",
+        words: {
+            "Я": "저",
+            "не знаю": "모르다",
+            "этот факт": "그 사실"
+        }
+    },
+    {
+        russian: "Я пою корейскую песню.",
+        korean: "저는 한국 노래를 불러요.",
+        words: {
+            "Я": "저",
+            "пою": "부르다",
+            "корейскую песню": "한국 노래"
+        }
+    },
+ 
+
+    {
+        russian: "Я не знаю её.",
+        korean: "저는 그녀를 몰라요.",
+        words: {
+            "Я": "저",
+            "не знаю": "모르다",
+            "её": "그녀를"
+        }
+    },
+    {
+        russian: "Кровь течёт из раны.",
+        korean: "피가 상처에서 흘러요.",
+        words: {
+            "Кровь": "피",
+            "течёт": "흐르다",
+            "из раны": "상처에서"
+        }
+    },
+    
+    {
+        russian: "Дерево зелёное.",
+        korean: "나무가 푸르러요.",
+        words: {
+            "Дерево": "나무",
+            "зелёное": "푸르다"
+        }
+    },
+    {
+        russian: "Банан жёлтый.",
+        korean: "바나나는 누르러요.",
+        words: {
+            "Банан": "바나나",
+            "жёлтый": "누르다"
+        }
+    },
+    {
+        russian: "Я достигаю цели.",
+        korean: "저는 목표에 이르러요.",
+        words: {
+            "Я": "저",
+            "достигаю": "이르다",
+            "цели": "목표"
+        }
+    },
+    {
+        russian: "Небо синее.",
+        korean: "하늘이 푸르러요.",
+        words: {
+            "Небо": "하늘",
+            "синее": "푸르다"
+        }
+    },
+
+   
+    {
+        russian: "Трава зеленеет весной.",
+        korean: "풀이 봄에 푸르러요.",
+        words: {
+            "Трава": "풀",
+            "зеленеет": "푸르다",
+            "весной": "봄에"
+        }
+    },
+    {
+        russian: "Эта бумага желтоватая.",
+        korean: "그 종이는 누르러요.",
+        words: {
+            "Эта бумага": "그 종이",
+            "желтоватая": "누르다"
+        }
+    },
+    
+    {
+        russian: "Я подбираю деньги.",
+        korean: "저는 돈을 주워요.",
+        words: {
+            "Я": "저",
+            "подбираю": "줍다",
+            "деньги": "돈"
+        }
+    },
+    {
+        russian: "Погода холодная.",
+        korean: "날씨가 추워요.",
+        words: {
+            "Погода": "날씨",
+            "холодная": "춥다"
+        }
+    },
+    {
+        russian: "Еда острая.",
+        korean: "음식이 매워요.",
+        words: {
+            "Еда": "음식",
+            "острая": "맵다"
+        }
+    },
+   
+    {
+        russian: "Она красивая.",
+        korean: "그녀는 예뻐요.",
+        words: {
+            "Она": "그녀",
+            "красивая": "예쁘다"
+        }
+    },
+  
+    {
+        russian: "Комната слишком жаркая.",
+        korean: "방이 너무 더워요.",
+        words: {
+            "Комната": "방",
+            "жаркая": "덥다",
+            "слишком": "너무"
+        }
+    },
+
+    {
+        russian: "Суп слишком острый.",
+        korean: "국이 너무 매워요.",
+        words: {
+            "Суп": "국",
+            "острый": "맵다",
+            "слишком": "너무"
+        }
+    },
+ 
+    {
+        russian: "Эта работа трудна.",
+        korean: "그 일이 어려워요.",
+        words: {
+           
+            "трудна": "어렵다",
+            "работа": "그 일"
+        }
+    },
+    {
+        russian: "Он часто помогает мне.",
+        korean: "그는 저를 자주 도와요.",
+        words: {
+            "Он": "그",
+            "помогает": "돕다",
+            "мне": "저를",
+            "часто": "자주"
+        }
+    },
+   
+    {
+        russian: "Кофе горячий.",
+        korean: "커피가 뜨거워요.",
+        words: {
+            "Кофе": "커피",
+            "горячий": "뜨겁다"
+        }
+    },
+    {
+        russian: "Его сердце тёплое.",
+        korean: "그의 마음이 따뜻해요.",
+        words: {
+            "Его сердце": "그의 마음",
+            "тёплое": "따뜻하다"
+        }
+    },
+  
+    {
+        russian: "Экзамен трудный.",
+        korean: "시험이 어려워요.",
+        words: {
+            "Экзамен": "시험",
+            "трудный": "어렵다"
+        }
+    },
+    {
+        russian: "Его действия приятны.",
+        korean: "그의 행동이 반가워요.",
+        words: {
+            "Его действия": "그의 행동",
+            "приятны": "반갑다"
+        }
+    },
+    {
+        russian: "Денег не хватает.",
+        korean: "돈이 부족해요.",
+        words: {
+            "Деньги": "돈",
+            "не хватает": "부족하다"
+        }
+    },
+    {
+        russian: "Одежда сидит идеально.",
+        korean: "옷이 꼭 맞아요.",
+        words: {
+            "Одежда": "옷",
+            "сидит идеально": "맞다",
+            "идеально": "꼭"
+        }
+    },
+    {
+        russian: "Я ношу шапку.",
+        korean: "저는 모자를 써요.",
+        words: {
+            "Я": "저",
+            "ношу": "쓰다",
+            "шапку": "모자"
+        }
+    },
+    
+    {
+        russian: "Я жую мясо.",
+        korean: "저는 고기를 씹어요.",
+        words: {
+            "Я": "저",
+            "жую": "씹다",
+            "мясо": "고기"
+        }
+    },
+    {
+        russian: "Улица слишком узкая.",
+        korean: "길이 너무 좁아요.",
+        words: {
+            "Улица": "길",
+            "узкая": "좁다",
+            "слишком": "너무"
+        }
+    },
+    {
+        russian: "Я даю деньги.",
+        korean: "저는 돈을 줘요.",
+        words: {
+            "Я": "저",
+            "даю": "주다",
+            "деньги": "돈"
+        }
+    },
+    {
+        russian: "Комната очень широкая.",
+        korean: "방이 매우 넓어요.",
+        words: {
+            "Комната": "방",
+            "широкая": "넓다",
+            "очень": "매우"
+        }
+    },
+    
+ 
+    {
+        russian: "Я жую жвачку.",
+        korean: "저는 껌을 씹어요.",
+        words: {
+            "Я": "저",
+            "жую": "씹다",
+            "жвачку": "껌"
+        }
+    },
+  
+    {
+        russian: "Я обнимаю ребёнка.",
+        korean: "저는 아기를 안아요.",
+        words: {
+            "Я": "저",
+            "обнимаю": "안다",
+            "ребёнка": "아기"
+        }
+    },
+   
+    {
+        russian: "Я не знаю это.",
+        korean: "저는 그것을 몰라요.",
+        words: {
+            "Я": "저",
+            "не знаю": "모르다",
+            "это": "그것"
+        }
+    },
+    {
+        russian: "Я живу усердно.",
+        korean: "저는 열심히 살아요.",
+        words: {
+            "Я": "저",
+            "живу": "살다",
+            "усердно": "열심히"
+        }
+    },
+    {
+        russian: "Я учу корейскому языку.",
+        korean: "저는 한국어를 가르쳐요.",
+        words: {
+            "Я": "저",
+            "учу": "가르치다",
+            "корейскому языку": "한국어"
+        }
+    },
+    {
+        russian: "Я вкусно готовлю еду.",
+        korean: "저는 음식을 맛있게 만들어요.",
+        words: {
+            "Я": "저",
+            "готовлю": "만들다",
+            "еду": "음식",
+            "вкусно": "맛있게"
+        }
+    },
+    {
+        russian: "Я слушаю песню.",
+        korean: "저는 노래를 들어요.",
+        words: {
+            "Я": "저",
+            "слушаю": "듣다",
+            "песню": "노래"
+        }
+    },
+   
+      {
+        russian: "Я ем рис и затем иду в школу.",
+        korean: "저는 밥을 먹고 학교에 가요.",
+        words: {
+            "Я": "저",
+            "ем": "먹다",
+            "рис": "밥",
+            "и затем": "고",
+            "иду": "가다",
+            "в школу": "학교에"
+        }
+    },
+    {
+        russian: "Я умываюсь и затем сплю.",
+        korean: "저는 씻고 잠을 자요.",
+        words: {
+            "Я": "저",
+            "умываюсь": "씻다",
+            "и затем": "고",
+            "сплю": "자다"
+        }
+    },
+    {
+        russian: "Я читаю книгу и затем встречаю друга.",
+        korean: "저는 책을 읽고 친구를 만나요.",
+        words: {
+            "Я": "저",
+            "читаю": "읽다",
+            "книгу": "책",
+            "и затем": "고",
+            "встречаю": "만나다",
+            "друга": "친구"
+        }
+    },
+    {
+        russian: "Я не иду.",
+        korean: "저는 안 가요.",
+        words: {
+            "Я": "저",
+            "не иду": "안 가다"
+        }
+    },
+    {
+        russian: "Я не ем.",
+        korean: "저는 먹지 않아요.",
+        words: {
+            "Я": "저",
+            "не ем": "먹지 않다"
+        }
+    },
+    {
+        russian: "Он не приходит.",
+        korean: "그는 오지 않아요.",
+        words: {
+            "Он": "그",
+            "не приходит": "오지 않다"
+        }
+    },
+ 
+   
+    {
+        russian: "Что делаешь?",
+        korean: "뭐 해요?",
+        words: {
+            "Что": "뭐",
+            "делаешь": "하다"
+        }
+    },
+    {
+        russian: "Куда идёшь?",
+        korean: "어디 가요?",
+        words: {
+            "Куда": "어디",
+            "идёшь": "가다"
+        }
+    },
+    {
+        russian: "Это книга.",
+        korean: "이것은 책이에요.",
+        words: {
+            "Это": "이것",
+            "книга": "책"
+        }
+    },
+    {
+        russian: "Это моё.",
+        korean: "이것은 제 거예요.",
+        words: {
+            "Это": "이것",
+            "моё": "제 것"
+        }
+    },
+    {
+        russian: "Тот человек — учитель.",
+        korean: "그 사람은 선생님이에요.",
+        words: {
+            "Тот человек": "그 사람",
+            "учитель": "선생님"
+        }
+    },
+   
+    {
+        russian: "Когда придёшь?",
+        korean: "언제 와요?",
+        words: {
+            "Когда": "언제",
+            "придёшь": "오다"
+        }
+    },
+    {
+        russian: "Кого встречаешь?",
+        korean: "누구를 만나요?",
+        words: {
+            "Кого": "누구를",
+            "встречаешь": "만나다"
+        }
+    },
+    {
+        russian: "Почему так?",
+        korean: "왜 그래요?",
+        words: {
+            "Почему": "왜",
+            "так": "그렇다"
+        }
+    },
+    {
+        russian: "Как это делать?",
+        korean: "어떻게 해요?",
+        words: {
+            "Как": "어떻게",
+            "делать": "하다"
+        }
+    },
+
+    {
+        russian: "Здесь дом.",
+        korean: "여기가 집이에요.",
+        words: {
+            "Здесь": "여기",
+            "дом": "집"
+        }
+    },
+    {
+        russian: "Там школа.",
+        korean: "저기가 학교예요.",
+        words: {
+            "Там": "저기",
+            "школа": "학교"
+        }
+    },
+    {
+        russian: "Эта еда вкусная.",
+        korean: "이 음식은 맛있어요.",
+        words: {
+            "Эта еда": "이 음식",
+            "вкусная": "맛있다"
+        }
+    },
+    {
+        russian: "Та девушка красивая.",
+        korean: "저 여자는 예뻐요.",
+        words: {
+            "Та девушка": "저 여자",
+            "красивая": "예쁘다"
+        }
+    },
+    {
+        russian: "Тот мужчина высокий.",
+        korean: "그 남자는 키가 커요.",
+        words: {
+            "Тот мужчина": "그 남자",
+            "высокий": "크다"
+        }
+    },
+    {
+        russian: "То — твоё.",
+        korean: "저것은 당신 거예요.",
+        words: {
+            "То": "저것",
+            "твоё": "당신 것"
+        }
+    },
+    {
+        russian: "Это (то) — его.",
+        korean: "그것은 그의 거예요.",
+        words: {
+            "Это": "그것",
+            "его": "그의 것"
+        }
+    },
+    {
+        russian: "Наш дом большой.",
+        korean: "우리 집은 커요.",
+        words: {
+            "Наш дом": "우리 집",
+            "большой": "크다"
+        }
+    },
+    {
+        russian: "Их машина быстрая.",
+        korean: "그들의 차는 빨라요.",
+        words: {
+            "Их машина": "그들의 차",
+            "быстрая": "빠르다"
+        }
+    },
+        {
+        russian: "Эта сумка тяжелая.",
+        korean: "이 가방은 무거워요.",
+        words: {
+            "Эта сумка": "이 가방",
+            "тяжелая": "무겁다"
+        }
+    },
+    {
+        russian: "То здание высокое.",
+        korean: "저 건물은 높아요.",
+        words: {
+            "То здание": "저 건물",
+            "высокое": "높다"
+        }
+    },
+    {
+        russian: "Та река глубокая.",
+        korean: "그 강은 깊어요.",
+        words: {
+            "Та река": "그 강",
+            "глубокая": "깊다"
+        }
+    },
+    {
+        russian: "Этот парк широкий.",
+        korean: "이 공원은 넓어요.",
+        words: {
+            "Этот парк": "이 공원",
+            "широкий": "넓다"
+        }
+    },
+    {
+        russian: "Та гора далёкая.",
+        korean: "저 산은 멀어요.",
+        words: {
+            "Та гора": "저 산",
+            "далёкая": "멀다"
+        }
+    },
+    {
+        russian: "Та работа лёгкая.",
+        korean: "그 일은 쉬워요.",
+        words: {
+            "Та работа": "그 일",
+            "лёгкая": "쉽다"
+        }
+    },
+    {
+        russian: "Я смотрю фильм и затем иду домой.",
+        korean: "저는 영화를 보고 집에 가요.",
+        words: {
+            "Я": "저",
+            "смотрю": "보다",
+            "фильм": "영화",
+            "и затем": "고",
+            "иду": "가다",
+            "домой": "집에"
+        }
+    },
+    {
+        russian: "Я работаю и затем отдыхаю.",
+        korean: "저는 일하고 쉬어요.",
+        words: {
+            "Я": "저",
+            "работаю": "일하다",
+            "и затем": "고",
+            "отдыхаю": "쉬다"
+        }
+    },
+    {
+        russian: "Я пью кофе и затем начинаю работу.",
+        korean: "저는 커피를 마시고 일을 시작해요.",
+        words: {
+            "Я": "저",
+            "пью": "마시다",
+            "кофе": "커피",
+            "и затем": "고",
+            "начинаю": "시작하다",
+            "работу": "일"
+        }
+    },
+    {
+        russian: "Я читаю газету и затем завтракаю.",
+        korean: "저는 신문을 읽고 아침을 먹어요.",
+        words: {
+            "Я": "저",
+            "читаю": "읽다",
+            "газету": "신문",
+            "и затем": "고",
+            "завтракаю": "아침을 먹다"
+        }
+    },
+    {
+        russian: "Я занимаюсь спортом и затем принимаю душ.",
+        korean: "저는 운동을 하고 샤워를 해요.",
+        words: {
+            "Я": "저",
+            "занимаюсь спортом": "운동하다",
+            "и затем": "고",
+            "принимаю душ": "샤워하다"
+        }
+    },
+    {
+        russian: "Я сажусь на автобус и затем еду в библиотеку.",
+        korean: "저는 버스를 타고 도서관에 가요.",
+        words: {
+            "Я": "저",
+            "сажусь": "타다",
+            "на автобус": "버스",
+            "и затем": "고",
+            "еду": "가다",
+            "в библиотеку": "도서관에"
+        }
+    },
+    {
+        russian: "Я делаю домашнее задание и затем играю.",
+        korean: "저는 숙제를 하고 놀아요.",
+        words: {
+            "Я": "저",
+            "делаю": "하다",
+            "домашнее задание": "숙제",
+            "и затем": "고",
+            "играю": "놀다"
+        }
+    },
+    {
+        russian: "Я звоню другу и затем встречаюсь.",
+        korean: "저는 친구에게 전화하고 만나요.",
+        words: {
+            "Я": "저",
+            "звоню": "전화하다",
+            "другу": "친구에게",
+            "и затем": "고",
+            "встречаюсь": "만나다"
+        }
+    },
+    {
+        russian: "Я покупаю еду и затем прихожу домой.",
+        korean: "저는 음식을 사고 집에 와요.",
+        words: {
+            "Я": "저",
+            "покупаю": "사다",
+            "еду": "음식",
+            "и затем": "고",
+            "прихожу": "오다",
+            "домой": "집에"
+        }
+    },
+    {
+        russian: "Я надеваю одежду и затем выхожу.",
+        korean: "저는 옷을 입고 나가요.",
+        words: {
+            "Я": "저",
+            "надеваю": "입다",
+            "одежду": "옷",
+            "и затем": "고",
+            "выхожу": "나가다"
+        }
+    },
+    {
+        russian: "Я убираю комнату и затем смотрю телевизор.",
+        korean: "저는 방을 치우고 텔레비전을 봐요.",
+        words: {
+            "Я": "저",
+            "убираю": "치우다",
+            "комнату": "방",
+            "и затем": "고",
+            "смотрю": "보다",
+            "телевизор": "텔레비전"
+        }
+    },
+    {
+        russian: "Я мою голову и затем сушу.",
+        korean: "저는 머리를 감고 말려요.",
+        words: {
+            "Я": "저",
+            "мою": "감다",
+            "голову": "머리",
+            "и затем": "고",
+            "сушу": "말리다"
+        }
+    },
+    {
+        russian: "Я пишу email и затем отправляю.",
+        korean: "저는 이메일을 쓰고 보내요.",
+        words: {
+            "Я": "저",
+            "пишу": "쓰다",
+            "email": "이메일",
+            "и затем": "고",
+            "отправляю": "보내다"
+        }
+    },
+    {
+        russian: "Я гуляю и затем ужинаю.",
+        korean: "저는 산책하고 저녁을 먹어요.",
+        words: {
+            "Я": "저",
+            "гуляю": "산책하다",
+            "и затем": "고",
+            "ужинаю": "저녁을 먹다"
+        }
+    }
+];
+
+
+     // Переменные для управления состоянием
+    let currentIndex = 0;
+    let usedIndices = new Set();
+    let isRandomMode = true;
+
+    // Элементы DOM
+    const russianSentenceEl = document.getElementById('russian-sentence');
+    const koreanSentenceEl = document.getElementById('korean-sentence');
+    const koreanInputEl = document.getElementById('korean-input');
+    const resultMessageEl = document.getElementById('result-message');
+    const sentenceNumberEl = document.getElementById('sentence-number');
+    const progressEl = document.getElementById('progress');
+    const checkBtn = document.getElementById('check-btn');
+    const showBtn = document.getElementById('show-btn');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const speakerIcon = document.getElementById('speaker-icon');
+
+   // Функция для форматирования русского предложения с подсказками
+function formatRussianSentence(sentence, words) {
+    let formattedSentence = sentence;
+    
+    // Сортируем ключи по длине (от самых длинных к самым коротким)
+    // чтобы сначала заменять составные выражения
+    const sortedKeys = Object.keys(words).sort((a, b) => b.length - a.length);
+    
+    // Заменяем все фразы из words в предложении
+    sortedKeys.forEach(phrase => {
+        const translation = words[phrase];
+        const regex = new RegExp(phrase.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g');
+        formattedSentence = formattedSentence.replace(regex, 
+            `<span class="russian-word" data-translation="${translation}">${phrase}</span>`
+        );
+    });
+    
+    return formattedSentence;
+}
+
+    // Функция для произношения корейского предложения
+    function speakKorean() {
+        const koreanText = sentences[currentIndex].korean;
+        
+        if ('speechSynthesis' in window) {
+            const utterance = new SpeechSynthesisUtterance(koreanText);
+            utterance.lang = 'ko-KR';
+            utterance.rate = 0.9;
+            utterance.pitch = 1;
+            
+            window.speechSynthesis.speak(utterance);
+        } else {
+            alert("Ваш браузер не поддерживает синтез речи");
+        }
+    }
+
+    // Функция для отображения текущего предложения
+    function displayCurrentSentence() {
+        const currentSentence = sentences[currentIndex];
+        
+        sentenceNumberEl.innerHTML = `<span>Пример ${currentIndex + 1} из ${sentences.length}</span><span class="speaker-icon" id="speaker-icon">🔊</span>`;
+        russianSentenceEl.innerHTML = formatRussianSentence(currentSentence.russian, currentSentence.words);
+        koreanSentenceEl.textContent = currentSentence.korean;
+        koreanSentenceEl.style.display = 'none';
+        koreanInputEl.value = '';
+        resultMessageEl.style.display = 'none';
+        
+        // Обновляем состояние кнопок
+        prevBtn.disabled = currentIndex === 0;
+        nextBtn.disabled = currentIndex === sentences.length - 1;
+        
+        // Обновляем прогресс
+        progressEl.textContent = `Прогресс: ${currentIndex + 1}/${sentences.length}`;
+        
+        // Обновляем обработчик для иконки рупора
+        document.getElementById('speaker-icon').addEventListener('click', speakKorean);
+        
+        // Фокус на поле ввода
+        koreanInputEl.focus();
+    }
+
+    // Функция для получения случайного индекса
+    function getRandomIndex() {
+        if (usedIndices.size >= sentences.length) {
+            usedIndices.clear(); // Начинаем заново, если все примеры использованы
+        }
+        
+        let randomIndex;
+        do {
+            randomIndex = Math.floor(Math.random() * sentences.length);
+        } while (usedIndices.has(randomIndex));
+        
+        usedIndices.add(randomIndex);
+        return randomIndex;
+    }
+
+    // Функция для проверки введенного ответа
+    function checkAnswer() {
+        const userAnswer = koreanInputEl.value.trim();
+        const correctAnswer = sentences[currentIndex].korean;
+        
+        // Нормализуем ответы для сравнения (убираем лишние пробелы, игнорируем регистр)
+        const normalizedUserAnswer = userAnswer.replace(/\s+/g, ' ').toLowerCase();
+        const normalizedCorrectAnswer = correctAnswer.replace(/\s+/g, ' ').toLowerCase();
+        
+        if (normalizedUserAnswer === normalizedCorrectAnswer) {
+            resultMessageEl.textContent = "Правильно!";
+            resultMessageEl.className = "result-message correct";
+        } else {
+            resultMessageEl.textContent = "Неправильно. Попробуйте еще раз.";
+            resultMessageEl.className = "result-message incorrect";
+        }
+        
+        resultMessageEl.style.display = 'block';
+    }
+
+    // Обработчики событий
+    checkBtn.addEventListener('click', checkAnswer);
+
+    koreanInputEl.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            checkAnswer();
+        }
+    });
+
+    showBtn.addEventListener('click', function() {
+        koreanSentenceEl.style.display = 'block';
+        resultMessageEl.style.display = 'none';
+    });
+
+    prevBtn.addEventListener('click', function() {
+        if (currentIndex > 0) {
+            currentIndex--;
+            displayCurrentSentence();
+        }
+    });
+
+    nextBtn.addEventListener('click', function() {
+        if (isRandomMode) {
+            currentIndex = getRandomIndex();
+        } else {
+            if (currentIndex < sentences.length - 1) {
+                currentIndex++;
+            }
+        }
+        displayCurrentSentence();
+    });
+
+    // Инициализация тренажера
+    displayCurrentSentence();
+
+    // Оригинальный код для бургер-меню
+    const burgerMenu = document.getElementById("burgerMenu");
+    const navBurger = document.getElementById("navBurger");
+
+    burgerMenu.addEventListener("click", function (event) {
+        event.stopPropagation();
+        navBurger.classList.toggle("active");
+    });
+
+    document.addEventListener("click", function (event) {
+        if (!navBurger.contains(event.target) && !burgerMenu.contains(event.target)) {
+            navBurger.classList.remove("active");
+        }
+    });
+
+    function toggleBurger() {
+        const part1 = document.querySelector('.burger-part1');
+        const part2 = document.querySelector('.burger-part2');
+
+        if (part1.style.display === 'none') {
+            part1.style.display = 'block';
+            part2.style.display = 'none';
+        } else {
+            part1.style.display = 'none';
+            part2.style.display = 'block';
+        }
+    }
+
+    /* Свайп для мобильных устройств */
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    document.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+    });
+
+    document.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    });
+
+    function handleSwipe() {
+        const swipeThreshold = 50;
+        if (touchEndX < touchStartX - swipeThreshold) {
+            // Переход к следующему предложению
+            if (isRandomMode) {
+                currentIndex = getRandomIndex();
+            } else {
+                if (currentIndex < sentences.length - 1) {
+                    currentIndex++;
+                }
+            }
+            displayCurrentSentence();
+        } else if (touchEndX > touchStartX + swipeThreshold) {
+            // Переход к предыдущему предложению
+            if (currentIndex > 0) {
+                currentIndex--;
+                displayCurrentSentence();
+            }
+        }
+    }
+    </script>
+
+    <!-- <script src="/scripts/script_zvuk_clik.js"></script> -->
+</body>
+
+</html>
+
+<!-- исправь ошибки только в скрипте и пропиши только скрипт:
+корейские слова , которые высвечиваются в подсказке (подсветке) - поставь в инфинитивную форму
+замени  в массив все эти 100 предложения и справь эти предложения поставив в вежливо официальную форму:
+
+저는 밥을 먹어요. — Я ем рис.
+
+그는 물을 마셔요. — Он пьёт воду.
+
+우리는 학교에 가요. — Мы идём в школу.
+
+나는 책을 읽어요. — Я читаю книгу.
+
+영희는 음악을 들어요. — Ёнхи слушает музыку.
+
+나는 친구를 만나요. — Я встречаюсь с другом.
+
+그들은 집에 와요. — Они приходят домой.
+
+나는 일어나요. — Я встаю.
+
+아이가 자요. — Ребёнок спит.
+
+선생님이 가르쳐요. — Учитель учит.
+
+비가 와요. — Идёт дождь.
+
+나는 노래를 불러요. — Я пою песню.
+
+그는 문을 열어요. — Он открывает дверь.
+
+나는 옷을 입어요. — Я надеваю одежду.
+
+그는 신발을 신어요. — Он надевает обувь.
+
+나는 사과를 씻어요. — Я мою яблоко.
+
+강아지가 짖어요. — Собака лает.
+
+나는 한국어를 배워요. — Я учу корейский язык.
+
+그는 차를 몰아요. — Он водит машину.
+
+나는 방을 치워요. — Я убираю комнату.
+
+할머니께서 오셔요. — Бабушка идёт (с уважением).
+
+나는 그릇에 담아요. — Я кладу в миску.
+
+그는 나를 도와요. — Он помогает мне.
+
+나는 꽃을 봐요. — Я смотрю на цветы.
+
+나는 그를 생각해요. — Я думаю о нём.
+
+나는 일을 시작해요. — Я начинаю работу.
+
+나는 텍스트를 번역해요. — Я перевожу текст.
+
+나는 문을 닫아요. — Я закрываю дверь.
+
+나는 그를 믿어요. — Я верю ему.
+
+나는 선물을 받아요. — Я получаю подарок.
+
+2. Чередование типа: ㄷ — ㄹ (듣다 -> 들어요)
+Корень глагола оканчивается на ㄷ, который меняется на ㄹ перед гласной.
+
+나는 음악을 들어요. — Я слушаю музыку.
+
+그는 질문에 답해요. — Он отвечает на вопрос. (От 답다, устар., обычно 대답하다)
+
+나는 길을 걸어요. — Я иду пешком.
+
+그는 나를 따라와요. — Он следует за мной.
+
+아이가 엄마를 붙잡아요. — Ребёнок хватает маму. (От 붙잡다)
+
+나는 그 소리를 들어요. — Я слышу этот звук.
+
+그들은 이야기를 나눠요. — Они разговаривают. (От 나누다)
+
+나는 친구를 만나요. — Я встречаю друга. (От 만나다, исключение)
+
+나는 문을 닫아요. — Я закрываю дверь. (Исключение: 닫다)
+
+나는 친구를 믿어요. — Я верю другу. (Исключение: 믿다)
+
+3. Чередование типа: ㅅ — нуль (짓다 -> 지어요)
+Согласная ㅅ выпадает перед гласными 아/어.
+
+그는 집을 지어요. — Он строит дом. (짓다 + 어요 -> 지어요)
+
+나는 냄새를 맡아요. — Я нюхаю запах. (맡다 + 아요 -> 맡아요, исключение)
+
+그는 옷을 잘 꿰어요. — Он хорошо продевает нитку в иголку. (꿰다)
+
+나는 젓가락을 잘 써요. — Я хорошо пользуюсь палочками для еды. (쓰다 + 어요 -> 써요)
+
+그는 바지를 펴요. — Он расправляет брюки. (펴다, от 펴다)
+
+나는 계획을 세워요. — Я составляю план. (세우다 + 어요 -> 세워요)
+
+그는 머리를 써요. — Он использует голову (думает). (쓰다)
+
+나는 구멍을 뚫어요. — Я проделываю дыру. (뚫다)
+
+나는 고기를 썰어요. — Я режу мясо. (썰다)
+
+나는 꽃을 꺾어요. — Я срываю цветок. (꺾다)
+
+나는 그 일을 괴어요. — Я мучаюсь от этой работы. (괴다)
+
+나는 빨래를 널어요. — Я развешиваю бельё. (널다)
+
+나는 손을 씻어요. — Я мою руки. (씻다)
+
+나는 밥을 푸어요. — Я накладываю рис. (푸다)
+
+나는 지갑을 잃어버려요. — Я теряю кошелёк. (잃다)
+
+나는 너를 사랑해요. — Я люблю тебя. (사랑하다)
+
+나는 그림을 그려요. — Я рисую картину. (그리다 + 어요 -> 그려요)
+
+나는 커피를 마셔요. — Я пью кофе. (마시다 + 어요 -> 마셔요)
+
+나는 빨리 달려요. — Я быстро бегу. (달리다 + 어요 -> 달려요)
+
+나는 친구에게 편지를 써요. — Я пишу письмо другу. (쓰다)
+
+4. Чередование типа: 르 — 러 (모르다 -> 몰라요)
+Корень глагола оканчивается на 르, перед 아/어 он меняется на 러, а предшествующая гласная получает добавление ㄹ.
+
+나는 그 답을 몰라요. — Я не знаю тот ответ. (모르다 + 아요 -> 몰라요)
+
+눈물이 흘러요. — Слёзы текут. (흐르다 + 어요 -> 흘러요)
+
+물이 길에 흘러요. — Вода течёт по улице.
+
+나는 너를 몰라요. — Я не знаю тебя.
+
+시간이 빨리 흘러요. — Время быстро течёт.
+
+나는 이 문제를 몰라요. — Я не знаю эту проблему.
+
+강이 바다로 흘러요. — Река течёт в море.
+
+나는 그 사실을 몰라요. — Я не знаю этот факт.
+
+나는 한국 노래를 불러요. — Я пою корейскую песню. (부르다 + 어요 -> 불러요)
+
+나는 그를 따라라. — Следуй за ним. (따르다 + 아요 -> 따라요, исключение!)
+
+나는 너를 따라와요. — Я иду за тобой.
+
+나는 지침을 따라요. — Я следую инструкциям.
+
+나는 규칙을 몰라요. — Я не знаю правила.
+
+나는 그녀를 몰라요. — Я не знаю её.
+
+피가 상처에서 흘러요. — Кровь течёт из раны.
+
+5. Чередование типа: 르 — 러 (только в 3 глаголах)
+Особое чередование только для глаголов 이르다, 푸르다, 누르다 перед 어.
+
+나는 정상에 이르러요. — Я достигаю вершины. (이르다 + 어요 -> 이르러요)
+
+나무가 푸르러요. — Дерево зелёное. (푸르다 + 어요 -> 푸르러요)
+
+바나나는 누르러요. — Банан жёлтый. (누르다 + 어요 -> 누르러요)
+
+나는 목표에 이르러요. — Я достигаю цели.
+
+하늘이 푸르러요. — Небо синее.
+
+그의 얼굴이 누르러요. — Его лицо желтоватое.
+
+강이 여기서 바다에 이르러요. — Река достигает моря здесь.
+
+풀이 봄에 푸르러요. — Трава зеленеет весной.
+
+그 종이는 누르러요. — Эта бумага желтоватая.
+
+우리는 안전하게 집에 이르러요. — Мы благополучно достигаем дома.
+
+6. Чередование типа: ㅂ — 우/오 (줍다 -> 주워요)
+Корень на ㅂ меняется перед 아/어: ㅂ -> 우 + 워(요) или, в двух случаях, 와(요).
+
+나는 돈을 주워요. — Я подбираю деньги. (줍다 + 어요 -> 주워요)
+
+날씨가 추워요. — Погода холодная. (춥다 + 어요 -> 추워요)
+
+음식이 매워요. — Еда острая. (맵다 + 어요 -> 매워요)
+
+나는 너를 도와요. — Я помогаю тебе. (돕다 + 아요 -> 도와요, исключение)
+
+그녀는 예뻐요. — Она красивая. (곱다 + 아요 -> 고와요 -> 예쁘다 используется чаще, но правило из 곱다)
+
+나는 친구를 돕고 싶어요. — Я хочу помочь другу. (도움)
+
+방이 너무 더워요. — Комната слишком жаркая. (덥다 + 어요 -> 더워요)
+
+나는 길에서 지갑을 주워요. — Я подбираю кошелёк на улице.
+
+국이 너무 매워요. — Суп слишком острый.
+
+아이가 춥다고 해요. — Ребёнок говорит, что ему холодно.
+
+나는 그 일이 어려워요. — Мне эта работа трудна. (어렵다 + 어요 -> 어려워요)
+
+그는 나를 자주 도와요. — Он часто помогает мне.
+
+눈이 부셔요. — Снег слепит. (눈이 밝다 -> 눈이 부시다, родственное правило)
+
+커피가 뜨거워요. — Кофе горячий. (뜨겁다 + 어요 -> 뜨거워요)
+
+그의 마음이 따뜻해요. — Его сердце тёплое. (따뜻하다)
+
+나는 가방을 줍고 버려요. — Я подбираю сумку и выбрасываю.
+
+시험이 어려워요. — Экзамен трудный.
+
+그의 행동이 반가워요. — Его действия приятны. (반갑다 + 어요 -> 반가워요)
+
+돈이 부족해요. — Денег не хватает. (부족하다)
+
+옷이 꼭 맞아요. — Одежда сидит идеально. (맞다)
+
+7. Исключения для чередования ㅂ (не меняются)
+Эти глаголы не подчиняются правилу выше и просто присоединяют 아/어.
+
+나는 모자를 써요. — Я ношу шапку. (쓰다)
+
+나는 입을 움직여요. — Я двигаю ртом. (움직이다)
+
+나는 고기를 씹어요. — Я жую мясо. (씹다)
+
+나는 옷을 입어요. — Я надеваю одежду. (입다)
+
+길이 너무 좁아요. — Улица слишком узкая. (좁다)
+
+나는 돈을 줘요. — Я даю деньги. (주다)
+
+방이 매우 넓어요. — Комната очень широкая. (넓다)
+
+나는 음식을 꼭 껴안아요. — Я крепко обнимаю еду. (않다, обнимать)
+
+나는 지갑을 집어요. — Я поднимаю кошелёк. (집다)
+
+나는 업어요. — Я несу на спине. (업다)
+
+나는 껌을 씹어요. — Я жую жвачку.
+
+나는 좁은 길을 걸어요. — Я иду по узкой улице.
+
+나는 아기를 안아요. — Я обнимаю ребёнка. (안다)
+
+나는 넓은 공원에 가요. — Я иду в широкий парк.
+
+나는 그 물건을 집어요. — Я поднимаю эту вещь.
+
+8. Чередование типа: ㄹ — нуль (알다 -> 알아요)
+Согласная ㄹ выпадает перед 니, 는, ㄴ, ㅂ.
+
+나는 그 사실을 알아요. — Я знаю этот факт. (알다 + 아요 -> 알아요)
+
+나는 노래를 불러요. — Я пою песню. (부르다 + 어요 -> 불러요)
+
+나는 매일 일어나요. — Я встаю каждый день. (일어나다)
+
+나는 그것을 몰라요. — Я не знаю это. (모르다 + 아요 -> 몰라요)
+
+나는 길을 걸어요. — Я иду пешком. (걷다 + 어요 -> 걸어요)
+
+나는 열심히 살아요. — Я живу усердно. (살다 + 아요 -> 살아요)
+
+나는 친구를 만나요. — Я встречаю друга. (만나다)
+
+나는 한국어를 가르쳐요. — Я учу корейскому языку. (가르치다 + 어요 -> 가르쳐요)
+
+나는 책을 읽어요. — Я читаю книгу. (읽다 + 어요 -> 읽어요)
+
+나는 빨리 달려요. — Я быстро бегу. (달리다 + 어요 -> 달려요)
+
+나는 음식을 맛있게 만들어요. — Я вкусно готовлю еду. (만들다 + 어요 -> 만들어요)
+
+나는 노래를 들어요. — Я слушаю песню. (듣다 + 어요 -> 들어요)
+
+나는 그림을 그려요. — Я рисую картину. (그리다 + 어요 -> 그려요)
+
+나는 학교에 가요. — Я иду в школу. (가다 + 아요 -> 가요)
+
+나는 집에 와요. — Я прихожу домой. (오다 + 아요 -> 와요)
+
+나는 밥을 먹어요. — Я ем рис. (먹다 + 어요 -> 먹어요)
+
+나는 물을 마셔요. — Я пью воду. (마시다 + 어요 -> 마셔요)
+
+나는 친구를 생각해요. — Я думаю о друге. (생각하다 + 여요 -> 생각해요)
+
+나는 일을 시작해요. — Я начинаю работу. (시작하다 + 여요 -> 시작해요)
+
+나는 텍스트를 번역해요. — Я перевожу текст. (번역하다 + 여요 -> 번역해요)
+
+9. Деепричастие предшествования (-고)
+Означает последовательность действий: «сделал и затем».
+
+나는 밥을 먹고 학교에 가요. — Я ем рис и затем иду в школу.
+
+나는 씻고 잠을 자요. — Я умываюсь и затем сплю.
+
+나는 책을 읽고 친구를 만나요. — Я читаю книгу и затем встречаю друга.
+
+나는 영화를 보고 집에 가요. — Я смотрю фильм и затем иду домой.
+
+나는 일을 하고 쉬어요. — Я работаю и затем отдыхаю.
+
+나는 커피를 마시고 일을 시작해요. — Я пью кофе и затем начинаю работу.
+
+나는 신문을 읽고 아침을 먹어요. — Я читаю газету и затем завтракаю.
+
+나는 운동을 하고 샤워를 해요. — Я занимаюсь спортом и затем принимаю душ.
+
+나는 버스를 타고 도서관에 가요. — Я сажусь на автобус и затем еду в библиотеку.
+
+나는 숙제를 하고 놀아요. — Я делаю домашнее задание и затем играю.
+
+나는 친구에게 전화하고 만나요. — Я звоню другу и затем встречаюсь.
+
+나는 음식을 사고 집에 와요. — Я покупаю еду и затем прихожу домой.
+
+나는 옷을 입고 나가요. — Я надеваю одежду и затем выхожу.
+
+나는 방을 치우고 텔레비전을 봐요. — Я убираю комнату и затем смотрю телевизор.
+
+나는 머리를 감고 말려요. — Я мою голову и затем сушу.
+
+나는 이메일을 쓰고 보내요. — Я пишу email и затем отправляю.
+
+나는 산책하고 저녁을 먹어요. — Я гуляю и затем ужинаю.
+
+나는 게임을 하고 자요. — Я играю в игру и затем сплю.
+
+나는 수업을 듣고 공부해요. — Я слушаю урок и затем учусь.
+
+나는 청소하고 빨래해요. — Я убираюсь и затем стираю.
+
+10. Комбинированные примеры (сложные случаи)
+Здесь собраны предложения, где сочетаются несколько правил.
+
+문을 닫고 나와요. — Закрой дверь и выйди. (닫다 - исключение ㄷ, 고 - деепричастие)
+
+음악을 듣고 자요. — Послушай музыку и спи. (듣다 -> 들어, 고)
+
+그를 믿고 따라요. — Верь ему и следуй. (믿다 - исключение, 따르다 - исключение 르)
+
+집을 짓고 살아요. — Построй дом и живи. (짓다 -> 지어, 고)
+
+답을 알고 말해요. — Узнай ответ и скажи. (알다 -> 알아, 고)
+
+길을 걸어서 가요. — Иди пешком. (걷다 -> 걸어)
+
+눈물을 흘리고 울어요. — Лей слёзы и плачь. (흐르다 -> 흘려, 고)
+
+그를 만나고 이야기해요. — Встреться с ним и поговори. (만나다, 고)
+
+텍스트를 읽고 번역해요. — Прочитай текст и переведи. (읽다, 고)
+
+일을 하고 휴식해요. — Сделай работу и отдохни. (하다, 고)
+
+문을 열고 들어와요. — Открой дверь и зайди. (열다, 들어오다)
+
+신발을 신고 나가요. — Надень обувь и выйди. (신다, 고)
+
+친구를 도와주고 고마워해요. — Помоги другу и поблагодари. (돕다 -> 도와, 고)
+
+돈을 주우고 지갑에 넣어요. — Подними деньги и положи в кошелёк. (줍다 -> 주워, 고)
+
+음식을 맛있게 만들고 먹어요. — Вкусно приготовь еду и ешь. (만들다, 고)
+
+노래를 부르고 춤춰요. — Спой песню и станцуй. (부르다 -> 불러, 고)
+
+책을 읽고 요약해요. — Прочитай книгу и summarise.
+
+공부를 하고 시험을 봐요. — Учись и сдавай экзамен.
+
+청소하고 빨래해요. — Убирай и стирай.
+
+쇼핑하고 커피를 마셔요. — Пойди по магазинам и выпей кофе.
+
+영화를 보고 이야기해요. — Посмотри фильм и поговори.
+
+전화를 받고 말해요. — Ответь на телефон и поговори.
+
+이메일을 확인하고 답장해요. — Проверь email и ответь.
+
+산책하고 신선한 공기를 마셔요. — Погуляй и подыши свежим воздухом.
+
+게임을 하고 relax 해요. — Поиграй в игру и расслабься.
+
+음악을 만들고 녹음해요. — Создай музыку и запиши.
+
+사진을 찍고 올려요. — Сфотографируй и загрузи.
+
+요리하고 설거지해요. — Приготовь и помой посуду.
+
+운전하고 주차해요. — Поезжай и припаркуйся.
+
+잠을 자고 상쾌해요. — Поспи и освежись.
+
+세수하고 양치해요. — Умойся и почисти зубы.
+
+옷을 구매하고 입어요. — Купи одежду и надень.
+
+머리를 자르고 스타일링해요. — Постриги волосы и уложи.
+
+꽃을 심고 물을 줘요. — Посади цветы и полей.
+
+계획을 세우고 실행해요. — Составь план и выполни.
+
+문제를 해결하고 기뻐요. — Реши проблему и порадуйся.
+
+친구를 초대하고 즐거워요. — Пригласи друзей и веселись.
+
+선물을 사고 포장해요. — Купи подарок и упакуй.
+
+편지를 쓰고 보내요. — Напиши письмо и отправь.
+
+꿈을 꾸고 일어나요. — Поспи сновидение и встань.
+
+11. Примеры с отрицанием (안, ~지 않다)
+나는 안 가요. — Я не иду.
+
+나는 먹지 않아요. — Я не ем.
+
+그는 오지 않아요. — Он не приходит.
+
+나는 모르지 않아요. — Я не не знаю (я знаю).
+
+그것은 쉽지 않아요. — Это не легко.
+
+나는 보지 않아요. — Я не смотрю.
+
+그는 말하지 않아요. — Он не говорит.
+
+나는 듣지 않아요. — Я не слушаю.
+
+그것은 비싸지 않아요. — Это не дорого.
+
+나는 걱정하지 않아요. — Я не беспокоюсь.
+
+나는 공부하지 않아요. — Я не учусь.
+
+그는 자지 않아요. — Он не спит.
+
+나는 웃지 않아요. — Я не смеюсь.
+
+그것은 재미없지 않아요. — Это не неинтересно (интересно).
+
+나는 춥지 않아요. — Мне не холодно.
+
+그는 배고프지 않아요. — Он не голоден.
+
+나는 피곤하지 않아요. — Я не устал.
+
+그것은 어렵지 않아요. — Это не трудно.
+
+나는 행복하지 않아요. — Я не счастлив.
+
+그는 슬프지 않아요. — Он не грустит.
+
+12. Примеры с временами (прошедшее, будущее)
+나는 밥을 먹었어요. — Я поел рис.
+
+나는 학교에 갔어요. — Я пошёл в школу.
+
+그는 영화를 봤어요. — Он посмотрел фильм.
+
+나는 책을 읽을 거예요. — Я буду читать книгу.
+
+그는 내일 올 거예요. — Он приедет завтра.
+
+나는 어제 친구를 만났어요. — Я вчера встретил друга.
+
+그는 음악을 들었어요. — Он слушал музыку.
+
+나는 여행을 갈 거예요. — Я поеду путешествовать.
+
+그는 선물을 받았어요. — Он получил подарок.
+
+나는 일을 할 거예요. — Я буду работать.
+
+나는 어제 쉬었어요. — Я вчера отдыхал.
+
+그는 방을 청소했어요. — Он убрал комнату.
+
+나는 커피를 마실 거예요. — Я буду пить кофе.
+
+그는 편지를 썼어요. — Он написал письмо.
+
+나는 노래를 불렀어요. — Я пел песню.
+
+그는 문을 열었어요. — Он открыл дверь.
+
+나는 한국어를 배울 거예요. — Я буду учить корейский.
+
+그는 차를 샀어요. — Он купил машину.
+
+나는 그림을 그렸어요. — Я нарисовал картину.
+
+그는 집에 갔어요. — Он пошёл домой.
+
+13. Примеры с модальными глаголами (хотеть, мочь, нужно)
+나는 먹고 싶어요. — Я хочу есть.
+
+나는 자고 싶어요. — Я хочу спать.
+
+나는 갈 수 있어요. — Я могу пойти.
+
+나는 할 수 있어요. — Я могу сделать.
+
+나는 빨리 달릴 수 있어요. — Я могу быстро бежать.
+
+나는 노래할 수 있어요. — Я могу петь.
+
+나는 운전할 수 있어요. — Я могу водить.
+
+나는 이해할 수 있어요. — Я могу понять.
+
+나는 도와줄 수 있어요. — Я могу помочь.
+
+나는 기다릴 수 있어요. — Я могу ждать.
+
+나는 먹어야 해요. — Мне нужно есть.
+
+나는 자야 해요. — Мне нужно спать.
+
+나는 공부해야 해요. — Мне нужно учиться.
+
+나는 일해야 해요. — Мне нужно работать.
+
+나는 갈아야 해요. — Мне нужно идти.
+
+나는 씻어야 해요. — Мне нужно умываться.
+
+나는 쉬어야 해요. — Мне нужно отдыхать.
+
+나는 돈을 벌어야 해요. — Мне нужно зарабатывать деньги.
+
+나는 약을 먹어야 해요. — Мне нужно принимать лекарство.
+
+나는 전화해야 해요. — Мне нужно позвонить.
+
+14. Примеры с вопросами
+뭐 해요? — Что делаешь?
+
+어디 가요? — Куда идёшь?
+
+언제 와요? — Когда придёшь?
+
+누구를 만나요? — Кого встречаешь?
+
+왜 그래요? — Почему ты так?
+
+어떻게 해요? — Как это делать?
+
+뭐 먹을래요? — Что будешь есть?
+
+어디 살아요? — Где живёшь?
+
+무슨 음악 들어요? — Какую музыку слушаешь?
+
+한국어 할 수 있어요? — Ты говоришь по-корейски?
+
+도와줄 수 있어요? — Можешь помочь?
+
+몇 시예요? — Который час?
+
+뭐 좋아해요? — Что тебе нравится?
+
+어떤 영화 봐요? — Какой фильм смотришь?
+
+누가 왔어요? — Кто пришёл?
+
+무슨 일 해요? — Какой работой занимаешься?
+
+어떻게 지내요? — Как дела?
+
+뭐 샀어요? — Что купил?
+
+언제 갈 거예요? — Когда поедешь?
+
+왜 전화했어요? — Почему позвонил?
+
+15. Примеры с местоимениями и указаниями
+이것은 책이에요. — Это книга.
+
+저것은 자동차예요. — То — машина.
+
+그것은 펜이에요. — Это (то) — ручка.
+
+여기가 집이에요. — Здесь дом.
+
+저기가 학교예요. — Там школа.
+
+그 사람은 선생님이에요. — Тот человек — учитель.
+
+이 음식은 맛있어요. — Эта еда вкусная.
+
+저 여자는 예뻐요. — Та девушка красивая.
+
+그 남자는 키가 커요. — Тот мужчина высокий.
+
+이것은 내 거예요. — Это моё.
+
+저것은 너의 거예요. — То — твоё.
+
+그것은 그의 거예요. — Это (то) — его.
+
+우리 집은 커요. — Наш дом большой.
+
+그들의 차는 빨라요. — Их машина быстрая.
+
+이 가방은 무거워요. — Эта сумка тяжелая.
+
+저 건물은 높아요. — То здание высокое.
+
+그 강은 깊어요. — Та река глубокая.
+
+이 공원은 넓어요. — Этот парк широкий.
+
+저 산은 멀어요. — Та гора далёкая.
+
+그 일은 쉬워요. — Та работа лёгкая.
+
+
+- по принципу  // Массив предложений для тренажера
+    const sentences = [
+        {
+            russian: "Я пишу ручкой.",
+            korean: "나는 만년필로 씁니다.",
+            words: {
+                "Я": "나",
+                "пишу": "쓰다",
+                "ручкой": "만년필"
+            }
+        },
+      
+    без исправлений на ㅂ니다, только в вежливо - неофициальной форме на 아요 / 어요 / 여요
+    и исправь английские слова на корейские -->
