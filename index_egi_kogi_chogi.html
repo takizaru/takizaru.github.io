@@ -1,0 +1,1586 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Korean Numbers Guide</title>
+    <link rel="stylesheet" href="/style_base_numder_word.css">
+   <style>
+        .container {
+            padding: 0 20px;
+            max-width: 100%;
+        }
+
+        article {
+            width: 90%;
+            margin: 0 auto;
+            padding: 20px;
+            box-sizing: border-box;
+            /* Адаптация для article */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .rule {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f8f8f8;
+            border-radius: 8px;
+        }
+
+        .grammatika,
+        .center-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f8f8f8;
+            border-radius: 8px;
+        }
+
+        .grammatika h2 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .grammatika p {
+            line-height: 1.5;
+            color: #555;
+            text-align: center;
+            width: 100%;
+        }
+
+        .rule-face {
+            width: 100%;
+            margin: 15px 0;
+        }
+
+        .rule-word {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            padding: 15px 0;
+        }
+
+        h4,
+        h5,
+        h2 {
+            text-align: center;
+            margin-bottom: 10px;
+            margin-top: 10px;
+        }
+
+        .korean-text b {
+            font-weight: bold;
+        }
+
+        .left-spesial-word,
+        .right-primer {
+            flex: 1;
+            padding: 15px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        /* Left burger styles */
+        .left-burger {
+            position: fixed;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: #f8f8f8;
+            padding: 15px;
+            border-radius: 0 8px 8px 0;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+            width: 200px;
+            z-index: 100;
+        }
+
+        /* Style for h4 in burgers */
+        .left-burger h4,
+        .right-burger h4,
+        .bottom-burger h4 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        /* Style for paragraphs in burgers */
+        .left-burger p,
+        .right-burger p,
+        .bottom-burger p {
+            text-align: left;
+            margin: 10px 0;
+        }
+
+        /* Right burger styles */
+        .right-burger {
+            position: fixed;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: #f8f8f8;
+            padding: 15px;
+            border-radius: 8px 0 0 8px;
+            box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.1);
+            width: 200px;
+            z-index: 100;
+        }
+
+        /* Bottom burger styles */
+        .bottom-burger {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #f8f8f8;
+            padding: 15px;
+            border-radius: 8px 8px 0 0;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            z-index: 100;
+        }
+
+        .iconDown,
+        .iconUp {
+            cursor: pointer;
+            text-align: center;
+            border-radius: 5px;
+            margin: 10px auto;
+            width: 30px;
+        }
+
+        /* для перехода по ссылке на гармонию гласных */
+        .rule_garmoniya a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .rule_garmoniya b {
+            cursor: pointer;
+            color: rgb(81, 7, 8);
+            text-decoration: underline;
+        }
+
+   
+        /* Стили для слов с подсказками */
+        .russian-word {
+            cursor: pointer;
+            position: relative;
+            padding: 2px 4px;
+            border-radius: 3px;
+            transition: background-color 0.2s;
+            font-weight: 700;
+        }
+
+        .russian-word:hover {
+            background-color: rgba(52, 152, 219, 0.2);
+        }
+
+        .russian-word:hover::after {
+            content: attr(data-translation);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #2c3e50;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            white-space: nowrap;
+            z-index: 10;
+            font-size: 20px;
+            font-weight: 900;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .progress {
+            margin-top: 20px;
+            text-align: center;
+            font-weight: bold;
+            color: #2c3e50;
+            flex: 0 0 auto;
+        }
+
+        .perehod {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+        }
+
+.trenazher-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 20px;
+}
+
+/* Стили для поля ввода корейского текста */
+.korean-input {
+    width: 100%;
+    font-weight: 900;
+    font-size: 26px;
+    padding: 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    text-align: center;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+    margin-bottom: 20px;
+}
+
+.korean-input:focus {
+    border-color: #3498db;
+    outline: none;
+}
+
+.sentence-number {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 50px; /* Расстояние 50px между элементами */
+}
+
+.russian-sentence {
+    margin-bottom: 20px;
+}
+
+/* .hint {
+    margin-bottom: 20px;
+} */
+.btn {
+    margin-bottom: 20px;
+}
+                        
+                     /* input-container */
+
+/* Адаптация для всех режимов */
+
+/* 1441px и выше */
+@media (min-width: 1441px) {
+    .trenazher-container {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: stretch;
+        padding: 35px;
+    }
+    
+    .exercise-container {
+        flex: 1 1 100%;
+    }
+    
+    .korean-input {
+        font-size: 28px;
+        padding: 18px;
+    }
+    
+    .controls {
+        justify-content: center;
+        gap: 12px;
+    }
+    
+    .btn {
+        flex: 0 1 calc(25% - 12px);
+        padding: 12px 18px;
+        font-size: 16px;
+        min-width: 140px;
+    }
+}
+
+/* 1440px - 1025px */
+@media (max-width: 1440px) and (min-width: 1025px) {
+    .trenazher-container {
+        flex-direction: column;
+        align-items: center;
+        padding: 30px;
+    }
+    
+    .korean-input {
+        font-size: 26px;
+        padding: 16px;
+    }
+    
+    .controls {
+        justify-content: space-around;
+        gap: 10px;
+    }
+    
+    .btn {
+        flex: 0 1 calc(25% - 10px);
+        padding: 11px 16px;
+        font-size: 15px;
+        min-width: 130px;
+    }
+}
+
+/* 1024px - 769px */
+@media (max-width: 1024px) and (min-width: 769px) {
+    .trenazher-container {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 25px;
+    }
+    
+    .korean-input {
+        font-size: 24px;
+        padding: 14px;
+    }
+    
+    .controls {
+        justify-content: space-between;
+        gap: 8px;
+    }
+    
+    .btn {
+        flex: 1 1 calc(25% - 8px);
+        padding: 10px 14px;
+        font-size: 14px;
+        min-width: 110px;
+    }
+}
+
+/* 768px - 426px */
+@media (max-width: 768px) and (min-width: 426px) {
+    .trenazher-container {
+        flex-direction: column;
+        padding: 20px;
+        align-items: center;
+    }
+    
+    .korean-input {
+        font-size: 22px;
+        padding: 12px;
+    }
+    
+    .controls {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    
+    .btn {
+        flex: 1 1 calc(50% - 8px);
+        padding: 10px 12px;
+        font-size: 14px;
+        min-width: 0;
+    }
+}
+
+/* 425px - 376px */
+@media (max-width: 425px) and (min-width: 376px) {
+    .trenazher-container {
+        flex-direction: column;
+        padding: 18px;
+        align-items: stretch;
+    }
+    
+    .korean-input {
+        font-size: 20px;
+        padding: 11px;
+        font-weight: 800;
+    }
+    
+    .controls {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+    
+    .btn {
+        flex: 1 1 calc(50% - 6px);
+        padding: 9px 11px;
+        font-size: 13px;
+        min-width: 0;
+    }
+}
+
+/* 375px - 321px */
+@media (max-width: 375px) and (min-width: 321px) {
+    .trenazher-container {
+        flex-direction: column;
+        padding: 15px;
+        align-items: stretch;
+    }
+    
+    .korean-input {
+        font-size: 19px;
+        padding: 10px;
+        font-weight: 800;
+    }
+    
+    .controls {
+        flex-direction: column;
+        gap: 6px;
+    }
+    
+    .btn {
+        flex: 1 1 100%;
+        padding: 10px 12px;
+        font-size: 14px;
+        min-width: 0;
+        width: 100%;
+    }
+}
+
+/* 320px - 251px */
+@media (max-width: 320px) and (min-width: 251px) {
+    .trenazher-container {
+        flex-direction: column;
+        padding: 12px;
+        align-items: stretch;
+    }
+    
+    .korean-input {
+        font-size: 18px;
+        padding: 9px;
+        font-weight: 700;
+    }
+    
+    .controls {
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    .btn {
+        flex: 1 1 100%;
+        padding: 8px 10px;
+        font-size: 13px;
+        min-width: 0;
+        width: 100%;
+    }
+}
+
+/* 250px и меньше */
+@media (max-width: 250px) {
+    .trenazher-container {
+        flex-direction: column;
+        padding: 10px;
+        align-items: stretch;
+        gap: 15px;
+    }
+    
+    .korean-input {
+        font-size: 16px;
+        padding: 8px;
+        font-weight: 700;
+    }
+    
+    .controls {
+        flex-direction: column;
+        gap: 4px;
+    }
+    
+    .btn {
+        flex: 1 1 100%;
+        padding: 7px 9px;
+        font-size: 12px;
+        min-width: 0;
+        width: 100%;
+    }
+    
+    .trenazher-title {
+        font-size: 1.1em;
+    }
+}
+
+    
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="burger-menu" id="burgerMenu">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <img class="logo" src="/image/logo krug.svg" alt="Логотип">
+            <a href="" class="user"> <img class="lk" src="/image/userrblur.svg" alt="Пользователь"></a>
+        </div>
+        <nav class="nav-burger" id="navBurger">
+            <ul class="ul-header">
+                <li class="li-header"> <a href="" class="a-header">онлайн - переводчик</a></li>
+                <li class="li-header"> <a href="" class="a-header">контакты</a></li>
+                <li class="li-header"> <a href="" class="a-header">светлая тема</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="container">
+            <article>
+                <div class="trenazher-container">
+                    <!-- <h1 class="trenazher-title">Тренажер перевода с русского на корейский</h1> -->
+                    
+                    <div class="exercise-container">
+                        <div class="sentence-number" id="sentence-number">
+                            <span>Пример 1 из 10</span>
+                            <span class="speaker-icon" id="speaker-icon">🔊</span>
+                        </div>
+                        <div class="russian-sentence" id="russian-sentence"></div>
+                        
+                        <div class="input-container">
+                            <input type="text" class="korean-input" id="korean-input" placeholder="Введите перевод на корейском языке...">
+                            <div class="result-message" id="result-message"></div>
+                        </div>
+                        
+                        <div class="korean-sentence" id="korean-sentence"></div>
+                        
+                        <div class="controls">
+                            <button class="btn" id="prev-btn" disabled>Предыдущее</button>
+                            <button class="btn" id="check-btn">Проверить</button>
+                            <button class="btn" id="show-btn">Показать ответ</button>
+                            <button class="btn" id="next-btn">Следующее</button>
+                        </div>
+                        
+                        <div class="hint">Наведите на русское слово, чтобы увидеть перевод на корейский</div>
+                    </div>
+                    
+                    <div class="progress" id="progress">Прогресс: 0/10</div>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <!-- Левый бургер -->
+    <div class="left-burger">
+        <h4>Полезные фразы</h4>
+        <div class="korean-text" data-korean=""><b>안녕하세요</b> - Здравствуйте</div>
+        <div class="korean-text" data-korean=""><b>감사합니다</b> - Спасибо</div>
+        <div class="korean-text" data-korean=""><b>미안합니다</b> - Извините</div>
+        <div class="korean-text" data-korean=""><b>네</b> - Да</div>
+    </div>
+
+    <!-- Левая закладка -->
+    <div class="left-bookmark-icon"></div>
+
+    <!-- Нижний бургер -->
+    <div class="bottom-burger">
+        <h4>Грамматические подсказки</h4>
+        <div class="korean-text" data-korean=""><b>은/는</b> - тематические частицы</div>
+        <div class="korean-text" data-korean=""><b>이/가</b> - подлежащие частицы</div>
+        <div class="korean-text" data-korean=""><b>을/를</b> - объектные частицы</div>
+        <div class="korean-text" data-korean=""><b>에/에서</b> - локативные частицы</div>
+    </div>
+
+    <!-- Нижняя закладка -->
+    <div class="bottom-bookmark-icon"></div>
+
+    <!-- Правая закладка -->
+    <div class="bookmark-icon"></div>
+
+    <!-- Правый бургер -->
+    <!-- <div class="right-burger">
+        <h4>Числительные</h4>
+        <div class="korean-text" data-korean=""><b>하나</b> - один</div>
+        <div class="korean-text" data-korean=""><b>둘</b> - два</div>
+        <div class="korean-text" data-korean=""><b>셋</b> - три</div>
+        <div class="korean-text" data-korean=""><b>넷</b> - четыре</div>
+    </div> -->
+
+    <div class="perehod">
+        <a href="/index.html"><img src="/image/vlevo2.svg" alt=""></a>
+        <a href="/index.html"><img src="/image/vpravo2.svg" alt=""></a>
+    </div>
+
+    <footer>
+        <section class="footer container">
+            <address>
+                <div class="footer1">
+                    <div class="tel">
+                        <img src="/image/tel_blue.svg" alt="">
+                        <p>8-925-685-52-39 </p>
+                    </div>
+                    <div class="mail">
+                        <p>anastasiya3000@yandex.ru</p>
+                    </div>
+                    <div class="footer-icon">
+                        <a href="" class="social-icon"> <img src="/image/telegram_icon 1.svg" alt=""></a>
+                        <a href="" class="social-icon"> <img src="/image/skype_icon 1.svg" alt=""></a>
+                        <a href="" class="social-icon"><img src="/image/whatsapp_green.png" alt=""></a>
+                        <a href="" class="social-icon"> <img src="/image/license.svg" alt=""></a>
+                    </div>
+                </div>
+
+                <div class="footer2">
+                    <nav class="nav1-footer">
+                        <ul class="ul-footer">
+                            <div class="f-li">
+                                <li class="li-footer"> <a href="" class="a-footer"><b>Правила оплаты</b></a></li>
+                                <li class="li-footer"> <a href="" class="a-footer"><b>Договор оферты</b></a></li>
+                                <li class="li-footer"> <a href="" class="a-footer"><b>Согласие с рассылкой</b></a></li>
+                                <li class="li-footer"><a href="" class="a-footer"><b>Пользовательское соглашение</b></a>
+                                </li>
+                                <li class="li-footer"> <a href="" class="a-footer"><b>Политика
+                                            конфиденциальности</b></a></li>
+                                <li class="li-footer"> <a href="" class="a-footer"><b>Положение о защите персональных
+                                            данных</b></a></li>
+                            </div>
+                        </ul>
+                    </nav>
+                </div>
+            </address>
+        </section>
+
+        <div class="copyright">
+            <img id="copyright" src="/image/Copyright2 _ blue.svg" alt="copyright">
+            <p>takiza, 2025</p>
+        </div>
+    </footer>
+
+   <script>
+
+
+// Массив предложений для тренажера
+const sentences = [
+    {
+        russian: "Здесь есть стул.",
+        korean: "여기에 의자가 있습니다.",
+        words: {
+            "Здесь": "여기",
+            "есть": "있다",
+            "стул": "의자"
+        }
+    },
+    {
+        russian: "Здесь нет сумки.",
+        korean: "여기에 가방이 없습니다.",
+        words: {
+            "Здесь": "여기",
+            "нет": "없다",
+            "сумки": "가방"
+        }
+    },
+
+    {
+        russian: "Здесь есть туалет.",
+        korean: "여기에 화장실이 있습니다.",
+        words: {
+            "Здесь": "여기",
+            "есть": "있다",
+            "туалет": "화장실"
+        }
+    },
+    {
+        russian: "Здесь нет моих ключей.",
+        korean: "여기에 제 열쇠가 없습니다.",
+        words: {
+            "Здесь": "여기",
+            "нет": "없다",
+            "моих": "제",
+            "ключей": "열쇠"
+        }
+    },
+    {
+        russian: "Здесь есть кофе.",
+        korean: "여기에 커피가 있습니다.",
+        words: {
+            "Здесь": "여기",
+            "есть": "있다",
+            "кофе": "커피"
+        }
+    },
+    {
+        russian: "Здесь есть мусорное ведро.",
+        korean: "여기에 쓰레기통이 있습니다.",
+        words: {
+            "Здесь": "여기",
+            "есть": "있다",
+            "мусорное ведро": "쓰레기통"
+        }
+    },
+    {
+        russian: "Здесь много людей.",
+        korean: "여기에 사람이 많습니다.",
+        words: {
+            "Здесь": "여기",
+            "много": "많다",
+            "людей": "사람"
+        }
+    },
+    {
+        russian: "Здесь есть кошка.",
+        korean: "여기에 고양이가 있습니다.",
+        words: {
+            "Здесь": "여기",
+            "есть": "있다",
+            "кошка": "고양이"
+        }
+    },
+    {
+        russian: "Здесь нет проблемы.",
+        korean: "여기에 문제가 없습니다.",
+        words: {
+            "Здесь": "여기",
+            "нет": "없다",
+            "проблемы": "문제"
+        }
+    },
+    {
+        russian: "Там есть школа.",
+        korean: "거기에 학교가 있습니다.",
+        words: {
+            "Там": "거기",
+            "есть": "있다",
+            "школа": "학교"
+        }
+    },
+    {
+        russian: "Там есть банк.",
+        korean: "거기에 은행이 있습니다.",
+        words: {
+            "Там": "거기",
+            "есть": "있다",
+            "банк": "은행"
+        }
+    },
+    {
+        russian: "Там нет кинотеатра.",
+        korean: "거기에는 영화관이 없습니다.",
+        words: {
+            "Там": "거기",
+            "нет": "없다",
+            "кинотеатра": "영화관"
+        }
+    },
+    {
+        russian: "Там есть автобусная остановка.",
+        korean: "거기에 버스 정류장이 있습니다.",
+        words: {
+            "Там": "거기",
+            "есть": "있다",
+            "автобусная": "버스",
+             "остановка": "정류장"
+        }
+    },
+ 
+    {
+        russian: "Там есть парк.",
+        korean: "거기에는 공원이 있습니다.",
+        words: {
+            "Там": "거기",
+            "есть": "있다",
+            "парк": "공원"
+        }
+    },
+    {
+        russian: "Там нет аптеки.",
+        korean: "거기에는 약국이 없습니다.",
+        words: {
+            "Там": "거기",
+            "нет": "없다",
+            "аптеки": "약국"
+        }
+    },
+    {
+        russian: "Там есть супермаркет.",
+        korean: "거기에는 슈퍼마켓이 있습니다.",
+        words: {
+            "Там": "거기",
+            "есть": "있다",
+            "супермаркет": "슈퍼마켓"
+        }
+    },
+    {
+        russian: "Там есть станция метро.",
+        korean: "거기에는 지하철역이 있습니다.",
+        words: {
+            "Там": "거기",
+            "есть": "있다",
+            "станция метро": "지하철역"
+        }
+    },
+    {
+        russian: "Там нет машины.",
+        korean: "거기에는 차가 없습니다.",
+        words: {
+            "Там": "거기",
+            "нет": "없다",
+            "машины": "차"
+        }
+    },
+    {
+        russian: "Вон там есть гора.",
+        korean: "저기에 산이 있습니다.",
+        words: {
+            "Вон там": "저기",
+            "есть": "있다",
+            "гора": "산"
+        }
+    },
+    {
+        russian: "Вон там есть отель.",
+        korean: "저기에 호텔이 있습니다.",
+        words: {
+            "Вон там": "저기",
+            "есть": "있다",
+            "отель": "호텔"
+        }
+    },
+    {
+        russian: "Вон там есть аэропорт.",
+        korean: "저기에는 공항이 있습니다.",
+        words: {
+            "Вон там": "저기",
+            "есть": "있다",
+            "аэропорт": "공항"
+        }
+    },
+    {
+        russian: "Вон там есть река.",
+        korean: "저기에는 강이 있습니다.",
+        words: {
+            "Вон там": "저기",
+            "есть": "있다",
+            "река": "강"
+        }
+    },
+    {
+        russian: "Вон там много ресторанов.",
+        korean: "저기에는 식당이 많습니다.",
+        words: {
+            "Вон там": "저기",
+            "много": "많다",
+            "ресторанов": "식당"
+        }
+    },
+
+    {
+        russian: "Вон там нет цветов.",
+        korean: "저기에는 꽃이 없습니다.",
+        words: {
+            "Вон там": "저기",
+            "нет": "없다",
+            "цветов": "꽃"
+        }
+    },
+    {
+        russian: "Вон там есть зоопарк.",
+        korean: "저기에는 동물원이 있습니다.",
+        words: {
+            "Вон там": "저기",
+            "есть": "있다",
+            "зоопарк": "동물원"
+        }
+    },
+    {
+        russian: "Вон там есть парковка.",
+        korean: "저기에는 주차장이 있습니다.",
+        words: {
+            "Вон там": "저기",
+            "есть": "있다",
+            "парковка": "주차장"
+        }
+    },
+  
+    {
+        russian: "Это (вот здесь) наш дом.",
+        korean: "여기가 우리 집입니다.",
+        words: {
+            "Это": "여기",
+            "наш дом": "우리 집"
+        }
+    },
+    {
+        russian: "Это офис.",
+        korean: "여기가 사무실입니다.",
+        words: {
+            "Это": "여기",
+            "офис": "사무실"
+        }
+    },
+    {
+        russian: "Это вход.",
+        korean: "여기가 출입구입니다.",
+        words: {
+            "Это": "여기",
+            "вход": "출입구"
+        }
+    },
+    {
+        russian: "Это моя комната.",
+        korean: "여기가 제 방입니다.",
+        words: {
+            "Это": "여기",
+            "моя комната": "제 방"
+        }
+    },
+   
+    {
+        russian: "Что это за место? (Где это?)",
+        korean: "여기가 어디입니까?",
+        words: {
+            "Что это": "여기",
+            "где": "어디"
+        }
+    },
+    {
+        russian: "Это (есть) Сеул.",
+        korean: "여기가 서울입니다.",
+        words: {
+            "Это": "여기",
+            "Сеул": "서울"
+        }
+    },
+
+    {
+        russian: "Это холодильник.",
+        korean: "여기가 냉장고입니다.",
+        words: {
+            "Это": "여기",
+            "холодильник": "냉장고"
+        }
+    },
+    {
+        russian: "Это библиотека.",
+        korean: "여기가 도서관입니다.",
+        words: {
+            "Это": "여기",
+            "библиотека": "도서관"
+        }
+    },
+
+    {
+        russian: "То место — больница.",
+        korean: "거기가 병원입니다.",
+        words: {
+            "То место": "거기",
+            "больница": "병원"
+        }
+    },
+
+    {
+        russian: "То место — опасное место.",
+        korean: "거기가 위험한 곳입니다.",
+        words: {
+            "То место": "거기",
+            "опасное место": "위험한 곳"
+        }
+    },
+    {
+        russian: "То место — школа.",
+        korean: "거기가 학교입니다.",
+        words: {
+            "То место": "거기",
+            "школа": "학교"
+        }
+    },
+ 
+    {
+        russian: "То место — знаменитый музей.",
+        korean: "거기가 유명한 박물관입니다.",
+        words: {
+            "То место": "거기",
+            "знаменитый музей": "유명한 박물관"
+        }
+    },
+ 
+    {
+        russian: "Вон то место — моя родина.",
+        korean: "저기가 제 고향입니다.",
+        words: {
+            "Вон то место": "저기",
+            "моя родина": "제 고향"
+        }
+    },
+ 
+    {
+        russian: "Здесь нет компьютера.",
+        korean: "여기에는 컴퓨터가 없습니다.",
+        words: {
+            "Здесь": "여기",
+            "нет": "없다",
+            "компьютера": "컴퓨터"
+        }
+    },
+    {
+        russian: "Кто там есть? (Кто там?)",
+        korean: "거기에는 누구있습니까?",
+        words: {
+            "Кто": "누구",
+            "там": "거기",
+            "есть": "있다"
+        }
+    },
+    {
+        russian: "Что вон там есть?",
+        korean: "저기에는 무엇이 있습니까?",
+        words: {
+            "Что": "무엇",
+            "вон там": "저기",
+            "есть": "있다"
+        }
+    },
+    {
+        russian: "Здесь нет денег.",
+        korean: "여기에는 돈이 없습니다.",
+        words: {
+            "Здесь": "여기",
+            "нет": "없다",
+            "денег": "돈"
+        }
+    },
+
+    {
+        russian: "Вон там много звезд.",
+        korean: "저기에는 별이 많습니다.",
+        words: {
+            "Вон там": "저기",
+            "много": "많다",
+            "звезд": "별"
+        }
+    },
+
+    {
+        russian: "Почему там нет людей?",
+        korean: "거기에는 왜 사람들이 없습니까?",
+        words: {
+            "Почему": "왜",
+            "там": "거기",
+            "нет": "없다",
+            "людей": "사람"
+        }
+    },
+    {
+        russian: "Вон там есть корабль.",
+        korean: "저기에는 배가 있습니다.",
+        words: {
+            "Вон там": "저기",
+            "есть": "있다",
+            "корабль": "배"
+        }
+    },
+    {
+        russian: "Здесь есть письмо.",
+        korean: "여기에는 편지가 있습니다.",
+        words: {
+            "Здесь": "여기",
+            "есть": "있다",
+            "письмо": "편지"
+        }
+    },
+ 
+    {
+        russian: "Это мое место.",
+        korean: "여기가 제 자리입니다.",
+        words: {
+            "Это": "여기",
+            "мое место": "제 자리"
+        }
+    },
+    {
+        russian: "Садитесь здесь.",
+        korean: "여기 앉으십시오.",
+        words: {
+            "Садитесь": "앉다",
+            "здесь": "여기"
+        }
+    },
+    {
+        russian: "Посмотрите вон туда!",
+        korean: "저기 보십시오!",
+        words: {
+            "Посмотрите": "보다",
+            "вон туда": "저기"
+        }
+    },
+    {
+        russian: "Здесь холодно.",
+        korean: "여기 춥습니다.",
+        words: {
+            "Здесь": "여기",
+            "холодно": "춥다"
+        }
+    },
+    {
+        russian: "Там опасно.",
+        korean: "거기 위험합니다.",
+        words: {
+            "Там": "거기",
+            "опасно": "위험하다"
+        }
+    },
+    {
+        russian: "Вон там далеко.",
+        korean: "저기 멉니다.",
+        words: {
+            "Вон там": "저기",
+            "далеко": "멀다"
+        }
+    },
+    {
+        russian: "Ждите здесь.",
+        korean: "여기서 기다리십시오.",
+        words: {
+            "Ждите": "기다리다",
+            "здесь": "여기서"
+        }
+    },
+    {
+        russian: "Что вы там делаете?",
+        korean: "거기서 무엇을 합니까?",
+        words: {
+            "Что": "무엇",
+            "там": "거기서",
+            "делаете": "하다"
+        }
+    },
+
+    {
+        russian: "Вот это — моя одежда.",
+        korean: "여기는 제 옷입니다.",
+        words: {
+            "Вот это": "여기",
+            "моя одежда": "제 옷"
+        }
+    },
+    {
+        russian: "Вон там — мой папа.",
+        korean: "저기는 우리 아버지입니다.",
+        words: {
+            "Вон там": "저기",
+            "мой папа": "우리 아버지"
+        }
+    },
+    {
+        russian: "Это корейская еда.",
+        korean: "여기는 한국 음식입니다.",
+        words: {
+            "Это": "여기",
+            "корейская": "한국",
+            "еда": "음식"
+        }
+    },
+    {
+        russian: "Это документы.",
+        korean: "거기는 서류입니다.",
+        words: {
+            "Это": "거기",
+            "документы": "서류"
+        }
+    },
+    {
+        russian: "Вон то — картина.",
+        korean: "저기는 그림입니다.",
+        words: {
+            "Вон то": "저기",
+            "картина": "그림"
+        }
+    },
+    {
+        russian: "Это нэнмён (холодная лапша).",
+        korean: "여기는 냉면입니다.",
+        words: {
+            "Это": "여기",
+            "нэнмён": "냉면",
+            "холодная лапша": "냉면"
+        }
+    },
+    {
+        russian: "Это подарок.",
+        korean: "거기는 선물입니다.",
+        words: {
+            "Это": "거기",
+            "подарок": "선물"
+        }
+    }
+];
+
+
+     // Переменные для управления состоянием
+    let currentIndex = 0;
+    let usedIndices = new Set();
+    let isRandomMode = true;
+
+    // Элементы DOM
+    const russianSentenceEl = document.getElementById('russian-sentence');
+    const koreanSentenceEl = document.getElementById('korean-sentence');
+    const koreanInputEl = document.getElementById('korean-input');
+    const resultMessageEl = document.getElementById('result-message');
+    const sentenceNumberEl = document.getElementById('sentence-number');
+    const progressEl = document.getElementById('progress');
+    const checkBtn = document.getElementById('check-btn');
+    const showBtn = document.getElementById('show-btn');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const speakerIcon = document.getElementById('speaker-icon');
+
+   // Функция для форматирования русского предложения с подсказками
+function formatRussianSentence(sentence, words) {
+    let formattedSentence = sentence;
+    
+    // Сортируем ключи по длине (от самых длинных к самым коротким)
+    // чтобы сначала заменять составные выражения
+    const sortedKeys = Object.keys(words).sort((a, b) => b.length - a.length);
+    
+    // Заменяем все фразы из words в предложении
+    sortedKeys.forEach(phrase => {
+        const translation = words[phrase];
+        const regex = new RegExp(phrase.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g');
+        formattedSentence = formattedSentence.replace(regex, 
+            `<span class="russian-word" data-translation="${translation}">${phrase}</span>`
+        );
+    });
+    
+    return formattedSentence;
+}
+
+    // Функция для произношения корейского предложения
+    function speakKorean() {
+        const koreanText = sentences[currentIndex].korean;
+        
+        if ('speechSynthesis' in window) {
+            const utterance = new SpeechSynthesisUtterance(koreanText);
+            utterance.lang = 'ko-KR';
+            utterance.rate = 0.9;
+            utterance.pitch = 1;
+            
+            window.speechSynthesis.speak(utterance);
+        } else {
+            alert("Ваш браузер не поддерживает синтез речи");
+        }
+    }
+
+    // Функция для отображения текущего предложения
+    function displayCurrentSentence() {
+        const currentSentence = sentences[currentIndex];
+        
+        sentenceNumberEl.innerHTML = `<span>Пример ${currentIndex + 1} из ${sentences.length}</span><span class="speaker-icon" id="speaker-icon">🔊</span>`;
+        russianSentenceEl.innerHTML = formatRussianSentence(currentSentence.russian, currentSentence.words);
+        koreanSentenceEl.textContent = currentSentence.korean;
+        koreanSentenceEl.style.display = 'none';
+        koreanInputEl.value = '';
+        resultMessageEl.style.display = 'none';
+        
+        // Обновляем состояние кнопок
+        prevBtn.disabled = currentIndex === 0;
+        nextBtn.disabled = currentIndex === sentences.length - 1;
+        
+        // Обновляем прогресс
+        progressEl.textContent = `Прогресс: ${currentIndex + 1}/${sentences.length}`;
+        
+        // Обновляем обработчик для иконки рупора
+        document.getElementById('speaker-icon').addEventListener('click', speakKorean);
+        
+        // Фокус на поле ввода
+        koreanInputEl.focus();
+    }
+
+    // Функция для получения случайного индекса
+    function getRandomIndex() {
+        if (usedIndices.size >= sentences.length) {
+            usedIndices.clear(); // Начинаем заново, если все примеры использованы
+        }
+        
+        let randomIndex;
+        do {
+            randomIndex = Math.floor(Math.random() * sentences.length);
+        } while (usedIndices.has(randomIndex));
+        
+        usedIndices.add(randomIndex);
+        return randomIndex;
+    }
+
+    // Функция для проверки введенного ответа
+    function checkAnswer() {
+        const userAnswer = koreanInputEl.value.trim();
+        const correctAnswer = sentences[currentIndex].korean;
+        
+        // Нормализуем ответы для сравнения (убираем лишние пробелы, игнорируем регистр)
+        const normalizedUserAnswer = userAnswer.replace(/\s+/g, ' ').toLowerCase();
+        const normalizedCorrectAnswer = correctAnswer.replace(/\s+/g, ' ').toLowerCase();
+        
+        if (normalizedUserAnswer === normalizedCorrectAnswer) {
+            resultMessageEl.textContent = "Правильно!";
+            resultMessageEl.className = "result-message correct";
+        } else {
+            resultMessageEl.textContent = "Неправильно. Попробуйте еще раз.";
+            resultMessageEl.className = "result-message incorrect";
+        }
+        
+        resultMessageEl.style.display = 'block';
+    }
+
+    // Обработчики событий
+    checkBtn.addEventListener('click', checkAnswer);
+
+    koreanInputEl.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            checkAnswer();
+        }
+    });
+
+    showBtn.addEventListener('click', function() {
+        koreanSentenceEl.style.display = 'block';
+        resultMessageEl.style.display = 'none';
+    });
+
+    prevBtn.addEventListener('click', function() {
+        if (currentIndex > 0) {
+            currentIndex--;
+            displayCurrentSentence();
+        }
+    });
+
+    nextBtn.addEventListener('click', function() {
+        if (isRandomMode) {
+            currentIndex = getRandomIndex();
+        } else {
+            if (currentIndex < sentences.length - 1) {
+                currentIndex++;
+            }
+        }
+        displayCurrentSentence();
+    });
+
+    // Инициализация тренажера
+    displayCurrentSentence();
+
+    // Оригинальный код для бургер-меню
+    const burgerMenu = document.getElementById("burgerMenu");
+    const navBurger = document.getElementById("navBurger");
+
+    burgerMenu.addEventListener("click", function (event) {
+        event.stopPropagation();
+        navBurger.classList.toggle("active");
+    });
+
+    document.addEventListener("click", function (event) {
+        if (!navBurger.contains(event.target) && !burgerMenu.contains(event.target)) {
+            navBurger.classList.remove("active");
+        }
+    });
+
+    function toggleBurger() {
+        const part1 = document.querySelector('.burger-part1');
+        const part2 = document.querySelector('.burger-part2');
+
+        if (part1.style.display === 'none') {
+            part1.style.display = 'block';
+            part2.style.display = 'none';
+        } else {
+            part1.style.display = 'none';
+            part2.style.display = 'block';
+        }
+    }
+
+    /* Свайп для мобильных устройств */
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    document.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+    });
+
+    document.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    });
+
+    function handleSwipe() {
+        const swipeThreshold = 50;
+        if (touchEndX < touchStartX - swipeThreshold) {
+            // Переход к следующему предложению
+            if (isRandomMode) {
+                currentIndex = getRandomIndex();
+            } else {
+                if (currentIndex < sentences.length - 1) {
+                    currentIndex++;
+                }
+            }
+            displayCurrentSentence();
+        } else if (touchEndX > touchStartX + swipeThreshold) {
+            // Переход к предыдущему предложению
+            if (currentIndex > 0) {
+                currentIndex--;
+                displayCurrentSentence();
+            }
+        }
+    }
+    </script>
+
+    <!-- <script src="/scripts/script_zvuk_clik.js"></script> -->
+</body>
+
+</html>
+
+ <!-- исправь ошибки только в скрипте и пропиши только скрипт:
+корейские слова , которые высвечиваются в подсказке (подсветке) - поставь в инфинитивную форму
+замени  в массив все эти 100 предложения и справь эти предложения поставив в вежливо официальную форму:
+
+
+
+
+- по принципу  // Массив предложений для тренажера
+    const sentences = [
+        {
+            russian: "Я пишу ручкой.",
+            korean: "나는 만년필로 씁니다.",
+            words: {
+                "Я": "나",
+                "пишу": "쓰다",
+                "ручкой": "만년필"
+            }
+        },
+     
+    여기 (Здесь)
+
+여기에 의자가 있습니다. — Здесь есть стул.
+
+여기에 가방이 없습니다. — Здесь нет сумки.
+
+여기에 친구가 있습니다. — Здесь есть друг.
+
+여기에 화장실이 있습니다. — Здесь есть туалет.
+
+여기에 내 열쇠가 없습니다. — Здесь нет моих ключей.
+
+여기에 커피가 있습니다. — Здесь есть кофе.
+
+여기에 쓰레기통이 있습니다. — Здесь есть мусорное ведро.
+
+여에는 사람이 많습니다. — Здесь много людей.
+
+여에는 고양이가 있습니다. — Здесь есть кошка.
+
+여에는 문제가 없습니다. — Здесь нет проблемы.
+
+거기 (Там, где вы / недалеко)
+11. 거기에 학교가 있습니다. — Там есть школа.
+12. 거기에 은행이 있습니다. — Там есть банк.
+13. 거기에는 영화관이 없습니다. — Там нет кинотеатра.
+14. 거기에 버스 정류장이 있습니다. — Там есть автобусная остановка.
+15. 거기에는 너의 책이 있습니다. — Там твоя книга.
+16. 거기에는 공원이 있습니다. — Там есть парк.
+17. 거기에는 약국이 없습니다. — Там нет аптеки.
+18. 거기에는 슈퍼마켓이 있습니다. — Там есть супермаркет.
+19. 거기에는 지하철역이 있습니다. — Там есть станция метро.
+20. 거기에는 차가 없습니다. — Там нет машины.
+
+저기 (Вон там)
+21. 저기에 산이 있습니다. — Вон там есть гора.
+22. 저기에 호텔이 있습니다. — Вон там есть отель.
+23. 저기에는 공항이 있습니다. — Вон там есть аэропорт.
+24. 저기에는 강이 있습니다. — Вон там есть река.
+25. 저기에는 식당이 많습니다. — Вон там много ресторанов.
+26. 저기에는 큰 빌딩이 있습니다. — Вон там есть большое здание.
+27. 저기에는 꽃이 없습니다. — Вон там нет цветов.
+28. 저기에는 동물원이 있습니다. — Вон там есть зоопарк.
+29. 저기에는 주차장이 있습니다. — Вон там есть парковка.
+30. 저기에는 표지판이 없습니다. — Вон там нет указателя.
+
+Часть 2: 여기/거기/저기 + 이다 (입니다) (Как подлежащее)
+Это место — (что-то). / Вот это — (что-то).
+
+여기가 (Это место — ... / Вот здесь — ...)
+31. 여기가 우리 집입니다. — Это (вот здесь) наш дом.
+32. 여기가 사무실입니다. — Это офис.
+33. 여기가 출입구입니다. — Это вход.
+34. 여기가 제 방입니다. — Это моя комната.
+35. 여기가 가장 좋은 곳입니다. — Это (самое) лучшее место.
+36. 여기가 어디입니까? — Что это за место? (Где это?)
+37. 여기가 서울입니다. — Это (есть) Сеул.
+38. 여기가 회의실입니다. — Это переговорная.
+39. 여기가 냉장고입니다. — Это холодильник. (Указываем на предмет)
+40. 여기가 도서관입니다. — Это библиотека.
+
+거기가 (То место — ...)
+41. 거기가 어디입니까? — Что это за место (там)?
+42. 거기가 병원입니다. — То место — больница.
+43. 거기가 네가 말한 곳입니다. — То место, о котором ты говорил.
+44. 거기가 목적지입니다. — То место — пункт назначения.
+45. 거기가 위험한 곳입니다. — То место — опасное место.
+46. 거기가 옛날 학교입니다. — То место — старая школа.
+47. 거기가 맞습니까? — Это то самое место? (Правильно?)
+48. 거기가 공사 현장입니다. — То место — строительная площадка.
+49. 거기가 유명한 박물관입니다. — То место — знаменитый музей.
+50. 거기가 결혼식장입니다. — То место — свадебный зал.
+
+저기가 (Вон то место — ...)
+51. 저기가 불꽃 놀이 장소입니다. — Вон то место — место для фейерверков.
+52. 저기가 산 정상입니다. — Вон то место — вершина горы.
+53. 저기가 제주도입니다. — Вон то место — остров Чеджу.
+54. 저기가 국경입니다. — Вон то место — граница.
+55. 저기가 기차역입니다. — Вон то место — железнодорожная станция.
+56. 저기가 제 고향입니다. — Вон то место — моя родина.
+57. 저기가 예쁜 섬입니다. — Вон то место — красивый остров.
+58. 저기가 경복궁입니다. — Вон то место — дворец Кёнбоккун.
+59. 저기가 한국입니다. (на карте) — Вон то место — Корея.
+60. 저기가 끝입니다. — Вон то место — конец.
+
+Часть 3: Смешанные примеры с отрицанием и вопросами
+С 있다/없다
+61. 여기에는 컴퓨터가 없습니다. — Здесь нет компьютера.
+62. 거기에는 누구있습니까? — Кто там есть? (Кто там?)
+63. 저기에는 무엇이 있습니까? — Что вон там есть?
+64. 여기에는 돈이 없습니다. — Здесь нет денег.
+65. 거기에는 음악소리가 있습니다. — Там слышен звук музыки.
+66. 저기에는 별이 많습니다. — Вон там много звезд.
+67. 여기에는 의사가 한 명 있습니다. — Здесь есть один врач.
+68. 거기에는 왜 사람들이 없습니까? — Почему там нет людей?
+69. 저기에는 배가 있습니다. — Вон там есть корабль.
+70. 여기에는 편지가 있습니다. — Здесь есть письмо.
+
+С 입니다
+71. 여기가 바로 그 곳입니다. — Это (вот именно) то самое место.
+72. 거기가 네가 찾는 곳입니까? — То место, которое ты ищешь?
+73. 저기가 답니다. — Вон то место — это ответ.
+74. 여기가 시작입니다. — Это (есть) начало.
+75. 거기가 문제입니다. — В том месте проблема. / Проблема в этом.
+76. 저기가 북한입니다. — Вон то место — Северная Корея.
+77. 여기가 내 자리입니다. — Это мое место.
+78. 거기가 맞는 길입니다. — Та дорога (то направление) — правильная.
+79. 저기가 출발점입니다. — Вон то место — точка отправления.
+80. 여기가 안전한 곳입니다. — Это безопасное место.
+
+Часть 4: Разговорные и бытовые примеры
+여기 앉으세요. — Садитесь здесь.
+
+거기 조용하세요. — Там тихо. (Будьте тихими там.)
+
+저기 보세요! — Посмотрите вон туда!
+
+여기 추워요. — Здесь холодно.
+
+거기 위험해요. — Там опасно.
+
+저기 멀어요. — Вон там далеко.
+
+여기서 기다리세요. — Ждите здесь.
+
+거기서 무엇을 합니까? — Что вы там делаете?
+
+저기서 소리가 나요. — Звук доносится оттуда (вон оттуда).
+
+여기 있습니다. (передавая что-то) — Вот, пожалуйста. (Букв.: Здесь это есть.)
+
+С указанием на предметы (в значении "вот это", "вон то")
+91. 여기는 나의 옷입니다. — Вот это — моя одежда.
+92. 거기는 너의 차입니다. — Вон то — твоя машина.
+93. 저기는 우리 아빠입니다. — Вон там — мой папа.
+94. 여기는 한국 음식입니다. — Это корейская еда.
+95. 거기는 중요한 서류입니다. — Это важные документы.
+96. 저기는 예쁜 그림입니다. — Вон то — красивая картина.
+97. 여기는 냉면입니다. — Это нэнмён (холодная лапша).
+98. 거기는 선물입니다. — Это подарок.
+99. 저기는 한강입니다. — Вон то — река Ханган.
+100. 여기는 끝입니다. — Это конец. -->
