@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Korean Numbers Guide</title>
+    <link rel="stylesheet" href="/styles/style_base_numder_word.css">
+   <style>
+        .container {
+            padding: 0 20px;
+            max-width: 100%;
+        }
+
+        article {
+            width: 90%;
+            margin: 0 auto;
+            padding: 20px;
+            box-sizing: border-box;
+            /* Адаптация для article */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .rule {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f8f8f8;
+            border-radius: 8px;
+        }
+
+        .grammatika,
+        .center-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f8f8f8;
+            border-radius: 8px;
+        }
+
+        .grammatika h2 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .grammatika p {
+            line-height: 1.5;
+            color: #555;
+            text-align: center;
+            width: 100%;
+        }
+
+        .rule-face {
+            width: 100%;
+            margin: 15px 0;
+        }
+
+        .rule-word {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            padding: 15px 0;
+        }
+
+        h4,
+        h5,
+        h2 {
+            text-align: center;
+            margin-bottom: 10px;
+            margin-top: 10px;
+        }
+
+        .korean-text b {
+            font-weight: bold;
+        }
+
+        .left-spesial-word,
+        .right-primer {
+            flex: 1;
+            padding: 15px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        /* Left burger styles */
+        .left-burger {
+            position: fixed;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: #f8f8f8;
+            padding: 15px;
+            border-radius: 0 8px 8px 0;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+            width: 200px;
+            z-index: 100;
+        }
+
+        /* Style for h4 in burgers */
+        .left-burger h4,
+        .right-burger h4,
+        .bottom-burger h4 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        /* Style for paragraphs in burgers */
+        .left-burger p,
+        .right-burger p,
+        .bottom-burger p {
+            text-align: left;
+            margin: 10px 0;
+        }
+
+        /* Right burger styles */
+        .right-burger {
+            position: fixed;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: #f8f8f8;
+            padding: 15px;
+            border-radius: 8px 0 0 8px;
+            box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.1);
+            width: 200px;
+            z-index: 100;
+        }
+
+        /* Bottom burger styles */
+        .bottom-burger {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #f8f8f8;
+            padding: 15px;
+            border-radius: 8px 8px 0 0;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            z-index: 100;
+        }
+
+        .iconDown,
+        .iconUp {
+            cursor: pointer;
+            text-align: center;
+            border-radius: 5px;
+            margin: 10px auto;
+            width: 30px;
+        }
+
+        /* для перехода по ссылке на гармонию гласных */
+        .rule_garmoniya a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .rule_garmoniya b {
+            cursor: pointer;
+            color: rgb(81, 7, 8);
+            text-decoration: underline;
+        }
+
+   
+        /* Стили для слов с подсказками */
+        .russian-word {
+            cursor: pointer;
+            position: relative;
+            padding: 2px 4px;
+            border-radius: 3px;
+            transition: background-color 0.2s;
+            font-weight: 700;
+        }
+
+        .russian-word:hover {
+            background-color: rgba(52, 152, 219, 0.2);
+        }
+
+        .russian-word:hover::after {
+            content: attr(data-translation);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #2c3e50;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            white-space: nowrap;
+            z-index: 10;
+            font-size: 20px;
+            font-weight: 900;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .progress {
+            margin-top: 20px;
+            text-align: center;
+            font-weight: bold;
+            color: #2c3e50;
+            flex: 0 0 auto;
+        }
+
+        .perehod {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+        }
+
+.trenazher-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 20px;
+}
+
+/* Стили для поля ввода корейского текста */
+.korean-input {
+    width: 100%;
+    font-weight: 900;
+    font-size: 26px;
+    padding: 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    text-align: center;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+    margin-bottom: 20px;
+}
+
+.korean-input:focus {
+    border-color: #3498db;
+    outline: none;
+}
+
+.sentence-number {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 50px; /* Расстояние 50px между элементами */
+}
+
+.russian-sentence {
+    margin-bottom: 20px;
+}
+
+/* .hint {
+    margin-bottom: 20px;
+} */
+.btn {
+    margin-bottom: 20px;
+}
+                        
+                     /* input-container */
+
+/* Адаптация для всех режимов */
+
+/* 1441px и выше */
+@media (min-width: 1441px) {
+    .trenazher-container {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: stretch;
+        padding: 35px;
+    }
+    
+    .exercise-container {
+        flex: 1 1 100%;
+    }
+    
+    .korean-input {
+        font-size: 28px;
+        padding: 18px;
+    }
+    
+    .controls {
+        justify-content: center;
+        gap: 12px;
+    }
+    
+    .btn {
+        flex: 0 1 calc(25% - 12px);
+        padding: 12px 18px;
+        font-size: 16px;
+        min-width: 140px;
+    }
+}
+
+/* 1440px - 1025px */
+@media (max-width: 1440px) and (min-width: 1025px) {
+    .trenazher-container {
+        flex-direction: column;
+        align-items: center;
+        padding: 30px;
+    }
+    
+    .korean-input {
+        font-size: 26px;
+        padding: 16px;
+    }
+    
+    .controls {
+        justify-content: space-around;
+        gap: 10px;
+    }
+    
+    .btn {
+        flex: 0 1 calc(25% - 10px);
+        padding: 11px 16px;
+        font-size: 15px;
+        min-width: 130px;
+    }
+}
+
+/* 1024px - 769px */
+@media (max-width: 1024px) and (min-width: 769px) {
+    .trenazher-container {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 25px;
+    }
+    
+    .korean-input {
+        font-size: 24px;
+        padding: 14px;
+    }
+    
+    .controls {
+        justify-content: space-between;
+        gap: 8px;
+    }
+    
+    .btn {
+        flex: 1 1 calc(25% - 8px);
+        padding: 10px 14px;
+        font-size: 14px;
+        min-width: 110px;
+    }
+}
+
+/* 768px - 426px */
+@media (max-width: 768px) and (min-width: 426px) {
+    .trenazher-container {
+        flex-direction: column;
+        padding: 20px;
+        align-items: center;
+    }
+    
+    .korean-input {
+        font-size: 22px;
+        padding: 12px;
+    }
+    
+    .controls {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    
+    .btn {
+        flex: 1 1 calc(50% - 8px);
+        padding: 10px 12px;
+        font-size: 14px;
+        min-width: 0;
+    }
+}
+
+/* 425px - 376px */
+@media (max-width: 425px) and (min-width: 376px) {
+    .trenazher-container {
+        flex-direction: column;
+        padding: 18px;
+        align-items: stretch;
+    }
+    
+    .korean-input {
+        font-size: 20px;
+        padding: 11px;
+        font-weight: 800;
+    }
+    
+    .controls {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+    
+    .btn {
+        flex: 1 1 calc(50% - 6px);
+        padding: 9px 11px;
+        font-size: 13px;
+        min-width: 0;
+    }
+}
+
+/* 375px - 321px */
+@media (max-width: 375px) and (min-width: 321px) {
+    .trenazher-container {
+        flex-direction: column;
+        padding: 15px;
+        align-items: stretch;
+    }
+    
+    .korean-input {
+        font-size: 19px;
+        padding: 10px;
+        font-weight: 800;
+    }
+    
+    .controls {
+        flex-direction: column;
+        gap: 6px;
+    }
+    
+    .btn {
+        flex: 1 1 100%;
+        padding: 10px 12px;
+        font-size: 14px;
+        min-width: 0;
+        width: 100%;
+    }
+}
+
+/* 320px - 251px */
+@media (max-width: 320px) and (min-width: 251px) {
+    .trenazher-container {
+        flex-direction: column;
+        padding: 12px;
+        align-items: stretch;
+    }
+    
+    .korean-input {
+        font-size: 18px;
+        padding: 9px;
+        font-weight: 700;
+    }
+    
+    .controls {
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    .btn {
+        flex: 1 1 100%;
+        padding: 8px 10px;
+        font-size: 13px;
+        min-width: 0;
+        width: 100%;
+    }
+}
+
+/* 250px и меньше */
+@media (max-width: 250px) {
+    .trenazher-container {
+        flex-direction: column;
+        padding: 10px;
+        align-items: stretch;
+        gap: 15px;
+    }
+    
+    .korean-input {
+        font-size: 16px;
+        padding: 8px;
+        font-weight: 700;
+    }
+    
+    .controls {
+        flex-direction: column;
+        gap: 4px;
+    }
+    
+    .btn {
+        flex: 1 1 100%;
+        padding: 7px 9px;
+        font-size: 12px;
+        min-width: 0;
+        width: 100%;
+    }
+    
+    .trenazher-title {
+        font-size: 1.1em;
+    }
+}
+
+    
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="burger-menu" id="burgerMenu">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <img class="logo" src="/image/logo krug.svg" alt="Логотип">
+            <a href="" class="user"> <img class="lk" src="/image/userrblur.svg" alt="Пользователь"></a>
+        </div>
+        <nav class="nav-burger" id="navBurger">
+            <ul class="ul-header">
+                <li class="li-header"> <a href="" class="a-header">онлайн - переводчик</a></li>
+                <li class="li-header"> <a href="" class="a-header">контакты</a></li>
+                <li class="li-header"> <a href="" class="a-header">светлая тема</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="container">
+            <article>
+                <div class="trenazher-container">
+                    <!-- <h1 class="trenazher-title">Тренажер перевода с русского на корейский</h1> -->
+                    
+                    <div class="exercise-container">
+                        <div class="sentence-number" id="sentence-number">
+                            <span>Пример 1 из 10</span>
+                            <span class="speaker-icon" id="speaker-icon">🔊</span>
+                        </div>
+                        <div class="russian-sentence" id="russian-sentence"></div>
+                        
+                        <div class="input-container">
+                            <input type="text" class="korean-input" id="korean-input" placeholder="Введите перевод на корейском языке...">
+                            <div class="result-message" id="result-message"></div>
+                        </div>
+                        
+                        <div class="korean-sentence" id="korean-sentence"></div>
+                        
+                        <div class="controls">
+                            <button class="btn" id="prev-btn" disabled>Предыдущее</button>
+                            <button class="btn" id="check-btn">Проверить</button>
+                            <button class="btn" id="show-btn">Показать ответ</button>
+                            <button class="btn" id="next-btn">Следующее</button>
+                        </div>
+                        
+                        <div class="hint">Наведите на русское слово, чтобы увидеть перевод на корейский</div>
+                    </div>
+                    
+                    <div class="progress" id="progress">Прогресс: 0/10</div>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <!-- Левый бургер -->
+    <div class="left-burger">
+        <h4>Полезные фразы</h4>
+        <div class="korean-text" data-korean=""><b>안녕하세요</b> - Здравствуйте</div>
+        <div class="korean-text" data-korean=""><b>감사합니다</b> - Спасибо</div>
+        <div class="korean-text" data-korean=""><b>미안합니다</b> - Извините</div>
+        <div class="korean-text" data-korean=""><b>네</b> - Да</div>
+    </div>
+
+    <!-- Левая закладка -->
+    <div class="left-bookmark-icon"></div>
+
+    <!-- Нижний бургер -->
+    <div class="bottom-burger">
+        <h4>Грамматические подсказки</h4>
+        <div class="korean-text" data-korean=""><b>은/는</b> - тематические частицы</div>
+        <div class="korean-text" data-korean=""><b>이/가</b> - подлежащие частицы</div>
+        <div class="korean-text" data-korean=""><b>을/를</b> - объектные частицы</div>
+        <div class="korean-text" data-korean=""><b>에/에서</b> - локативные частицы</div>
+    </div>
+
+    <!-- Нижняя закладка -->
+    <div class="bottom-bookmark-icon"></div>
+
+    <!-- Правая закладка -->
+    <div class="bookmark-icon"></div>
+
+    <!-- Правый бургер -->
+    <!-- <div class="right-burger">
+        <h4>Числительные</h4>
+        <div class="korean-text" data-korean=""><b>하나</b> - один</div>
+        <div class="korean-text" data-korean=""><b>둘</b> - два</div>
+        <div class="korean-text" data-korean=""><b>셋</b> - три</div>
+        <div class="korean-text" data-korean=""><b>넷</b> - четыре</div>
+    </div> -->
+
+    <div class="perehod">
+        <a href="/index.html"><img src="/image/vlevo2.svg" alt=""></a>
+        <a href="/index.html"><img src="/image/vpravo2.svg" alt=""></a>
+    </div>
+
+    <footer>
+        <section class="footer container">
+            <address>
+                <div class="footer1">
+                    <div class="tel">
+                        <img src="/image/tel_blue.svg" alt="">
+                        <p>8-925-685-52-39 </p>
+                    </div>
+                    <div class="mail">
+                        <p>anastasiya3000@yandex.ru</p>
+                    </div>
+                    <div class="footer-icon">
+                        <a href="" class="social-icon"> <img src="/image/telegram_icon 1.svg" alt=""></a>
+                        <a href="" class="social-icon"> <img src="/image/skype_icon 1.svg" alt=""></a>
+                        <a href="" class="social-icon"><img src="/image/whatsapp_green.png" alt=""></a>
+                        <a href="" class="social-icon"> <img src="/image/license.svg" alt=""></a>
+                    </div>
+                </div>
+
+                <div class="footer2">
+                    <nav class="nav1-footer">
+                        <ul class="ul-footer">
+                            <div class="f-li">
+                                <li class="li-footer"> <a href="" class="a-footer"><b>Правила оплаты</b></a></li>
+                                <li class="li-footer"> <a href="" class="a-footer"><b>Договор оферты</b></a></li>
+                                <li class="li-footer"> <a href="" class="a-footer"><b>Согласие с рассылкой</b></a></li>
+                                <li class="li-footer"><a href="" class="a-footer"><b>Пользовательское соглашение</b></a>
+                                </li>
+                                <li class="li-footer"> <a href="" class="a-footer"><b>Политика
+                                            конфиденциальности</b></a></li>
+                                <li class="li-footer"> <a href="" class="a-footer"><b>Положение о защите персональных
+                                            данных</b></a></li>
+                            </div>
+                        </ul>
+                    </nav>
+                </div>
+            </address>
+        </section>
+
+        <div class="copyright">
+            <img id="copyright" src="/image/Copyright2 _ blue.svg" alt="copyright">
+            <p>takiza, 2025</p>
+        </div>
+    </footer>
+
+   <script>
+
+// Массив предложений для тренажера (только со связками)
+const sentences = [
+    // Группа 1: Утверждения о профессии/статусе (с 이다)
+    {
+        russian: "Я студент.",
+        korean: "저는 학생입니다.",
+        words: {
+            "Я": "저",
+            "студент": "학생"
+        }
+    },
+    {
+        russian: "Я учитель.",
+        korean: "저는 선생님입니다.",
+        words: {
+            "Я": "저",
+            "учитель": "선생님"
+        }
+    },
+    {
+        russian: "Я офисный работник.",
+        korean: "저는 회사원입니다.",
+        words: {
+            "Я": "저",
+            "офисный работник": "회사원"
+        }
+    },
+    {
+        russian: "Мой старший брат — полицейский.",
+        korean: "오빠는 경찰관입니다.",
+        words: {
+            "Мой старший брат": "오빠",
+            "полицейский": "경찰관"
+        }
+    },
+    {
+        russian: "Мой дедушка врач.",
+        korean: "할아버지는 의사입니다.",
+        words: {
+            "Мой дедушка": "할아버지",
+            "был": "이다",
+            "врач": "의사"
+        }
+    },
+  
+    {
+        russian: "Мой друг — певец.",
+        korean: "제 친구는 가수입니다.",
+        words: {
+            "Мой друг": "친구",
+            "певец": "가수"
+        }
+    },
+    {
+        russian: "Мой младший брат — студент университета.",
+        korean: "우리 남동생은 대학생입니다.",
+        words: {
+            "Мой младший брат": "우리 남동생",
+            "студент университета": "대학생"
+        }
+    },
+    {
+        russian: "Сейчас весна.",
+        korean: "지금은 봄입니다.",
+        words: {
+            "Сейчас": "지금",
+            "весна": "봄"
+        }
+    },
+    {
+        russian: "Сегодня воскресенье.",
+        korean: "오늘은 일요일입니다.",
+        words: {
+            "Сегодня": "오늘",
+            "воскресенье": "일요일"
+        }
+    },
+    {
+        russian: "Меня зовут Анна.",
+        korean: "제 이름은 안나입니다.",
+        words: {
+            "Меня зовут": "제 이름",
+            "Анна": "안나"
+        }
+    },
+
+    
+    // {
+    //     russian: "То место — моя комната.",
+    //     korean: "그곳은 제 방입니다.",
+    //     words: {
+    //         "То место": "그곳",
+    //         "моя комната": "제 방"
+    //     }
+    // },
+    // Группа 2: Отрицательные утверждения (с 아니다)
+    {
+        russian: "Я не врач.",
+        korean: "저는 의사가 아닙니다.",
+        words: {
+            "Я": "저",
+            "не врач": "의사가 아니다"
+        }
+    },
+    {
+        russian: "Я не японец.",
+        korean: "저는 일본 사람이 아닙니다.",
+        words: {
+            "Я": "저",
+            "не японец": "일본 사람이 아니다"
+        }
+    },
+    {
+        russian: "Это не мой ключ.",
+        korean: "그것은 제 열쇠가 아닙니다.",
+        words: {
+            "Это": "그것",
+            "не мой ключ": "제 열쇠가 아니다"
+        }
+    },
+    {
+        russian: "Тот человек — не актер.",
+        korean: "그 사람은 배우가 아닙니다.",
+        words: {
+            "Тот человек": "그 사람",
+            "не актер": "배우가 아니다"
+        }
+    },
+    {
+        russian: "Сегодня не мой день рождения.",
+        korean: "오늘은 제 생일이 아닙니다.",
+        words: {
+            "Сегодня": "오늘",
+            "не мой день рождения": "제 생일이 아니다"
+        }
+    },
+    {
+        russian: "Это блюдо — не корейская еда.",
+        korean: "이 음식은 한국 음식이 아닙니다.",
+        words: {
+            "Это блюдо": "음식",
+            "не корейская еда": "한국 음식이 아니다"
+        }
+    },
+    {
+        russian: "Тот человек — не мой отец.",
+        korean: "저 분은 우리 아버지가 아닙니다.",
+        words: {
+            "Тот человек": "저 분",
+            "не мой отец": "우리 아버지가 아니다"
+        }
+    },
+    {
+        russian: "Сейчас не зима.",
+        korean: "지금은 겨울이 아닙니다.",
+        words: {
+            "Сейчас": "지금",
+            "не зима": "겨울이 아니다"
+        }
+    },
+    {
+        russian: "Моя профессия — не секретарь.",
+        korean: "제 직업은 비서가 아닙니다.",
+        words: {
+            "Моя профессия": "직업",
+            "не секретарь": "비서가 아니다"
+        }
+    },
+    {
+        russian: "Та история — не правда.",
+        korean: "그 이야기는 사실이 아닙니다.",
+        words: {
+            "Та история": "이야기",
+            "не правда": "사실이 아니다"
+        }
+    },
+    // Группа 3: Акцент на субъекте (с 내가)
+    {
+        russian: "Я студент.",
+        korean: "내가 학생입니다.",
+        words: {
+            "Я": "내가",
+            "студент": "학생"
+        }
+    },
+    {
+        russian: "Я кореец.",
+        korean: "내가 한국 사람입니다.",
+        words: {
+            "Я": "내가",
+            "кореец": "한국 사람"
+        }
+    },
+    {
+        russian: "Я повар.",
+        korean: "내가 요리사입니다.",
+        words: {
+            "Я": "내가",
+            "повар": "요리사"
+        }
+    },
+    // Группа 4: Вопросы и ответы с "Кто" (с 누구 / 누가)
+    {
+        russian: "Извините, вы кто?",
+        korean: "실례지만, 누구세요?",
+        words: {
+            "Извините": "실례",
+            "вы кто": "누구"
+        }
+    },
+    {
+        russian: "Кто этот человек?",
+        korean: "저 분은 누구십니까?",
+        words: {
+            "Кто": "누구",
+            "этот человек": "저 분"
+        }
+    },
+    {
+        russian: "Кто учитель?",
+        korean: "누가 선생님입니까?",
+        words: {
+            "Кто": "누가",
+            "учитель": "선생님"
+        }
+    },
+
+    {
+        russian: "Кто та девушка?",
+        korean: "그 여자가 누구입니까?",
+        words: {
+            "Кто": "누구",
+            "та девушка": "그 여자"
+        }
+    },
+ 
+    {
+        russian: "Кто твой друг?",
+        korean: "네 친구가 누구입니까?",
+        words: {
+            "Кто": "누구",
+            "твой друг": "네 친구"
+        }
+    },
+    {
+        russian: "Кто президент?",
+        korean: "대통령이 누구입니까?",
+        words: {
+            "Кто": "누구",
+            "президент": "대통령"
+        }
+    },
+    // Группа 5: Разные ситуации (Падежи, описание)
+    {
+        russian: "Этот человек — моя бабушка.",
+        korean: "이 분은 우리 할머니입니다.",
+        words: {
+            "Этот человек": "이 분",
+            "моя бабушка": "우리 할머니"
+        }
+    },
+ 
+ 
+    {
+        russian: "Мой день рождения — 5 мая.",
+        korean: "제 생일은 5월 5일입니다.",
+        words: {
+            "Мой": "제",
+            "день рождения": "생일",
+            "5 мая": "5월 5일"
+        }
+    }
+];
+
+     // Переменные для управления состоянием
+    let currentIndex = 0;
+    let usedIndices = new Set();
+    let isRandomMode = true;
+
+    // Элементы DOM
+    const russianSentenceEl = document.getElementById('russian-sentence');
+    const koreanSentenceEl = document.getElementById('korean-sentence');
+    const koreanInputEl = document.getElementById('korean-input');
+    const resultMessageEl = document.getElementById('result-message');
+    const sentenceNumberEl = document.getElementById('sentence-number');
+    const progressEl = document.getElementById('progress');
+    const checkBtn = document.getElementById('check-btn');
+    const showBtn = document.getElementById('show-btn');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const speakerIcon = document.getElementById('speaker-icon');
+
+   // Функция для форматирования русского предложения с подсказками
+function formatRussianSentence(sentence, words) {
+    let formattedSentence = sentence;
+    
+    // Сортируем ключи по длине (от самых длинных к самым коротким)
+    // чтобы сначала заменять составные выражения
+    const sortedKeys = Object.keys(words).sort((a, b) => b.length - a.length);
+    
+    // Заменяем все фразы из words в предложении
+    sortedKeys.forEach(phrase => {
+        const translation = words[phrase];
+        const regex = new RegExp(phrase.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g');
+        formattedSentence = formattedSentence.replace(regex, 
+            `<span class="russian-word" data-translation="${translation}">${phrase}</span>`
+        );
+    });
+    
+    return formattedSentence;
+}
+
+    // Функция для произношения корейского предложения
+    function speakKorean() {
+        const koreanText = sentences[currentIndex].korean;
+        
+        if ('speechSynthesis' in window) {
+            const utterance = new SpeechSynthesisUtterance(koreanText);
+            utterance.lang = 'ko-KR';
+            utterance.rate = 0.9;
+            utterance.pitch = 1;
+            
+            window.speechSynthesis.speak(utterance);
+        } else {
+            alert("Ваш браузер не поддерживает синтез речи");
+        }
+    }
+
+    // Функция для отображения текущего предложения
+    function displayCurrentSentence() {
+        const currentSentence = sentences[currentIndex];
+        
+        sentenceNumberEl.innerHTML = `<span>Пример ${currentIndex + 1} из ${sentences.length}</span><span class="speaker-icon" id="speaker-icon">🔊</span>`;
+        russianSentenceEl.innerHTML = formatRussianSentence(currentSentence.russian, currentSentence.words);
+        koreanSentenceEl.textContent = currentSentence.korean;
+        koreanSentenceEl.style.display = 'none';
+        koreanInputEl.value = '';
+        resultMessageEl.style.display = 'none';
+        
+        // Обновляем состояние кнопок
+        prevBtn.disabled = currentIndex === 0;
+        nextBtn.disabled = currentIndex === sentences.length - 1;
+        
+        // Обновляем прогресс
+        progressEl.textContent = `Прогресс: ${currentIndex + 1}/${sentences.length}`;
+        
+        // Обновляем обработчик для иконки рупора
+        document.getElementById('speaker-icon').addEventListener('click', speakKorean);
+        
+        // Фокус на поле ввода
+        koreanInputEl.focus();
+    }
+
+    // Функция для получения случайного индекса
+    function getRandomIndex() {
+        if (usedIndices.size >= sentences.length) {
+            usedIndices.clear(); // Начинаем заново, если все примеры использованы
+        }
+        
+        let randomIndex;
+        do {
+            randomIndex = Math.floor(Math.random() * sentences.length);
+        } while (usedIndices.has(randomIndex));
+        
+        usedIndices.add(randomIndex);
+        return randomIndex;
+    }
+
+    // Функция для проверки введенного ответа
+    function checkAnswer() {
+        const userAnswer = koreanInputEl.value.trim();
+        const correctAnswer = sentences[currentIndex].korean;
+        
+        // Нормализуем ответы для сравнения (убираем лишние пробелы, игнорируем регистр)
+        const normalizedUserAnswer = userAnswer.replace(/\s+/g, ' ').toLowerCase();
+        const normalizedCorrectAnswer = correctAnswer.replace(/\s+/g, ' ').toLowerCase();
+        
+        if (normalizedUserAnswer === normalizedCorrectAnswer) {
+            resultMessageEl.textContent = "Правильно!";
+            resultMessageEl.className = "result-message correct";
+        } else {
+            resultMessageEl.textContent = "Неправильно. Попробуйте еще раз.";
+            resultMessageEl.className = "result-message incorrect";
+        }
+        
+        resultMessageEl.style.display = 'block';
+    }
+
+    // Обработчики событий
+    checkBtn.addEventListener('click', checkAnswer);
+
+    koreanInputEl.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            checkAnswer();
+        }
+    });
+
+    showBtn.addEventListener('click', function() {
+        koreanSentenceEl.style.display = 'block';
+        resultMessageEl.style.display = 'none';
+    });
+
+    prevBtn.addEventListener('click', function() {
+        if (currentIndex > 0) {
+            currentIndex--;
+            displayCurrentSentence();
+        }
+    });
+
+    nextBtn.addEventListener('click', function() {
+        if (isRandomMode) {
+            currentIndex = getRandomIndex();
+        } else {
+            if (currentIndex < sentences.length - 1) {
+                currentIndex++;
+            }
+        }
+        displayCurrentSentence();
+    });
+
+    // Инициализация тренажера
+    displayCurrentSentence();
+
+    // Оригинальный код для бургер-меню
+    const burgerMenu = document.getElementById("burgerMenu");
+    const navBurger = document.getElementById("navBurger");
+
+    burgerMenu.addEventListener("click", function (event) {
+        event.stopPropagation();
+        navBurger.classList.toggle("active");
+    });
+
+    document.addEventListener("click", function (event) {
+        if (!navBurger.contains(event.target) && !burgerMenu.contains(event.target)) {
+            navBurger.classList.remove("active");
+        }
+    });
+
+    function toggleBurger() {
+        const part1 = document.querySelector('.burger-part1');
+        const part2 = document.querySelector('.burger-part2');
+
+        if (part1.style.display === 'none') {
+            part1.style.display = 'block';
+            part2.style.display = 'none';
+        } else {
+            part1.style.display = 'none';
+            part2.style.display = 'block';
+        }
+    }
+
+    /* Свайп для мобильных устройств */
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    document.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+    });
+
+    document.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    });
+
+    function handleSwipe() {
+        const swipeThreshold = 50;
+        if (touchEndX < touchStartX - swipeThreshold) {
+            // Переход к следующему предложению
+            if (isRandomMode) {
+                currentIndex = getRandomIndex();
+            } else {
+                if (currentIndex < sentences.length - 1) {
+                    currentIndex++;
+                }
+            }
+            displayCurrentSentence();
+        } else if (touchEndX > touchStartX + swipeThreshold) {
+            // Переход к предыдущему предложению
+            if (currentIndex > 0) {
+                currentIndex--;
+                displayCurrentSentence();
+            }
+        }
+    }
+    </script>
+
+    <!-- <script src="/scripts/script_zvuk_clik.js"></script> -->
+</body>
+
+</html>
+<!-- 
+ исправь ошибки только в скрипте и пропиши в скрипте только массив по принципу  // Массив предложений для тренажера
+    const sentences = [
+        {
+            russian: "",
+            korean: ".",
+            words: {
+              
+            }
+        }, скрипт:
+корейские слова , которые высвечиваются в подсказке (подсветке) - поставь в инфинитивную форму
+замени  в массив все эти  предложения и справь эти предложения поставив в вежливо официальную форму:
+
+
+
+
+- по принципу  // Массив предложений для тренажера
+    const sentences = [
+        {
+            russian: "Я пишу ручкой.",
+            korean: "나는 만년필로 씁니다.",
+            words: {
+                "Я": "나",
+                "пишу": "쓰다",
+                "ручкой": "만년필"
+            }
+        },
+     
+    Группа 1: Утверждения о профессии/статусе (с 이다)
+저는 학생입니다. — Я студент.
+
+저는 선생님입니다. — Я учитель.
+
+저는 회사원입니다. — Я офисный работник.
+
+오빠는 경찰관입니다. — Мой старший брат — полицейский.
+
+할아버지는 의사였습니다. — Мой дедушка был врачом. (Прошедшее время)
+
+그 분은 우리 어머니입니다. — Этот человек — моя мама.
+
+제 친구는 가수입니다. — Мой друг — певец.
+
+우리 남동생은 대학생입니다. — Мой младший брат — студент университета.
+
+지금은 봄입니다. — Сейчас весна.
+
+오늘은 일요일입니다. — Сегодня воскресенье.
+
+제 이름은 안나입니다. — Меня зовут Анна.
+
+저 사람은 새 교장 선생님입니다. — Тот человек — новый директор школы.
+
+여기는 서울역입니다. — Здесь станция Сеул. (В контексте, например, в метро)
+
+그곳은 제 방입니다. — То место — моя комната.
+
+이 커피는 맛있습니다. — Этот кофе вкусный.
+
+Группа 2: Отрицательные утверждения (с 아니다)
+저는 의사가 아닙니다. — Я не врач.
+
+저는 일본 사람이 아닙니다. — Я не японец.
+
+그것은 제 열쇠가 아닙니다. — Это не мой ключ.
+
+그 사람은 배우가 아닙니다. — Тот человек — не актер.
+
+오늘은 제 생일이 아닙니다. — Сегодня не мой день рождения.
+
+이 음식은 한국 음식이 아닙니다. — Это блюдо — не корейская еда.
+
+저 분은 우리 아버지가 아닙니다. — Тот человек — не мой отец.
+
+지금은 겨울이 아닙니다. — Сейчас не зима.
+
+제 직업은 비서가 아닙니다. — Моя профессия — не секретарь.
+
+그 이야기는 사실이 아닙니다. — Та история — не правда.
+
+Группа 3: Акцент на субъекте (с 내가)
+내가 학생입니다. — Именно я студент.
+
+내가 한국 사람입니다. — Именно я кореец.
+
+내가 그 일을 했습니다. — Это я сделал ту работу.
+
+내가 요리사입니다. — Именно я повар.
+
+내가 먼저 왔습니다. — Это я пришёл первым.
+
+Группа 4: Вопросы и ответы с "Кто" (с 누구 / 누가)
+실례지만, 누구세요? — Извините, вы кто? (естественно)
+
+저 분은 누구십니까? — Кто этот человек? (вежливо)
+
+누가 선생님입니까? — Кто учитель?
+
+방에 누가 있습니까? — Кто в комнате?
+
+오늘 발표하는 사람이 누구입니까? — Кто сегодня выступает?
+
+가장 나이가 많은 사람이 누구입니까? — Кто самый старший?
+
+그 여자 분은 누구예요? — Кто та девушка? (разг., вежливо)
+
+누가 김치를 만들었습니까? — Кто приготовил кимчи?
+
+네 친구가 누구니? — Кто твой друг? (неформально)
+
+대통령이 누구입니까? — Кто президент?
+
+Группа 5: Разные ситуации (Падежи, описание)
+이 분은 우리 할머니입니다. — Этот человек — моя бабушка.
+
+그 노래는 새 노래입니다. — Та песня — новая.
+
+저 표는 제 표입니다. — Вон тот билет — мой.
+
+컴퓨터는 책상 위에 있습니다. — Компьютер на столе. (Не используется 이다, но частое и простое предложение)
+
+저의 꿈은 판사입니다. — Моя мечта — стать судьёй.
+
+어제는 날씨가 좋았습니다. — Вчера погода была хорошей.
+
+가장 중요한 것은 건강입니다. — Самое важное — это здоровье.
+
+그 영화는 재미있었습니다. — Тот фильм был интересным.
+
+제 생일은 5월 5일입니다. — Мой день рождения — 5 мая. -->
