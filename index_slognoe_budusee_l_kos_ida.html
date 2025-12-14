@@ -1,0 +1,1755 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Korean Numbers Guide</title>
+    <link rel="stylesheet" href="/styles/style_base_numder_word.css">
+   <style>
+        .container {
+            padding: 0 20px;
+            max-width: 100%;
+        }
+
+        article {
+            width: 90%;
+            margin: 0 auto;
+            padding: 20px;
+            box-sizing: border-box;
+            /* Адаптация для article */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .rule {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f8f8f8;
+            border-radius: 8px;
+        }
+
+        .grammatika,
+        .center-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f8f8f8;
+            border-radius: 8px;
+        }
+
+        .grammatika h2 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .grammatika p {
+            line-height: 1.5;
+            color: #555;
+            text-align: center;
+            width: 100%;
+        }
+
+        .rule-face {
+            width: 100%;
+            margin: 15px 0;
+        }
+
+        .rule-word {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            padding: 15px 0;
+        }
+
+        h4,
+        h5,
+        h2 {
+            text-align: center;
+            margin-bottom: 10px;
+            margin-top: 10px;
+        }
+
+        .korean-text b {
+            font-weight: bold;
+        }
+
+        .left-spesial-word,
+        .right-primer {
+            flex: 1;
+            padding: 15px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        /* Left burger styles */
+        .left-burger {
+            position: fixed;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: #f8f8f8;
+            padding: 15px;
+            border-radius: 0 8px 8px 0;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+            width: 200px;
+            z-index: 100;
+        }
+
+        /* Style for h4 in burgers */
+        .left-burger h4,
+        .right-burger h4,
+        .bottom-burger h4 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        /* Style for paragraphs in burgers */
+        .left-burger p,
+        .right-burger p,
+        .bottom-burger p {
+            text-align: left;
+            margin: 10px 0;
+        }
+
+        /* Right burger styles */
+        .right-burger {
+            position: fixed;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: #f8f8f8;
+            padding: 15px;
+            border-radius: 8px 0 0 8px;
+            box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.1);
+            width: 200px;
+            z-index: 100;
+        }
+
+        /* Bottom burger styles */
+        .bottom-burger {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #f8f8f8;
+            padding: 15px;
+            border-radius: 8px 8px 0 0;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            z-index: 100;
+        }
+
+        .iconDown,
+        .iconUp {
+            cursor: pointer;
+            text-align: center;
+            border-radius: 5px;
+            margin: 10px auto;
+            width: 30px;
+        }
+
+        /* для перехода по ссылке на гармонию гласных */
+        .rule_garmoniya a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .rule_garmoniya b {
+            cursor: pointer;
+            color: rgb(81, 7, 8);
+            text-decoration: underline;
+        }
+
+   
+        /* Стили для слов с подсказками */
+        .russian-word {
+            cursor: pointer;
+            position: relative;
+            padding: 2px 4px;
+            border-radius: 3px;
+            transition: background-color 0.2s;
+            font-weight: 700;
+        }
+
+        .russian-word:hover {
+            background-color: rgba(52, 152, 219, 0.2);
+        }
+
+        .russian-word:hover::after {
+            content: attr(data-translation);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #2c3e50;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            white-space: nowrap;
+            z-index: 10;
+            font-size: 20px;
+            font-weight: 900;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .progress {
+            margin-top: 20px;
+            text-align: center;
+            font-weight: bold;
+            color: #2c3e50;
+            flex: 0 0 auto;
+        }
+
+        .perehod {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+        }
+
+.trenazher-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 20px;
+}
+
+/* Стили для поля ввода корейского текста */
+.korean-input {
+    width: 100%;
+    font-weight: 900;
+    font-size: 26px;
+    padding: 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    text-align: center;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+    margin-bottom: 20px;
+}
+
+.korean-input:focus {
+    border-color: #3498db;
+    outline: none;
+}
+
+.sentence-number {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 50px; /* Расстояние 50px между элементами */
+}
+
+.russian-sentence {
+    margin-bottom: 20px;
+}
+
+/* .hint {
+    margin-bottom: 20px;
+} */
+.btn {
+    margin-bottom: 20px;
+}
+                        
+                     /* input-container */
+
+/* Адаптация для всех режимов */
+
+/* 1441px и выше */
+@media (min-width: 1441px) {
+    .trenazher-container {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: stretch;
+        padding: 35px;
+    }
+    
+    .exercise-container {
+        flex: 1 1 100%;
+    }
+    
+    .korean-input {
+        font-size: 28px;
+        padding: 18px;
+    }
+    
+    .controls {
+        justify-content: center;
+        gap: 12px;
+    }
+    
+    .btn {
+        flex: 0 1 calc(25% - 12px);
+        padding: 12px 18px;
+        font-size: 16px;
+        min-width: 140px;
+    }
+}
+
+/* 1440px - 1025px */
+@media (max-width: 1440px) and (min-width: 1025px) {
+    .trenazher-container {
+        flex-direction: column;
+        align-items: center;
+        padding: 30px;
+    }
+    
+    .korean-input {
+        font-size: 26px;
+        padding: 16px;
+    }
+    
+    .controls {
+        justify-content: space-around;
+        gap: 10px;
+    }
+    
+    .btn {
+        flex: 0 1 calc(25% - 10px);
+        padding: 11px 16px;
+        font-size: 15px;
+        min-width: 130px;
+    }
+}
+
+/* 1024px - 769px */
+@media (max-width: 1024px) and (min-width: 769px) {
+    .trenazher-container {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 25px;
+    }
+    
+    .korean-input {
+        font-size: 24px;
+        padding: 14px;
+    }
+    
+    .controls {
+        justify-content: space-between;
+        gap: 8px;
+    }
+    
+    .btn {
+        flex: 1 1 calc(25% - 8px);
+        padding: 10px 14px;
+        font-size: 14px;
+        min-width: 110px;
+    }
+}
+
+/* 768px - 426px */
+@media (max-width: 768px) and (min-width: 426px) {
+    .trenazher-container {
+        flex-direction: column;
+        padding: 20px;
+        align-items: center;
+    }
+    
+    .korean-input {
+        font-size: 22px;
+        padding: 12px;
+    }
+    
+    .controls {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    
+    .btn {
+        flex: 1 1 calc(50% - 8px);
+        padding: 10px 12px;
+        font-size: 14px;
+        min-width: 0;
+    }
+}
+
+/* 425px - 376px */
+@media (max-width: 425px) and (min-width: 376px) {
+    .trenazher-container {
+        flex-direction: column;
+        padding: 18px;
+        align-items: stretch;
+    }
+    
+    .korean-input {
+        font-size: 20px;
+        padding: 11px;
+        font-weight: 800;
+    }
+    
+    .controls {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+    
+    .btn {
+        flex: 1 1 calc(50% - 6px);
+        padding: 9px 11px;
+        font-size: 13px;
+        min-width: 0;
+    }
+}
+
+/* 375px - 321px */
+@media (max-width: 375px) and (min-width: 321px) {
+    .trenazher-container {
+        flex-direction: column;
+        padding: 15px;
+        align-items: stretch;
+    }
+    
+    .korean-input {
+        font-size: 19px;
+        padding: 10px;
+        font-weight: 800;
+    }
+    
+    .controls {
+        flex-direction: column;
+        gap: 6px;
+    }
+    
+    .btn {
+        flex: 1 1 100%;
+        padding: 10px 12px;
+        font-size: 14px;
+        min-width: 0;
+        width: 100%;
+    }
+}
+
+/* 320px - 251px */
+@media (max-width: 320px) and (min-width: 251px) {
+    .trenazher-container {
+        flex-direction: column;
+        padding: 12px;
+        align-items: stretch;
+    }
+    
+    .korean-input {
+        font-size: 18px;
+        padding: 9px;
+        font-weight: 700;
+    }
+    
+    .controls {
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    .btn {
+        flex: 1 1 100%;
+        padding: 8px 10px;
+        font-size: 13px;
+        min-width: 0;
+        width: 100%;
+    }
+}
+
+/* 250px и меньше */
+@media (max-width: 250px) {
+    .trenazher-container {
+        flex-direction: column;
+        padding: 10px;
+        align-items: stretch;
+        gap: 15px;
+    }
+    
+    .korean-input {
+        font-size: 16px;
+        padding: 8px;
+        font-weight: 700;
+    }
+    
+    .controls {
+        flex-direction: column;
+        gap: 4px;
+    }
+    
+    .btn {
+        flex: 1 1 100%;
+        padding: 7px 9px;
+        font-size: 12px;
+        min-width: 0;
+        width: 100%;
+    }
+    
+    .trenazher-title {
+        font-size: 1.1em;
+    }
+}
+
+    
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="burger-menu" id="burgerMenu">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <img class="logo" src="/image/logo krug.svg" alt="Логотип">
+            <a href="" class="user"> <img class="lk" src="/image/userrblur.svg" alt="Пользователь"></a>
+        </div>
+        <nav class="nav-burger" id="navBurger">
+            <ul class="ul-header">
+                <li class="li-header"> <a href="" class="a-header">онлайн - переводчик</a></li>
+                <li class="li-header"> <a href="" class="a-header">контакты</a></li>
+                <li class="li-header"> <a href="" class="a-header">светлая тема</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="container">
+            <article>
+                <div class="trenazher-container">
+                    <!-- <h1 class="trenazher-title">Тренажер перевода с русского на корейский</h1> -->
+                    
+                    <div class="exercise-container">
+                        <div class="sentence-number" id="sentence-number">
+                            <span>Пример 1 из 10</span>
+                            <span class="speaker-icon" id="speaker-icon">🔊</span>
+                        </div>
+                        <div class="russian-sentence" id="russian-sentence"></div>
+                        
+                        <div class="input-container">
+                            <input type="text" class="korean-input" id="korean-input" placeholder="Введите перевод на корейском языке...">
+                            <div class="result-message" id="result-message"></div>
+                        </div>
+                        
+                        <div class="korean-sentence" id="korean-sentence"></div>
+                        
+                        <div class="controls">
+                            <button class="btn" id="prev-btn" disabled>Предыдущее</button>
+                            <button class="btn" id="check-btn">Проверить</button>
+                            <button class="btn" id="show-btn">Показать ответ</button>
+                            <button class="btn" id="next-btn">Следующее</button>
+                        </div>
+                        
+                        <div class="hint">Наведите на русское слово, чтобы увидеть перевод на корейский</div>
+                    </div>
+                    
+                    <div class="progress" id="progress">Прогресс: 0/10</div>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <!-- Левый бургер -->
+    <div class="left-burger">
+        <h4>Полезные фразы</h4>
+        <div class="korean-text" data-korean=""><b>안녕하세요</b> - Здравствуйте</div>
+        <div class="korean-text" data-korean=""><b>감사합니다</b> - Спасибо</div>
+        <div class="korean-text" data-korean=""><b>미안합니다</b> - Извините</div>
+        <div class="korean-text" data-korean=""><b>네</b> - Да</div>
+    </div>
+
+    <!-- Левая закладка -->
+    <div class="left-bookmark-icon"></div>
+
+    <!-- Нижний бургер -->
+    <div class="bottom-burger">
+        <h4>Грамматические подсказки</h4>
+        <div class="korean-text" data-korean=""><b>은/는</b> - тематические частицы</div>
+        <div class="korean-text" data-korean=""><b>이/가</b> - подлежащие частицы</div>
+        <div class="korean-text" data-korean=""><b>을/를</b> - объектные частицы</div>
+        <div class="korean-text" data-korean=""><b>에/에서</b> - локативные частицы</div>
+    </div>
+
+    <!-- Нижняя закладка -->
+    <div class="bottom-bookmark-icon"></div>
+
+    <!-- Правая закладка -->
+    <div class="bookmark-icon"></div>
+
+    <!-- Правый бургер -->
+    <!-- <div class="right-burger">
+        <h4>Числительные</h4>
+        <div class="korean-text" data-korean=""><b>하나</b> - один</div>
+        <div class="korean-text" data-korean=""><b>둘</b> - два</div>
+        <div class="korean-text" data-korean=""><b>셋</b> - три</div>
+        <div class="korean-text" data-korean=""><b>넷</b> - четыре</div>
+    </div> -->
+
+    <div class="perehod">
+        <a href="/index.html"><img src="/image/vlevo2.svg" alt=""></a>
+        <a href="/index.html"><img src="/image/vpravo2.svg" alt=""></a>
+    </div>
+
+    <footer>
+        <section class="footer container">
+            <address>
+                <div class="footer1">
+                    <div class="tel">
+                        <img src="/image/tel_blue.svg" alt="">
+                        <p>8-925-685-52-39 </p>
+                    </div>
+                    <div class="mail">
+                        <p>anastasiya3000@yandex.ru</p>
+                    </div>
+                    <div class="footer-icon">
+                        <a href="" class="social-icon"> <img src="/image/telegram_icon 1.svg" alt=""></a>
+                        <a href="" class="social-icon"> <img src="/image/skype_icon 1.svg" alt=""></a>
+                        <a href="" class="social-icon"><img src="/image/whatsapp_green.png" alt=""></a>
+                        <a href="" class="social-icon"> <img src="/image/license.svg" alt=""></a>
+                    </div>
+                </div>
+
+                <div class="footer2">
+                    <nav class="nav1-footer">
+                        <ul class="ul-footer">
+                            <div class="f-li">
+                                <li class="li-footer"> <a href="" class="a-footer"><b>Правила оплаты</b></a></li>
+                                <li class="li-footer"> <a href="" class="a-footer"><b>Договор оферты</b></a></li>
+                                <li class="li-footer"> <a href="" class="a-footer"><b>Согласие с рассылкой</b></a></li>
+                                <li class="li-footer"><a href="" class="a-footer"><b>Пользовательское соглашение</b></a>
+                                </li>
+                                <li class="li-footer"> <a href="" class="a-footer"><b>Политика
+                                            конфиденциальности</b></a></li>
+                                <li class="li-footer"> <a href="" class="a-footer"><b>Положение о защите персональных
+                                            данных</b></a></li>
+                            </div>
+                        </ul>
+                    </nav>
+                </div>
+            </address>
+        </section>
+
+        <div class="copyright">
+            <img id="copyright" src="/image/Copyright2 _ blue.svg" alt="copyright">
+            <p>takiza, 2025</p>
+        </div>
+    </footer>
+
+   <script>
+
+
+ // Массив предложений для тренажера
+    const sentences = [
+        {
+            russian: "Я завтра пойду в школу.",
+            korean: "저는 내일 학교에 갈 것입니다.",
+            words: {
+                "Я": "저",
+                "завтра": "내일",
+                "пойду": "가다",
+                "в школу": "학교에"
+            }
+        },
+        {
+            russian: "Пойдет дождь.",
+            korean: "비가 올 것입니다.",
+            words: {
+                "Пойдет": "오다",
+                "дождь": "비"
+            }
+        },
+        {
+            russian: "Он скоро прибудет.",
+            korean: "그는 곧 도착할 것입니다.",
+            words: {
+                "Он": "그는",
+                "скоро": "곧",
+                "прибудет": "도착하다"
+            }
+        },
+        {
+            russian: "Мы приготовим ужин.",
+            korean: "우리는 저녁을 만들 것입니다.",
+            words: {
+                "Мы": "우리는",
+                "приготовим": "만들다",
+                "ужин": "저녁"
+            }
+        },
+        {
+            russian: "Этот фильм будет интересным.",
+            korean: "그 영화는 재미있을 것입니다.",
+            words: {
+                "Этот фильм": "그 영화는",
+                "будет интересным": "재미있다"
+            }
+        },
+     
+        {
+            russian: "Зазвонит телефон.",
+            korean: "전화가 울릴 것입니다.",
+            words: {
+                "Зазвонит": "울리다",
+                "телефон": "전화"
+            }
+        },
+        {
+            russian: "Я буду читать ту книгу.",
+            korean: "저는 그 책을 읽을 것입니다.",
+            words: {
+                "Я": "저는",
+                "буду читать": "읽다",
+                "ту книгу": "그 책을"
+            }
+        },
+        {
+            russian: "Они поженятся.",
+            korean: "그들은 결혼할 것입니다.",
+            words: {
+                "Они": "그들은",
+                "поженятся": "결혼하다"
+            }
+        },
+        {
+            russian: "Автобус опоздает.",
+            korean: "버스가 늦을 것입니다.",
+            words: {
+                "Автобус": "버스",
+                "опоздает": "늦다"
+            }
+        },
+        {
+            russian: "Я выпью кофе.",
+            korean: "저는 커피를 마실 것입니다.",
+            words: {
+                "Я": "저는",
+                "выпью": "마시다",
+                "кофе": "커피"
+            }
+        },
+        {
+            russian: "Погода будет холодной.",
+            korean: "날씨가 추울 것입니다.",
+            words: {
+                "Погода": "날씨",
+                "будет холодной": "춥다"
+            }
+        },
+        {
+            russian: "Учитель объяснит.",
+            korean: "선생님이 설명할 것입니다.",
+            words: {
+                "Учитель": "선생님",
+                "объяснит": "설명하다"
+            }
+        },
+        {
+            russian: "Я спою песню.",
+            korean: "저는 노래를 부를 것입니다.",
+            words: {
+                "Я": "저는",
+                "спою": "부르다",
+                "песню": "노래"
+            }
+        },
+        {
+            russian: "Совещание затянется.",
+            korean: "회의는 길어질 것입니다.",
+            words: {
+                "Совещание": "회의",
+                "затянется": "길어지다"
+            }
+        },
+        {
+            russian: "Он добьется успеха.",
+            korean: "그는 성공할 것입니다.",
+            words: {
+                "Он": "그는",
+                "добьется успеха": "성공하다"
+            }
+        },
+        {
+            russian: "Я буду учить корейский.",
+            korean: "저는 한국어를 배울 것입니다.",
+            words: {
+                "Я": "저는",
+                "буду учить": "배우다",
+                "корейский": "한국어"
+            }
+        },
+    
+        {
+            russian: "Друзья придут в гости.",
+            korean: "친구들이 방문할 것입니다.",
+            words: {
+                "Друзья": "친구들",
+                "придут в гости": "방문하다"
+            }
+        },
+        {
+            russian: "Я напишу письмо.",
+            korean: "저는 편지를 쓸 것입니다.",
+            words: {
+                "Я": "저는",
+                "напишу": "쓰다",
+                "письмо": "편지"
+            }
+        },
+        {
+            russian: "Экзамен будет трудным.",
+            korean: "시험이 어려울 것입니다.",
+            words: {
+                "Экзамен": "시험",
+                "будет трудным": "어렵다"
+            }
+        },
+        {
+            russian: "Поезд отправится.",
+            korean: "기차가 출발할 것입니다.",
+            words: {
+                "Поезд": "기차",
+                "отправится": "출발하다"
+            }
+        },
+        {
+            russian: "Я буду рисовать картину.",
+            korean: "저는 그림을 그릴 것입니다.",
+            words: {
+                "Я": "저는",
+                "буду рисовать": "그리다",
+                "картину": "그림"
+            }
+        },
+        {
+            russian: "Ты услышишь эту новость.",
+            korean: "그 소식을 들을 것입니다.",
+            words: {
+                "Ты": "너는",
+                "услышишь": "듣다",
+                "эту новость": "그 소식"
+            }
+        },
+        {
+            russian: "Растение будет расти.",
+            korean: "식물이 자랄 것입니다.",
+            words: {
+                "Растение": "식물",
+                "будет расти": "자라다"
+            }
+        },
+        {
+            russian: "Я буду заниматься спортом.",
+            korean: "저는 운동할 것입니다.",
+            words: {
+                "Я": "저는",
+                "буду заниматься спортом": "운동하다"
+            }
+        },
+        {
+            russian: "Этот план провалится.",
+            korean: "그 계획은 실패할 것입니다.",
+            words: {
+                "Этот план": "그 계획은",
+                "провалится": "실패하다"
+            }
+        },
+        {
+            russian: "Солнце сядет.",
+            korean: "해가 질 것입니다.",
+            words: {
+                "Солнце": "해",
+                "сядет": "지다"
+            }
+        },
+        {
+            russian: "Я спланирую путешествие.",
+            korean: "저는 여행을 계획할 것입니다.",
+            words: {
+                "Я": "저는",
+                "спланирую": "계획하다",
+                "путешествие": "여행"
+            }
+        },
+        {
+            russian: "Это займет время.",
+            korean: "시간이 걸릴 것입니다.",
+            words: {
+                "займет время": "시간이 걸리다"
+            }
+        },
+        {
+            russian: "Щенок будет лаять.",
+            korean: "강아지가 짖을 것입니다.",
+            words: {
+                "Щенок": "강아지",
+                "будет лаять": "짖다"
+            }
+        },
+     ,
+        {
+            russian: "Результат будет хорошим.",
+            korean: "결과가 좋을 것입니다.",
+            words: {
+                "Результат": "결과",
+                "будет хорошим": "좋다"
+            }
+        },
+        {
+            russian: "Тот магазин закроется.",
+            korean: "그 가게는 문을 닫을 것입니다.",
+            words: {
+                "Тот магазин": "그 가게는",
+                "закроется": "문을 닫다"
+            }
+        },
+        {
+            russian: "Я сдержу обещание.",
+            korean: "저는 약속을 지킬 것입니다.",
+            words: {
+                "Я": "저는",
+                "сдержу": "지키다",
+                "обещание": "약속"
+            }
+        },
+        {
+            russian: "Цветы распустятся.",
+            korean: "꽃이 필 것입니다.",
+            words: {
+                "Цветы": "꽃",
+                "распустятся": "피다"
+            }
+        },
+        {
+            russian: "Машина сломается.",
+            korean: "차가 고장 날 것입니다.",
+            words: {
+                "Машина": "차",
+                "сломается": "고장 나다"
+            }
+        },
+        {
+            russian: "Я скажу правду.",
+            korean: "저는 진실을 말할 것입니다.",
+            words: {
+                "Я": "저는",
+                "скажу": "말하다",
+                "правду": "진실"
+            }
+        },
+        {
+            russian: "Та работа будет легкой.",
+            korean: "그 일은 쉬울 것입니다.",
+            words: {
+                "Та работа": "그 일은",
+                "будет легкой": "쉽다"
+            }
+        },
+        {
+            russian: "Пойдет снег.",
+            korean: "눈이 내릴 것입니다.",
+            words: {
+                "Пойдет": "내리다",
+                "снег": "눈"
+            }
+        },
+        {
+            russian: "Я буду дома.",
+            korean: "저는 집에 있을 것입니다.",
+            words: {
+                "Я": "저는",
+                "буду дома": "집에 있다"
+            }
+        },
+        {
+            russian: "Еда будет вкусной.",
+            korean: "음식이 맛있을 것입니다.",
+            words: {
+                "Еда": "음식",
+                "будет вкусной": "맛있다"
+            }
+        },
+        {
+            russian: "Тот мальчик заплачет.",
+            korean: "그 소년은 울 것입니다.",
+            words: {
+                "Тот мальчик": "그 소년은",
+                "заплачет": "울다"
+            }
+        },
+        {
+            russian: "Я буду ждать.",
+            korean: "저는 기다릴 것입니다.",
+            words: {
+                "Я": "저는",
+                "буду ждать": "기다리다"
+            }
+        },
+   
+        {
+            russian: "Я буду копить деньги.",
+            korean: "저는 돈을 모을 것입니다.",
+            words: {
+                "Я": "저는",
+                "буду копить": "모으다",
+                "деньги": "돈"
+            }
+        },
+   
+      
+        {
+            russian: "Компьютер выключится.",
+            korean: "컴퓨터가 꺼질 것입니다.",
+            words: {
+                "Компьютер": "컴퓨터",
+                "выключится": "꺼지다"
+            }
+        },
+        {
+            russian: "Я встречусь с ним.",
+            korean: "저는 그를 만날 것입니다.",
+            words: {
+                "Я": "저는",
+                "встречусь": "만나다",
+                "с ним": "그를"
+            }
+        },
+      
+ 
+        {
+            russian: "Я сделаю уборку.",
+            korean: "저는 청소를 할 것입니다.",
+            words: {
+                "Я": "저는",
+                "сделаю уборку": "청소를 하다"
+            }
+        },
+        {
+            russian: "Ты найдешь ключ.",
+            korean: "열쇠를 찾을 것입니다.",
+            words: {
+                "Ты": "너는",
+                "найдешь": "찾다",
+                "ключ": "열쇠"
+            }
+        },
+        {
+            russian: "Я буду бегать быстро.",
+            korean: "저는 빨리 달릴 것입니다.",
+            words: {
+                "Я": "저는",
+                "буду бегать": "달리다",
+                "быстро": "빨리"
+            }
+        },
+        {
+            russian: "Возникнет проблема.",
+            korean: "문제가 생길 것입니다.",
+            words: {
+                "Возникнет": "생기다",
+                "проблема": "문제"
+            }
+        },
+        {
+            russian: "Я буду спать.",
+            korean: "저는 잠을 잘 것입니다.",
+            words: {
+                "Я": "저는",
+                "буду спать": "잠을 자다"
+            }
+        },
+        {
+            russian: "Та музыка будет популярной.",
+            korean: "그 음악은 인기가 있을 것입니다.",
+            words: {
+                "Та музыка": "그 음악은",
+                "будет популярной": "인기가 있다"
+            }
+        },
+        {
+            russian: "Я буду фотографировать.",
+            korean: "저는 사진을 찍을 것입니다.",
+            words: {
+                "Я": "저는",
+                "буду фотографировать": "사진을 찍다"
+            }
+        },
+        {
+            russian: "Самолет взлетит.",
+            korean: "비행기가 이륙할 것입니다.",
+            words: {
+                "Самолет": "비행기",
+                "взлетит": "이륙하다"
+            }
+        },
+        {
+            russian: "Я сделаю выбор.",
+            korean: "저는 선택할 것입니다.",
+            words: {
+                "Я": "저는",
+                "сделаю выбор": "선택하다"
+            }
+        },
+        {
+            russian: "Придет много людей.",
+            korean: "많은 사람들이 올 것입니다.",
+            words: {
+                "Придет": "오다",
+                "много людей": "많은 사람들"
+            }
+        },
+        {
+            russian: "Я постираю одежду.",
+            korean: "저는 옷을 빨을 것입니다.",
+            words: {
+                "Я": "저는",
+                "постираю": "빨다",
+                "одежду": "옷"
+            }
+        },
+        {
+            russian: "Фрукты созреют.",
+            korean: "과일이 익을 것입니다.",
+            words: {
+                "Фрукты": "과일",
+                "созреют": "익다"
+            }
+        },
+     
+        {
+            russian: "Я выучу что-то новое.",
+            korean: "저는 새로운 것을 배울 것입니다.",
+            words: {
+                "Я": "저는",
+                "выучу": "배우다",
+                "что-то новое": "새로운 것"
+            }
+        },
+        {
+            russian: "Подует ветер.",
+            korean: "바람이 불 것입니다.",
+            words: {
+                "Подует": "불다",
+                "ветер": "바람"
+            }
+        },
+        {
+            russian: "Я последую рецепту.",
+            korean: "저는 요리법을 따를 것입니다.",
+            words: {
+                "Я": "저는",
+                "последую": "따르다",
+                "рецепту": "요리법"
+            }
+        },
+        {
+            russian: "То здание будет высоким.",
+            korean: "그 건물은 높을 것입니다.",
+            words: {
+                "То здание": "그 건물은",
+                "будет высоким": "높다"
+            }
+        },
+        {
+            russian: "Я пойду в больницу.",
+            korean: "저는 병원에 갈 것입니다.",
+            words: {
+                "Я": "저는",
+                "пойду": "가다",
+                "в больницу": "병원에"
+            }
+        },
+        {
+            russian: "Свеча растает.",
+            korean: "초가 녹을 것입니다.",
+            words: {
+                "Свеча": "초",
+                "растает": "녹다"
+            }
+        },
+        {
+            russian: "Я поздороваюсь.",
+            korean: "저는 인사할 것입니다.",
+            words: {
+                "Я": "저는",
+                "поздороваюсь": "인사하다"
+            }
+        },
+        {
+            russian: "Настроение улучшится.",
+            korean: "기분이 나아질 것입니다.",
+            words: {
+                "Настроение": "기분",
+                "улучшится": "나아지다"
+            }
+        },
+      
+        {
+            russian: "Я буду слушать объяснение.",
+            korean: "저는 설명을 들을 것입니다.",
+            words: {
+                "Я": "저는",
+                "буду слушать": "듣다",
+                "объяснение": "설명"
+            }
+        },
+        {
+            russian: "Понадобится помощь.",
+            korean: "도움이 필요할 것입니다.",
+            words: {
+                "Понадобится": "필요하다",
+                "помощь": "도움"
+            }
+        },
+        {
+            russian: "Я закрою дверь.",
+            korean: "저는 문을 닫을 것입니다.",
+            words: {
+                "Я": "저는",
+                "закрою": "닫다",
+                "дверь": "문"
+            }
+        },
+    
+        {
+            russian: "Я начну эту работу.",
+            korean: "저는 그 일을 시작할 것입니다.",
+            words: {
+                "Я": "저는",
+                "начну": "시작하다",
+                "эту работу": "그 일을"
+            }
+        },
+     
+        {
+            russian: "Возможность представится .",
+            korean: "기회가 올 것입니다.",
+            words: {
+                "представится": "오다",
+                "Возможность": "기회"
+            }
+        },
+    
+        {
+            russian: "Листья опадут.",
+            korean: "잎이 떨어질 것입니다.",
+            words: {
+                "Листья": "잎",
+                "опадут": "떨어지다"
+            }
+        },
+        {
+            russian: "Я подготовлюсь.",
+            korean: "저는 준비할 것입니다.",
+            words: {
+                "Я": "저는",
+                "подготовлюсь": "준비하다"
+            }
+        },
+        {
+            russian: "Тот фильм будет грустным.",
+            korean: "그 영화는 슬플 것입니다.",
+            words: {
+                "Тот фильм": "그 영화는",
+                "будет грустным": "슬프다"
+            }
+        },
+        {
+            russian: "Я отвечу.",
+            korean: "저는 대답할 것입니다.",
+            words: {
+                "Я": "저는",
+                "отвечу": "대답하다"
+            }
+        },
+        {
+            russian: "Птица улетит.",
+            korean: "새가 날아갈 것입니다.",
+            words: {
+                "Птица": "새",
+                "улетит": "날아가다"
+            }
+        },
+        {
+            russian: "Я буду помнить.",
+            korean: "저는 기억할 것입니다.",
+            words: {
+                "Я": "저는",
+                "буду помнить": "기억하다"
+            }
+        },
+        {
+            russian: "Дерево вырастет.",
+            korean: "나무가 자랄 것입니다.",
+            words: {
+                "Дерево": "나무",
+                "вырастет": "자라다"
+            }
+        },
+      
+        {
+            russian: "Я буду стараться.",
+            korean: "저는 노력할 것입니다.",
+            words: {
+                "Я": "저는",
+                "буду стараться": "노력하다"
+            }
+        }
+    ];
+
+     // Переменные для управления состоянием
+    let currentIndex = 0;
+    let usedIndices = new Set();
+    let isRandomMode = true;
+
+    // Элементы DOM
+    const russianSentenceEl = document.getElementById('russian-sentence');
+    const koreanSentenceEl = document.getElementById('korean-sentence');
+    const koreanInputEl = document.getElementById('korean-input');
+    const resultMessageEl = document.getElementById('result-message');
+    const sentenceNumberEl = document.getElementById('sentence-number');
+    const progressEl = document.getElementById('progress');
+    const checkBtn = document.getElementById('check-btn');
+    const showBtn = document.getElementById('show-btn');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const speakerIcon = document.getElementById('speaker-icon');
+
+   // Функция для форматирования русского предложения с подсказками
+function formatRussianSentence(sentence, words) {
+    let formattedSentence = sentence;
+    
+    // Сортируем ключи по длине (от самых длинных к самым коротким)
+    // чтобы сначала заменять составные выражения
+    const sortedKeys = Object.keys(words).sort((a, b) => b.length - a.length);
+    
+    // Заменяем все фразы из words в предложении
+    sortedKeys.forEach(phrase => {
+        const translation = words[phrase];
+        const regex = new RegExp(phrase.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g');
+        formattedSentence = formattedSentence.replace(regex, 
+            `<span class="russian-word" data-translation="${translation}">${phrase}</span>`
+        );
+    });
+    
+    return formattedSentence;
+}
+
+    // Функция для произношения корейского предложения
+    function speakKorean() {
+        const koreanText = sentences[currentIndex].korean;
+        
+        if ('speechSynthesis' in window) {
+            const utterance = new SpeechSynthesisUtterance(koreanText);
+            utterance.lang = 'ko-KR';
+            utterance.rate = 0.9;
+            utterance.pitch = 1;
+            
+            window.speechSynthesis.speak(utterance);
+        } else {
+            alert("Ваш браузер не поддерживает синтез речи");
+        }
+    }
+
+    // Функция для отображения текущего предложения
+    function displayCurrentSentence() {
+        const currentSentence = sentences[currentIndex];
+        
+        sentenceNumberEl.innerHTML = `<span>Пример ${currentIndex + 1} из ${sentences.length}</span><span class="speaker-icon" id="speaker-icon">🔊</span>`;
+        russianSentenceEl.innerHTML = formatRussianSentence(currentSentence.russian, currentSentence.words);
+        koreanSentenceEl.textContent = currentSentence.korean;
+        koreanSentenceEl.style.display = 'none';
+        koreanInputEl.value = '';
+        resultMessageEl.style.display = 'none';
+        
+        // Обновляем состояние кнопок
+        prevBtn.disabled = currentIndex === 0;
+        nextBtn.disabled = currentIndex === sentences.length - 1;
+        
+        // Обновляем прогресс
+        progressEl.textContent = `Прогресс: ${currentIndex + 1}/${sentences.length}`;
+        
+        // Обновляем обработчик для иконки рупора
+        document.getElementById('speaker-icon').addEventListener('click', speakKorean);
+        
+        // Фокус на поле ввода
+        koreanInputEl.focus();
+    }
+
+    // Функция для получения случайного индекса
+    function getRandomIndex() {
+        if (usedIndices.size >= sentences.length) {
+            usedIndices.clear(); // Начинаем заново, если все примеры использованы
+        }
+        
+        let randomIndex;
+        do {
+            randomIndex = Math.floor(Math.random() * sentences.length);
+        } while (usedIndices.has(randomIndex));
+        
+        usedIndices.add(randomIndex);
+        return randomIndex;
+    }
+
+    // Функция для проверки введенного ответа
+    function checkAnswer() {
+        const userAnswer = koreanInputEl.value.trim();
+        const correctAnswer = sentences[currentIndex].korean;
+        
+        // Нормализуем ответы для сравнения (убираем лишние пробелы, игнорируем регистр)
+        const normalizedUserAnswer = userAnswer.replace(/\s+/g, ' ').toLowerCase();
+        const normalizedCorrectAnswer = correctAnswer.replace(/\s+/g, ' ').toLowerCase();
+        
+        if (normalizedUserAnswer === normalizedCorrectAnswer) {
+            resultMessageEl.textContent = "Правильно!";
+            resultMessageEl.className = "result-message correct";
+        } else {
+            resultMessageEl.textContent = "Неправильно. Попробуйте еще раз.";
+            resultMessageEl.className = "result-message incorrect";
+        }
+        
+        resultMessageEl.style.display = 'block';
+    }
+
+    // Обработчики событий
+    checkBtn.addEventListener('click', checkAnswer);
+
+    koreanInputEl.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            checkAnswer();
+        }
+    });
+
+    showBtn.addEventListener('click', function() {
+        koreanSentenceEl.style.display = 'block';
+        resultMessageEl.style.display = 'none';
+    });
+
+    prevBtn.addEventListener('click', function() {
+        if (currentIndex > 0) {
+            currentIndex--;
+            displayCurrentSentence();
+        }
+    });
+
+    nextBtn.addEventListener('click', function() {
+        if (isRandomMode) {
+            currentIndex = getRandomIndex();
+        } else {
+            if (currentIndex < sentences.length - 1) {
+                currentIndex++;
+            }
+        }
+        displayCurrentSentence();
+    });
+
+    // Инициализация тренажера
+    displayCurrentSentence();
+
+    // Оригинальный код для бургер-меню
+    const burgerMenu = document.getElementById("burgerMenu");
+    const navBurger = document.getElementById("navBurger");
+
+    burgerMenu.addEventListener("click", function (event) {
+        event.stopPropagation();
+        navBurger.classList.toggle("active");
+    });
+
+    document.addEventListener("click", function (event) {
+        if (!navBurger.contains(event.target) && !burgerMenu.contains(event.target)) {
+            navBurger.classList.remove("active");
+        }
+    });
+
+    function toggleBurger() {
+        const part1 = document.querySelector('.burger-part1');
+        const part2 = document.querySelector('.burger-part2');
+
+        if (part1.style.display === 'none') {
+            part1.style.display = 'block';
+            part2.style.display = 'none';
+        } else {
+            part1.style.display = 'none';
+            part2.style.display = 'block';
+        }
+    }
+
+    /* Свайп для мобильных устройств */
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    document.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+    });
+
+    document.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    });
+
+    function handleSwipe() {
+        const swipeThreshold = 50;
+        if (touchEndX < touchStartX - swipeThreshold) {
+            // Переход к следующему предложению
+            if (isRandomMode) {
+                currentIndex = getRandomIndex();
+            } else {
+                if (currentIndex < sentences.length - 1) {
+                    currentIndex++;
+                }
+            }
+            displayCurrentSentence();
+        } else if (touchEndX > touchStartX + swipeThreshold) {
+            // Переход к предыдущему предложению
+            if (currentIndex > 0) {
+                currentIndex--;
+                displayCurrentSentence();
+            }
+        }
+    }
+    </script>
+
+    <!-- <script src="/scripts/script_zvuk_clik.js"></script> -->
+</body>
+
+</html>
+
+ <!-- исправь ошибки только в скрипте и пропиши в скрипте только массив по принципу  // Массив предложений для тренажера
+    const sentences = [
+        {
+            russian: "",
+            korean: ".",
+            words: {
+              
+            }
+        }, скрипт:
+корейские слова , которые высвечиваются в подсказке (подсветке) - поставь в инфинитивную форму
+замени  в массив все эти 100 предложения и справь эти предложения поставив в вежливо официальную форму:
+
+
+
+
+- по принципу  // Массив предложений для тренажера
+    const sentences = [
+        {
+            russian: "Я пишу ручкой.",
+            korean: "나는 만년필로 씁니다.",
+            words: {
+                "Я": "나",
+                "пишу": "쓰다",
+                "ручкой": "만년필"
+            }
+        },
+     
+    Конечно, вот 100 простых корейских предложений в сложном будущем времени с использованием ~(으)ㄹ 것이다 с переводом на русский.
+
+나는 내일 학교에 갈 것이다. — Я завтра пойду в школу.
+
+비가 올 것이다. — Пойдет дождь.
+
+그는 곧 도착할 것이다. — Он скоро прибудет.
+
+우리는 저녁을 만들 것이다. — Мы приготовим ужин.
+
+그 영화는 재미있을 것이다. — Этот фильм будет интересным.
+
+아이는 자랄 것이다. — Ребенок будет расти.
+
+전화가 울릴 것이다. — Зазвонит телефон.
+
+나는 그 책을 읽을 것이다. — Я буду читать ту книгу.
+
+그들은 결혼할 것이다. — Они поженятся.
+
+버스가 늦을 것이다. — Автобус опоздает.
+
+나는 커피를 마실 것이다. — Я выпью кофе.
+
+날씨가 추울 것이다. — Погода будет холодной.
+
+선생님이 설명할 것이다. — Учитель объяснит.
+
+나는 노래를 부를 것이다. — Я спою песню.
+
+회의는 길어질 것이다. — Совещание затянется.
+
+그는 성공할 것이다. — Он добьется успеха.
+
+나는 한국어를 배울 것이다. — Я буду учить корейский.
+
+문이 열릴 것이다. — Дверь откроется.
+
+친구들이 방문할 것이다. — Друзья придут в гости.
+
+나는 편지를 쓸 것이다. — Я напишу письмо.
+
+시험이 어려울 것이다. — Экзамен будет трудным.
+
+기차가 출발할 것이다. — Поезд отправится.
+
+나는 그림을 그릴 것이다. — Я буду рисовать картину.
+
+그 소식을 들을 것이다. — Ты услышишь эту новость.
+
+식물이 자랄 것이다. — Растение будет расти.
+
+나는 운동할 것이다. — Я буду заниматься спортом.
+
+그 계획은 실패할 것이다. — Этот план провалится.
+
+해가 질 것이다. — Солнце сядет.
+
+나는 여행을 계획할 것이다. — Я спланирую путешествие.
+
+시간이 걸릴 것이다. — Это займет время.
+
+강아지가 짖을 것이다. — Щенок будет лаять.
+
+나는 선물을 사 줄 것이다. — Я куплю (тебе) подарок.
+
+결과가 좋을 것이다. — Результат будет хорошим.
+
+그 가게는 문을 닫을 것이다. — Тот магазин закроется.
+
+나는 약속을 지킬 것이다. — Я сдержу обещание.
+
+꽃이 필 것이다. — Цветы распустятся.
+
+차가 고장 날 것이다. — Машина сломается.
+
+나는 진실을 말할 것이다. — Я скажу правду.
+
+그 일은 쉬울 것이다. — Та работа будет легкой.
+
+눈이 내릴 것이다. — Пойдет снег.
+
+나는 집에 있을 것이다. — Я буду дома.
+
+음식이 맛있을 것이다. — Еда будет вкусной.
+
+그 소년은 울 것이다. — Тот мальчик заплачет.
+
+나는 기다릴 것이다. — Я буду ждать.
+
+시계가 멈출 것이다. — Часы остановятся.
+
+나는 돈을 모을 것이다. — Я буду копить деньги.
+
+길이 막힐 것이다. — Дорога будет загружена.
+
+별이 반짝일 것이다. — Звезды будут сверкать.
+
+나는 휴가를 낼 것이다. — Я возьму отпуск.
+
+그 이야기는 끝날 것이다. — Эта история закончится.
+
+나는 돕을 것이다. — Я помогу.
+
+컴퓨터가 꺼질 것이다. — Компьютер выключится.
+
+나는 그를 만날 것이다. — Я встречусь с ним.
+
+방이 따뜻할 것이다. — В комнате будет тепло.
+
+그녀는 미소 지을 것이다. — Она улыбнется.
+
+나는 청소를 할 것이다. — Я сделаю уборку.
+
+열쇠를 찾을 것이다. — Ты найдешь ключ.
+
+나는 빨리 달릴 것이다. — Я буду бегать быстро.
+
+문제가 생길 것이다. — Возникнет проблема.
+
+나는 잠을 잘 것이다. — Я буду спать.
+
+그 음악은 인기가 있을 것이다. — Та музыка будет популярной.
+
+나는 사진을 찍을 것이다. — Я буду фотографировать.
+
+비행기가 이륙할 것이다. — Самолет взлетит.
+
+나는 선택할 것이다. — Я сделаю выбор.
+
+많은 사람들이 올 것이다. — Придет много людей.
+
+나는 옷을 빨을 것이다. — Я постираю одежду.
+
+과일이 익을 것이다. — Фрукты созреют.
+
+전등이 켜질 것이다. — Свет загорится.
+
+나는 새로운 것을 배울 것이다. — Я выучу что-то новое.
+
+바람이 불 것이다. — Подует ветер.
+
+나는 요리법을 따를 것이다. — Я последую рецепту.
+
+그 건물은 높을 것이다. — То здание будет высоким.
+
+나는 병원에 갈 것이다. — Я пойду в больницу.
+
+초가 녹을 것이다. — Свеча растает.
+
+나는 인사할 것이다. — Я поздороваюсь.
+
+기분이 나아질 것이다. — Настроение улучшится.
+
+나는 길을 잃을 것이다. — Я заблужусь.
+
+공이 튈 것이다. — Мяч подпрыгнет.
+
+나는 설명을 들을 것이다. — Я буду слушать объяснение.
+
+도움이 필요할 것이다. — Понадобится помощь.
+
+나는 문을 닫을 것이다. — Я закрою дверь.
+
+강이 얼 것이다. — Река замерзнет.
+
+나는 그 일을 시작할 것이다. — Я начну эту работу.
+
+소리가 날 것이다. — Раздастся звук.
+
+나는 축하할 것이다. — Я буду праздновать.
+
+기회가 올 것이다. — Представится возможность.
+
+나는 실수를 할 것이다. — Я сделаю ошибку.
+
+잎이 떨어질 것이다. — Листья опадут.
+
+나는 준비할 것이다. — Я подготовлюсь.
+
+그 영화는 슬플 것이다. — Тот фильм будет грустным.
+
+나는 대답할 것이다. — Я отвечу.
+
+새가 날아갈 것이다. — Птица улетит.
+
+나는 기억할 것이다. — Я буду помнить.
+
+나무가 자랄 것이다. — Дерево вырастет.
+
+나는 참을 것이다. — Я потерплю.
+
+그것은 비쌀 것이다. — Это будет дорогим.
+
+나는 노력할 것이다. — Я буду стараться.
+
+달이 뜰 것이다. — Взойдет луна.
+
+나는 변화를 보게 될 것이다. — Я увижу перемены.
+
+모든 것이 괜찮을 것이다. — Все будет хорошо. -->
