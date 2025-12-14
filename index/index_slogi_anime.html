@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/style_osnova.css">
+    <!-- <link rel="stylesheet" href="/styles/style_words.css">  -->
+    <title>Takizapsy - Корейские слова</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Основные стили для страницы слов */
+        .words-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 15px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .left-section, .right-section {
+            flex: 1;
+            min-width: 280px;
+        }
+
+        .left-section {
+            background-color: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            order: 1;
+        }
+
+        .right-section {
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            order: 2;
+            display: flex;
+            flex-direction: column;
+        }
+
+        h1 {
+            color: #05414E;
+            font-size: 24px;
+            margin-bottom: 8px;
+            font-family: "Montserrat", sans-serif;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 20px;
+            font-size: 14px;
+            font-weight: 400;
+        }
+
+        /* Категории слов */
+        .word-categories {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .category-btn {
+            padding: 6px 12px;
+            background-color: #e9ecef;
+            border: none;
+            border-radius: 16px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.3s ease;
+            color: #05414E;
+            font-weight: 500;
+        }
+
+        .category-btn:hover {
+            background-color: #d0d7e0;
+        }
+
+        .category-btn.active {
+            background-color: #05414E;
+            color: white;
+        }
+
+        /* Список слов */
+        .word-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 10px;
+            margin-bottom: 20px;
+            max-height: 350px;
+            overflow-y: auto;
+            padding-right: 8px;
+        }
+
+        .word-list::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        .word-list::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 3px;
+        }
+
+        .word-list::-webkit-scrollbar-thumb {
+            background: #05414e4d;
+            border-radius: 3px;
+        }
+
+        /* Рамки для слов */
+        .word-item {
+            padding: 10px;
+            background-color: white;
+            border: 2px solid;
+            border-image: linear-gradient(135deg, #c0c0c0, #808080, #606060, #404040) 1;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 70px;
+            word-break: break-word;
+            overflow-wrap: break-word;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+        }
+
+        .word-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(96, 96, 96, 0.25);
+            border-image: linear-gradient(135deg, #8cdde9, #4a9ca9, #05414E, #544c6a) 1;
+            border-radius: 10px;
+            background-color: #f0f8ff;
+        }
+
+        .word-item.active {
+            background-color: #05414E;
+            color: white;
+            border-image: linear-gradient(135deg, #05414E, #032a33, #4e707a) 1;
+            border-radius: 10px;
+        }
+
+        .word-korean {
+            font-family: "Noto Sans KR", sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 4px;
+            word-break: keep-all;
+            overflow-wrap: break-word;
+        }
+
+        .word-translation {
+            font-size: 11px;
+            color: #666;
+            margin-bottom: 2px;
+            word-break: break-word;
+            overflow-wrap: break-word;
+            font-weight: 400;
+        }
+
+        .word-item.active .word-translation {
+            color: #ddd;
+        }
+
+        /* Контролы */
+        .controls {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+
+        .control-btn {
+            flex: 1;
+            padding: 10px;
+            background-color: #05414E;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            min-width: 100px;
+            font-weight: 500;
+        }
+
+        .control-btn:hover {
+            background-color: #032a33;
+            transform: translateY(-1px);
+        }
+
+        .control-btn i {
+            font-size: 14px;
+        }
+
+        /* Правая секция - отображение слова */
+        .word-display {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            flex: 1;
+            gap: 15px;
+        }
+
+        /* Область анимации */
+        .animation-area {
+            position: relative;
+            background-color: #f9f9f9;
+            border: 2px solid #05414E;
+            border-radius: 12px;
+            padding: 15px;
+            min-height: 220px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-grow: 1;
+        }
+
+        #wordCanvas {
+            width: 100%;
+            height: 100%;
+            max-width: 400px;
+            max-height: 220px;
+        }
+
+        /* Разбор по слогам */
+        .word-info {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .syllable-breakdown {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 15px;
+            border: 1px solid #eaeaea;
+        }
+
+        .syllable-breakdown h3 {
+            color: #05414E;
+            margin-bottom: 10px;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+        }
+
+        .syllable-breakdown h3 i {
+            color: #769fa5;
+        }
+
+        .syllables {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 8px;
+            flex-wrap: wrap;
+        }
+
+        .syllable {
+            font-family: "Noto Sans KR", sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: #05414E;
+            padding: 8px 12px;
+            background-color: white;
+            border-radius: 6px;
+            border: 2px solid #4f686c;
+            min-width: 40px;
+            text-align: center;
+            word-break: keep-all;
+        }
+
+        .syllable.active {
+            background-color: #05414E;
+            color: white;
+            border-color: #05414E;
+            animation: pulse 0.5s ease-in-out;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* Адаптивность */
+        /* 250px - 320px: очень маленькие экраны */
+        @media (max-width: 320px) {
+            .words-container {
+                padding: 10px;
+                gap: 10px;
+            }
+            
+            .left-section, .right-section {
+                padding: 12px;
+                border-radius: 8px;
+            }
+            
+            h1 {
+                font-size: 18px;
+                font-weight: 700;
+            }
+            
+            .subtitle {
+                font-size: 11px;
+                font-weight: 400;
+            }
+            
+            .word-list {
+                grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+                gap: 6px;
+                max-height: 250px;
+            }
+            
+            .word-item {
+                padding: 6px;
+                min-height: 50px;
+            }
+            
+            .word-korean {
+                font-size: 14px;
+                font-weight: 700;
+            }
+            
+            .word-translation {
+                font-size: 9px;
+                font-weight: 400;
+            }
+            
+            .animation-area {
+                padding: 8px;
+                min-height: 150px;
+            }
+            
+            .control-btn {
+                padding: 8px;
+                font-size: 11px;
+                min-width: 80px;
+                font-weight: 500;
+            }
+            
+            .syllable {
+                font-size: 18px;
+                padding: 5px 8px;
+                min-width: 30px;
+                font-weight: 700;
+            }
+            
+            .syllable-breakdown h3 {
+                font-size: 14px;
+                font-weight: 600;
+            }
+            
+            .category-btn {
+                padding: 5px 10px;
+                font-size: 11px;
+                font-weight: 500;
+            }
+        }
+
+        /* 321px - 480px: маленькие телефоны */
+        @media (min-width: 321px) and (max-width: 480px) {
+            .words-container {
+                padding: 12px;
+                gap: 12px;
+            }
+            
+            .left-section, .right-section {
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 20px;
+                font-weight: 700;
+            }
+            
+            .word-list {
+                grid-template-columns: repeat(auto-fill, minmax(75px, 1fr));
+                gap: 8px;
+            }
+            
+            .word-korean {
+                font-size: 16px;
+                font-weight: 700;
+            }
+            
+            .syllable {
+                font-size: 20px;
+                font-weight: 700;
+            }
+        }
+
+        /* 481px - 768px: планшеты */
+        @media (min-width: 481px) and (max-width: 768px) {
+            .words-container {
+                padding: 15px;
+            }
+            
+            .left-section, .right-section {
+                padding: 18px;
+            }
+            
+            h1 {
+                font-size: 22px;
+                font-weight: 700;
+            }
+            
+            .word-list {
+                grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+            }
+        }
+
+        /* 769px - 1024px: маленькие ноутбуки */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .words-container {
+                padding: 18px;
+            }
+        }
+
+        /* 1025px - 1250px: настольные компьютеры */
+        @media (min-width: 1025px) and (max-width: 1250px) {
+            .words-container {
+                flex-direction: column;
+            }
+            
+            .left-section, .right-section {
+                width: 100%;
+                order: unset;
+            }
+            
+            .right-section {
+                order: 2;
+            }
+            
+            .left-section {
+                order: 1;
+            }
+        }
+
+        /* 1251px и выше: большие экраны */
+        @media (min-width: 1251px) {
+            .words-container {
+                flex-direction: row;
+                gap: 25px;
+                padding: 20px;
+            }
+            
+            .left-section, .right-section {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="burger-menu" id="burgerMenu">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <img class="logo" src="/image/logo krug.svg" alt="Логотип">
+            <a href="" class="user"> <img class="lk" src="/image/userrblur.svg" alt="Пользователь"></a>
+        </div>
+        <nav class="nav-burger" id="navBurger">
+            <ul class="ul-header">
+                <li class="li-header"> <a href="" class="a-header">онлайн - переводчик</a></li>
+                <li class="li-header"> <a href="" class="a-header">контакты</a></li>
+                <li class="li-header"> <a href="" class="a-header">светлая тема</a></li>
+                <!-- <li class="li-header"> <a href="/index/index.alf.html/index_alf2_tel.html" class="a-header">алфавит</a></li> -->
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container words-container">
+            <div class="left-section">
+                <div class="word-display">
+                    <div class="animation-area">
+                        <canvas id="wordCanvas" width="400" height="220"></canvas>
+                    </div>
+                    
+                    <div class="controls">
+                        <button id="speakBtn" class="control-btn">
+                            <i class="fas fa-volume-up"></i> Озвучить
+                        </button>
+                    </div>
+                    
+                    <div class="word-info">
+                        <div class="syllable-breakdown">
+                            <h3><i class="fas fa-puzzle-piece"></i> Разбор по слогам</h3>
+                            <div id="syllableContainer" class="syllables">
+                                <span class="syllable">가</span>
+                                <span class="syllable">다</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="right-section">
+                <h1>Корейские слова</h1>
+                <p class="subtitle">Выберите слово для изучения</p>
+                
+                <div class="word-categories">
+                    <button class="category-btn active" data-category="basic">Основные глаголы</button>
+                    <button class="category-btn" data-category="adjectives">Прилагательные</button>
+                    <button class="category-btn" data-category="nouns">Существительные</button>
+                </div>
+                
+                <div class="word-list" id="wordList">
+                    <!-- Слова будут добавлены через JavaScript -->
+                </div>
+            </div>
+        </div>
+    </main>
+ <div class="perehod">
+        <a href="/index/index_asimil_table_game.html"><img src="/image/vlevo2.svg" alt=""></a>
+        <a href="/index.html"><img src="/image/vpravo2.svg" alt=""></a>
+    </div>
+    <footer>
+        <section class="footer container">
+            <address>
+                <div class="footer1">
+                    <div class="tel">
+                        <img src="/image/tel_blue.svg" alt="">
+                        <p>8-925-685-52-39</p>
+                    </div>
+                    <div class="mail">
+                        <p>anastasiya3000@yandex.ru</p>
+                    </div>
+                    <div class="footer-icon">
+                        <a href="" class="social-icon"> <img src="/image/telegram_icon 1.svg" alt=""></a>
+                        <a href="" class="social-icon"> <img src="/image/skype_icon 1.svg" alt=""></a>
+                        <a href="" class="social-icon"><img src="/image/whatsapp_green.png" alt=""></a>
+                        <a href="" class="social-icon"> <img src="/image/license.svg" alt=""></a>
+                    </div>
+                </div>
+
+                <div class="footer2">
+                    <nav class="nav1-footer">
+                        <ul class="ul-footer">
+                            <div class="f-li">
+                                <li class="li-footer"> <a href="" class="a-footer"><b>Правила оплаты</b></a></li>
+                                <li class="li-footer"> <a href="" class="a-footer"><b>Договор оферты</b></a></li>
+                                <li class="li-footer"> <a href="" class="a-footer"><b>Согласие с рассылкой</b></a></li>
+                                <li class="li-footer"><a href="" class="a-footer"><b>Пользовательское соглашение</b></a></li>
+                                <li class="li-footer"> <a href="" class="a-footer"><b>Политика конфиденциальности</b></a></li>
+                                <li class="li-footer"> <a href="" class="a-footer"><b>Положение о защите персональных данных</b></a></li>
+                            </div>
+                        </ul>
+                    </nav>
+                </div>
+            </address>
+        </section>
+
+        <div class="copyright">
+            <img id="copyright" src="/image/Copyright2 _ blue.svg" alt="copyright">
+            <p>takiza, 2025</p>
+        </div>
+    </footer>
+
+    <script src="/scripts/script_osnova.js/script_svipe_nav.bg.js"></script>
+    <script>
+        // Данные слов для изучения (удалены фразы)
+        const wordData = {
+            basic: [
+                {korean: "가다", translation: "идти", syllables: ["가", "다"], syllableTrans: ["га", "да"]},
+                {korean: "오다", translation: "приходить", syllables: ["오", "다"], syllableTrans: ["о", "да"]},
+                {korean: "보다", translation: "смотреть", syllables: ["보", "다"], syllableTrans: ["бо", "да"]},
+                {korean: "먹다", translation: "есть", syllables: ["먹", "다"], syllableTrans: ["мок", "да"]},
+                {korean: "마시다", translation: "пить", syllables: ["마", "시", "다"], syllableTrans: ["ма", "си", "да"]},
+                {korean: "자다", translation: "спать", syllables: ["자", "다"], syllableTrans: ["джа", "да"]},
+                {korean: "읽다", translation: "читать", syllables: ["읽", "다"], syllableTrans: ["ик", "да"]},
+                {korean: "쓰다", translation: "писать", syllables: ["쓰", "다"], syllableTrans: ["ссы", "да"]},
+                {korean: "말하다", translation: "говорить", syllables: ["말", "하", "다"], syllableTrans: ["маль", "ха", "да"]},
+                {korean: "듣다", translation: "слушать", syllables: ["듣", "다"], syllableTrans: ["тыт", "да"]},
+                {korean: "앉다", translation: "сидеть", syllables: ["앉", "다"], syllableTrans: ["ан", "да"]},
+                {korean: "서다", translation: "стоять", syllables: ["서", "다"], syllableTrans: ["со", "да"]},
+                {korean: "일하다", translation: "работать", syllables: ["일", "하", "다"], syllableTrans: ["иль", "ха", "да"]},
+                {korean: "공부하다", translation: "учиться", syllables: ["공", "부", "하", "다"], syllableTrans: ["кон", "бу", "ха", "да"]},
+                {korean: "만나다", translation: "встречаться", syllables: ["만", "나", "다"], syllableTrans: ["ман", "на", "да"]},
+                {korean: "사다", translation: "покупать", syllables: ["사", "다"], syllableTrans: ["са", "да"]},
+                {korean: "팔다", translation: "продавать", syllables: ["팔", "다"], syllableTrans: ["пхаль", "да"]},
+                {korean: "주다", translation: "давать", syllables: ["주", "다"], syllableTrans: ["джу", "да"]},
+                {korean: "받다", translation: "получать", syllables: ["받", "다"], syllableTrans: ["бат", "да"]},
+                {korean: "열다", translation: "открывать", syllables: ["열", "다"], syllableTrans: ["ёль", "да"]},
+                {korean: "닫다", translation: "закрывать", syllables: ["닫", "다"], syllableTrans: ["тат", "да"]},
+                {korean: "입다", translation: "надевать", syllables: ["입", "다"], syllableTrans: ["ип", "да"]},
+                {korean: "벗다", translation: "снимать", syllables: ["벗", "다"], syllableTrans: ["бот", "да"]},
+                {korean: "씻다", translation: "мыть", syllables: ["씻", "다"], syllableTrans: ["щит", "да"]},
+                {korean: "놀다", translation: "играть", syllables: ["놀", "다"], syllableTrans: ["ноль", "да"]},
+                {korean: "울다", translation: "плакать", syllables: ["울", "다"], syllableTrans: ["уль", "да"]},
+                {korean: "웃다", translation: "смеяться", syllables: ["웃", "다"], syllableTrans: ["ут", "да"]},
+                {korean: "걷다", translation: "ходить", syllables: ["걷", "다"], syllableTrans: ["кот", "да"]},
+                {korean: "뛰다", translation: "бегать", syllables: ["뛰", "다"], syllableTrans: ["тви", "да"]},
+                {korean: "날다", translation: "летать", syllables: ["날", "다"], syllableTrans: ["наль", "да"]},
+                {korean: "수영하다", translation: "плавать", syllables: ["수", "영", "하", "다"], syllableTrans: ["су", "ён", "ха", "да"]}
+            ],
+            adjectives: [
+                {korean: "크다", translation: "большой", syllables: ["크", "다"], syllableTrans: ["кхы", "да"]},
+                {korean: "작다", translation: "маленький", syllables: ["작", "다"], syllableTrans: ["чак", "да"]},
+                {korean: "길다", translation: "длинный", syllables: ["길", "다"], syllableTrans: ["киль", "да"]},
+                {korean: "짧다", translation: "короткий", syllables: ["짧", "다"], syllableTrans: ["ччаль", "да"]},
+                {korean: "좋다", translation: "хороший", syllables: ["좋", "다"], syllableTrans: ["чжох", "да"]},
+                {korean: "나쁘다", translation: "плохой", syllables: ["나", "쁘", "다"], syllableTrans: ["на", "ппы", "да"]},
+                {korean: "예쁘다", translation: "красивый", syllables: ["예", "쁘", "다"], syllableTrans: ["е", "ппы", "да"]},
+                {korean: "아름답다", translation: "прекрасный", syllables: ["아", "름", "답", "다"], syllableTrans: ["а", "рым", "дап", "да"]},
+                {korean: "더럽다", translation: "грязный", syllables: ["더", "럽", "다"], syllableTrans: ["то", "роп", "да"]},
+                {korean: "깨끗하다", translation: "чистый", syllables: ["깨", "끗", "하", "다"], syllableTrans: ["ккэ", "ккыт", "ха", "да"]},
+                {korean: "많다", translation: "много", syllables: ["많", "다"], syllableTrans: ["ман", "да"]},
+                {korean: "적다", translation: "мало", syllables: ["적", "다"], syllableTrans: ["чок", "да"]},
+                {korean: "비싸다", translation: "дорогой", syllables: ["비", "싸", "다"], syllableTrans: ["би", "сса", "да"]},
+                {korean: "싸다", translation: "дешёвый", syllables: ["싸", "다"], syllableTrans: ["сса", "да"]},
+                {korean: "쉽다", translation: "лёгкий", syllables: ["쉽", "다"], syllableTrans: ["щип", "да"]},
+                {korean: "어렵다", translation: "трудный", syllables: ["어", "렵", "다"], syllableTrans: ["о", "роп", "да"]},
+                {korean: "빠르다", translation: "быстрый", syllables: ["빠", "르", "다"], syllableTrans: ["ппа", "ры", "да"]},
+                {korean: "느리다", translation: "медленный", syllables: ["느", "리", "да"], syllableTrans: ["ны", "ри", "да"]},
+                {korean: "뜨겁다", translation: "горячий", syllables: ["뜨", "겁", "다"], syllableTrans: ["тты", "коп", "да"]},
+                {korean: "차갑다", translation: "холодный", syllables: ["차", "갑", "다"], syllableTrans: ["ча", "гап", "да"]},
+                {korean: "따뜻하다", translation: "тёплый", syllables: ["따", "뜻", "하", "да"], syllableTrans: ["тта", "ттыт", "ха", "да"]},
+                {korean: "시원하다", translation: "прохладный", syllables: ["시", "원", "하", "다"], syllableTrans: ["си", "вон", "ха", "да"]},
+                {korean: "배고프다", translation: "голодный", syllables: ["배", "고", "프", "다"], syllableTrans: ["бэ", "ко", "пхы", "да"]},
+                {korean: "목마르다", translation: "хотеть пить", syllables: ["목", "마", "르", "다"], syllableTrans: ["мок", "ма", "ры", "да"]},
+                {korean: "피곤하다", translation: "усталый", syllables: ["피", "곤", "하", "да"], syllableTrans: ["пхи", "кон", "ха", "да"]},
+                {korean: "졸리다", translation: "сонный", syllables: ["졸", "리", "да"], syllableTrans: ["чжоль", "ри", "да"]},
+                {korean: "기쁘다", translation: "радостный", syllables: ["기", "쁘", "다"], syllableTrans: ["ки", "ппы", "да"]},
+                {korean: "슬프다", translation: "печальный", syllables: ["슬", "프", "да"], syllableTrans: ["сыль", "пхы", "да"]},
+                {korean: "화나다", translation: "сердитый", syllables: ["화", "나", "다"], syllableTrans: ["хва", "на", "да"]},
+                {korean: "무섭다", translation: "страшный", syllables: ["무", "섭", "다"], syllableTrans: ["му", "соп", "да"]},
+                {korean: "재미있다", translation: "интересный", syllables: ["재", "미", "있", "다"], syllableTrans: ["чжэ", "ми", "ит", "да"]},
+                {korean: "지루하다", translation: "скучный", syllables: ["지", "루", "하", "да"], syllableTrans: ["чи", "ру", "ха", "да"]}
+            ],
+            nouns: [
+                {korean: "사람", translation: "человек", syllables: ["사", "람"], syllableTrans: ["са", "рам"]},
+                {korean: "책", translation: "книга", syllables: ["책"], syllableTrans: ["чхэк"]},
+                {korean: "학교", translation: "школа", syllables: ["학", "교"], syllableTrans: ["хак", "гё"]},
+                {korean: "음식", translation: "еда", syllables: ["음", "식"], syllableTrans: ["ым", "щик"]},
+                {korean: "친구", translation: "друг", syllables: ["친", "구"], syllableTrans: ["чин", "гу"]},
+                {korean: "가방", translation: "сумка", syllables: ["가", "방"], syllableTrans: ["га", "бан"]},
+                {korean: "컴퓨터", translation: "компьютер", syllables: ["컴", "퓨", "터"], syllableTrans: ["кхём", "пхю", "тхы"]},
+                {korean: "의자", translation: "стул", syllables: ["의", "자"], syllableTrans: ["ый", "джа"]},
+                {korean: "탁자", translation: "стол", syllables: ["탁", "자"], syllableTrans: ["тхак", "джа"]},
+                {korean: "문", translation: "дверь", syllables: ["문"], syllableTrans: ["мун"]},
+                {korean: "창문", translation: "окно", syllables: ["창", "문"], syllableTrans: ["чхан", "мун"]},
+                {korean: "집", translation: "дом", syllables: ["집"], syllableTrans: ["чип"]},
+                {korean: "방", translation: "комната", syllables: ["방"], syllableTrans: ["бан"]},
+                {korean: "화장실", translation: "туалет", syllables: ["화", "장", "실"], syllableTrans: ["хва", "джан", "силь"]},
+                {korean: "부엌", translation: "кухня", syllables: ["부", "엌"], syllableTrans: ["бу", "ок"]},
+                {korean: "차", translation: "машина", syllables: ["차"], syllableTrans: ["чха"]},
+                {korean: "버스", translation: "автобус", syllables: ["버", "스"], syllableTrans: ["бо", "сы"]},
+                {korean: "지하철", translation: "метро", syllables: ["지", "하", "철"], syllableTrans: ["чи", "ха", "чхоль"]},
+                {korean: "비행기", translation: "самолет", syllables: ["비", "행", "기"], syllableTrans: ["би", "хэн", "ги"]},
+                {korean: "시간", translation: "время", syllables: ["시", "간"], syllableTrans: ["си", "ган"]},
+                {korean: "날짜", translation: "дата", syllables: ["날", "짜"], syllableTrans: ["наль", "чча"]},
+                {korean: "요일", translation: "день недели", syllables: ["요", "일"], syllableTrans: ["ё", "иль"]},
+                {korean: "월", translation: "месяц", syllables: ["월"], syllableTrans: ["воль"]},
+                {korean: "년", translation: "год", syllables: ["년"], syllableTrans: ["нён"]},
+                {korean: "나라", translation: "страна", syllables: ["나", "라"], syllableTrans: ["на", "ра"]},
+                {korean: "도시", translation: "город", syllables: ["도", "시"], syllableTrans: ["то", "си"]},
+                {korean: "마을", translation: "деревня", syllables: ["마", "을"], syllableTrans: ["ма", "ыль"]},
+                {korean: "강", translation: "река", syllables: ["강"], syllableTrans: ["ган"]},
+                {korean: "바다", translation: "море", syllables: ["바", "다"], syllableTrans: ["ба", "да"]},
+                {korean: "산", translation: "гора", syllables: ["산"], syllableTrans: ["сан"]},
+                {korean: "하늘", translation: "небо", syllables: ["하", "늘"], syllableTrans: ["ха", "ныль"]},
+                {korean: "구름", translation: "облако", syllables: ["구", "름"], syllableTrans: ["гу", "рым"]},
+                {korean: "비", translation: "дождь", syllables: ["비"], syllableTrans: ["би"]},
+                {korean: "눈", translation: "снег", syllables: ["눈"], syllableTrans: ["нун"]},
+                {korean: "얼음", translation: "лед", syllables: ["어", "름"], syllableTrans: ["о", "рым"]}
+            ]
+        };
+
+        // Переменные для управления анимацией
+        let currentWord = null;
+        let isAnimating = false;
+        let currentIndex = 0;
+        let animationFrame = null;
+        const canvas = document.getElementById('wordCanvas');
+        const ctx = canvas.getContext('2d');
+
+        // Инициализация страницы
+        document.addEventListener('DOMContentLoaded', function() {
+            // Загружаем слова из категории "basic" по умолчанию
+            loadWords('basic');
+            
+            // Назначаем обработчики для кнопок категорий
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Убираем активный класс у всех кнопок
+                    document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+                    // Добавляем активный класс текущей кнопке
+                    this.classList.add('active');
+                    // Загружаем слова выбранной категории
+                    loadWords(this.dataset.category);
+                });
+            });
+            
+            // Назначаем обработчик для кнопки озвучивания
+            document.getElementById('speakBtn').addEventListener('click', speakWord);
+            
+            // Устанавливаем первое слово по умолчанию
+            if (wordData.basic.length > 0) {
+                setTimeout(() => {
+                    selectWord(wordData.basic[0], 'basic');
+                }, 100);
+            }
+            
+            // Адаптация canvas под размер экрана
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+        });
+
+        // Загрузка слов в список
+        function loadWords(category) {
+            const wordList = document.getElementById('wordList');
+            wordList.innerHTML = '';
+            
+            if (wordData[category]) {
+                wordData[category].forEach((word, index) => {
+                    const wordElement = document.createElement('div');
+                    wordElement.className = 'word-item';
+                    wordElement.dataset.index = index;
+                    wordElement.dataset.category = category;
+                    
+                    wordElement.innerHTML = `
+                        <div class="word-korean">${word.korean}</div>
+                        <div class="word-translation">${word.translation}</div>
+                    `;
+                    
+                    wordElement.addEventListener('click', () => {
+                        selectWord(word, category);
+                        // Убираем активный класс у всех слов
+                        document.querySelectorAll('.word-item').forEach(item => {
+                            item.classList.remove('active');
+                        });
+                        // Добавляем активный класс выбранному слову
+                        wordElement.classList.add('active');
+                    });
+                    
+                    wordList.appendChild(wordElement);
+                });
+            }
+        }
+
+        // Выбор слова для изучения
+        function selectWord(word, category = 'basic') {
+            // Останавливаем текущую анимацию
+            if (animationFrame) {
+                cancelAnimationFrame(animationFrame);
+                isAnimating = false;
+            }
+            
+            currentWord = word;
+            currentIndex = 0;
+            
+            // Обновляем разбор по слогам
+            const syllableContainer = document.getElementById('syllableContainer');
+            
+            syllableContainer.innerHTML = '';
+            
+            word.syllables.forEach((syllable, index) => {
+                const syllableEl = document.createElement('span');
+                syllableEl.className = 'syllable';
+                syllableEl.textContent = syllable;
+                syllableContainer.appendChild(syllableEl);
+            });
+            
+            // Очищаем canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Начинаем анимацию
+            resetAnimation();
+        }
+
+        // Анимация написания слова по слогам
+        function animateWord() {
+            if (!currentWord) return;
+            
+            // Очищаем canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Устанавливаем параметры рисования
+            ctx.font = "bold 60px 'Noto Sans KR'";
+            ctx.fillStyle = "#05414E";
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+            
+            if (currentIndex < currentWord.syllables.length) {
+                // Собираем текст для отображения
+                let text = '';
+                for (let i = 0; i <= currentIndex; i++) {
+                    text += currentWord.syllables[i];
+                }
+                
+                // Подсвечиваем текущий слог в разборе
+                const syllableElements = document.querySelectorAll('#syllableContainer .syllable');
+                syllableElements.forEach((el, i) => {
+                    if (i === currentIndex) {
+                        el.classList.add('active');
+                    } else {
+                        el.classList.remove('active');
+                    }
+                });
+                
+                // Рисуем текст на canvas
+                ctx.fillText(text, canvas.width / 2, canvas.height / 2);
+                
+                // Увеличиваем индекс через некоторое время
+                setTimeout(() => {
+                    currentIndex++;
+                    if (currentIndex < currentWord.syllables.length) {
+                        animateWord();
+                    } else {
+                        isAnimating = false;
+                        // Сбрасываем подсветку
+                        document.querySelectorAll('#syllableContainer .syllable').forEach(el => {
+                            el.classList.remove('active');
+                        });
+                    }
+                }, 600); // Задержка между слогами
+            }
+        }
+
+        // Озвучивание слова
+        function speakWord() {
+            if (!currentWord) return;
+            
+            if ('speechSynthesis' in window) {
+                const utterance = new SpeechSynthesisUtterance(currentWord.korean);
+                utterance.lang = 'ko-KR';
+                utterance.rate = 0.7;
+                
+                // Попытка найти корейский голос
+                const voices = speechSynthesis.getVoices();
+                const koreanVoice = voices.find(voice => voice.lang === 'ko-KR' || voice.lang === 'ko');
+                
+                if (koreanVoice) {
+                    utterance.voice = koreanVoice;
+                }
+                
+                speechSynthesis.speak(utterance);
+            } else {
+                alert("Ваш браузер не поддерживает озвучивание текста.");
+            }
+        }
+
+        // Сброс анимации
+        function resetAnimation() {
+            // Останавливаем текущую анимацию
+            if (animationFrame) {
+                cancelAnimationFrame(animationFrame);
+            }
+            
+            // Сбрасываем переменные анимации
+            currentIndex = 0;
+            isAnimating = true;
+            
+            // Очищаем canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Сбрасываем подсветку слогов
+            document.querySelectorAll('#syllableContainer .syllable').forEach(el => {
+                el.classList.remove('active');
+            });
+            
+            // Начинаем новую анимацию
+            animateWord();
+        }
+
+        // Адаптация canvas под размер экрана
+        function resizeCanvas() {
+            const container = canvas.parentElement;
+            const containerWidth = container.clientWidth;
+            const containerHeight = 220;
+            
+            canvas.width = Math.min(400, containerWidth - 30);
+            canvas.height = containerHeight;
+            
+            // Перерисовываем текущее слово
+            if (currentWord) {
+                if (isAnimating) {
+                    resetAnimation();
+                } else {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    ctx.font = "bold 60px 'Noto Sans KR'";
+                    ctx.fillStyle = "#05414E";
+                    ctx.textAlign = "center";
+                    ctx.textBaseline = "middle";
+                    ctx.fillText(currentWord.korean, canvas.width / 2, canvas.height / 2);
+                }
+            }
+        }
+
+        // Инициализация голосов для синтеза речи
+        if ('speechSynthesis' in window) {
+            speechSynthesis.onvoiceschanged = function() {
+                // Голоса загружены
+            };
+        }
+    </script>
+</body>
+</html>
