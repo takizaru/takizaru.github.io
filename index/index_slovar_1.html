@@ -9,181 +9,442 @@
     <link rel="stylesheet" href="/styles/style_base.css/style_base_numder_word.css">
     <link rel="stylesheet" href="style.css">
     <style>
-        /* ОЗВУЧКА */
-.word-window {
-    width: 400px;
-    height: 400px;
-    background-color: rgba(201, 201, 72, 0.247);
-    border-radius: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-size: 24px;
-    margin: 20px auto;
-    position: relative;
-    margin-bottom: 100px;
-}
+          /* ОЗВУЧКА */
+        .word-window {
+            width: 400px;
+            height: 400px;
+            background-color: rgba(201, 201, 72, 0.247);
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            margin: 20px auto;
+            position: relative;
+            margin-bottom: 100px;
+            padding: 20px;
+            box-sizing: border-box;
+        }
 
-.word-display {
-    margin-top: 20px;
-    font-size: 28px;
-    font-weight: bold;
-}
+        .word-display {
+            margin-top: 20px;
+            font-size: 60px;
+            font-weight: 900;
+            text-align: center;
+            line-height: 1.2;
+            color: #2c3e50;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            word-break: keep-all;
+            font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
 
-.audio-icon {
-    margin-top: 20px;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+        /* Корейский текст всегда жирный и крупный */
+        .word-display {
+            
+            font-weight: 900 !important;
+        }
 
-.audio-icon img {
-    width: 25px; /* Уменьшили в 2 раза (было 50) */
-    height: 25px;
-   margin: 30px;
-}
+        .translation-box {
+            background-color: #030332f0;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 12px;
+            margin-top: 25px;
+            font-size: 22px;
+            font-weight: 500; /* Русский текст менее жирный */
+            text-align: center;
+            width: 90%;
+            max-width: 350px;
+            line-height: 1.4;
+            word-wrap: break-word;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
 
-.translation-box {
-    background-color: #030332f0;
-    color: white;
-    padding: 10px;
-    border-radius: 10px;
-    margin-top: 20px;
-    font-size: 20px;
-    font-weight: 700;
-    text-align: center; /* Добавлено выравнивание по центру */
-    width: auto; /* Чтобы текст центрировался относительно всей ширины блока */
-    margin-left: 30px;
-    margin-right: 30px;
-}
+        /* Аудио-иконка с флексбоксом */
+        .audio-icon {
+            margin-top: 30px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.3s ease;
+            padding: 10px;
+        }
 
-.navigation-buttons {
-    margin-top: 20px;
-    display: flex;
-    gap: 140px; 
-}
+        .audio-icon img {
+            width: 40px;
+            height: 40px;
+            margin: 5px;
+            filter: drop-shadow(0 2px 3px rgba(0,0,0,0.2));
+            display: block;
+        }
 
-.navigation-buttons img {
-    width: 34px;
-    height: 34px;
-    transition: transform 0.2s;
-    background-color: #f0ffb3;
-    border-radius: 50%;
-    padding: 10px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-}
+        .audio-icon:hover {
+            transform: scale(1.1);
+        }
 
-.navigation-buttons img:hover {
-    transform: scale(1.1);
-    background-color: #45a049;
-}
+        .navigation-buttons {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 140px;
+        }
 
-/* Стили для блока perehod (чтобы были одинаковые) */
-.perehod {
-    display: flex;
-    gap: 40px;
-    margin: 20px 0;
-}
+        .navigation-buttons img {
+            width: 40px;
+            height: 40px;
+            transition: transform 0.2s, background-color 0.3s;
+            background-color: #f0ffb3;
+            border-radius: 50%;
+            padding: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            cursor: pointer;
+            display: block;
+        }
 
-.perehod img {
-    width: 30px;
-    height: 30px;
-    transition: transform 0.2s;
-}
+        .navigation-buttons img:hover {
+            transform: scale(1.15);
+            background-color: #45a049;
+        }
 
-.perehod img:hover {
-    transform: scale(1.1);
-}
+        /* Стили для блока perehod */
+        .perehod {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            margin: 40px 0;
+        }
 
-/* Адаптация word-window */
-@media (max-width: 1440px) {
-    .word-window {
-        width: 380px;
-        height: 380px;
-    }
-}
+        .perehod img {
+            width: 35px;
+            height: 35px;
+            transition: transform 0.2s;
+            cursor: pointer;
+            background-color: #f0f0f0;
+            border-radius: 50%;
+            padding: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            display: block;
+        }
 
-@media (max-width: 1200px) {
-    .word-window {
-        width: 350px;
-        height: 350px;
-    }
-}
+        .perehod img:hover {
+            transform: scale(1.1);
+            background-color: #e0e0e0;
+        }
 
-@media (max-width: 992px) {
-    .word-window {
-        width: 320px;
-        height: 350px;
-    }
-}
+        /* Анимация при смене слова */
+        @keyframes fadeIn {
+            from { opacity: 0.5; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-@media (max-width: 768px) {
-    .word-window {
-        width: 300px;
-        margin-bottom: 80px;
-    }
+        .word-display, .translation-box {
+            animation: fadeIn 0.3s ease-out;
+        }
 
-    .navigation-buttons {
-        gap: 100px; /* Увеличили расстояние между стрелками */
-    }
-}
+        /* Адаптация word-window с сохранением пропорций корейского текста */
+        @media (max-width: 1440px) {
+            .word-window {
+                width: 380px;
+                height: 380px;
+            }
+            .word-display {
+                font-size: 58px;
+                font-weight: 900;
+            }
+            .translation-box {
+                font-size: 21px;
+                font-weight: 500;
+            }
+            .audio-icon img {
+                width: 38px;
+                height: 38px;
+                margin: 5px;
+            }
+        }
 
-@media (max-width: 576px) {
-    .word-window {
-        width: 280px;
-    }
-}
+        @media (max-width: 1200px) {
+            .word-window {
+                width: 350px;
+                height: 350px;
+            }
+            .word-display {
+                font-size: 56px;
+                font-weight: 900;
+            }
+            .translation-box {
+                font-size: 20px;
+                font-weight: 500;
+            }
+            .audio-icon img {
+                width: 36px;
+                height: 36px;
+                margin: 5px;
+            }
+        }
 
-@media (max-width: 480px) {
-    .word-window {
-        width: 260px;
-    }
-}
+        @media (max-width: 992px) {
+            .word-window {
+                width: 320px;
+                height: 350px;
+            }
+            .word-display {
+                font-size: 54px;
+                font-weight: 900;
+            }
+            .translation-box {
+                font-size: 19px;
+                font-weight: 500;
+                padding: 12px 18px;
+            }
+            .navigation-buttons {
+                gap: 120px;
+            }
+            .audio-icon img {
+                margin: 5px;
+            }
+        }
 
-@media (max-width: 400px) {
-    .word-window {
-        width: 240px;
-        margin-bottom: 60px;
-    }
-}
+        @media (max-width: 768px) {
+            .word-window {
+                width: 300px;
+                margin-bottom: 80px;
+                padding: 15px;
+            }
+            .word-display {
+                font-size: 52px;
+                font-weight: 900;
+                margin-top: 15px;
+            }
+            .translation-box {
+                font-size: 18px;
+                font-weight: 500;
+                padding: 10px 15px;
+                margin-top: 20px;
+            }
+            .audio-icon img {
+                width: 36px;
+                height: 36px;
+                margin: 5px;
+            }
+            .navigation-buttons {
+                gap: 100px;
+                margin-top: 25px;
+            }
+            .navigation-buttons img {
+                width: 36px;
+                height: 36px;
+                padding: 10px;
+            }
+        }
 
-@media (max-width: 360px) {
-    .word-window {
-        width: 220px;
-    }
-}
+        @media (max-width: 576px) {
+            .word-window {
+                width: 280px;
+                height: 320px;
+            }
+            .word-display {
+                font-size: 48px;
+                font-weight: 900;
+            }
+            .translation-box {
+                font-size: 17px;
+                font-weight: 500;
+            }
+            .audio-icon img {
+                width: 34px;
+                height: 34px;
+                margin: 5px;
+            }
+            .navigation-buttons {
+                gap: 90px;
+            }
+        }
 
-@media (max-width: 320px) {
-    .word-window {
-        width: 200px;
-    }
-}
+        @media (max-width: 480px) {
+            .word-window {
+                width: 260px;
+                height: 300px;
+            }
+            .word-display {
+                font-size: 44px;
+                font-weight: 900;
+            }
+            .translation-box {
+                font-size: 16px;
+                font-weight: 500;
+            }
+            .navigation-buttons {
+                gap: 80px;
+            }
+            .navigation-buttons img {
+                width: 34px;
+                height: 34px;
+                padding: 8px;
+            }
+            .audio-icon img {
+                width: 32px;
+                height: 32px;
+                margin: 5px;
+            }
+            .perehod {
+                gap: 30px;
+            }
+        }
 
-@media (max-width: 280px) {
-    .word-window {
-        width: 180px;
-    }
-    
-    .navigation-buttons,
-    .perehod {
-        gap: 20px;
-    }
-}
+        @media (max-width: 400px) {
+            .word-window {
+                width: 240px;
+                height: 280px;
+                margin-bottom: 60px;
+            }
+            .word-display {
+                font-size: 40px;
+                font-weight: 900;
+                margin-top: 10px;
+            }
+            .translation-box {
+                font-size: 15px;
+                font-weight: 500;
+                padding: 8px 12px;
+                margin-top: 15px;
+            }
+            .audio-icon {
+                margin-top: 20px;
+            }
+            .audio-icon img {
+                width: 30px;
+                height: 30px;
+                margin: 5px;
+            }
+            .navigation-buttons {
+                gap: 70px;
+                margin-top: 20px;
+            }
+            .navigation-buttons img {
+                width: 32px;
+                height: 32px;
+            }
+        }
 
-@media (max-width: 250px) {
-    .word-window {
-        width: 160px;
-        margin-bottom: 50px;
-    }
-    
-    .navigation-buttons img,
-    .perehod img {
-        width: 25px;
-        height: 25px;
-    }
-}
+        @media (max-width: 360px) {
+            .word-window {
+                width: 220px;
+                height: 260px;
+            }
+            .word-display {
+                font-size: 38px;
+                font-weight: 900;
+            }
+            .translation-box {
+                font-size: 14px;
+                font-weight: 500;
+            }
+            .navigation-buttons {
+                gap: 60px;
+            }
+            .perehod {
+                gap: 25px;
+            }
+        }
+
+        @media (max-width: 320px) {
+            .word-window {
+                width: 200px;
+                height: 240px;
+            }
+            .word-display {
+                font-size: 36px;
+                font-weight: 900;
+            }
+            .translation-box {
+                font-size: 13px;
+                font-weight: 500;
+            }
+            .navigation-buttons {
+                gap: 50px;
+            }
+            .perehod {
+                gap: 20px;
+            }
+            .perehod img {
+                width: 30px;
+                height: 30px;
+                padding: 8px;
+            }
+            .audio-icon img {
+                width: 28px;
+                height: 28px;
+                margin: 5px;
+            }
+        }
+
+        @media (max-width: 280px) {
+            .word-window {
+                width: 180px;
+                height: 220px;
+            }
+            .word-display {
+                font-size: 32px;
+                font-weight: 900;
+            }
+            .translation-box {
+                font-size: 12px;
+                font-weight: 500;
+            }
+            .navigation-buttons {
+                gap: 40px;
+            }
+            .navigation-buttons img,
+            .perehod img {
+                width: 28px;
+                height: 28px;
+                padding: 6px;
+            }
+            .audio-icon img {
+                width: 26px;
+                height: 26px;
+                margin: 5px;
+            }
+        }
+
+        @media (max-width: 250px) {
+            .word-window {
+                width: 160px;
+                height: 200px;
+                margin-bottom: 50px;
+            }
+            .word-display {
+                font-size: 28px;
+                font-weight: 900;
+            }
+            .translation-box {
+                font-size: 11px;
+                font-weight: 500;
+                padding: 6px 10px;
+            }
+            .audio-icon img {
+                width: 24px;
+                height: 24px;
+                margin: 5px;
+            }
+            .navigation-buttons {
+                gap: 30px;
+                margin-top: 15px;
+            }
+            .navigation-buttons img,
+            .perehod img {
+                width: 25px;
+                height: 25px;
+                padding: 5px;
+            }
+        }
     </style>
 </head>
 
@@ -1452,5 +1713,6 @@ document.addEventListener('keydown', function(event) {
 </body>
 
 </html>
+
 
 
