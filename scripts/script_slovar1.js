@@ -1006,10 +1006,26 @@ const words = [
     { korean: "힘들다", translation: "трудный" }
 ];
 let currentIndex = 0;
+let speechSynthesisSupported = false;
+
+// Проверяем поддержку синтеза речи
+function checkSpeechSupport() {
+    if ('speechSynthesis' in window) {
+        speechSynthesisSupported = true;
+        console.log("Speech synthesis supported");
+    } else {
+        console.log("Speech synthesis not supported");
+        document.querySelector('.audio-icon').style.display = 'none';
+    }
+}
 
 // Функция для получения случайного индекса
 function getRandomIndex() {
-    return Math.floor(Math.random() * words.length);
+    let newIndex;
+    do {
+        newIndex = Math.floor(Math.random() * words.length);
+    } while (newIndex === currentIndex && words.length > 1);
+    return newIndex;
 }
 
 // Функция для обновления слова
@@ -1023,31 +1039,137 @@ function updateWord() {
 function nextWord() {
     currentIndex = getRandomIndex();
     updateWord();
-    speakText(words[currentIndex].korean);
+    // УБРАНО автоматическое озвучивание при перелистывании
 }
 
 // Функция для перехода к предыдущему слову (случайно)
 function previousWord() {
     currentIndex = getRandomIndex();
     updateWord();
-    speakText(words[currentIndex].korean);
+    // УБРАНО автоматическое озвучивание при перелистывании
 }
 
-// Функция для озвучивания текста
-function speakText(text) {
+// Функция для озвучивания текущего слова
+function speakCurrentWord() {
+    if (!speechSynthesisSupported) {
+        console.log("Speech synthesis not supported");
+        alert("Ваш браузер не поддерживает озвучивание текста. Попробуйте использовать Chrome или Safari.");
+        return;
+    }
+    
+    const text = words[currentIndex].korean;
     if (text) {
+        // Останавливаем предыдущее воспроизведение
+        speechSynthesis.cancel();
+        
         const utterance = new SpeechSynthesisUtterance(text);
         utterance.lang = 'ko-KR'; // Для корейского языка
+        utterance.rate = 0.9; // Немного медленнее для лучшего понимания
+        utterance.volume = 1.0;
+        
+        // Получаем доступные голоса и выбираем корейский, если есть
+        const voices = speechSynthesis.getVoices();
+        const koreanVoice = voices.find(voice => voice.lang === 'ko-KR' || voice.lang === 'ko');
+        if (koreanVoice) {
+            utterance.voice = koreanVoice;
+        }
+        
+        // Добавляем обработчики событий для отладки
+        utterance.onstart = function() {
+            console.log("Speech started");
+        };
+        
+        utterance.onend = function() {
+            console.log("Speech ended");
+        };
+        
+        utterance.onerror = function(event) {
+            console.error("Speech error:", event);
+            alert("Ошибка при озвучивании. Пожалуйста, проверьте настройки звука вашего браузера.");
+        };
+        
         speechSynthesis.speak(utterance);
     }
 }
 
-// Функция для воспроизведения аудио
+// Функция для воспроизведения аудио при нажатии на иконку
 function playAudio() {
-    speakText(words[currentIndex].korean);
+    speakCurrentWord();
 }
 
-// Инициализация первого слова
-updateWord();
+// Обработчики свайпа для мобильных устройств
+let touchStartX = 0;
+let touchEndX = 0;
 
+document.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+});
+
+document.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe();
+});
+
+function handleSwipe() {
+    const swipeThreshold = 50;
+    if (touchEndX < touchStartX - swipeThreshold) {
+        nextWord();
+    } else if (touchEndX > touchStartX + swipeThreshold) {
+        previousWord();
+    }
+}
+
+// Бургер-меню
+const burgerMenu = document.getElementById("burgerMenu");
+const navBurger = document.getElementById("navBurger");
+
+if (burgerMenu && navBurger) {
+    burgerMenu.addEventListener("click", function (event) {
+        event.stopPropagation();
+        navBurger.classList.toggle("active");
+    });
+
+    document.addEventListener("click", function (event) {
+        if (navBurger && burgerMenu && 
+            !navBurger.contains(event.target) && 
+            !burgerMenu.contains(event.target)) {
+            navBurger.classList.remove("active");
+        }
+    });
+}
+
+// Инициализация при загрузке страницы
+document.addEventListener('DOMContentLoaded', function() {
+    checkSpeechSupport();
+    updateWord();
+    
+    // Загружаем голоса, если они еще не загружены
+    if (speechSynthesisSupported) {
+        speechSynthesis.getVoices(); // Это помогает инициализировать голоса
+    }
+});
+
+// Обработчик для загрузки голосов
+if (speechSynthesisSupported) {
+    speechSynthesis.onvoiceschanged = function() {
+        console.log("Voices loaded");
+    };
+}
+
+// Добавляем обработку клавиатуры для удобства
+document.addEventListener('keydown', function(event) {
+    switch(event.key) {
+        case 'ArrowLeft':
+            previousWord();
+            break;
+        case 'ArrowRight':
+            nextWord();
+            break;
+        case ' ':
+        case 'Spacebar':
+            event.preventDefault(); // Предотвращаем прокрутку страницы
+            playAudio();
+            break;
+    }
+});
 
