@@ -6,46 +6,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Korean Words Practice</title>
     <link rel="stylesheet" href="/styles/style_slovar1.css">
-    <!-- <link rel="stylesheet" href="/styles/style_base.css/"> -->
-     <link rel="stylesheet" href="/styles/style_base_numder_word.css">
+    <link rel="stylesheet" href="/styles/style_base.css/style_base_numder_word.css">
+    <link rel="stylesheet" href="style.css">
     <style>
-      /* ОЗВУЧКА */
-        .word-window {
-            width: 400px;
-            height: 400px;
-            background-color: rgba(201, 201, 72, 0.247);
-            border-radius: 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            font-size: 24px;
-            margin: 20px auto;
-            position: relative;
-            margin-bottom: 100px;
-        }
+        /* ОЗВУЧКА */
+.word-window {
+    width: 400px;
+    height: 400px;
+    background-color: rgba(201, 201, 72, 0.247);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    margin: 20px auto;
+    position: relative;
+    margin-bottom: 100px;
+}
 
-        .word-display {
-            margin-top: 20px;
-            font-size: 28px;
-            font-weight: bold;
-        }
+.word-display {
+    margin-top: 20px;
+    font-size: 28px;
+    font-weight: bold;
+}
 
-        .audio-icon {
-            margin-top: 20px;
-            cursor: pointer;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+.audio-icon {
+    margin-top: 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-        .audio-icon img {
-            width: 25px; /* Уменьшили в 2 раза (было 50) */
-            height: 25px;
-           margin: 30px;
-        }
+.audio-icon img {
+    width: 25px; /* Уменьшили в 2 раза (было 50) */
+    height: 25px;
+   margin: 30px;
+}
 
-      .translation-box {
+.translation-box {
     background-color: #030332f0;
     color: white;
     padding: 10px;
@@ -59,154 +59,131 @@
     margin-right: 30px;
 }
 
-       .navigation-buttons {
-            margin-top: 20px;
-            display: flex;
-              
-            gap: 140px; 
-        }
- /* 
-        .navigation-buttons img {
-            width: 30px;
-            height: 30px;
-            transition: transform 0.2s;
-        }
+.navigation-buttons {
+    margin-top: 20px;
+    display: flex;
+    gap: 140px; 
+}
 
-        .navigation-buttons img:hover {
-            transform: scale(1.1);
-        } */
+.navigation-buttons img {
+    width: 34px;
+    height: 34px;
+    transition: transform 0.2s;
+    background-color: #f0ffb3;
+    border-radius: 50%;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
 
-          .navigation-buttons img {
-            width: 34px;
-            height: 34px;
-            transition: transform 0.2s;
-            background-color: #f0ffb3;
-            border-radius: 50%;
-            padding: 10px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-           
-        }
+.navigation-buttons img:hover {
+    transform: scale(1.1);
+    background-color: #45a049;
+}
 
-        .navigation-buttons img:hover {
-            transform: scale(1.1);
-            background-color: #45a049;
-        }
+/* Стили для блока perehod (чтобы были одинаковые) */
+.perehod {
+    display: flex;
+    gap: 40px;
+    margin: 20px 0;
+}
 
-        /* Стили для блока perehod (чтобы были одинаковые) */
-        .perehod {
-            display: flex;
-            /* justify-content: center; */
-            gap: 40px;
-            margin: 20px 0;
-        }
+.perehod img {
+    width: 30px;
+    height: 30px;
+    transition: transform 0.2s;
+}
 
-        .perehod img {
-            width: 30px;
-            height: 30px;
-            transition: transform 0.2s;
-        }
+.perehod img:hover {
+    transform: scale(1.1);
+}
 
-        .perehod img:hover {
-            transform: scale(1.1);
-        }
+/* Адаптация word-window */
+@media (max-width: 1440px) {
+    .word-window {
+        width: 380px;
+        height: 380px;
+    }
+}
 
-        /* Адаптация word-window */
-        @media (max-width: 1440px) {
-            .word-window {
-                width: 380px;
-                height: 380px;
-            }
-        }
-        
-        @media (max-width: 1200px) {
-            .word-window {
-                width: 350px;
-                height: 350px;
-            }
-        }
-        
-        @media (max-width: 992px) {
-            .word-window {
-                width: 320px;
-                height: 350px;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .word-window {
-                width: 300px;
-                /* height: 220px; */
-                margin-bottom: 80px;
-            }
+@media (max-width: 1200px) {
+    .word-window {
+        width: 350px;
+        height: 350px;
+    }
+}
 
-             .navigation-buttons {
-          
-              
-            gap: 100px; /* Увеличили расстояние между стрелками */
-        }
-        }
-        
-        @media (max-width: 576px) {
-            .word-window {
-                width: 280px;
-                /* height: 200px; */
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .word-window {
-                width: 260px;
-                /* height: 180px; */
-            }
-        }
-        
-        @media (max-width: 400px) {
-            .word-window {
-                width: 240px;
-                /* height: 160px; */
-                margin-bottom: 60px;
-            }
-        }
-        
-        @media (max-width: 360px) {
-            .word-window {
-                width: 220px;
-                /* height: 150px; */
-            }
-        }
-        
-        @media (max-width: 320px) {
-            .word-window {
-                width: 200px;
-                /* height: 140px; */
-            }
-        }
-        
-        @media (max-width: 280px) {
-            .word-window {
-                width: 180px;
-                /* height: 130px; */
-            }
-            
-            .navigation-buttons,
-            .perehod {
-                gap: 20px;
-            }
-        }
-        
-        @media (max-width: 250px) {
-            .word-window {
-                width: 160px;
-                /* height: 120px; */
-                margin-bottom: 50px;
-            }
-            
-            .navigation-buttons img,
-            .perehod img {
-                width: 25px;
-                height: 25px;
-            }
-        }
+@media (max-width: 992px) {
+    .word-window {
+        width: 320px;
+        height: 350px;
+    }
+}
+
+@media (max-width: 768px) {
+    .word-window {
+        width: 300px;
+        margin-bottom: 80px;
+    }
+
+    .navigation-buttons {
+        gap: 100px; /* Увеличили расстояние между стрелками */
+    }
+}
+
+@media (max-width: 576px) {
+    .word-window {
+        width: 280px;
+    }
+}
+
+@media (max-width: 480px) {
+    .word-window {
+        width: 260px;
+    }
+}
+
+@media (max-width: 400px) {
+    .word-window {
+        width: 240px;
+        margin-bottom: 60px;
+    }
+}
+
+@media (max-width: 360px) {
+    .word-window {
+        width: 220px;
+    }
+}
+
+@media (max-width: 320px) {
+    .word-window {
+        width: 200px;
+    }
+}
+
+@media (max-width: 280px) {
+    .word-window {
+        width: 180px;
+    }
+    
+    .navigation-buttons,
+    .perehod {
+        gap: 20px;
+    }
+}
+
+@media (max-width: 250px) {
+    .word-window {
+        width: 160px;
+        margin-bottom: 50px;
+    }
+    
+    .navigation-buttons img,
+    .perehod img {
+        width: 25px;
+        height: 25px;
+    }
+}
     </style>
 </head>
 
@@ -243,8 +220,8 @@
         </div>
     </main>
       <div class="perehod">
-        <a href="/index/index_diktant.html"><img src="/image/vlevo2.svg" alt=""></a>
-        <a href="/index.html"><img src="/image/vpravo2.svg" alt=""></a>
+        <a href="/index/index_grammatika.html/index_egeso_itta_opta.html"><img src="/image/vlevo2.svg" alt=""></a>
+        <a href="/index/index_grammatika.html/index_prosh_no-ofitial.html"><img src="/image/vpravo2.svg" alt=""></a>
     </div>
 
     <footer>
@@ -292,67 +269,9 @@
         </div>
     </footer>
 
+    <script src="script.js"></script>
     <script>
-        const burgerMenu = document.getElementById("burgerMenu");
-        const navBurger = document.getElementById("navBurger");
-
-        burgerMenu.addEventListener("click", function (event) {
-            event.stopPropagation();
-            navBurger.classList.toggle("active");
-        });
-
-        document.addEventListener("click", function (event) {
-            if (!navBurger.contains(event.target) && !burgerMenu.contains(event.target)) {
-                navBurger.classList.remove("active");
-            }
-        });
-
-        function toggleBurger() {
-            const part1 = document.querySelector('.burger-part1');
-            const part2 = document.querySelector('.burger-part2');
-
-            if (part1.style.display === 'none') {
-                part1.style.display = 'block';
-                part2.style.display = 'none';
-            } else {
-                part1.style.display = 'none';
-                part2.style.display = 'block';
-            }
-        }
-
-        /* Свайп для мобильных устройств */
-        let touchStartX = 0;
-        let touchEndX = 0;
-
-        document.addEventListener('touchstart', (e) => {
-            touchStartX = e.changedTouches[0].screenX;
-        });
-
-        document.addEventListener('touchend', (e) => {
-            touchEndX = e.changedTouches[0].screenX;
-            handleSwipe();
-        });
-
-        function handleSwipe() {
-            const swipeThreshold = 50;
-            if (touchEndX < touchStartX - swipeThreshold) {
-                nextWord();
-            } else if (touchEndX > touchStartX + swipeThreshold) {
-                previousWord();
-            }
-        }
-
-        function nextWord() {
-            // Implement next word functionality
-        }
-
-        function previousWord() {
-            // Implement previous word functionality
-        }
-    </script>
-
-    <script>
-           // Исправленный и очищенный список слов
+        // Исправленный и очищенный список слов
 const words = [
   
     { korean: "가게", translation: "магазин, лавка" },
@@ -1533,11 +1452,3 @@ document.addEventListener('keydown', function(event) {
 </body>
 
 </html>
-
-
-
-
-   
-           
-
-
