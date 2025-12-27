@@ -1,512 +1,1211 @@
 <!DOCTYPE html>
 <html lang="ru">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Korean Numbers Guide</title>
-    <link rel="stylesheet" href="/styles/style_base_numder_word.css">
-   <style>
-        .container {
-            padding: 0 20px;
-            max-width: 100%;
-        }
+    <!-- <link rel="stylesheet" href="/styles/style.css"> -->
+    <!-- <link rel="stylesheet" href="/styles/games.css"> -->
+    <title>Упражнения - Тренажеры корейского языка</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
-        article {
-            width: 90%;
-            margin: 0 auto;
-            padding: 20px;
-            box-sizing: border-box;
-            /* Адаптация для article */
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
+* {
+    font-family: "Montserrat", serif;
+    font-size: auto;
+    font-style: normal;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        .rule {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            margin: 20px 0;
-            padding: 15px;
-            background-color: #f8f8f8;
-            border-radius: 8px;
-        }
+body {
+    margin: 0;
+    max-height: 100vh;
+    max-width: 100%;
+    /* background-image: url('/image/fon.png'); */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+}
 
-        .grammatika,
-        .center-text {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            margin: 20px 0;
-            padding: 15px;
-            background-color: #f8f8f8;
-            border-radius: 8px;
-        }
 
-        .grammatika h2 {
-            color: #333;
-            margin-bottom: 15px;
-        }
-
-        .grammatika p {
-            line-height: 1.5;
-            color: #555;
-            text-align: center;
-            width: 100%;
-        }
-
-        .rule-face {
-            width: 100%;
-            margin: 15px 0;
-        }
-
-        .rule-word {
-            display: flex;
-            flex-direction: column;
-            width: 100%;
-            padding: 15px 0;
-        }
-
-        h4,
-        h5,
-        h2 {
-            text-align: center;
-            margin-bottom: 10px;
-            margin-top: 10px;
-        }
-
-        .korean-text b {
-            font-weight: bold;
-        }
-
-        .left-spesial-word,
-        .right-primer {
-            flex: 1;
-            padding: 15px;
-            box-sizing: border-box;
-            text-align: center;
-        }
-
-        /* Left burger styles */
-        .left-burger {
-            position: fixed;
-            left: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: #f8f8f8;
-            padding: 15px;
-            border-radius: 0 8px 8px 0;
-            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-            width: 200px;
-            z-index: 100;
-        }
-
-        /* Style for h4 in burgers */
-        .left-burger h4,
-        .right-burger h4,
-        .bottom-burger h4 {
-            text-align: center;
-            margin-bottom: 10px;
-        }
-
-        /* Style for paragraphs in burgers */
-        .left-burger p,
-        .right-burger p,
-        .bottom-burger p {
-            text-align: left;
-            margin: 10px 0;
-        }
-
-        /* Right burger styles */
-        .right-burger {
-            position: fixed;
-            right: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: #f8f8f8;
-            padding: 15px;
-            border-radius: 8px 0 0 8px;
-            box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.1);
-            width: 200px;
-            z-index: 100;
-        }
-
-        /* Bottom burger styles */
-        .bottom-burger {
-            position: fixed;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: #f8f8f8;
-            padding: 15px;
-            border-radius: 8px 8px 0 0;
-            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
-            width: 300px;
-            z-index: 100;
-        }
-
-        .iconDown,
-        .iconUp {
-            cursor: pointer;
-            text-align: center;
-            border-radius: 5px;
-            margin: 10px auto;
-            width: 30px;
-        }
-
-        /* для перехода по ссылке на гармонию гласных */
-        .rule_garmoniya a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        .rule_garmoniya b {
-            cursor: pointer;
-            color: rgb(81, 7, 8);
-            text-decoration: underline;
-        }
-
-   
-        /* Стили для слов с подсказками */
-        .russian-word {
-            cursor: pointer;
-            position: relative;
-            padding: 2px 4px;
-            border-radius: 3px;
-            transition: background-color 0.2s;
-            font-weight: 700;
-        }
-
-        .russian-word:hover {
-            background-color: rgba(52, 152, 219, 0.2);
-        }
-
-        .russian-word:hover::after {
-            content: attr(data-translation);
-            position: absolute;
-            bottom: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: #2c3e50;
-            color: white;
-            padding: 5px 10px;
-            border-radius: 4px;
-            white-space: nowrap;
-            z-index: 10;
-            font-size: 20px;
-            font-weight: 900;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-        }
-
-        .progress {
-            margin-top: 20px;
-            text-align: center;
-            font-weight: bold;
-            color: #2c3e50;
-            flex: 0 0 auto;
-        }
-
-        .perehod {
-            display: flex;
-            justify-content: space-between;
-            margin: 20px 0;
-        }
-
-.trenazher-container {
-    max-width: 800px;
+.container {
+    width: 100%;
+    max-width: 1288px;
     margin: 0 auto;
-    background-color: white;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 0 20px;
+}
+main {
+    display: flex;
+    max-width: 100%;
+    margin-bottom: 50px;
+}
+
+.logo:hover {
+    left: 150px;
+    top: 55px;
+    transform: scale(1.5);
+}
+
+.lk {
+    width: 54px;
+    height: 54px;
+}
+
+.lk:hover {
+    transform: scale(1.5);
+    border-radius: 100px solid rgb(49, 36, 105);
+}
+
+/* Бургер-меню */
+.burger-menu {
     display: flex;
     flex-direction: column;
-    align-items: stretch;
-    justify-content: flex-start;
-    gap: 20px;
+    cursor: pointer;
+    gap: 5px;
+    z-index: 1000;
 }
 
-/* Стили для поля ввода корейского текста */
-.korean-input {
-    width: 100%;
-    font-weight: 900;
-    font-size: 26px;
-    padding: 15px;
-    border: 2px solid #e0e0e0;
-    border-radius: 8px;
-    text-align: center;
-    box-sizing: border-box;
-    transition: border-color 0.3s;
+.burger-menu div {
+    width: 25px;
+    height: 3px;
+    background-color: #fff; /* Изменен на белый для контраста с темным фоном */
+}
+
+.nav-burger {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 250px;
+    height: 100vh;
+    background-color: rgba(44, 62, 80, 0.98); /* Цвет шапки */
+    transition: left 0.3s ease;
+    z-index: 999;
+    padding-top: 80px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.nav-burger.active {
+    left: 0;
+}
+
+.nav-burger .ul-header {
+    list-style: none;
+    padding: 20px;
+    margin: 0;
+    flex-direction: column;
+}
+
+.nav-burger .li-header {
     margin-bottom: 20px;
 }
 
-.korean-input:focus {
-    border-color: #3498db;
-    outline: none;
+.nav-burger .a-header {
+    color: #ecf0f1; /* Светлый текст для темного фона */
+    text-decoration: none;
+    font-size: 18px;
+    display: block;
 }
 
-.sentence-number {
-    margin-bottom: 20px;
+.nav-burger .a-header:hover {
+    color: #3498db; /* Голубой при наведении */
+}
+
+
+
+header, .back-btn {
+    background: linear-gradient(45deg, #544848, #e3e3d2, #4a6545bb,  #a6c1ee, #928da7b8, #e3e3d2);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Обновляем контейнер в шапке */
+header .container {
+    max-width: 100%;
+    font-family: "Montserrat", serif;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 50px; /* Расстояние 50px между элементами */
+    /* Убираем старый цвет фона */
+    /* background-color: #b1cbe5; */
+    padding-right: 110px;
+    padding-left: 110px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-bottom: 50px;
 }
 
-.russian-sentence {
+/* Делаем логотип белым для контраста с градиентом */
+.logo {
+    width: 50px;
+    height: 50px;
+    filter: brightness(0) invert(1); /* Белый цвет */
+}
+
+/* Делаем иконку пользователя белой */
+.user img.lk {
+    width: 40px;
+    height: 40px;
+    filter: brightness(0) invert(1); /* Белый цвет */
+    transition: transform 0.3s ease;
+}
+
+.user img.lk:hover {
+    transform: scale(1.1);
+}
+
+/* Обновляем цвет текста в шапке для лучшей читаемости */
+.a-header {
+    color: #2c3e50; /* Темный текст для контраста со светлым градиентом */
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500; /* Немного жирнее для читаемости */
+}
+
+.a-header:hover {
+    color: #1a252f; /* Еще темнее при наведении */
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5); /* Легкое свечение */
+}
+
+/* Бургер-меню также обновляем */
+.burger-menu div {
+    width: 25px;
+    height: 3px;
+    background-color: #2c3e50; /* Темный цвет для контраста */
+}
+
+.nav-header {
+    padding: 20px;
+}
+
+.ul-header {
+    display: flex;
+    list-style: none;
+}
+
+.li-header {
+    display: flex;
+    margin-right: 45px;
+}
+
+.a-header {
+    color: #ecf0f1; /* Светлый текст */
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.a-header:hover {
+    color: #3498db; /* Голубой при наведении */
+}
+
+h1:hover {
+    color: rgb(4, 1, 48);
+}
+
+/* Footer */
+footer {
+    background-color: #1a252f; /* Более темный цвет подвала */
+    padding: 20px 0;
+}
+
+.footer1 {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 15px;
     margin-bottom: 20px;
 }
 
-/* .hint {
+.mail,
+.tel {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    gap: 5px;
+    color: #ecf0f1; /* Светлый текст */
+}
+
+.tel img {
+    width: 12px;
+    height: 12px;
+}
+
+.footer-icon {
+    display: flex;
+    gap: 15px;
+}
+
+.footer-icon img {
+    width: 30px;
+    height: 30px;
+}
+address{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    /* padding-left: 10px;
+    padding-right: 10px; */
+}
+.footer2 {
+    display: flex;
+    align-items: flex-start;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.ul-footer {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+.li-footer {
+    margin: 0;
+}
+
+.a-footer {
+    color: #ecf0f1; /* Светлый текст */
+    text-decoration: none;
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+.a-footer:hover {
+    color: #3498db; /* Голубой при наведении */
+}
+
+.copyright {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    color: #ecf0f1; /* Светлый текст */
+    font-size: 14px;
+}
+
+#copyright {
+    height: 18px;
+    width: 18px;
+}
+/* Телефон */
+.tel:hover p {
+    color: #3498db; /* Голубой при наведении */
+   font-size: 1.1em;
+   transition: all 0.3s ease;
+}
+
+/* Почта */
+.mail:hover p {
+   color: #3498db; /* Голубой при наведении */
+   font-size: 1.1em;
+   transition: all 0.3s ease;
+}
+
+/* Копирайт */
+.copyright:hover p {
+   color: #3498db; /* Голубой при наведении */
+   font-size: 1.1em;
+   transition: all 0.3s ease;
+}
+
+/* Для плавности перехода при убирании курсора */
+.tel p,
+.mail p,
+.copyright p {
+   transition: all 0.3s ease;
+}
+.perehod {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    margin: 20px 0;
+}
+
+.perehod img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid rgb(49, 36, 105);
+    transition: transform 0.3s;
+}
+
+
+.perehod>a:hover {
+    transform: scale(1.5);
+}
+
+/* .perehod {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-self: flex-end;
+    padding: 0 120px 0 120px;
     margin-bottom: 20px;
 } */
-.btn {
+
+.baner {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    font-weight: 900;
+    margin-bottom: 50px;
+}
+
+h1 {
+    /* color: hsla(47, 18%, 20%, 0.814); */
+    
+    font-family: "Montserrat", sans-serif;
+    font-weight: 900; /* Жирный текст */
+    font-size: 36px;
+    background: linear-gradient(45deg, #544848,  #e3e3d2, #4a6545, #fbc2eb, #a6c1ee, #928da7, #e3e3d2); /* Переливающийся градиент */
+    -webkit-background-clip: text; /* Применяем градиент к тексту */
+    -webkit-text-fill-color: transparent; /* Делаем текст прозрачным */
+    background-size: 300% 300%; /* Увеличиваем размер градиента для анимации */
+    animation: gradient-shift 5s ease infinite; /* Анимация перелива */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Тень для лучшей читаемости */
+}
+@keyframes gradient-shift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+.box {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding-left: 45px;
+    padding-right: 45px;
+    margin-top: 20px;
+}
+
+.card1, .card2 {
+    width: 48%;
+    background-color: #f5f2e860;
+    border: 1px solid #0f0520;
+    border-radius: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+    padding-top: 50px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5); /* Тень */
+    backdrop-filter: blur(2px); /* Размытие для эффекта стекла */
+}
+
+.card1 a:hover, .card2 a:hover {
+    color: rgb(4, 1, 48);
+    font-size: 22px;
+}
+
+.card1 a, .card2 a {
+    color: hsla(60, 33%, 99%, 0.814);
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 600;
+
+}
+
+.btn-vibor {
+    width: 200px;
+    height: 50px;
+     background: linear-gradient(360deg, rgba(55, 58, 70, 0.8), rgb(122, 134, 113),  rgba(111, 115, 104, 0.43), rgb(122, 134, 113), rgba(37, 73, 52, 0.8), rgba(55, 58, 70, 0.8)); /* Изумрудно-голубой градиент */
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5); /* Тень */
+    backdrop-filter: blur(10px); /* Размытие для эффекта стекла */
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    text-align: center;
+    color: rgb(49, 36, 105);
+    border: 2px solid #0f0520;
+    border-radius: 15px;
+    gap: 20px;
+}
+
+.btn-proba:hover {
+    animation: puls 5s 3;
+}
+
+@keyframes puls {
+    0% {
+        transform: scale(0.5);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+
+.btn-vibor, .btn-proba {
+    margin-bottom: 10px;
+}
+.btn-proba {
+    width: 200px;
+    height: 50px;
+    display: flex;
+    font-size: 10px;
+    text-align: center;
+    border: 2px solid #0f0520;
+    border-radius: 16px;
+    padding: auto;
+    align-items: center;
+    justify-content: center;
+    margin-left: 150px;
+    margin-bottom: 50px;
+    background: linear-gradient(360deg, rgba(55, 58, 70, 0.8), rgb(122, 134, 113),  rgba(111, 115, 104, 0.43), rgb(122, 134, 113), rgba(37, 73, 52, 0.8), rgba(55, 58, 70, 0.8)); /* Изумрудно-голубой градиент */
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5); /* Тень */
+    backdrop-filter: blur(10px); /* Размытие для эффекта стекла */
+}
+.proba a {
+    font-size: 14px;
+}
+.proba a:hover {
+    color: rgb(49, 36, 105);
+}
+
+@media(max-width:1250px) {
+
+    header,
+    .container,
+
+    .copyright,
+    .box {
+        justify-content: center;
+        text-align: center;
+    }
+
+    .card {
+        width: 100%;
+        margin-bottom: 45px;
+    }
+
+    .baner>h1 {
+        font-size: 20px;
+    }
+
+    .box {
+        flex-direction: column;
+    }
+
+    .card1,
+    .card2 {
+        width: 70%;
+        margin-bottom: 45px;
+    }
+}
+  /* Добавьте свои стили здесь */
+    
+  @media (max-width: 1100px) {
+    .footer {
+        flex-direction: column;
+    }
+
+    .footer1, .footer2 {
+        width: 100%;
+    }
+
+    .footer-icon {
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+
+    .footer2 {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+    }
+
+    .nav1-footer, .nav2-footer, .nav3-footer {
+        margin-bottom: 10px;
+    }
+
+    .copyright {
+        margin-top: 10px;
+    }
+}
+
+@media(max-width:1024px) {
+
+    header,
+    .container,
+  footer,
+    .copyright,
+    .box {
+        justify-content: center;
+        text-align: center;
+    }
+
+    .footer3 ul {
+        flex-wrap: wrap;
+    }
+
+    .baner>h1 {
+        font-size: 20px;
+    }
+
+    .footer>ul {
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .header_ul {
+        justify-content: flex-start;
+    }
+
+    nav {
+        padding: 0;
+    }
+
+    .box {
+        flex-direction: column;
+    }
+
+    .card {
+        width: 100%;
+        margin-bottom: 45px;
+    }
+}  
+
+@media (max-width: 750px) {
+    .btn-proba {
+        margin-left: 0; /* Убираем отступ слева */
+        width: 180px; /* Немного уменьшаем */
+    }
+}
+
+@media (max-width: 600px) {
+    .logo {
+    width: 54px; /* Уменьшено в 2 раза */
+    height: 54px; /* Уменьшено в 2 раза */
+    transition: transform 0.3s;
+}
+
+.lk {
+    width: 27px; /* Уменьшено в 2 раза */
+    height: 27px; /* Уменьшено в 2 раза */
+    transition: transform 0.3s;
+}
+
+/* Кнопки и карточки */
+.btn-proba {
+    width: 200px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 50px; /* Центрирование */
+    /* остальные стили */
+}
+
+.card1, .card2 {
+    width: 48%;
+    /* остальные стили */
+}
+
+/* Подвал */
+footer {
+    text-align: center;
+}
+
+address {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer1, .footer2 {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     margin-bottom: 20px;
 }
-                        
-                     /* input-container */
 
-/* Адаптация для всех режимов */
-
-/* 1441px и выше */
-@media (min-width: 1441px) {
-    .trenazher-container {
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        align-items: stretch;
-        padding: 35px;
-    }
-    
-    .exercise-container {
-        flex: 1 1 100%;
-    }
-    
-    .korean-input {
-        font-size: 28px;
-        padding: 18px;
-    }
-    
-    .controls {
-        justify-content: center;
-        gap: 12px;
-    }
-    
-    .btn {
-        flex: 0 1 calc(25% - 12px);
-        padding: 12px 18px;
-        font-size: 16px;
-        min-width: 140px;
-    }
+.footer-icon {
+    justify-content: center;
 }
-
-/* 1440px - 1025px */
-@media (max-width: 1440px) and (min-width: 1025px) {
-    .trenazher-container {
-        flex-direction: column;
-        align-items: center;
-        padding: 30px;
+   
+   
+    /* Уменьшаем карточки */
+    
+    .card1, .card2 {
+        width: 80%;
+        padding-top: 30px;
+        gap: 20px;
     }
     
-    .korean-input {
-        font-size: 26px;
-        padding: 16px;
-    }
-    
-    .controls {
-        justify-content: space-around;
-        gap: 10px;
-    }
-    
-    .btn {
-        flex: 0 1 calc(25% - 10px);
-        padding: 11px 16px;
-        font-size: 15px;
-        min-width: 130px;
-    }
-}
-
-/* 1024px - 769px */
-@media (max-width: 1024px) and (min-width: 769px) {
-    .trenazher-container {
-        flex-direction: column;
-        align-items: stretch;
-        padding: 25px;
-    }
-    
-    .korean-input {
-        font-size: 24px;
-        padding: 14px;
-    }
-    
-    .controls {
-        justify-content: space-between;
-        gap: 8px;
-    }
-    
-    .btn {
-        flex: 1 1 calc(25% - 8px);
-        padding: 10px 14px;
+    /* Уменьшаем кнопки */
+    .btn-vibor, .btn-proba {
+        width: 120px;
+        height: 30px;
         font-size: 14px;
-        min-width: 110px;
-    }
-}
-
-/* 768px - 426px */
-@media (max-width: 768px) and (min-width: 426px) {
-    .trenazher-container {
-        flex-direction: column;
-        padding: 20px;
-        align-items: center;
     }
     
-    .korean-input {
-        font-size: 22px;
-        padding: 12px;
+    /* Уменьшаем шрифты */
+    a.a-card {
+        font-size: 10px;
     }
     
-    .controls {
-        flex-direction: row;
-        flex-wrap: wrap;
-        gap: 8px;
-    }
-    
-    .btn {
-        flex: 1 1 calc(50% - 8px);
-        padding: 10px 12px;
-        font-size: 14px;
-        min-width: 0;
-    }
-}
-
-/* 425px - 376px */
-@media (max-width: 425px) and (min-width: 376px) {
-    .trenazher-container {
-        flex-direction: column;
-        padding: 18px;
-        align-items: stretch;
-    }
-    
-    .korean-input {
+    h1 {
         font-size: 20px;
-        padding: 11px;
-        font-weight: 800;
     }
     
-    .controls {
-        flex-direction: row;
-        flex-wrap: wrap;
-        gap: 6px;
+    /* Подвал - центрируем все элементы */
+    .footer1, .footer2, .copyright {
+        align-items: center;
+        text-align: center;
     }
     
-    .btn {
-        flex: 1 1 calc(50% - 6px);
-        padding: 9px 11px;
-        font-size: 13px;
-        min-width: 0;
+    .ul-footer {
+        justify-content: center;
+    }
+    
+    /* Еще больше уменьшаем логотип и ЛК на мобильных */
+    .logo {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .lk {
+        width: 20px;
+        height: 20px;
     }
 }
+        /* Основной фон с анимированными корейскими буквами */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #E0F2E1; /* Светло-зеленый цвет молодого бамбука */
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
 
-/* 375px - 321px */
-@media (max-width: 375px) and (min-width: 321px) {
-    .trenazher-container {
-        flex-direction: column;
-        padding: 15px;
-        align-items: stretch;
-    }
-    
-    .korean-input {
-        font-size: 19px;
-        padding: 10px;
-        font-weight: 800;
-    }
-    
-    .controls {
-        flex-direction: column;
-        gap: 6px;
-    }
-    
-    .btn {
-        flex: 1 1 100%;
-        padding: 10px 12px;
-        font-size: 14px;
-        min-width: 0;
-        width: 100%;
-    }
-}
+        #background-letters {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+            overflow: hidden;
+        }
 
-/* 320px - 251px */
-@media (max-width: 320px) and (min-width: 251px) {
-    .trenazher-container {
-        flex-direction: column;
-        padding: 12px;
-        align-items: stretch;
-    }
-    
-    .korean-input {
-        font-size: 18px;
-        padding: 9px;
-        font-weight: 700;
-    }
-    
-    .controls {
-        flex-direction: column;
-        gap: 5px;
-    }
-    
-    .btn {
-        flex: 1 1 100%;
-        padding: 8px 10px;
-        font-size: 13px;
-        min-width: 0;
-        width: 100%;
-    }
-}
+        .korean-letter {
+            position: absolute;
+            font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+            font-size: 40px;
+            font-weight: bold;
+            opacity: 0;
+            animation: letterFloat 8s ease-in-out infinite;
+            color: transparent;
+            background: linear-gradient(45deg, #78909C, #546E7A, #90A4AE);
+            background-clip: text;
+            -webkit-background-clip: text;
+            user-select: none;
+        }
 
-/* 250px и меньше */
-@media (max-width: 250px) {
-    .trenazher-container {
-        flex-direction: column;
-        padding: 10px;
-        align-items: stretch;
-        gap: 15px;
-    }
-    
-    .korean-input {
-        font-size: 16px;
-        padding: 8px;
-        font-weight: 700;
-    }
-    
-    .controls {
-        flex-direction: column;
-        gap: 4px;
-    }
-    
-    .btn {
-        flex: 1 1 100%;
-        padding: 7px 9px;
-        font-size: 12px;
-        min-width: 0;
-        width: 100%;
-    }
-    
-    .trenazher-title {
-        font-size: 1.1em;
-    }
-}
+        @keyframes letterFloat {
+            0% {
+                opacity: 0;
+                transform: scale(0.1) translate(0, 0) rotate(0deg);
+            }
+            10% {
+                opacity: 0.7;
+                transform: scale(1) translate(0, -100px) rotate(5deg);
+            }
+            80% {
+                opacity: 0.7;
+                transform: scale(1) translate(0, -300px) rotate(5deg);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(1) translate(0, -400px) rotate(5deg);
+            }
+        }
 
-    
+        /* Шапка с цветом как у заголовка "Выберите тренажер" */
+        header {
+            background-color: #2c3e50; /* Цвет заголовка */
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            filter: brightness(0) invert(1); /* Делаем лого белым для контраста */
+        }
+
+        .user img.lk {
+            width: 40px;
+            height: 40px;
+            transition: transform 0.3s ease;
+            filter: brightness(0) invert(1); /* Делаем иконку пользователя белой */
+        }
+
+        .user img.lk:hover {
+            transform: scale(1.1);
+        }
+
+        /* Основной контейнер */
+        .games-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 30px 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .page-title {
+            text-align: center;
+            margin-bottom: 50px;
+            color: #2c3e50;
+            font-size: 2.8em;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Сетка карточек */
+        .games-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+            margin-bottom: 50px;
+        }
+        
+        /* Карточки с эффектом стекла */
+        .game-card {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            padding: 30px 25px;
+            text-align: center;
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.05);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            flex: 0 0 calc(25% - 30px);
+            max-width: calc(25% - 30px);
+            min-width: 280px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 280px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .game-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, 
+                rgba(192, 192, 192, 0.8), 
+                rgba(255, 255, 255, 0.6), 
+                rgba(192, 192, 192, 0.8));
+        }
+        
+        .game-card:hover {
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.25);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+        
+        .game-title {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            color: #2c3e50;
+            font-weight: 700;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .game-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 25%;
+            width: 50%;
+            height: 2px;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(52, 152, 219, 0.7), 
+                transparent);
+        }
+        
+        .game-description {
+            color: #34495e;
+            margin-bottom: 25px;
+            font-size: 1em;
+            line-height: 1.5;
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
+        }
+        
+        /* Кнопка с серебряным градиентом */
+        .play-btn {
+            background: linear-gradient(
+                135deg,
+                rgba(220, 220, 220, 0.9) 0%,      /* Светло-серебряный */
+                rgba(192, 192, 192, 0.9) 25%,     /* Серебряный */
+                rgba(169, 169, 169, 0.9) 50%,     /* Темно-серебряный */
+                rgba(192, 192, 192, 0.9) 75%,     /* Серебряный */
+                rgba(220, 220, 220, 0.9) 100%     /* Светло-серебряный */
+            );
+            color: #2c3e50;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            padding: 14px 35px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 
+                0 4px 15px rgba(0, 0, 0, 0.1),
+                inset 0 2px 0 rgba(255, 255, 255, 0.3);
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .play-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg, 
+                transparent, 
+                rgba(255, 255, 255, 0.4), 
+                transparent
+            );
+            transition: left 0.7s;
+            z-index: -1;
+        }
+        
+        .play-btn:hover {
+            transform: scale(1.08);
+            box-shadow: 
+                0 8px 25px rgba(0, 0, 0, 0.2),
+                inset 0 2px 0 rgba(255, 255, 255, 0.4);
+            background: linear-gradient(
+                135deg,
+                rgba(240, 240, 240, 0.95) 0%,
+                rgba(220, 220, 220, 0.95) 25%,
+                rgba(200, 200, 200, 0.95) 50%,
+                rgba(220, 220, 220, 0.95) 75%,
+                rgba(240, 240, 240, 0.95) 100%
+            );
+            color: #1a252f;
+        }
+        
+        .play-btn:hover::before {
+            left: 100%;
+        }
+        
+        /* Кнопка назад */
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin: 60px auto 20px;
+            padding: 14px 30px;
+            background: linear-gradient(
+                135deg,
+                rgba(173, 216, 230, 0.9) 0%,     /* Светло-голубой */
+                rgba(135, 206, 250, 0.9) 50%,    /* Небесно-голубой */
+                rgba(100, 149, 237, 0.9) 100%    /* Королевский синий */
+            );
+            color: #2c3e50;
+            text-decoration: none;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            font-size: 1.1em;
+            max-width: 250px;
+            box-shadow: 0 4px 15px rgba(135, 206, 250, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .back-btn:hover {
+            background: linear-gradient(
+                135deg,
+                rgba(100, 149, 237, 0.9) 0%,
+                rgba(135, 206, 250, 0.9) 50%,
+                rgba(173, 216, 230, 0.9) 100%
+            );
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(135, 206, 250, 0.4);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Подвал - более темный цвет */
+        footer {
+            background-color: #1a252f; /* Более темный цвет подвала */
+            color: #ecf0f1; /* Светлый текст */
+            padding: 30px 20px;
+            text-align: center;
+            margin-top: 60px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 -4px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-logo {
+            width: 40px;
+            height: 40px;
+            filter: brightness(0) invert(1); /* Делаем лого белым */
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .footer-links a {
+            color: #ecf0f1; /* Светлый текст */
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #3498db; /* Голубой при наведении */
+            text-decoration: underline;
+        }
+
+        .copyright {
+            width: 100%;
+            margin-top: 20px;
+            font-size: 0.9em;
+            opacity: 0.8;
+            color: #ecf0f1; /* Светлый текст */
+        }
+
+        /* Бургер-меню стили */
+        .burger-menu {
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            cursor: pointer;
+        }
+
+        .burger-menu div {
+            width: 25px;
+            height: 3px;
+            background-color: #ecf0f1; /* Белый для контраста с темным фоном */
+            transition: 0.3s;
+        }
+
+        .nav-burger {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background: rgba(44, 62, 80, 0.98); /* Цвет шапки с прозрачностью */
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .nav-burger.active {
+            display: block;
+        }
+
+        .ul-header {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .li-header {
+            margin-bottom: 15px;
+        }
+
+        .a-header {
+            color: #ecf0f1; /* Светлый текст */
+            text-decoration: none;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        .a-header:hover {
+            color: #3498db; /* Голубой при наведении */
+        }
+
+        /* АДАПТИВНОСТЬ */
+        @media (max-width: 1200px) {
+            .game-card {
+                flex: 0 0 calc(33.333% - 30px);
+                max-width: calc(33.333% - 30px);
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .game-card {
+                flex: 0 0 calc(50% - 30px);
+                max-width: calc(50% - 30px);
+            }
+            
+            .page-title {
+                font-size: 2.3em;
+            }
+
+            .burger-menu {
+                display: flex;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .games-grid {
+                gap: 25px;
+            }
+            
+            .game-card {
+                flex: 0 0 calc(50% - 25px);
+                max-width: calc(50% - 25px);
+                min-width: 250px;
+                height: 260px;
+                padding: 25px 20px;
+            }
+            
+            .page-title {
+                font-size: 2em;
+                margin-bottom: 40px;
+            }
+            
+            .game-title {
+                font-size: 1.6em;
+            }
+        }
+        
+        @media (max-width: 650px) {
+            .games-grid {
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
+            
+            .game-card {
+                flex: 0 0 100%;
+                max-width: 100%;
+                width: 90%;
+                height: auto;
+                min-height: 220px;
+            }
+            
+            .games-container {
+                padding: 20px 15px;
+            }
+            
+            .page-title {
+                font-size: 1.8em;
+                margin-bottom: 30px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .games-grid {
+                gap: 15px;
+            }
+            
+            .game-card {
+                width: 95%;
+                padding: 20px 15px;
+            }
+            
+            .page-title {
+                font-size: 1.6em;
+            }
+            
+            .game-title {
+                font-size: 1.4em;
+            }
+            
+            .play-btn {
+                padding: 12px 25px;
+                font-size: 1em;
+            }
+
+            .container {
+                padding: 10px 15px;
+            }
+        }
     </style>
 </head>
-
 <body>
+    <!-- Фон с анимированными корейскими буквами -->
+    <div id="background-letters"></div>
+
     <header>
         <div class="container">
             <div class="burger-menu" id="burgerMenu">
@@ -515,7 +1214,9 @@
                 <div></div>
             </div>
             <img class="logo" src="/image/logo krug.svg" alt="Логотип">
-            <a href="" class="user"> <img class="lk" src="/image/userrblur.svg" alt="Пользователь"></a>
+            <a href="#" class="user" id="userBtn"> 
+                <img class="lk" src="/image/userrblur.svg" alt="Пользователь">
+            </a>
         </div>
         <nav class="nav-burger" id="navBurger">
             <ul class="ul-header">
@@ -525,713 +1226,203 @@
             </ul>
         </nav>
     </header>
+
     <main>
-        <div class="container">
-            <article>
-                <div class="trenazher-container">
-                    <!-- <h1 class="trenazher-title">Тренажер перевода с русского на корейский</h1> -->
-                    
-                    <div class="exercise-container">
-                        <div class="sentence-number" id="sentence-number">
-                            <span>Пример 1 из 10</span>
-                            <span class="speaker-icon" id="speaker-icon">🔊</span>
-                        </div>
-                        <div class="russian-sentence" id="russian-sentence"></div>
-                        
-                        <div class="input-container">
-                            <input type="text" class="korean-input" id="korean-input" placeholder="Введите перевод на корейском языке...">
-                            <div class="result-message" id="result-message"></div>
-                        </div>
-                        
-                        <div class="korean-sentence" id="korean-sentence"></div>
-                        
-                        <div class="controls">
-                            <button class="btn" id="prev-btn" disabled>Предыдущее</button>
-                            <button class="btn" id="check-btn">Проверить</button>
-                            <button class="btn" id="show-btn">Показать ответ</button>
-                            <button class="btn" id="next-btn">Следующее</button>
-                        </div>
-                        
-                        <div class="hint">Наведите на русское слово, чтобы увидеть перевод на корейский</div>
-                    </div>
-                    
-                    <div class="progress" id="progress">Прогресс: 0/10</div>
-                </div>
-            </article>
+        <div class="games-container">
+            <h1 class="page-title">Выберите тренажер</h1>
+            <div id="gamesGrid" class="games-grid">
+                <!-- Игры будут добавляться через JavaScript -->
+            </div>
+            <div style="text-align: center;">
+                <a href="/index.html" class="back-btn">← Вернуться на главную</a>
+            </div>
         </div>
     </main>
 
-    <!-- Левый бургер -->
-    <div class="left-burger">
-        <h4>Полезные фразы</h4>
-        <div class="korean-text" data-korean=""><b>안녕하세요</b> - Здравствуйте</div>
-        <div class="korean-text" data-korean=""><b>감사합니다</b> - Спасибо</div>
-        <div class="korean-text" data-korean=""><b>미안합니다</b> - Извините</div>
-        <div class="korean-text" data-korean=""><b>네</b> - Да</div>
-    </div>
-
-    <!-- Левая закладка -->
-    <div class="left-bookmark-icon"></div>
-
-    <!-- Нижний бургер -->
-    <div class="bottom-burger">
-        <h4>Грамматические подсказки</h4>
-        <div class="korean-text" data-korean=""><b>은/는</b> - тематические частицы</div>
-        <div class="korean-text" data-korean=""><b>이/가</b> - подлежащие частицы</div>
-        <div class="korean-text" data-korean=""><b>을/를</b> - объектные частицы</div>
-        <div class="korean-text" data-korean=""><b>에/에서</b> - локативные частицы</div>
-    </div>
-
-    <!-- Нижняя закладка -->
-    <div class="bottom-bookmark-icon"></div>
-
-    <!-- Правая закладка -->
-    <div class="bookmark-icon"></div>
-
-    <!-- Правый бургер -->
-    <!-- <div class="right-burger">
-        <h4>Числительные</h4>
-        <div class="korean-text" data-korean=""><b>하나</b> - один</div>
-        <div class="korean-text" data-korean=""><b>둘</b> - два</div>
-        <div class="korean-text" data-korean=""><b>셋</b> - три</div>
-        <div class="korean-text" data-korean=""><b>넷</b> - четыре</div>
-    </div> -->
-
-    <div class="perehod">
-        <a href="/index.html"><img src="/image/vlevo2.svg" alt=""></a>
-        <a href="/index.html"><img src="/image/vpravo2.svg" alt=""></a>
-    </div>
-
     <footer>
-        <section class="footer container">
-            <address>
-                <div class="footer1">
-                    <div class="tel">
-                        <img src="/image/tel_blue.svg" alt="">
-                        <p>8-925-685-52-39 </p>
-                    </div>
-                    <div class="mail">
-                        <p>anastasiya3000@yandex.ru</p>
-                    </div>
-                    <div class="footer-icon">
-                        <a href="" class="social-icon"> <img src="/image/telegram_icon 1.svg" alt=""></a>
-                        <a href="" class="social-icon"> <img src="/image/skype_icon 1.svg" alt=""></a>
-                        <a href="" class="social-icon"><img src="/image/whatsapp_green.png" alt=""></a>
-                        <a href="" class="social-icon"> <img src="/image/license.svg" alt=""></a>
-                    </div>
-                </div>
-
-                <div class="footer2">
-                    <nav class="nav1-footer">
-                        <ul class="ul-footer">
-                            <div class="f-li">
-                                <li class="li-footer"> <a href="" class="a-footer"><b>Правила оплаты</b></a></li>
-                                <li class="li-footer"> <a href="" class="a-footer"><b>Договор оферты</b></a></li>
-                                <li class="li-footer"> <a href="" class="a-footer"><b>Согласие с рассылкой</b></a></li>
-                                <li class="li-footer"><a href="" class="a-footer"><b>Пользовательское соглашение</b></a>
-                                </li>
-                                <li class="li-footer"> <a href="" class="a-footer"><b>Политика
-                                            конфиденциальности</b></a></li>
-                                <li class="li-footer"> <a href="" class="a-footer"><b>Положение о защите персональных
-                                            данных</b></a></li>
-                            </div>
-                        </ul>
-                    </nav>
-                </div>
-            </address>
-        </section>
-
-        <div class="copyright">
-            <img id="copyright" src="/image/Copyright2 _ blue.svg" alt="copyright">
-            <p>takiza, 2025</p>
+        <div class="footer-content">
+            <!-- <img src="/image/logo krug.svg" alt="Логотип" class="footer-logo"> -->
+            <div class="footer-links">
+                <a href="#">О проекте</a>
+                <a href="#">Политика конфиденциальности</a>
+                <a href="#">Контакты</a>
+            </div>
+            <div class="copyright">
+                © 2024 Тренажеры корейского языка. Все права защищены.
+            </div>
         </div>
     </footer>
 
-  <script>
+    <script>
+        // Массив с корейскими буквами
+        const koreanLetters = [
+            '가', '나', '다', '라', '마', '바', '사', '아', '자', '차',
+            '카', '타', '파', '하', '거', '너', '더', '러', '머', '버',
+            '서', '어', '저', '처', '커', '터', '퍼', '허', '고', '노',
+            '도', '로', '모', '보', '소', '오', '조', '초', '코', '토'
+        ];
 
-
-const sentences = [
-    {
-      russian: "Я мою посуду после еды.",
-      korean: "밥을 먹은 다음에 설거지를 해요.",
-      words: {
-        "Я": "나",
-        "мою посуду": "설거지하다",
-        "после": "ㄴ/은 다음에",
-        "еды": "밥을 먹다"
-      }
-    },
-    {
-      russian: "Я встретил друга после того, как пришел в школу.",
-      korean: "학교에 온 뒤에 친구를 만났어요.",
-      words: {
-        "Я": "나",
-        "встретил": "만나다",
-        "друга": "친구",
-        "после того, как": "ㄴ/은 뒤에",
-        "пришел": "오다",
-        "в школу": "학교에 가다"
-      }
-    },
-    {
-      russian: "Я чувствую себя хорошо после сна.",
-      korean: "잠을 잔 후에 기분이 좋아요.",
-      words: {
-        "Я": "나",
-        "чувствую себя хорошо": "기분이 좋다",
-        "после": "ㄴ/은 후에",
-        "сна": "잠을 자다"
-      }
-    },
-
-    {
-      russian: "Я играю в игры после того, как сделаю уроки.",
-      korean: "숙제를 다 한 뒤에 게임을 해요.",
-      words: {
-        "Я": "나",
-        "играю в игры": "게임하다",
-        "после того, как": "ㄴ/은 뒤에",
-        "сделаю уроки": "숙제를 하다"
-      }
-    },
-    {
-      russian: "Я пишу отчет после окончания встречи.",
-      korean: "회의가 끝난 후에 보고서를 써요.",
-      words: {
-        "Я": "나",
-        "пишу": "쓰다",
-        "отчет": "보고서",
-        "после": "ㄴ/은 후에",
-        "окончания встречи": "회의가 끝나다"
-      }
-    },
-    {
-      russian: "Я иду домой пешком после выхода из автобуса.",
-      korean: "버스에서 내린 다음에 걸어서 집에 가요.",
-      words: {
-        "Я": "나",
-        "иду домой пешком": "걸어서 집에 가다",
-        "после": "ㄴ/은 다음에",
-        "выхода из автобуса": "버스에서 내리다"
-      }
-    },
-    {
-      russian: "Я сортирую фотографии после возвращения из поездки.",
-      korean: "여행에서 돌아온 뒤에 사진을 정리해요.",
-      words: {
-        "Я": "나",
-        "сортирую": "정리하다",
-        "фотографии": "사진",
-        "после": "ㄴ/은 뒤에",
-        "возвращения из поездки": "여행에서 돌아오다"
-      }
-    },
-    {
-      russian: "Мы пили кофе после встречи с другом.",
-      korean: "친구를 만난 후에 커피를 마셨어요.",
-      words: {
-        "Мы": "우리",
-        "пили": "마시다",
-        "кофе": "커피",
-        "после": "ㄴ/은 후에",
-        "встречи с другом": "친구를 만나다"
-      }
-    },
-    {
-      russian: "Я убираюсь на кухне после приготовления еды.",
-      korean: "음식을 만든 다음에 부엌을 청소해요.",
-      words: {
-        "Я": "나",
-        "убираюсь": "청소하다",
-        "на кухне": "부엌",
-        "после": "ㄴ/은 다음에",
-        "приготовления еды": "음식을 만들다"
-      }
-    },
-    {
-      russian: "Я хочу отдохнуть после экзамена.",
-      korean: "시험을 본 뒤에 쉬고 싶어요.",
-      words: {
-        "Я": "나",
-        "хочу": "원하다",
-        "отдохнуть": "쉬다",
-        "после": "ㄴ/은 뒤에",
-        "экзамена": "시험을 보다"
-      }
-    },
-
-    {
-      russian: "Я пожалел после покупки одежды.",
-      korean: "옷을 산 다음에 후회했어요.",
-      words: {
-        "Я": "나",
-        "пожалел": "후회하다",
-        "после": "ㄴ/은 다음에",
-        "покупки одежды": "옷을 사다"
-      }
-    },
-    {
-      russian: "Мы обсудили фильм после просмотра.",
-      korean: "영화를 본 뒤에 이야기를 나눴어요.",
-      words: {
-        "Мы": "우리",
-        "обсудили": "이야기하다",
-        "фильм": "영화",
-        "после": "ㄴ/은 뒤에",
-        "просмотра": "보다"
-      }
-    },
-
-    {
-      russian: "Я пожалел после того, как высказался.",
-      korean: "말을 다 한 다음에 후회했어요.",
-      words: {
-        "Я": "나",
-        "пожалел": "후회하다",
-        "после того, как": "ㄴ/은 다음에",
-        "высказался": "말을 하다"
-      }
-    },
-    {
-      russian: "Мне стало спокойнее на душе после принятия решения.",
-      korean: "결정을 한 뒤에 마음이 편해졌어요.",
-      words: {
-        "Мне стало спокойнее на душе": "마음이 편해지다",
-        "после": "ㄴ/은 뒤에",
-        "принятия решения": "결정을 하다"
-      }
-    },
-    {
-      russian: "Я устаю после вождения.",
-      korean: "운전을 한 후에 피곤해요.",
-      words: {
-        "Я": "나",
-        "устаю": "피곤하다",
-        "после": "ㄴ/은 후에",
-        "вождения": "운전하다"
-      }
-    },
-    {
-      russian: "Я переодеваюсь после того, как прихожу домой.",
-      korean: "집에 들어온 다음에 옷을 갈아입어요.",
-      words: {
-        "Я": "나",
-        "переодеваюсь": "옷을 갈아입다",
-        "после того, как": "ㄴ/은 다음에",
-        "прихожу домой": "집에 들어오다"
-      }
-    },
-    {
-      russian: "Я вытираю рот после того, как поем фруктов.",
-      korean: "과일을 먹은 뒤에 입을 닦아요.",
-      words: {
-        "Я": "나",
-        "вытираю": "닦다",
-        "рот": "입",
-        "после того, как": "ㄴ/은 뒤에",
-        "поем фруктов": "과일을 먹다"
-      }
-    },
-    {
-      russian: "Я мою чашку после кофе.",
-      korean: "커피를 마신 후에 컵을 설거지해요.",
-      words: {
-        "Я": "나",
-        "мою": "설거지하다",
-        "чашку": "컵",
-        "после": "ㄴ/은 후에",
-        "кофе": "커피를 마시다"
-      }
-    },
-
-    {
-      russian: "Мне поаплодировали после выступления.",
-      korean: "노래를 부른 다음에 박수를 받았어요.",
-      words: {
-        "Мне поаплодировали": "박수를 받다",
-        "после": "ㄴ/은 다음에",
-        "выступления": "노래를 부르다"
-      }
-    },
-
-    {
-      russian: "Глаза болят после игры.",
-      korean: "게임을 한 뒤에 눈이 아파요.",
-      words: {
-        "Глаза болят": "눈이 아프다",
-        "после": "ㄴ/은 뒤에",
-        "игры": "게임하다"
-      }
-    },
-    {
-      russian: "Я складываю одежду после стирки.",
-      korean: "빨래를 한 다음에 옷을 개요.",
-      words: {
-        "Я": "나",
-        "складываю": "개다",
-        "одежду": "옷",
-        "после": "ㄴ/은 다음에",
-        "стирки": "빨래하다"
-      }
-    },
- 
-    {
-      russian: "Я лег после приема лекарства.",
-      korean: "약을 먹은 뒤에 누웠어요.",
-      words: {
-        "Я": "나",
-        "лег": "눕다",
-        "после": "ㄴ/은 뒤에",
-        "приема лекарства": "약을 먹다"
-      }
-    },
-    {
-      russian: "Руки болели после игры на пианино.",
-      korean: "피아노를 친 다음에 손이 아팠어요.",
-      words: {
-        "Руки болели": "손이 아프다",
-        "после": "ㄴ/은 다음에",
-        "игры на пианино": "피아노를 치다"
-      }
-    },
-    {
-      russian: "Я положил наличные после визита в банк.",
-      korean: "은행에 다녀온 후에 현금을 넣어 두었어요.",
-      words: {
-        "Я": "나",
-        "положил": "넣어 두다",
-        "наличные": "현금",
-        "после": "ㄴ/은 후에",
-        "визита в банк": "은행에 다니다"
-      }
-    },
-    {
-      russian: "Я забыл, что хотел сказать, после того, как позвонил.",
-      korean: "전화를 건 뒤에 할 말을 잊어버렸어요.",
-      words: {
-        "Я": "나",
-        "забыл": "잊어버리다",
-        "что хотел сказать": "할 말",
-        "после того, как": "ㄴ/은 뒤에",
-        "позвонил": "전화를 걸다"
-      }
-    },
-    {
-      russian: "Я пью кофе после пробуждения.",
-      korean: "잠에서 깬 다음에 커피를 마셔요.",
-      words: {
-        "Я": "나",
-        "пью": "마시다",
-        "кофе": "커피",
-        "после": "ㄴ/은 다음에",
-        "пробуждения": "잠에서 깨다"
-      }
-    },
-    {
-      russian: "Запах остается дома после жарки.",
-      korean: "튀김을 만든 뒤에 집에 냄새가 남아요.",
-      words: {
-        "Запах остается": "냄새가 남다",
-        "дома": "집에",
-        "после": "ㄴ/은 뒤에",
-        "жарки": "튀김을 만들다"
-      }
-    },
-  
-  
-    {
-      russian: "Я проверяю почту после прихода на работу.",
-      korean: "출근한 후에 메일을 확인해요.",
-      words: {
-        "Я": "나",
-        "проверяю": "확인하다",
-        "почту": "메일",
-        "после": "ㄴ/은 후에",
-        "прихода на работу": "출근하다"
-      }
-    },
-
-
-    {
-      russian: "Студенты задавали вопросы после лекции.",
-      korean: "강의가 끝난 다음에 학생들이 질문했어요.",
-      words: {
-        "Студенты": "학생들",
-        "задавали вопросы": "질문하다",
-        "после": "ㄴ/은 다음에",
-        "лекции": "강의가 끝나다"
-      }
-    },
-    {
-      russian: "Ноги болели после шоппинга.",
-      korean: "쇼핑을 다닌 후에 발이 아팠어요.",
-      words: {
-        "Ноги болели": "발이 아프다",
-        "после": "ㄴ/은 후에",
-        "шоппинга": "쇼핑하다"
-      }
-    },
- 
-
-    {
-      russian: "Вкус стал лучше после добавления приправ.",
-      korean: "양념을 한 다음에 맛이 더 좋아졌어요.",
-      words: {
-        "Вкус стал лучше": "맛이 좋아지다",
-        "после": "ㄴ/은 다음에",
-        "добавления приправ": "양념하다"
-      }
-    },
-   
-    {
-      russian: "Я помог убраться после вечеринки.",
-      korean: "파티가 끝난 뒤에 청소를 도와줬어요.",
-      words: {
-        "Я": "나",
-        "помог": "도와주다",
-        "убраться": "청소",
-        "после": "ㄴ/은 뒤에",
-        "вечеринки": "파티가 끝나다"
-      }
-    }
-];
-
-    // Переменные для управления состоянием
-    let currentIndex = 0;
-    let usedIndices = new Set();
-    let isRandomMode = true;
-
-    // Элементы DOM
-    const russianSentenceEl = document.getElementById('russian-sentence');
-    const koreanSentenceEl = document.getElementById('korean-sentence');
-    const koreanInputEl = document.getElementById('korean-input');
-    const resultMessageEl = document.getElementById('result-message');
-    const sentenceNumberEl = document.getElementById('sentence-number');
-    const progressEl = document.getElementById('progress');
-    const checkBtn = document.getElementById('check-btn');
-    const showBtn = document.getElementById('show-btn');
-    const prevBtn = document.getElementById('prev-btn');
-    const nextBtn = document.getElementById('next-btn');
-    const speakerIcon = document.getElementById('speaker-icon');
-
-   // Функция для форматирования русского предложения с подсказками
-function formatRussianSentence(sentence, words) {
-    let formattedSentence = sentence;
-    
-    // Сортируем ключи по длине (от самых длинных к самым коротким)
-    // чтобы сначала заменять составные выражения
-    const sortedKeys = Object.keys(words).sort((a, b) => b.length - a.length);
-    
-    // Заменяем все фразы из words в предложении
-    sortedKeys.forEach(phrase => {
-        const translation = words[phrase];
-        const regex = new RegExp(phrase.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g');
-        formattedSentence = formattedSentence.replace(regex, 
-            `<span class="russian-word" data-translation="${translation}">${phrase}</span>`
-        );
-    });
-    
-    return formattedSentence;
-}
-
-    // Функция для произношения корейского предложения
-    function speakKorean() {
-        const koreanText = sentences[currentIndex].korean;
-        
-        if ('speechSynthesis' in window) {
-            const utterance = new SpeechSynthesisUtterance(koreanText);
-            utterance.lang = 'ko-KR';
-            utterance.rate = 0.9;
-            utterance.pitch = 1;
+        // Функция для создания анимированных букв
+        function createBackgroundLetters() {
+            const container = document.getElementById('background-letters');
             
-            window.speechSynthesis.speak(utterance);
-        } else {
-            alert("Ваш браузер не поддерживает синтез речи");
-        }
-    }
-
-    // Функция для отображения текущего предложения
-    function displayCurrentSentence() {
-        const currentSentence = sentences[currentIndex];
-        
-        sentenceNumberEl.innerHTML = `<span>Пример ${currentIndex + 1} из ${sentences.length}</span><span class="speaker-icon" id="speaker-icon">🔊</span>`;
-        russianSentenceEl.innerHTML = formatRussianSentence(currentSentence.russian, currentSentence.words);
-        koreanSentenceEl.textContent = currentSentence.korean;
-        koreanSentenceEl.style.display = 'none';
-        koreanInputEl.value = '';
-        resultMessageEl.style.display = 'none';
-        
-        // Обновляем состояние кнопок
-        prevBtn.disabled = currentIndex === 0;
-        nextBtn.disabled = currentIndex === sentences.length - 1;
-        
-        // Обновляем прогресс
-        progressEl.textContent = `Прогресс: ${currentIndex + 1}/${sentences.length}`;
-        
-        // Обновляем обработчик для иконки рупора
-        document.getElementById('speaker-icon').addEventListener('click', speakKorean);
-        
-        // Фокус на поле ввода
-        koreanInputEl.focus();
-    }
-
-    // Функция для получения случайного индекса
-    function getRandomIndex() {
-        if (usedIndices.size >= sentences.length) {
-            usedIndices.clear(); // Начинаем заново, если все примеры использованы
-        }
-        
-        let randomIndex;
-        do {
-            randomIndex = Math.floor(Math.random() * sentences.length);
-        } while (usedIndices.has(randomIndex));
-        
-        usedIndices.add(randomIndex);
-        return randomIndex;
-    }
-
-    // Функция для проверки введенного ответа
-    function checkAnswer() {
-        const userAnswer = koreanInputEl.value.trim();
-        const correctAnswer = sentences[currentIndex].korean;
-        
-        // Нормализуем ответы для сравнения (убираем лишние пробелы, игнорируем регистр)
-        const normalizedUserAnswer = userAnswer.replace(/\s+/g, ' ').toLowerCase();
-        const normalizedCorrectAnswer = correctAnswer.replace(/\s+/g, ' ').toLowerCase();
-        
-        if (normalizedUserAnswer === normalizedCorrectAnswer) {
-            resultMessageEl.textContent = "Правильно!";
-            resultMessageEl.className = "result-message correct";
-        } else {
-            resultMessageEl.textContent = "Неправильно. Попробуйте еще раз.";
-            resultMessageEl.className = "result-message incorrect";
-        }
-        
-        resultMessageEl.style.display = 'block';
-    }
-
-    // Обработчики событий
-    checkBtn.addEventListener('click', checkAnswer);
-
-    koreanInputEl.addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') {
-            checkAnswer();
-        }
-    });
-
-    showBtn.addEventListener('click', function() {
-        koreanSentenceEl.style.display = 'block';
-        resultMessageEl.style.display = 'none';
-    });
-
-    prevBtn.addEventListener('click', function() {
-        if (currentIndex > 0) {
-            currentIndex--;
-            displayCurrentSentence();
-        }
-    });
-
-    nextBtn.addEventListener('click', function() {
-        if (isRandomMode) {
-            currentIndex = getRandomIndex();
-        } else {
-            if (currentIndex < sentences.length - 1) {
-                currentIndex++;
+            for (let i = 0; i < 25; i++) { // Создаем 25 букв
+                const letter = document.createElement('div');
+                letter.className = 'korean-letter';
+                
+                // Выбираем случайную букву
+                const randomLetter = koreanLetters[Math.floor(Math.random() * koreanLetters.length)];
+                letter.textContent = randomLetter;
+                
+                // Случайная позиция
+                const left = Math.random() * 100;
+                const top = Math.random() * 100;
+                
+                // Случайная задержка анимации
+                const delay = Math.random() * 15;
+                
+                // Применяем стили
+                letter.style.left = `${left}%`;
+                letter.style.top = `${top}%`;
+                letter.style.animationDelay = `${delay}s`;
+                letter.style.fontSize = `${30 + Math.random() * 40}px`;
+                
+                // Добавляем легкое вращение
+                letter.style.transform += ` rotate(${Math.random() * 20 - 10}deg)`;
+                
+                container.appendChild(letter);
             }
         }
-        displayCurrentSentence();
-    });
 
-    // Инициализация тренажера
-    displayCurrentSentence();
-
-    // Оригинальный код для бургер-меню
-    const burgerMenu = document.getElementById("burgerMenu");
-    const navBurger = document.getElementById("navBurger");
-
-    burgerMenu.addEventListener("click", function (event) {
-        event.stopPropagation();
-        navBurger.classList.toggle("active");
-    });
-
-    document.addEventListener("click", function (event) {
-        if (!navBurger.contains(event.target) && !burgerMenu.contains(event.target)) {
-            navBurger.classList.remove("active");
-        }
-    });
-
-    function toggleBurger() {
-        const part1 = document.querySelector('.burger-part1');
-        const part2 = document.querySelector('.burger-part2');
-
-        if (part1.style.display === 'none') {
-            part1.style.display = 'block';
-            part2.style.display = 'none';
-        } else {
-            part1.style.display = 'none';
-            part2.style.display = 'block';
-        }
-    }
-
-    /* Свайп для мобильных устройств */
-    let touchStartX = 0;
-    let touchEndX = 0;
-
-    document.addEventListener('touchstart', (e) => {
-        touchStartX = e.changedTouches[0].screenX;
-    });
-
-    document.addEventListener('touchend', (e) => {
-        touchEndX = e.changedTouches[0].screenX;
-        handleSwipe();
-    });
-
-    function handleSwipe() {
-        const swipeThreshold = 50;
-        if (touchEndX < touchStartX - swipeThreshold) {
-            // Переход к следующему предложению
-            if (isRandomMode) {
-                currentIndex = getRandomIndex();
-            } else {
-                if (currentIndex < sentences.length - 1) {
-                    currentIndex++;
-                }
+        // Массив с тренажерами
+        const games = [
+                  {
+                id: 9,
+                title: "지 않다 / 지 못하다",
+                description: "отрицание",
+                link: "/index_game_gi_anta_gi_mot_hada.html"
+            },
+            {
+                id: 7,
+                title: "이다 / 아니다",
+                description: "связки",
+                link: "/index_ida_anida.html"
+            }, 
+              {
+                id: 5,
+                title: "이것 / 그것 / 저것",
+                description: "предметно - указательные местоимения",
+                link: "/index_igot_kigot_chogot.html"
+            },
+              {
+                id: 6,
+                title: "여기 / 거기 / 저기",
+                description: "местоимения со значением места",
+                link: "/index_egi_kogi_chogi.html"
+            },
+              {
+                id: 1,
+                title: "겠",
+                description: "простое будущее время",
+                link: "/index.ket.html"
+            },
+             {
+                id: 8,
+                title: "ㄹ 것 이다",
+                description: "сложное будущее время",
+                link: "/index_slognoe_budusee_l_kos_ida.html"
+            },
+               {
+                id: 4,
+                title: "아요 / 어요 / 여요",
+                description: "вежливо - неофициальная речь",
+                link: "/index_game_g_g.html"
+            },
+            // {
+            //     id: 2,
+            //     title: "았 / 었 / 였",
+            //     description: "Тренажер для практики прошедшего времени",
+            //     link: "/index/games/past_tense.html"
+            // },
+            // {
+            //     id: 3,
+            //     title: "면 / 으면",
+            //     description: "Условные конструкции",
+            //     link: "/index/games/conditional.html"
+            // },
+            {
+                id: 2,
+                title: "위한 / 위하여",
+                description: "Выражение цели и назначения",
+                link: "/index.vihan.html"
+            },
+            {
+                id: 3,
+                title: "고 싶다",
+                description: "Выражение желания",
+                link: "/index.sipta.html"
+            },
+            // {
+            //     id: 5,
+            //     title: "ㄹ/을 수 있다",
+            //     description: "Выражение возможности",
+            //     link: "/index/games/ability.html"
+            // },
+            // {
+            //     id: 6,
+            //     title: "아/어야 하다",
+            //     description: "Выражение необходимости",
+            //     link: "/index/games/necessity.html"
+            // }
+ {
+                id: 10,
+                title: "후, 뒤, 다음",
+                description: "",
+                link: "/index_game_hue_taime.html"
             }
-            displayCurrentSentence();
-        } else if (touchEndX > touchStartX + swipeThreshold) {
-            // Переход к предыдущему предложению
-            if (currentIndex > 0) {
-                currentIndex--;
-                displayCurrentSentence();
-            }
-        }
-    }
-</script>
+        ];
 
-    <!-- <script src="/scripts/script_zvuk_clik.js"></script> -->
+        // Функция для создания карточек игр
+        function createGameCards() {
+            const gamesGrid = document.getElementById('gamesGrid');
+            gamesGrid.innerHTML = '';
+            
+            games.forEach(game => {
+                const gameCard = document.createElement('div');
+                gameCard.className = 'game-card';
+                
+                gameCard.innerHTML = `
+                    <div>
+                        <h3 class="game-title">${game.title}</h3>
+                        <p class="game-description">${game.description}</p>
+                    </div>
+                    <a href="${game.link}" class="play-btn">Начать тренировку</a>
+                `;
+                
+                gamesGrid.appendChild(gameCard);
+            });
+        }
+
+        // Инициализация при загрузке страницы
+        document.addEventListener('DOMContentLoaded', function() {
+            createBackgroundLetters();
+            createGameCards();
+            
+            // Бургер-меню
+            const burgerMenu = document.getElementById('burgerMenu');
+            const navBurger = document.getElementById('navBurger');
+            
+            if (burgerMenu && navBurger) {
+                burgerMenu.addEventListener('click', function() {
+                    navBurger.classList.toggle('active');
+                });
+            }
+        });
+    </script>
 </body>
-
 </html>
 
 <!-- 
- исправь ошибки только в скрипте и пропиши только скрипт:
-корейские слова , которые высвечиваются в подсказке (подсветке) - поставь в инфинитивную форму
-замени в массив на все следующие  предложения :
+исправь ошибки в коде:
 
-
-
-по принципу  // Массив предложений для тренажера
-  words - долждны подсвечиваться все в инфинитиве, как на этих примерах,
-если на пример на русском 2 слова, то на корейском высвечивается 1 слово (как бы объединяя в 1)
-то есть при наведении на russian: "У меня - будет высвечиваться : words: {
-                "У меня": "나", и т д.
-  {
-            russian: "У меня есть тёплое пальто.",
-            korean: "나에게는 따뜻한 외투가 있다.",
-            words: {
-                "У меня": "나",
-                "есть": "있다",
-                "тёплое": "따뜻하다",
-                "пальто": "외투"
-            }
-        }, -->
+header . - переделай цвет с градиентом, как "выберите тренажер" - пропиши исправления только для этого -->
