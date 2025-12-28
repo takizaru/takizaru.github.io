@@ -1,0 +1,2097 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Korean Words Practice</title>
+    <link rel="stylesheet" href="/styles/style_slovar1.css">
+    <link rel="stylesheet" href="/styles/style_base.css/style_base_numder_word.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+       /* Основные стили */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+}
+
+/* Контейнер для словарей */
+.dictionaries-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin: 40px auto;
+    max-width: 1400px;
+    padding: 20px;
+    transition: all 0.3s ease;
+}
+
+.dictionary-card {
+    width: 280px;
+    height: 180px;
+    background: linear-gradient(135deg, #fefefe 0%, #f0f4ff 100%);
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: 2px solid #e6ecff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Красивые бордеры для карточек */
+.dictionary-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #2d6b5f 0%, #4a9e8a 100%);
+    border-radius: 15px 15px 0 0;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.dictionary-card:hover::before {
+    opacity: 1;
+}
+
+.dictionary-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
+    border-color: #2d6b5f;
+}
+
+.dictionary-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 15px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.dictionary-count {
+    font-size: 16px;
+    color: #2d6b5f;
+    font-weight: 600;
+    background-color: rgba(45, 107, 95, 0.1);
+    padding: 5px 15px;
+    border-radius: 20px;
+    margin-top: 10px;
+}
+
+/* Контейнер для флеш-карточки (скрыт по умолчанию) */
+.flashcard-section {
+    display: none;
+    width: 100%;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.flashcard-section.active {
+    display: block;
+}
+
+.back-to-dictionaries {
+    display: flex;
+    justify-content: center;
+    margin: 20px auto 40px;
+    max-width: 1200px;
+    padding: 0 20px;
+}
+
+.back-btn {
+    background: linear-gradient(135deg, #2d6b5f 0%, #4a9e8a 100%);
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 4px 15px rgba(45, 107, 95, 0.2);
+    transition: all 0.3s ease;
+}
+
+.back-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(45, 107, 95, 0.3);
+}
+
+.back-btn:active {
+    transform: translateY(0);
+}
+
+.back-btn img {
+    width: 20px;
+    height: 20px;
+    filter: brightness(0) invert(1);
+}
+
+/* Флеш-карточка */
+.flashcard-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 70vh;
+    perspective: 1000px;
+    margin: 0 auto 40px;
+    max-width: 1200px;
+    padding: 20px;
+}
+
+.flashcard {
+    width: 500px;
+    height: 350px;
+    background-color: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    position: relative;
+    cursor: pointer;
+    transform-style: preserve-3d;
+    transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    box-sizing: border-box;
+    border: 2px solid #f0f0f0;
+}
+
+/* Красивый бордер для флеш-карточки */
+.flashcard::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, #2d6b5f, #4a9e8a, #7dc4b5, #a9dfd2);
+    border-radius: 22px;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.flashcard:hover::before {
+    opacity: 1;
+}
+
+.flashcard.flipped {
+    transform: rotateY(180deg);
+}
+
+/* Стороны карточки */
+.card-front,
+.card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    box-sizing: border-box;
+    overflow: hidden;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+}
+
+.card-front {
+    background: linear-gradient(135deg, #f8f9ff 0%, #f0f4ff 100%);
+    border: 2px solid #e6ecff;
+}
+
+.card-back {
+    background: linear-gradient(135deg, #2d3e50 0%, #3a5169 100%);
+    color: white;
+    transform: rotateY(180deg);
+    border: 2px solid #4a9e8a;
+}
+
+/* Стили для текста на карточке - КОРЕЙСКИЙ ТЕКСТ (передняя сторона) */
+.card-front .word-display {
+    font-size: 72px;
+    font-weight: 900;
+    text-align: center;
+    line-height: 1.2;
+    margin: 0;
+    word-break: keep-all;
+    font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', 'Nanum Gothic', sans-serif;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #2c3e50;
+    padding: 20px;
+    max-width: 100%;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+/* Стили для текста на карточке - РУССКИЙ ТЕКСТ (задняя сторона) */
+.card-back .word-display {
+    font-size: 54px; /* Меньше чем корейский */
+    font-weight: 700; /* Чуть легче жирность */
+    text-align: center;
+    line-height: 1.3; /* Увеличенный межстрочный интервал */
+    margin: 0;
+    word-break: break-word; /* Разрешаем перенос слов */
+    font-family: 'Arial', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: white;
+    padding: 25px; /* Увеличенные отступы */
+    max-width: 100%;
+    overflow-wrap: break-word;
+    hyphens: auto; /* Автоматическая расстановка переносов */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    text-align: center;
+    word-spacing: normal;
+    letter-spacing: normal;
+}
+
+/* Адаптивные стили для русского текста */
+@media (max-width: 1440px) {
+    .card-back .word-display {
+        font-size: 50px;
+        line-height: 1.25;
+        padding: 22px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .card-back .word-display {
+        font-size: 46px;
+        line-height: 1.25;
+        padding: 20px;
+    }
+}
+
+@media (max-width: 992px) {
+    .card-back .word-display {
+        font-size: 42px;
+        line-height: 1.3;
+        padding: 18px;
+    }
+}
+
+@media (max-width: 768px) {
+    .card-back .word-display {
+        font-size: 38px;
+        line-height: 1.35;
+        padding: 16px;
+    }
+}
+
+@media (max-width: 576px) {
+    .card-back .word-display {
+        font-size: 34px;
+        line-height: 1.4;
+        padding: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .card-back .word-display {
+        font-size: 30px;
+        line-height: 1.45;
+        padding: 12px;
+    }
+}
+
+@media (max-width: 400px) {
+    .card-back .word-display {
+        font-size: 28px;
+        line-height: 1.5;
+        padding: 10px;
+    }
+}
+
+@media (max-width: 360px) {
+    .card-back .word-display {
+        font-size: 26px;
+        line-height: 1.55;
+        padding: 8px;
+    }
+}
+
+/* Аудио-иконка - ТОЛЬКО ОДНА, сверху справа на ПЕРЕДНЕЙ стороне */
+.audio-icon {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f8f9fa;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    z-index: 10;
+    border: none;
+}
+
+/* Иконка на передней стороне карточки */
+.card-front .audio-icon {
+    display: flex;
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(45, 107, 95, 0.2);
+}
+
+/* Скрываем аудио-иконку на задней стороне */
+.card-back .audio-icon {
+    display: none;
+}
+
+.audio-icon:hover {
+    transform: scale(1.1);
+    background-color: #e8f5f2;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.audio-icon img {
+    width: 22px;
+    height: 22px;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
+}
+
+/* Индикатор прогресса */
+.progress-indicator {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 16px;
+    color: #666;
+    font-weight: 500;
+}
+
+.card-back .progress-indicator {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Навигационные кнопки */
+.navigation-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 100px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+}
+
+.nav-btn {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #2d6b5f 0%, #4a9e8a 100%);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 15px rgba(45, 107, 95, 0.2);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, #4a9e8a 0%, #2d6b5f 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.nav-btn:hover::before {
+    opacity: 1;
+}
+
+.nav-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(45, 107, 95, 0.3);
+}
+
+.nav-btn:active {
+    transform: translateY(1px);
+}
+
+.nav-btn img {
+    width: 28px;
+    height: 28px;
+    filter: brightness(0) invert(1);
+    position: relative;
+    z-index: 1;
+}
+
+/* Анимации */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.word-display {
+    animation: fadeIn 0.4s ease-out;
+}
+
+/* Адаптивный дизайн для флеш-карточки и корейского текста */
+@media (max-width: 1440px) {
+    .flashcard {
+        width: 450px;
+        height: 320px;
+    }
+
+    .card-front .word-display {
+        font-size: 68px;
+    }
+
+    .dictionary-card {
+        width: 260px;
+        height: 170px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .flashcard {
+        width: 420px;
+        height: 300px;
+    }
+
+    .card-front .word-display {
+        font-size: 64px;
+    }
+
+    .dictionary-card {
+        width: 240px;
+        height: 160px;
+    }
+}
+
+@media (max-width: 992px) {
+    .flashcard {
+        width: 380px;
+        height: 280px;
+    }
+
+    .card-front .word-display {
+        font-size: 58px;
+    }
+
+    .navigation-buttons {
+        gap: 80px;
+        margin-top: 30px;
+    }
+
+    .dictionary-card {
+        width: 220px;
+        height: 150px;
+    }
+
+    .dictionary-title {
+        font-size: 22px;
+    }
+}
+
+@media (max-width: 768px) {
+    .flashcard-container {
+        padding: 15px;
+        margin: 30px auto;
+    }
+
+    .flashcard {
+        width: 340px;
+        height: 250px;
+        padding: 20px;
+    }
+
+    .card-front .word-display {
+        font-size: 52px;
+    }
+
+    .audio-icon {
+        top: 15px;
+        right: 15px;
+        width: 36px;
+        height: 36px;
+    }
+
+    .audio-icon img {
+        width: 20px;
+        height: 20px;
+    }
+
+    .navigation-buttons {
+        gap: 60px;
+        margin-top: 25px;
+    }
+
+    .nav-btn {
+        width: 55px;
+        height: 55px;
+    }
+
+    .nav-btn img {
+        width: 25px;
+        height: 25px;
+    }
+
+    .dictionaries-container {
+        gap: 15px;
+        padding: 15px;
+    }
+
+    .dictionary-card {
+        width: calc(50% - 15px);
+        max-width: 300px;
+        height: 140px;
+    }
+
+    .dictionary-title {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 576px) {
+    .flashcard {
+        width: 300px;
+        height: 220px;
+        padding: 15px;
+    }
+
+    .card-front .word-display {
+        font-size: 46px;
+        padding: 15px;
+    }
+
+    .audio-icon {
+        top: 12px;
+        right: 12px;
+        width: 32px;
+        height: 32px;
+    }
+
+    .audio-icon img {
+        width: 18px;
+        height: 18px;
+    }
+
+    .navigation-buttons {
+        gap: 50px;
+        margin-top: 20px;
+    }
+
+    .nav-btn {
+        width: 50px;
+        height: 50px;
+    }
+
+    .nav-btn img {
+        width: 22px;
+        height: 22px;
+    }
+
+    .dictionaries-container {
+        gap: 12px;
+        padding: 12px;
+    }
+
+    .dictionary-card {
+        width: calc(50% - 12px);
+        height: 130px;
+        padding: 20px;
+    }
+
+    .dictionary-title {
+        font-size: 18px;
+    }
+
+    .dictionary-count {
+        font-size: 14px;
+        padding: 4px 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .flashcard {
+        width: 280px;
+        height: 200px;
+    }
+
+    .card-front .word-display {
+        font-size: 42px;
+    }
+
+    .navigation-buttons {
+        gap: 40px;
+    }
+
+    .dictionary-card {
+        width: 100%;
+        max-width: 300px;
+        height: 120px;
+    }
+}
+
+@media (max-width: 400px) {
+    .flashcard {
+        width: 260px;
+        height: 190px;
+    }
+
+    .card-front .word-display {
+        font-size: 38px;
+    }
+
+    .audio-icon {
+        top: 10px;
+        right: 10px;
+        width: 30px;
+        height: 30px;
+    }
+
+    .navigation-buttons {
+        gap: 35px;
+    }
+
+    .nav-btn {
+        width: 48px;
+        height: 48px;
+    }
+
+    .dictionary-card {
+        height: 115px;
+    }
+
+    .dictionary-title {
+        font-size: 17px;
+    }
+}
+
+@media (max-width: 360px) {
+    .flashcard {
+        width: 240px;
+        height: 180px;
+    }
+
+    .card-front .word-display {
+        font-size: 36px;
+        padding: 10px;
+    }
+
+    .navigation-buttons {
+        gap: 30px;
+    }
+
+    .dictionary-card {
+        height: 110px;
+        padding: 15px;
+    }
+}
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="burger-menu" id="burgerMenu">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <img class="logo" src="/image/logo krug.svg" alt="Логотип">
+            <a href="" class="user"> <img class="lk" src="/image/userrblur.svg" alt="Пользователь"></a>
+        </div>
+        <nav class="nav-burger" id="navBurger">
+            <ul class="ul-header">
+                <li class="li-header"> <a href="" class="a-header">онлайн - переводчик</a></li>
+                <li class="li-header"> <a href="" class="a-header">контакты</a></li>
+                <li class="li-header"> <a href="" class="a-header">светлая тема</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Контейнер для словарей -->
+        <div class="dictionaries-container" id="dictionariesContainer">
+            <!-- Словари будут добавлены через JavaScript -->
+        </div>
+
+        <!-- Секция с флеш-карточкой (скрыта по умолчанию) -->
+        <section class="flashcard-section" id="flashcardSection">
+            <div class="back-to-dictionaries">
+                <button class="back-btn" onclick="exitDictionary()">
+                    <img src="/image/vlevo2.svg" alt="Назад">
+                    Вернуться к словарям
+                </button>
+            </div>
+
+            <div class="flashcard-container">
+                <div class="flashcard" id="flashcard">
+                    <!-- Аудио-иконка на передней стороне -->
+                    <div class="card-front">
+                        <button class="audio-icon" onclick="playKoreanAudio(event)">
+                            <img src="https://cdn-icons-png.flaticon.com/512/727/727245.png" alt="Озвучить">
+                        </button>
+                        <div class="word-display" id="korean-word">안녕하세요</div>
+                        <div class="progress-indicator" id="progressIndicator"></div>
+                    </div>
+
+                    <div class="card-back">
+                        <div class="word-display" id="russian-word">Здравствуйте</div>
+                        <div class="progress-indicator" id="progressIndicatorBack"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="navigation-buttons">
+                <button class="nav-btn" onclick="previousWord()">
+                    <img src="/image/vlevo2.svg" alt="Предыдущее слово">
+                </button>
+                <button class="nav-btn" onclick="nextWord()">
+                    <img src="/image/vpravo2.svg" alt="Следующее слово">
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <section class="footer container">
+            <address>
+                <div class="footer1">
+                    <div class="tel">
+                        <img src="/image/tel_blue.svg" alt="">
+                        <p>8-925-685-52-39</p>
+                    </div>
+                    <div class="mail">
+                        <p>anastasiya3000@yandex.ru</p>
+                    </div>
+                    <div class="footer-icon">
+                        <a href="" class="social-icon"> <img src="/image/telegram_icon 1.svg" alt=""></a>
+                        <a href="" class="social-icon"> <img src="/image/skype_icon 1.svg" alt=""></a>
+                        <a href="" class="social-icon"><img src="/image/whatsapp_green.png" alt=""></a>
+                        <a href="" class="social-icon"> <img src="/image/license.svg" alt=""></a>
+                    </div>
+                </div>
+
+                <div class="footer2">
+                    <nav class="nav1-footer">
+                        <ul class="ul-footer">
+                            <div class="f-li">
+                                <li class="li-footer"> <a href="" class="a-footer"><b>Правила оплаты</b></a></li>
+                                <li class="li-footer"> <a href="" class="a-footer"><b>Договор оферты</b></a></li>
+                                <li class="li-footer"> <a href="" class="a-footer"><b>Согласие с рассылкой</b></a></li>
+                                <li class="li-footer"><a href="" class="a-footer"><b>Пользовательское соглашение</b></a>
+                                </li>
+                                <li class="li-footer"> <a href="" class="a-footer"><b>Политика
+                                            конфиденциальности</b></a></li>
+                                <li class="li-footer"> <a href="" class="a-footer"><b>Положение о защите персональных
+                                            данных</b></a></li>
+                            </div>
+                        </ul>
+                    </nav>
+                </div>
+            </address>
+        </section>
+
+        <div class="copyright">
+            <img id="copyright" src="/image/Copyright2 _ blue.svg" alt="copyright">
+            <p>takiza, 2025</p>
+        </div>
+    </footer>
+
+    <script>
+        // Данные для словарей (30 словарей)
+        const dictionaries = [
+    {
+        "id": 1,
+        "title": "Основные глаголы движения",
+        "count": 15,
+        "words": [
+            { "korean": "가다", "translation": "идти, уходить" },
+            { "korean": "오다", "translation": "приходить" },
+            { "korean": "나가다", "translation": "выходить" },
+            { "korean": "나오다", "translation": "появляться, выходить" },
+            { "korean": "들어가다", "translation": "входить" },
+            { "korean": "들어오다", "translation": "входить, заходить" },
+            { "korean": "내리다", "translation": "спускаться, падать" },
+            { "korean": "올라가다", "translation": "подниматься" },
+            { "korean": "다니다", "translation": "ходить (регулярно)" },
+            { "korean": "걷다", "translation": "ходить пешком" },
+            { "korean": "달리다", "translation": "бежать" },
+            { "korean": "뛰다", "translation": "бежать, прыгать" },
+            { "korean": "타다", "translation": "ехать; гореть" },
+            { "korean": "서다", "translation": "стоять" },
+            { "korean": "앉다", "translation": "сидеть" }
+        ]
+    },
+    {
+        "id": 2,
+        "title": "Основные глаголы действия",
+        "count": 15,
+        "words": [
+            { "korean": "하다", "translation": "делать" },
+            { "korean": "말하다", "translation": "говорить" },
+            { "korean": "보다", "translation": "смотреть" },
+            { "korean": "듣다", "translation": "слушать" },
+            { "korean": "읽다", "translation": "читать" },
+            { "korean": "쓰다", "translation": "писать; носить (головной убор)" },
+            { "korean": "먹다", "translation": "есть" },
+            { "korean": "마시다", "translation": "пить" },
+            { "korean": "자다", "translation": "спать" },
+            { "korean": "일하다", "translation": "работать" },
+            { "korean": "공부하다", "translation": "учиться" },
+            { "korean": "일어나다", "translation": "вставать; происходить" },
+            { "korean": "만나다", "translation": "встречать" },
+            { "korean": "주다", "translation": "давать" },
+            { "korean": "받다", "translation": "получать" }
+        ]
+    },
+    {
+        "id": 3,
+        "title": "Город и здания",
+        "count": 15,
+        "words": [
+            { "korean": "도시", "translation": "город" },
+            { "korean": "건물", "translation": "здание, строение" },
+            { "korean": "집", "translation": "дом" },
+            { "korean": "학교", "translation": "школа" },
+            { "korean": "병원", "translation": "больница" },
+            { "korean": "은행", "translation": "банк" },
+            { "korean": "우체국", "translation": "почта" },
+            { "korean": "공원", "translation": "парк" },
+            { "korean": "상점", "translation": "магазин" },
+            { "korean": "백화점", "translation": "универмаг" },
+            { "korean": "시장", "translation": "рынок; мэр" },
+            { "korean": "가게", "translation": "магазин, лавка" },
+            { "korean": "식당", "translation": "ресторан" },
+            { "korean": "카페", "translation": "кафе" },
+            { "korean": "호텔", "translation": "гостиница" }
+        ]
+    },
+    {
+        "id": 4,
+        "title": "Транспорт",
+        "count": 12,
+        "words": [
+            { "korean": "자동차", "translation": "автомобиль" },
+            { "korean": "버스", "translation": "автобус" },
+            { "korean": "지하철", "translation": "метро" },
+            { "korean": "비행기", "translation": "самолёт" },
+            { "korean": "기차", "translation": "поезд" },
+            { "korean": "택시", "translation": "такси" },
+            { "korean": "자전거", "translation": "велосипед" },
+            { "korean": "도로", "translation": "дорога" },
+            { "korean": "길", "translation": "дорога, путь" },
+            { "korean": "교통", "translation": "транспорт" },
+            { "korean": "역", "translation": "станция" },
+            { "korean": "공항", "translation": "аэропорт" }
+        ]
+    },
+    {
+        "id": 5,
+        "title": "Семья и люди",
+        "count": 15,
+        "words": [
+            { "korean": "가족", "translation": "семья" },
+            { "korean": "아버지", "translation": "отец" },
+            { "korean": "어머니", "translation": "мать" },
+            { "korean": "부모", "translation": "родители" },
+            { "korean": "아들", "translation": "сын" },
+            { "korean": "딸", "translation": "дочь" },
+            { "korean": "형", "translation": "старший брат (для мужчин)" },
+            { "korean": "오빠", "translation": "старший брат (для женщин)" },
+            { "korean": "누나", "translation": "старшая сестра (для мужчин)" },
+            { "korean": "언니", "translation": "старшая сестра (для женщин)" },
+            { "korean": "남동생", "translation": "младший брат" },
+            { "korean": "여동생", "translation": "младшая сестра" },
+            { "korean": "할아버지", "translation": "дедушка" },
+            { "korean": "할머니", "translation": "бабушка" },
+            { "korean": "친구", "translation": "друг" }
+        ]
+    },
+    {
+        "id": 6,
+        "title": "Профессии",
+        "count": 12,
+        "words": [
+            { "korean": "의사", "translation": "врач" },
+            { "korean": "선생님", "translation": "учитель" },
+            { "korean": "학생", "translation": "ученик, студент" },
+            { "korean": "회사원", "translation": "служащий компании" },
+            { "korean": "경찰", "translation": "полиция" },
+            { "korean": "소방관", "translation": "пожарный" },
+            { "korean": "변호사", "translation": "адвокат" },
+            { "korean": "간호사", "translation": "медсестра" },
+            { "korean": "요리사", "translation": "повар" },
+            { "korean": "배우", "translation": "актёр" },
+            { "korean": "가수", "translation": "певец" },
+            { "korean": "예술가", "translation": "художник" }
+        ]
+    },
+    {
+        "id": 7,
+        "title": "Еда и напитки",
+        "count": 15,
+        "words": [
+            { "korean": "음식", "translation": "еда" },
+            { "korean": "밥", "translation": "рис; еда" },
+            { "korean": "빵", "translation": "хлеб" },
+            { "korean": "고기", "translation": "мясо, рыба" },
+            { "korean": "생선", "translation": "рыба" },
+            { "korean": "채소", "translation": "овощи" },
+            { "korean": "과일", "translation": "фрукты" },
+            { "korean": "물", "translation": "вода" },
+            { "korean": "차", "translation": "чай" },
+            { "korean": "커피", "translation": "кофе" },
+            { "korean": "우유", "translation": "молоко" },
+            { "korean": "주스", "translation": "сок" },
+            { "korean": "술", "translation": "алкоголь" },
+            { "korean": "맥주", "translation": "пиво" },
+            { "korean": "소금", "translation": "соль" }
+        ]
+    },
+    {
+        "id": 8,
+        "title": "Дни недели и время",
+        "count": 15,
+        "words": [
+            { "korean": "월요일", "translation": "понедельник" },
+            { "korean": "화요일", "translation": "вторник" },
+            { "korean": "수요일", "translation": "среда" },
+            { "korean": "목요일", "translation": "четверг" },
+            { "korean": "금요일", "translation": "пятница" },
+            { "korean": "토요일", "translation": "суббота" },
+            { "korean": "일요일", "translation": "воскресенье" },
+            { "korean": "오늘", "translation": "сегодня" },
+            { "korean": "내일", "translation": "завтра" },
+            { "korean": "어제", "translation": "вчера" },
+            { "korean": "지금", "translation": "сейчас" },
+            { "korean": "아침", "translation": "утро; завтрак" },
+            { "korean": "점심", "translation": "обед" },
+            { "korean": "저녁", "translation": "вечер" },
+            { "korean": "밤", "translation": "ночь; каштан" }
+        ]
+    },
+    {
+        "id": 9,
+        "title": "Месяцы и времена года",
+        "count": 12,
+        "words": [
+            { "korean": "봄", "translation": "весна" },
+            { "korean": "여름", "translation": "лето" },
+            { "korean": "가을", "translation": "осень" },
+            { "korean": "겨울", "translation": "зима" },
+            { "korean": "월", "translation": "месяц" },
+            { "korean": "년", "translation": "год" },
+            { "korean": "시간", "translation": "время" },
+            { "korean": "분", "translation": "минута; человек (вежл.)" },
+            { "korean": "초", "translation": "секунда; свеча" },
+            { "korean": "주", "translation": "неделя" },
+            { "korean": "날", "translation": "день" },
+            { "korean": "달", "translation": "месяц; луна" }
+        ]
+    },
+    {
+        "id": 10,
+        "title": "Цвета",
+        "count": 10,
+        "words": [
+            { "korean": "빨간색", "translation": "красный цвет" },
+            { "korean": "파란색", "translation": "синий цвет" },
+            { "korean": "노란색", "translation": "жёлтый цвет" },
+            { "korean": "초록색", "translation": "зелёный цвет" },
+            { "korean": "검정색", "translation": "чёрный цвет" },
+            { "korean": "하얀색", "translation": "белый цвет" },
+            { "korean": "회색", "translation": "серый цвет" },
+            { "korean": "갈색", "translation": "коричневый цвет" },
+            { "korean": "분홍색", "translation": "розовый цвет" },
+            { "korean": "보라색", "translation": "фиолетовый цвет" }
+        ]
+    },
+    {
+        "id": 11,
+        "title": "Числа (1-10)",
+        "count": 10,
+        "words": [
+            { "korean": "하나", "translation": "один" },
+            { "korean": "둘", "translation": "два" },
+            { "korean": "셋", "translation": "три" },
+            { "korean": "넷", "translation": "четыре" },
+            { "korean": "다섯", "translation": "пять" },
+            { "korean": "여섯", "translation": "шесть" },
+            { "korean": "일곱", "translation": "семь" },
+            { "korean": "여덟", "translation": "восемь" },
+            { "korean": "아홉", "translation": "девять" },
+            { "korean": "열", "translation": "десять" }
+        ]
+    },
+    {
+        "id": 12,
+        "title": "Части тела",
+        "count": 15,
+        "words": [
+            { "korean": "머리", "translation": "голова" },
+            { "korean": "얼굴", "translation": "лицо" },
+            { "korean": "눈", "translation": "глаз; снег" },
+            { "korean": "코", "translation": "нос" },
+            { "korean": "입", "translation": "рот" },
+            { "korean": "귀", "translation": "ухо" },
+            { "korean": "목", "translation": "шея; цель" },
+            { "korean": "어깨", "translation": "плечо" },
+            { "korean": "팔", "translation": "рука; восемь" },
+            { "korean": "손", "translation": "рука" },
+            { "korean": "다리", "translation": "нога; мост" },
+            { "korean": "발", "translation": "нога, ступня" },
+            { "korean": "가슴", "translation": "грудь" },
+            { "korean": "등", "translation": "спина; и так далее" },
+            { "korean": "배", "translation": "живот; корабль; груша" }
+        ]
+    },
+    {
+        "id": 13,
+        "title": "Одежда",
+        "count": 12,
+        "words": [
+            { "korean": "옷", "translation": "одежда" },
+            { "korean": "셔츠", "translation": "рубашка" },
+            { "korean": "바지", "translation": "брюки" },
+            { "korean": "치마", "translation": "юбка" },
+            { "korean": "원피스", "translation": "платье" },
+            { "korean": "재킷", "translation": "пиджак" },
+            { "korean": "코트", "translation": "пальто" },
+            { "korean": "신발", "translation": "обувь" },
+            { "korean": "양말", "translation": "носки" },
+            { "korean": "모자", "translation": "шапка; мать и дитя" },
+            { "korean": "장갑", "translation": "перчатки" },
+            { "korean": "스카프", "translation": "шарф" }
+        ]
+    },
+    {
+        "id": 14,
+        "title": "Погода",
+        "count": 10,
+        "words": [
+            { "korean": "날씨", "translation": "погода" },
+            { "korean": "해", "translation": "солнце; год" },
+            { "korean": "비", "translation": "дождь" },
+            { "korean": "눈", "translation": "снег; глаз" },
+            { "korean": "바람", "translation": "ветер" },
+            { "korean": "구름", "translation": "облако" },
+            { "korean": "번개", "translation": "молния" },
+            { "korean": "천둥", "translation": "гром" },
+            { "korean": "안개", "translation": "туман" },
+            { "korean": "우박", "translation": "град" }
+        ]
+    },
+    {
+        "id": 15,
+        "title": "Природа",
+        "count": 12,
+        "words": [
+            { "korean": "산", "translation": "гора" },
+            { "korean": "강", "translation": "река" },
+            { "korean": "바다", "translation": "море" },
+            { "korean": "호수", "translation": "озеро" },
+            { "korean": "숲", "translation": "лес" },
+            { "korean": "들", "translation": "поле" },
+            { "korean": "하늘", "translation": "небо" },
+            { "korean": "별", "translation": "звезда" },
+            { "korean": "달", "translation": "луна; месяц" },
+            { "korean": "흙", "translation": "земля, почва" },
+            { "korean": "돌", "translation": "камень" },
+            { "korean": "모래", "translation": "песок" }
+        ]
+    },
+    {
+        "id": 16,
+        "title": "Животные",
+        "count": 15,
+        "words": [
+            { "korean": "개", "translation": "собака" },
+            { "korean": "고양이", "translation": "кошка" },
+            { "korean": "말", "translation": "лошадь; слово" },
+            { "korean": "소", "translation": "корова" },
+            { "korean": "돼지", "translation": "свинья" },
+            { "korean": "양", "translation": "овца" },
+            { "korean": "닭", "translation": "курица" },
+            { "korean": "오리", "translation": "утка" },
+            { "korean": "새", "translation": "птица; новый" },
+            { "korean": "물고기", "translation": "рыба" },
+            { "korean": "곰", "translation": "медведь" },
+            { "korean": "호랑이", "translation": "тигр" },
+            { "korean": "사자", "translation": "лев" },
+            { "korean": "코끼리", "translation": "слон" },
+            { "korean": "원숭이", "translation": "обезьяна" }
+        ]
+    },
+    {
+        "id": 17,
+        "title": "Растения",
+        "count": 10,
+        "words": [
+            { "korean": "나무", "translation": "дерево" },
+            { "korean": "꽃", "translation": "цветок" },
+            { "korean": "풀", "translation": "трава" },
+            { "korean": "잎", "translation": "лист" },
+            { "korean": "가지", "translation": "ветка; сорт, вид" },
+            { "korean": "뿌리", "translation": "корень" },
+            { "korean": "열매", "translation": "плод" },
+            { "korean": "씨앗", "translation": "семя" },
+            { "korean": "풀잎", "translation": "травинка" },
+            { "korean": "나뭇잎", "translation": "лист дерева" }
+        ]
+    },
+    {
+        "id": 18,
+        "title": "Эмоции и чувства",
+        "count": 15,
+        "words": [
+            { "korean": "기쁨", "translation": "радость" },
+            { "korean": "슬픔", "translation": "печаль" },
+            { "korean": "화", "translation": "гнев; картина" },
+            { "korean": "사랑", "translation": "любовь" },
+            { "korean": "행복", "translation": "счастье" },
+            { "korean": "불행", "translation": "несчастье" },
+            { "korean": "두려움", "translation": "страх" },
+            { "korean": "놀라움", "translation": "удивление" },
+            { "korean": "부끄러움", "translation": "стыд" },
+            { "korean": "걱정", "translation": "беспокойство" },
+            { "korean": "감동", "translation": "глубокое впечатление, волнение" },
+            { "korean": "감사", "translation": "благодарность" },
+            { "korean": "희망", "translation": "надежда" },
+            { "korean": "실망", "translation": "разочарование" },
+            { "korean": "외로움", "translation": "одиночество" }
+        ]
+    },
+    {
+        "id": 19,
+        "title": "Здоровье и медицина",
+        "count": 12,
+        "words": [
+            { "korean": "건강", "translation": "здоровье" },
+            { "korean": "병", "translation": "болезнь; бутылка" },
+            { "korean": "아픔", "translation": "боль" },
+            { "korean": "열", "translation": "жар; десять" },
+            { "korean": "기침", "translation": "кашель" },
+            { "korean": "감기", "translation": "простуда" },
+            { "korean": "약", "translation": "лекарство; примерно" },
+            { "korean": "주사", "translation": "укол" },
+            { "korean": "수술", "translation": "операция" },
+            { "korean": "치과", "translation": "стоматология" },
+            { "korean": "안과", "translation": "офтальмология" },
+            { "korean": "피", "translation": "кровь" }
+        ]
+    },
+    {
+        "id": 20,
+        "title": "Школа и образование",
+        "count": 15,
+        "words": [
+            { "korean": "교실", "translation": "класс (комната)" },
+            { "korean": "책상", "translation": "письменный стол" },
+            { "korean": "의자", "translation": "стул" },
+            { "korean": "칠판", "translation": "доска" },
+            { "korean": "책", "translation": "книга" },
+            { "korean": "공책", "translation": "тетрадь" },
+            { "korean": "펜", "translation": "ручка" },
+            { "korean": "연필", "translation": "карандаш" },
+            { "korean": "지우개", "translation": "ластик" },
+            { "korean": "가방", "translation": "портфель" },
+            { "korean": "시험", "translation": "экзамен" },
+            { "korean": "성적", "translation": "оценка" },
+            { "korean": "숙제", "translation": "домашнее задание" },
+            { "korean": "방학", "translation": "каникулы" },
+            { "korean": "졸업", "translation": "окончание школы" }
+        ]
+    },
+    {
+        "id": 21,
+        "title": "Работа и карьера",
+        "count": 12,
+        "words": [
+            { "korean": "직장", "translation": "место работы" },
+            { "korean": "회사", "translation": "компания" },
+            { "korean": "사무실", "translation": "офис" },
+            { "korean": "동료", "translation": "коллега" },
+            { "korean": "상사", "translation": "начальник" },
+            { "korean": "월급", "translation": "зарплата" },
+            { "korean": "면접", "translation": "собеседование" },
+            { "korean": "이력서", "translation": "резюме" },
+            { "korean": "회의", "translation": "совещание" },
+            { "korean": "프로젝트", "translation": "проект" },
+            { "korean": "퇴근", "translation": "уход с работы" },
+            { "korean": "출근", "translation": "приход на работу" }
+        ]
+    },
+    {
+        "id": 22,
+        "title": "Дом и интерьер",
+        "count": 15,
+        "words": [
+            { "korean": "방", "translation": "комната" },
+            { "korean": "거실", "translation": "гостиная" },
+            { "korean": "침실", "translation": "спальня" },
+            { "korean": "부엌", "translation": "кухня" },
+            { "korean": "화장실", "translation": "туалет" },
+            { "korean": "욕실", "translation": "ванная" },
+            { "korean": "창문", "translation": "окно" },
+            { "korean": "문", "translation": "дверь" },
+            { "korean": "벽", "translation": "стена" },
+            { "korean": "천장", "translation": "потолок" },
+            { "korean": "바닥", "translation": "пол, дно" },
+            { "korean": "계단", "translation": "лестница" },
+            { "korean": "현관", "translation": "вход" },
+            { "korean": "발코니", "translation": "балкон" },
+            { "korean": "마당", "translation": "двор" }
+        ]
+    },
+    {
+        "id": 23,
+        "title": "Мебель и быт",
+        "count": 12,
+        "words": [
+            { "korean": "가구", "translation": "мебель" },
+            { "korean": "침대", "translation": "кровать" },
+            { "korean": "소파", "translation": "диван" },
+            { "korean": "테이블", "translation": "стол" },
+            { "korean": "의자", "translation": "стул" },
+            { "korean": "장", "translation": "шкаф" },
+            { "korean": "서랍", "translation": "ящик" },
+            { "korean": "선반", "translation": "полка" },
+            { "korean": "램프", "translation": "лампа" },
+            { "korean": "거울", "translation": "зеркало" },
+            { "korean": "시계", "translation": "часы" },
+            { "korean": "커튼", "translation": "занавеска" }
+        ]
+    },
+    {
+        "id": 24,
+        "title": "Техника и электроника",
+        "count": 12,
+        "words": [
+            { "korean": "컴퓨터", "translation": "компьютер" },
+            { "korean": "노트북", "translation": "ноутбук" },
+            { "korean": "휴대폰", "translation": "мобильный телефон" },
+            { "korean": "태블릿", "translation": "планшет" },
+            { "korean": "텔레비전", "translation": "телевизор" },
+            { "korean": "라디오", "translation": "радио" },
+            { "korean": "카메라", "translation": "фотоаппарат" },
+            { "korean": "에어컨", "translation": "кондиционер" },
+            { "korean": "냉장고", "translation": "холодильник" },
+            { "korean": "세탁기", "translation": "стиральная машина" },
+            { "korean": "전자레인지", "translation": "микроволновая печь" },
+            { "korean": "청소기", "translation": "пылесос" }
+        ]
+    },
+    {
+        "id": 25,
+        "title": "Музыка и искусство",
+        "count": 12,
+        "words": [
+            { "korean": "음악", "translation": "музыка" },
+            { "korean": "노래", "translation": "песня" },
+            { "korean": "춤", "translation": "танец" },
+            { "korean": "악기", "translation": "музыкальный инструмент" },
+            { "korean": "피아노", "translation": "фортепиано" },
+            { "korean": "기타", "translation": "гитара" },
+            { "korean": "바이올린", "translation": "скрипка" },
+            { "korean": "미술", "translation": "искусство" },
+            { "korean": "그림", "translation": "рисунок, картина" },
+            { "korean": "조각", "translation": "скульптура" },
+            { "korean": "사진", "translation": "фотография" },
+            { "korean": "영화", "translation": "кино" }
+        ]
+    },
+    {
+        "id": 26,
+        "title": "Спорт",
+        "count": 12,
+        "words": [
+            { "korean": "운동", "translation": "движение, спорт" },
+            { "korean": "축구", "translation": "футбол" },
+            { "korean": "야구", "translation": "бейсбол" },
+            { "korean": "농구", "translation": "баскетбол" },
+            { "korean": "배구", "translation": "волейбол" },
+            { "korean": "테니스", "translation": "теннис" },
+            { "korean": "수영", "translation": "плавание" },
+            { "korean": "달리기", "translation": "бег" },
+            { "korean": "자전거 타기", "translation": "езда на велосипеде" },
+            { "korean": "등산", "translation": "альпинизм" },
+            { "korean": "골프", "translation": "гольф" },
+            { "korean": "스키", "translation": "лыжи" }
+        ]
+    },
+    {
+        "id": 27,
+        "title": "Хобби и развлечения",
+        "count": 12,
+        "words": [
+            { "korean": "취미", "translation": "хобби" },
+            { "korean": "독서", "translation": "чтение" },
+            { "korean": "영화 보기", "translation": "просмотр фильмов" },
+            { "korean": "음악 듣기", "translation": "прослушивание музыки" },
+            { "korean": "게임", "translation": "игры" },
+            { "korean": "요리", "translation": "готовка, блюдо" },
+            { "korean": "베이킹", "translation": "выпечка" },
+            { "korean": "정원 가꾸기", "translation": "садоводство" },
+            { "korean": "사진 찍기", "translation": "фотографирование" },
+            { "korean": "그리기", "translation": "рисование" },
+            { "korean": "공예", "translation": "ремесло" },
+            { "korean": "여행", "translation": "путешествие" }
+        ]
+    },
+    {
+        "id": 28,
+        "title": "Покупки",
+        "count": 12,
+        "words": [
+            { "korean": "쇼핑", "translation": "покупки" },
+            { "korean": "마트", "translation": "супермаркет" },
+            { "korean": "시장", "translation": "рынок" },
+            { "korean": "할인", "translation": "скидка" },
+            { "korean": "가격", "translation": "цена, стоимость" },
+            { "korean": "계산", "translation": "расчёт" },
+            { "korean": "카드", "translation": "карта (игральная, банковская)" },
+            { "korean": "현금", "translation": "наличные" },
+            { "korean": "영수증", "translation": "чек" },
+            { "korean": "포장", "translation": "упаковка" },
+            { "korean": "환불", "translation": "возврат денег" },
+            { "korean": "교환", "translation": "обмен" }
+        ]
+    },
+    {
+        "id": 29,
+        "title": "Ресторан и кафе",
+        "count": 12,
+        "words": [
+            { "korean": "메뉴", "translation": "меню" },
+            { "korean": "주문", "translation": "заказ" },
+            { "korean": "웨이터", "translation": "официант" },
+            { "korean": "식사", "translation": "приём пищи" },
+            { "korean": "음료", "translation": "напиток" },
+            { "korean": "디저트", "translation": "десерт" },
+            { "korean": "계산서", "translation": "счёт" },
+            { "korean": "팁", "translation": "чаевые" },
+            { "korean": "예약", "translation": "бронирование" },
+            { "korean": "매운", "translation": "острый" },
+            { "korean": "달콤한", "translation": "сладкий" },
+            { "korean": "짜다", "translation": "солёный" }
+        ]
+    },
+    {
+        "id": 30,
+        "title": "Путешествия",
+        "count": 12,
+        "words": [
+            { "korean": "여권", "translation": "паспорт" },
+            { "korean": "비자", "translation": "виза" },
+            { "korean": "표", "translation": "билет; таблица" },
+            { "korean": "호텔", "translation": "гостиница" },
+            { "korean": "여행사", "translation": "туристическое агентство" },
+            { "korean": "가이드", "translation": "гид" },
+            { "korean": "관광", "translation": "туризм" },
+            { "korean": "명소", "translation": "достопримечательность" },
+            { "korean": "지도", "translation": "карта; руководство" },
+            { "korean": "가방", "translation": "сумка" },
+            { "korean": "짐", "translation": "багаж" },
+            { "korean": "세관", "translation": "таможня" }
+        ]
+    },
+    {
+        "id": 31,
+        "title": "Страны и языки",
+        "count": 12,
+        "words": [
+            { "korean": "한국", "translation": "Корея" },
+            { "korean": "한국어", "translation": "корейский язык" },
+            { "korean": "미국", "translation": "Америка" },
+            { "korean": "영어", "translation": "английский язык" },
+            { "korean": "일본", "translation": "Япония" },
+            { "korean": "일본어", "translation": "японский язык" },
+            { "korean": "중국", "translation": "Китай" },
+            { "korean": "중국어", "translation": "китайский язык" },
+            { "korean": "러시아", "translation": "Россия" },
+            { "korean": "러시아어", "translation": "русский язык" },
+            { "korean": "독일", "translation": "Германия" },
+            { "korean": "독일어", "translation": "немецкий язык" }
+        ]
+    },
+    {
+        "id": 32,
+        "title": "Прилагательные (внешность)",
+        "count": 12,
+        "words": [
+            { "korean": "크다", "translation": "большой" },
+            { "korean": "작다", "translation": "маленький" },
+            { "korean": "길다", "translation": "длинный" },
+            { "korean": "짧다", "translation": "короткий" },
+            { "korean": "높다", "translation": "высокий" },
+            { "korean": "낮다", "translation": "низкий" },
+            { "korean": "넓다", "translation": "широкий" },
+            { "korean": "좁다", "translation": "узкий" },
+            { "korean": "두껍다", "translation": "толстый (о предметах)" },
+            { "korean": "얇다", "translation": "тонкий" },
+            { "korean": "무겁다", "translation": "тяжёлый" },
+            { "korean": "가볍다", "translation": "лёгкий" }
+        ]
+    },
+    {
+        "id": 33,
+        "title": "Прилагательные (характер)",
+        "count": 12,
+        "words": [
+            { "korean": "착하다", "translation": "добрый" },
+            { "korean": "나쁘다", "translation": "плохой" },
+            { "korean": "똑똑하다", "translation": "умный" },
+            { "korean": "바보", "translation": "глупый" },
+            { "korean": "성실하다", "translation": "добросовестный" },
+            { "korean": "게으르다", "translation": "ленивый" },
+            { "korean": "용감하다", "translation": "храбрый" },
+            { "korean": "겁쟁이", "translation": "трусливый" },
+            { "korean": "친절하다", "translation": "доброжелательный" },
+            { "korean": "무례하다", "translation": "грубый" },
+            { "korean": "잘생기다", "translation": "красивый (о мужчине)" },
+            { "korean": "예쁘다", "translation": "красивый (о женщине)" }
+        ]
+    },
+    {
+        "id": 34,
+        "title": "Противоположности",
+        "count": 12,
+        "words": [
+            { "korean": "좋다", "translation": "хороший" },
+            { "korean": "나쁘다", "translation": "плохой" },
+            { "korean": "크다", "translation": "большой" },
+            { "korean": "작다", "translation": "маленький" },
+            { "korean": "많다", "translation": "много" },
+            { "korean": "적다", "translation": "мало; писать" },
+            { "korean": "빠르다", "translation": "быстрый" },
+            { "korean": "느리다", "translation": "медленный" },
+            { "korean": "어렵다", "translation": "трудный" },
+            { "korean": "쉽다", "translation": "лёгкий" },
+            { "korean": "비싸다", "translation": "дорогой" },
+            { "korean": "싸다", "translation": "дешёвый" }
+        ]
+    },
+    {
+        "id": 35,
+        "title": "Местоимения",
+        "count": 10,
+        "words": [
+            { "korean": "나", "translation": "я" },
+            { "korean": "저", "translation": "я (скром.)" },
+            { "korean": "너", "translation": "ты" },
+            { "korean": "당신", "translation": "вы (вежл.)" },
+            { "korean": "우리", "translation": "мы; клетка" },
+            { "korean": "너희", "translation": "вы (неформ.)" },
+            { "korean": "그", "translation": "он, тот" },
+            { "korean": "그녀", "translation": "она" },
+            { "korean": "그들", "translation": "они" },
+            { "korean": "이것", "translation": "это" }
+        ]
+    },
+    {
+        "id": 36,
+        "title": "Вопросительные слова",
+        "count": 10,
+        "words": [
+            { "korean": "누구", "translation": "кто" },
+            { "korean": "무엇", "translation": "что" },
+            { "korean": "어디", "translation": "где" },
+            { "korean": "언제", "translation": "когда" },
+            { "korean": "왜", "translation": "почему" },
+            { "korean": "어떻게", "translation": "как" },
+            { "korean": "얼마", "translation": "сколько" },
+            { "korean": "어느", "translation": "какой, который" },
+            { "korean": "무슨", "translation": "какой" },
+            { "korean": "어떤", "translation": "какой" }
+        ]
+    },
+    {
+        "id": 37,
+        "title": "Наречия времени",
+        "count": 12,
+        "words": [
+            { "korean": "지금", "translation": "сейчас" },
+            { "korean": "이제", "translation": "теперь" },
+            { "korean": "아까", "translation": "недавно" },
+            { "korean": "방금", "translation": "только что" },
+            { "korean": "곧", "translation": "скоро" },
+            { "korean": "나중", "translation": "потом, позже" },
+            { "korean": "먼저", "translation": "сначала" },
+            { "korean": "항상", "translation": "всегда" },
+            { "korean": "자주", "translation": "часто" },
+            { "korean": "가끔", "translation": "иногда, время от времени" },
+            { "korean": "절대", "translation": "никогда" },
+            { "korean": "벌써", "translation": "уже" }
+        ]
+    },
+    {
+        "id": 38,
+        "title": "Наречия места",
+        "count": 12,
+        "words": [
+            { "korean": "여기", "translation": "здесь" },
+            { "korean": "거기", "translation": "там" },
+            { "korean": "저기", "translation": "вон там" },
+            { "korean": "앞", "translation": "перед" },
+            { "korean": "뒤", "translation": "зад; после" },
+            { "korean": "위", "translation": "верх; желудок" },
+            { "korean": "아래", "translation": "низ, под" },
+            { "korean": "옆", "translation": "рядом, сбоку" },
+            { "korean": "안", "translation": "внутри; не" },
+            { "korean": "밖", "translation": "вне, снаружи" },
+            { "korean": "가까이", "translation": "близко, рядом, около" },
+            { "korean": "멀리", "translation": "далеко" }
+        ]
+    },
+    {
+        "id": 39,
+        "title": "Наречия степени",
+        "count": 10,
+        "words": [
+            { "korean": "매우", "translation": "очень" },
+            { "korean": "너무", "translation": "слишком" },
+            { "korean": "정말", "translation": "правда, действительно" },
+            { "korean": "아주", "translation": "очень" },
+            { "korean": "꽤", "translation": "довольно" },
+            { "korean": "조금", "translation": "немного" },
+            { "korean": "약간", "translation": "немного" },
+            { "korean": "거의", "translation": "почти, едва" },
+            { "korean": "전혀", "translation": "совсем не" },
+            { "korean": "조금도", "translation": "нисколько" }
+        ]
+    },
+    {
+        "id": 40,
+        "title": "Союзы и связки",
+        "count": 10,
+        "words": [
+            { "korean": "그리고", "translation": "и, а также" },
+            { "korean": "그러나", "translation": "но, однако" },
+            { "korean": "그래서", "translation": "поэтому" },
+            { "korean": "그런데", "translation": "но, однако" },
+            { "korean": "하지만", "translation": "но" },
+            { "korean": "또는", "translation": "или" },
+            { "korean": "혹은", "translation": "или" },
+            { "korean": "왜냐하면", "translation": "потому что" },
+            { "korean": "만약", "translation": "если" },
+            { "korean": "그럼", "translation": "тогда" }
+        ]
+    },
+    {
+        "id": 41,
+        "title": "Глаголы восприятия",
+        "count": 10,
+        "words": [
+            { "korean": "보다", "translation": "видеть, смотреть" },
+            { "korean": "듣다", "translation": "слышать, слушать" },
+            { "korean": "느끼다", "translation": "чувствовать" },
+            { "korean": "맛보다", "translation": "пробовать на вкус" },
+            { "korean": "냄새 맡다", "translation": "нюхать" },
+            { "korean": "만지다", "translation": "трогать" },
+            { "korean": "알다", "translation": "знать" },
+            { "korean": "모르다", "translation": "не знать" },
+            { "korean": "기억하다", "translation": "помнить" },
+            { "korean": "잊다", "translation": "забывать" }
+        ]
+    },
+    {
+        "id": 42,
+        "title": "Глаголы изменения",
+        "count": 10,
+        "words": [
+            { "korean": "변하다", "translation": "меняться" },
+            { "korean": "바꾸다", "translation": "менять" },
+            { "korean": "늘다", "translation": "увеличиваться, расти" },
+            { "korean": "줄다", "translation": "уменьшаться" },
+            { "korean": "나아지다", "translation": "улучшаться" },
+            { "korean": "나빠지다", "translation": "ухудшаться" },
+            { "korean": "만들다", "translation": "делать, создавать" },
+            { "korean": "부수다", "translation": "ломать" },
+            { "korean": "고치다", "translation": "чинить" },
+            { "korean": "발전하다", "translation": "развиваться" }
+        ]
+    },
+    {
+        "id": 43,
+        "title": "Глаголы общения",
+        "count": 10,
+        "words": [
+            { "korean": "말하다", "translation": "говорить" },
+            { "korean": "이야기하다", "translation": "разговаривать" },
+            { "korean": "묻다", "translation": "спрашивать; хоронить" },
+            { "korean": "대답하다", "translation": "отвечать" },
+            { "korean": "설명하다", "translation": "объяснять" },
+            { "korean": "부탁하다", "translation": "просить" },
+            { "korean": "약속하다", "translation": "обещать" },
+            { "korean": "의논하다", "translation": "советоваться" },
+            { "korean": "논쟁하다", "translation": "спорить" },
+            { "korean": "토론하다", "translation": "дискутировать" }
+        ]
+    },
+    {
+        "id": 44,
+        "title": "Глаголы чувств",
+        "count": 10,
+        "words": [
+            { "korean": "좋아하다", "translation": "любить, нравиться" },
+            { "korean": "싫어하다", "translation": "не любить" },
+            { "korean": "사랑하다", "translation": "любить" },
+            { "korean": "미워하다", "translation": "ненавидеть" },
+            { "korean": "기뻐하다", "translation": "радоваться" },
+            { "korean": "슬퍼하다", "translation": "грустить" },
+            { "korean": "화내다", "translation": "сердиться" },
+            { "korean": "두려워하다", "translation": "бояться" },
+            { "korean": "부끄러워하다", "translation": "стесняться" },
+            { "korean": "감사하다", "translation": "благодарить" }
+        ]
+    },
+    {
+        "id": 45,
+        "title": "Предлоги и послелоги",
+        "count": 10,
+        "words": [
+            { "korean": "에서", "translation": "в, из (место)" },
+            { "korean": "에", "translation": "в, на (место, время)" },
+            { "korean": "에게", "translation": "кому-то" },
+            { "korean": "한테", "translation": "кому-то (разг.)" },
+            { "korean": "으로", "translation": "в направлении" },
+            { "korean": "로", "translation": "в направлении" },
+            { "korean": "부터", "translation": "с, от" },
+            { "korean": "까지", "translation": "до" },
+            { "korean": "만", "translation": "только" },
+            { "korean": "도", "translation": "тоже, также" }
+        ]
+    },
+    {
+        "id": 46,
+        "title": "Фразы вежливости",
+        "count": 12,
+        "words": [
+            { "korean": "안녕하세요", "translation": "здравствуйте" },
+            { "korean": "감사합니다", "translation": "спасибо" },
+            { "korean": "죄송합니다", "translation": "извините" },
+            { "korean": "실례합니다", "translation": "извините (проходя)" },
+            { "korean": "부탁합니다", "translation": "пожалуйста" },
+            { "korean": "천만에요", "translation": "не за что" },
+            { "korean": "괜찮아요", "translation": "ничего, нормально" },
+            { "korean": "만나서 반갑습니다", "translation": "рад познакомиться" },
+            { "korean": "안녕히 가세요", "translation": "до свидания (уходящему)" },
+            { "korean": "안녕히 계세요", "translation": "до свидания (остающемуся)" },
+            { "korean": "잘 지내세요", "translation": "будьте здоровы" },
+            { "korean": "수고하세요", "translation": "спасибо за работу" }
+        ]
+    },
+    {
+        "id": 47,
+        "title": "Еда (глаголы)",
+        "count": 10,
+        "words": [
+            { "korean": "먹다", "translation": "есть" },
+            { "korean": "마시다", "translation": "пить" },
+            { "korean": "요리하다", "translation": "готовить" },
+            { "korean": "굽다", "translation": "жарить; сгибать" },
+            { "korean": "삶다", "translation": "варить" },
+            { "korean": "튀기다", "translation": "жарить во фритюре" },
+            { "korean": "썰다", "translation": "резать, шинковать" },
+            { "korean": "섞다", "translation": "смешивать" },
+            { "korean": "간을 하다", "translation": "приправлять" },
+            { "korean": "시식하다", "translation": "дегустировать" }
+        ]
+    },
+    {
+        "id": 48,
+        "title": "Деньги и финансы",
+        "count": 10,
+        "words": [
+            { "korean": "돈", "translation": "деньги" },
+            { "korean": "화폐", "translation": "валюта" },
+            { "korean": "계좌", "translation": "счёт" },
+            { "korean": "저축", "translation": "сбережения" },
+            { "korean": "소비", "translation": "потребление" },
+            { "korean": "지출", "translation": "расход" },
+            { "korean": "수입", "translation": "доход; импорт" },
+            { "korean": "이자", "translation": "проценты" },
+            { "korean": "대출", "translation": "кредит" },
+            { "korean": "투자", "translation": "инвестиции" }
+        ]
+    },
+    {
+        "id": 49,
+        "title": "Корейская культура",
+        "count": 10,
+        "words": [
+            { "korean": "한복", "translation": "корейский традиционный костюм" },
+            { "korean": "김치", "translation": "кимчи" },
+            { "korean": "불고기", "translation": "пулькоги (жареное мясо)" },
+            { "korean": "비빔밥", "translation": "пибимпап (рис с овощами)" },
+            { "korean": "떡", "translation": "рисовый пирог" },
+            { "korean": "소주", "translation": "соджу (корейская водка)" },
+            { "korean": "태권도", "translation": "тхэквондо" },
+            { "korean": "판소리", "translation": "корейское народное пение" },
+            { "korean": "설날", "translation": "корейский Новый год" },
+            { "korean": "추석", "translation": "корейский праздник урожая" }
+        ]
+    },
+    {
+        "id": 50,
+        "title": "Разное (важные слова)",
+        "count": 15,
+        "words": [
+            { "korean": "세계", "translation": "мир" },
+            { "korean": "평화", "translation": "мир" },
+            { "korean": "자유", "translation": "свобода" },
+            { "korean": "정의", "translation": "справедливость" },
+            { "korean": "진리", "translation": "истина" },
+            { "korean": "아름다움", "translation": "красота" },
+            { "korean": "지혜", "translation": "мудрость" },
+            { "korean": "용기", "translation": "мужество; ёмкость" },
+            { "korean": "희망", "translation": "надежда" },
+            { "korean": "꿈", "translation": "мечта, сон" },
+            { "korean": "성공", "translation": "успех" },
+            { "korean": "실패", "translation": "неудача" },
+            { "korean": "변화", "translation": "изменение" },
+            { "korean": "기회", "translation": "возможность" },
+            { "korean": "운명", "translation": "судьба" }
+        ]
+    }
+];
+
+        let currentDictionaryIndex = 0;
+        let currentWordIndex = 0;
+        let speechSynthesisSupported = false;
+        let isFlipped = false;
+        let currentWords = [];
+        let isInDictionaryMode = false;
+
+        // Инициализация при загрузке страницы
+        document.addEventListener('DOMContentLoaded', function () {
+            checkSpeechSupport();
+            renderDictionaries();
+            loadDictionary(0); // Загружаем первый словарь по умолчанию
+
+            if (speechSynthesisSupported) {
+                speechSynthesis.getVoices();
+            }
+        });
+
+        // Рендеринг 30 словарей
+        function renderDictionaries() {
+            const container = document.getElementById('dictionariesContainer');
+            container.innerHTML = '';
+
+            dictionaries.forEach((dict, index) => {
+                const card = document.createElement('div');
+                card.className = 'dictionary-card';
+                card.innerHTML = `
+                    <div class="dictionary-title">${dict.title}</div>
+                    <div class="dictionary-count">${dict.count} слов</div>
+                `;
+                card.addEventListener('click', () => enterDictionary(index));
+                container.appendChild(card);
+            });
+        }
+
+        // Вход в словарь
+        function enterDictionary(index) {
+            currentDictionaryIndex = index;
+            currentWords = dictionaries[index].words;
+            currentWordIndex = 0;
+            isInDictionaryMode = true;
+
+            // Показываем секцию с карточкой
+            document.getElementById('flashcardSection').classList.add('active');
+
+            // Скрываем контейнер со словарями
+            document.getElementById('dictionariesContainer').style.display = 'none';
+
+            updateWord();
+        }
+
+        // Выход из словаря
+        function exitDictionary() {
+            isInDictionaryMode = false;
+
+            // Скрываем секцию с карточкой
+            document.getElementById('flashcardSection').classList.remove('active');
+
+            // Показываем контейнер со словарями
+            document.getElementById('dictionariesContainer').style.display = 'flex';
+
+            // Сбрасываем выделение активного словаря
+            document.querySelectorAll('.dictionary-card').forEach((card, i) => {
+                card.style.borderColor = '#e6ecff';
+                card.style.background = 'linear-gradient(135deg, #fefefe 0%, #f0f4ff 100%)';
+            });
+        }
+
+        // Обновление слова на карточке
+        function updateWord() {
+            if (currentWords.length > 0 && currentWordIndex < currentWords.length) {
+                const word = currentWords[currentWordIndex];
+                document.getElementById("korean-word").textContent = word.korean;
+                document.getElementById("russian-word").textContent = word.translation;
+
+                // Обновляем индикатор прогресса
+                const progressText = `${currentWordIndex + 1} / ${currentWords.length}`;
+                document.querySelectorAll('.progress-indicator').forEach(el => {
+                    el.textContent = progressText;
+                });
+            } else {
+                document.getElementById("korean-word").textContent = "단어 없음";
+                document.getElementById("russian-word").textContent = "Нет слов";
+                document.querySelectorAll('.progress-indicator').forEach(el => {
+                    el.textContent = "0 / 0";
+                });
+            }
+
+            // Сбрасываем карточку на корейскую сторону
+            const flashcard = document.getElementById("flashcard");
+            flashcard.classList.remove("flipped");
+            isFlipped = false;
+        }
+
+        // Переход к следующему слову (ПОСЛЕДОВАТЕЛЬНО)
+        function nextWord() {
+            if (!isInDictionaryMode || currentWords.length === 0) return;
+
+            // Переход к следующему слову по порядку
+            currentWordIndex = (currentWordIndex + 1) % currentWords.length;
+            updateWord();
+        }
+
+        // Переход к предыдущему слову (ПОСЛЕДОВАТЕЛЬНО)
+        function previousWord() {
+            if (!isInDictionaryMode || currentWords.length === 0) return;
+
+            // Переход к предыдущему слову по порядку
+            currentWordIndex = (currentWordIndex - 1 + currentWords.length) % currentWords.length;
+            updateWord();
+        }
+
+        // Перелистывание карточки
+        function flipCard() {
+            if (!isInDictionaryMode) return;
+
+            const flashcard = document.getElementById("flashcard");
+            isFlipped = !isFlipped;
+            flashcard.classList.toggle("flipped");
+        }
+
+        // Проверяем поддержку синтеза речи
+        function checkSpeechSupport() {
+            if ('speechSynthesis' in window) {
+                speechSynthesisSupported = true;
+                console.log("Speech synthesis supported");
+            } else {
+                console.log("Speech synthesis not supported");
+                document.querySelectorAll('.audio-icon').forEach(icon => {
+                    icon.style.display = 'none';
+                });
+            }
+        }
+
+        // Функция для озвучивания корейского слова
+        function playKoreanAudio(event) {
+            event.stopPropagation();
+
+            if (!speechSynthesisSupported || currentWords.length === 0) {
+                console.log("Speech synthesis not supported or no words");
+                return;
+            }
+
+            const word = currentWords[currentWordIndex];
+            if (!word) return;
+
+            const text = word.korean;
+
+            if (text) {
+                // Останавливаем предыдущее воспроизведение
+                speechSynthesis.cancel();
+
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'ko-KR';
+                utterance.rate = 0.9;
+                utterance.volume = 1.0;
+
+                // Получаем доступные голоса
+                const voices = speechSynthesis.getVoices();
+                const koreanVoice = voices.find(voice =>
+                    voice.lang === 'ko-KR' || voice.lang.startsWith('ko')
+                );
+                if (koreanVoice) {
+                    utterance.voice = koreanVoice;
+                }
+
+                utterance.onerror = function (event) {
+                    console.error("Speech error:", event);
+                };
+
+                speechSynthesis.speak(utterance);
+            }
+        }
+
+        // Обработчики свайпа для мобильных устройств
+        let touchStartX = 0;
+        let touchEndX = 0;
+        let touchStartY = 0;
+        let touchEndY = 0;
+
+        const flashcard = document.getElementById("flashcard");
+
+        flashcard.addEventListener('touchstart', (e) => {
+            if (!isInDictionaryMode) return;
+            touchStartX = e.changedTouches[0].screenX;
+            touchStartY = e.changedTouches[0].screenY;
+        });
+
+        flashcard.addEventListener('touchend', (e) => {
+            if (!isInDictionaryMode) return;
+            touchEndX = e.changedTouches[0].screenX;
+            touchEndY = e.changedTouches[0].screenY;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            const verticalSwipeThreshold = 30;
+
+            // Проверяем, что это горизонтальный свайп, а не вертикальный
+            if (Math.abs(touchEndY - touchStartY) < verticalSwipeThreshold) {
+                if (touchEndX < touchStartX - swipeThreshold) {
+                    nextWord();
+                } else if (touchEndX > touchStartX + swipeThreshold) {
+                    previousWord();
+                }
+            }
+        }
+
+        // Клик по карточке для перелистывания
+        flashcard.addEventListener('click', (e) => {
+            if (!isInDictionaryMode) return;
+
+            // Не перелистываем, если кликнули на аудио-иконку
+            if (!e.target.closest('.audio-icon')) {
+                flipCard();
+            }
+        });
+
+        // Бургер-меню
+        const burgerMenu = document.getElementById("burgerMenu");
+        const navBurger = document.getElementById("navBurger");
+
+        if (burgerMenu && navBurger) {
+            burgerMenu.addEventListener("click", function (event) {
+                event.stopPropagation();
+                navBurger.classList.toggle("active");
+            });
+
+            document.addEventListener("click", function (event) {
+                if (navBurger && burgerMenu &&
+                    !navBurger.contains(event.target) &&
+                    !burgerMenu.contains(event.target)) {
+                    navBurger.classList.remove("active");
+                }
+            });
+        }
+
+        // Обработчик для загрузки голосов
+        if (speechSynthesisSupported) {
+            speechSynthesis.onvoiceschanged = function () {
+                console.log("Voices loaded");
+            };
+        }
+
+        // Добавляем обработку клавиатуры для удобства
+        document.addEventListener('keydown', function (event) {
+            if (!isInDictionaryMode) return;
+
+            switch (event.key) {
+                case 'ArrowLeft':
+                    previousWord();
+                    break;
+                case 'ArrowRight':
+                    nextWord();
+                    break;
+                case ' ':
+                case 'Spacebar':
+                    event.preventDefault();
+                    flipCard();
+                    break;
+                case 'Enter':
+                    playKoreanAudio({ stopPropagation: () => { } });
+                    break;
+                case 'Escape':
+                    exitDictionary();
+                    break;
+                case '1': case '2': case '3': case '4': case '5':
+                case '6': case '7': case '8': case '9':
+                case '10': case '11': case '12': case '13': case '14': case '15':
+                case '16': case '17': case '18': case '19': case '20':
+                case '21': case '22': case '23': case '24': case '25':
+                case '26': case '27': case '28': case '29': case '30':
+                case '31': case '32': case '33': case '34': case '35':
+                case '36': case '37': case '38': case '39': case '40':
+                case '41': case '42': case '43': case '44': case '45':
+                case '46': case '47': case '48': case '49': case '0':
+
+                    const num = event.key === '0' ? 9 : parseInt(event.key) - 1;
+                    if (num < dictionaries.length) {
+                        enterDictionary(num);
+                    }
+                    break;
+            }
+        });
+    </script>
+</body>
+
+</html>
+
+пропиши польность исправленный стиль:
+русские слова пропиши буквами меньше и чтобы слово помещалось на строке(автоматически подстраиволось под размер карточкм)
