@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Korean Words Practice</title>
- 
-    <link rel="stylesheet" href="/styles/style_base.css/style_base_numder_word.css">
+    <!-- <link rel="stylesheet" href="/styles/style_slovar1.css"> -->
+    <link rel="stylesheet" href="/styles/style_base_numder_word.css">
     <link rel="stylesheet" href="style.css">
     <style>
        /* Основные стили */
@@ -746,7 +746,13 @@ body {
             <img class="logo" src="/image/logo krug.svg" alt="Логотип">
             <a href="" class="user"> <img class="lk" src="/image/userrblur.svg" alt="Пользователь"></a>
         </div>
-
+        <nav class="nav-burger" id="navBurger">
+            <ul class="ul-header">
+                <li class="li-header"> <a href="" class="a-header">онлайн - переводчик</a></li>
+                <li class="li-header"> <a href="" class="a-header">контакты</a></li>
+                <li class="li-header"> <a href="" class="a-header">светлая тема</a></li>
+            </ul>
+        </nav>
     </header>
 
     <main>
@@ -782,10 +788,20 @@ body {
                 </div>
             </div>
 
-            
+            <div class="navigation-buttons">
+                <button class="nav-btn" onclick="previousWord()">
+                    <img src="/image/vlevo2.svg" alt="Предыдущее слово">
+                </button>
+                <button class="nav-btn" onclick="nextWord()">
+                    <img src="/image/vpravo2.svg" alt="Следующее слово">
+                </button>
+            </div>
         </section>
     </main>
-
+ <div class="perehod">
+        <a href="/index/index_slovar_1.html"><img src="/image/vlevo2.svg" alt=""></a>
+        <a href="/index.html"><img src="/image/vpravo2.svg" alt=""></a>
+    </div>
     <footer>
         <section class="footer container">
             <address>
@@ -2079,5 +2095,4 @@ body {
 </body>
 
 </html>
-
 
