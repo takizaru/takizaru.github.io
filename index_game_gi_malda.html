@@ -1,0 +1,1485 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Korean Numbers Guide</title>
+    <link rel="stylesheet" href="/style_base_numder_word.css">
+   <style>
+        .container {
+            padding: 0 20px;
+            max-width: 100%;
+        }
+
+        article {
+            width: 90%;
+            margin: 0 auto;
+            padding: 20px;
+            box-sizing: border-box;
+            /* Адаптация для article */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .rule {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f8f8f8;
+            border-radius: 8px;
+        }
+
+        .grammatika,
+        .center-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f8f8f8;
+            border-radius: 8px;
+        }
+
+        .grammatika h2 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .grammatika p {
+            line-height: 1.5;
+            color: #555;
+            text-align: center;
+            width: 100%;
+        }
+
+        .rule-face {
+            width: 100%;
+            margin: 15px 0;
+        }
+
+        .rule-word {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            padding: 15px 0;
+        }
+
+        h4,
+        h5,
+        h2 {
+            text-align: center;
+            margin-bottom: 10px;
+            margin-top: 10px;
+        }
+
+        .korean-text b {
+            font-weight: bold;
+        }
+
+        .left-spesial-word,
+        .right-primer {
+            flex: 1;
+            padding: 15px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        /* Left burger styles */
+        .left-burger {
+            position: fixed;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: #f8f8f8;
+            padding: 15px;
+            border-radius: 0 8px 8px 0;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+            width: 200px;
+            z-index: 100;
+        }
+
+        /* Style for h4 in burgers */
+        .left-burger h4,
+        .right-burger h4,
+        .bottom-burger h4 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        /* Style for paragraphs in burgers */
+        .left-burger p,
+        .right-burger p,
+        .bottom-burger p {
+            text-align: left;
+            margin: 10px 0;
+        }
+
+        /* Right burger styles */
+        .right-burger {
+            position: fixed;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: #f8f8f8;
+            padding: 15px;
+            border-radius: 8px 0 0 8px;
+            box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.1);
+            width: 200px;
+            z-index: 100;
+        }
+
+        /* Bottom burger styles */
+        .bottom-burger {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #f8f8f8;
+            padding: 15px;
+            border-radius: 8px 8px 0 0;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            z-index: 100;
+        }
+
+        .iconDown,
+        .iconUp {
+            cursor: pointer;
+            text-align: center;
+            border-radius: 5px;
+            margin: 10px auto;
+            width: 30px;
+        }
+
+        /* для перехода по ссылке на гармонию гласных */
+        .rule_garmoniya a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .rule_garmoniya b {
+            cursor: pointer;
+            color: rgb(81, 7, 8);
+            text-decoration: underline;
+        }
+
+   
+        /* Стили для слов с подсказками */
+        .russian-word {
+            cursor: pointer;
+            position: relative;
+            padding: 2px 4px;
+            border-radius: 3px;
+            transition: background-color 0.2s;
+            font-weight: 700;
+        }
+
+        .russian-word:hover {
+            background-color: rgba(52, 152, 219, 0.2);
+        }
+
+        .russian-word:hover::after {
+            content: attr(data-translation);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #2c3e50;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            white-space: nowrap;
+            z-index: 10;
+            font-size: 20px;
+            font-weight: 900;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .progress {
+            margin-top: 20px;
+            text-align: center;
+            font-weight: bold;
+            color: #2c3e50;
+            flex: 0 0 auto;
+        }
+
+        .perehod {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+        }
+
+.trenazher-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 20px;
+}
+
+/* Стили для поля ввода корейского текста */
+.korean-input {
+    width: 100%;
+    font-weight: 900;
+    font-size: 26px;
+    padding: 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    text-align: center;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+    margin-bottom: 20px;
+}
+
+.korean-input:focus {
+    border-color: #3498db;
+    outline: none;
+}
+
+.sentence-number {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 50px; /* Расстояние 50px между элементами */
+}
+
+.russian-sentence {
+    margin-bottom: 20px;
+}
+
+/* .hint {
+    margin-bottom: 20px;
+} */
+.btn {
+    margin-bottom: 20px;
+}
+                        
+                     /* input-container */
+
+/* Адаптация для всех режимов */
+
+/* 1441px и выше */
+@media (min-width: 1441px) {
+    .trenazher-container {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: stretch;
+        padding: 35px;
+    }
+    
+    .exercise-container {
+        flex: 1 1 100%;
+    }
+    
+    .korean-input {
+        font-size: 28px;
+        padding: 18px;
+    }
+    
+    .controls {
+        justify-content: center;
+        gap: 12px;
+    }
+    
+    .btn {
+        flex: 0 1 calc(25% - 12px);
+        padding: 12px 18px;
+        font-size: 16px;
+        min-width: 140px;
+    }
+}
+
+/* 1440px - 1025px */
+@media (max-width: 1440px) and (min-width: 1025px) {
+    .trenazher-container {
+        flex-direction: column;
+        align-items: center;
+        padding: 30px;
+    }
+    
+    .korean-input {
+        font-size: 26px;
+        padding: 16px;
+    }
+    
+    .controls {
+        justify-content: space-around;
+        gap: 10px;
+    }
+    
+    .btn {
+        flex: 0 1 calc(25% - 10px);
+        padding: 11px 16px;
+        font-size: 15px;
+        min-width: 130px;
+    }
+}
+
+/* 1024px - 769px */
+@media (max-width: 1024px) and (min-width: 769px) {
+    .trenazher-container {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 25px;
+    }
+    
+    .korean-input {
+        font-size: 24px;
+        padding: 14px;
+    }
+    
+    .controls {
+        justify-content: space-between;
+        gap: 8px;
+    }
+    
+    .btn {
+        flex: 1 1 calc(25% - 8px);
+        padding: 10px 14px;
+        font-size: 14px;
+        min-width: 110px;
+    }
+}
+
+/* 768px - 426px */
+@media (max-width: 768px) and (min-width: 426px) {
+    .trenazher-container {
+        flex-direction: column;
+        padding: 20px;
+        align-items: center;
+    }
+    
+    .korean-input {
+        font-size: 22px;
+        padding: 12px;
+    }
+    
+    .controls {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    
+    .btn {
+        flex: 1 1 calc(50% - 8px);
+        padding: 10px 12px;
+        font-size: 14px;
+        min-width: 0;
+    }
+}
+
+/* 425px - 376px */
+@media (max-width: 425px) and (min-width: 376px) {
+    .trenazher-container {
+        flex-direction: column;
+        padding: 18px;
+        align-items: stretch;
+    }
+    
+    .korean-input {
+        font-size: 20px;
+        padding: 11px;
+        font-weight: 800;
+    }
+    
+    .controls {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+    
+    .btn {
+        flex: 1 1 calc(50% - 6px);
+        padding: 9px 11px;
+        font-size: 13px;
+        min-width: 0;
+    }
+}
+
+/* 375px - 321px */
+@media (max-width: 375px) and (min-width: 321px) {
+    .trenazher-container {
+        flex-direction: column;
+        padding: 15px;
+        align-items: stretch;
+    }
+    
+    .korean-input {
+        font-size: 19px;
+        padding: 10px;
+        font-weight: 800;
+    }
+    
+    .controls {
+        flex-direction: column;
+        gap: 6px;
+    }
+    
+    .btn {
+        flex: 1 1 100%;
+        padding: 10px 12px;
+        font-size: 14px;
+        min-width: 0;
+        width: 100%;
+    }
+}
+
+/* 320px - 251px */
+@media (max-width: 320px) and (min-width: 251px) {
+    .trenazher-container {
+        flex-direction: column;
+        padding: 12px;
+        align-items: stretch;
+    }
+    
+    .korean-input {
+        font-size: 18px;
+        padding: 9px;
+        font-weight: 700;
+    }
+    
+    .controls {
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    .btn {
+        flex: 1 1 100%;
+        padding: 8px 10px;
+        font-size: 13px;
+        min-width: 0;
+        width: 100%;
+    }
+}
+
+/* 250px и меньше */
+@media (max-width: 250px) {
+    .trenazher-container {
+        flex-direction: column;
+        padding: 10px;
+        align-items: stretch;
+        gap: 15px;
+    }
+    
+    .korean-input {
+        font-size: 16px;
+        padding: 8px;
+        font-weight: 700;
+    }
+    
+    .controls {
+        flex-direction: column;
+        gap: 4px;
+    }
+    
+    .btn {
+        flex: 1 1 100%;
+        padding: 7px 9px;
+        font-size: 12px;
+        min-width: 0;
+        width: 100%;
+    }
+    
+    .trenazher-title {
+        font-size: 1.1em;
+    }
+}
+
+    
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="burger-menu" id="burgerMenu">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <img class="logo" src="/image/logo krug.svg" alt="Логотип">
+            <a href="" class="user"> <img class="lk" src="/image/userrblur.svg" alt="Пользователь"></a>
+        </div>
+        <nav class="nav-burger" id="navBurger">
+            <ul class="ul-header">
+                <li class="li-header"> <a href="" class="a-header">онлайн - переводчик</a></li>
+                <li class="li-header"> <a href="" class="a-header">контакты</a></li>
+                <li class="li-header"> <a href="" class="a-header">светлая тема</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="container">
+            <article>
+                <div class="trenazher-container">
+                    <!-- <h1 class="trenazher-title">Тренажер перевода с русского на корейский</h1> -->
+                    
+                    <div class="exercise-container">
+                        <div class="sentence-number" id="sentence-number">
+                            <span>Пример 1 из 10</span>
+                            <span class="speaker-icon" id="speaker-icon">🔊</span>
+                        </div>
+                        <div class="russian-sentence" id="russian-sentence"></div>
+                        
+                        <div class="input-container">
+                            <input type="text" class="korean-input" id="korean-input" placeholder="Введите перевод на корейском языке...">
+                            <div class="result-message" id="result-message"></div>
+                        </div>
+                        
+                        <div class="korean-sentence" id="korean-sentence"></div>
+                        
+                        <div class="controls">
+                            <button class="btn" id="prev-btn" disabled>Предыдущее</button>
+                            <button class="btn" id="check-btn">Проверить</button>
+                            <button class="btn" id="show-btn">Показать ответ</button>
+                            <button class="btn" id="next-btn">Следующее</button>
+                        </div>
+                        
+                        <div class="hint">Наведите на русское слово, чтобы увидеть перевод на корейский</div>
+                    </div>
+                    
+                    <div class="progress" id="progress">Прогресс: 0/10</div>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <!-- Левый бургер -->
+    <div class="left-burger">
+        <h4>Полезные фразы</h4>
+        <div class="korean-text" data-korean=""><b>안녕하세요</b> - Здравствуйте</div>
+        <div class="korean-text" data-korean=""><b>감사합니다</b> - Спасибо</div>
+        <div class="korean-text" data-korean=""><b>미안합니다</b> - Извините</div>
+        <div class="korean-text" data-korean=""><b>네</b> - Да</div>
+    </div>
+
+    <!-- Левая закладка -->
+    <div class="left-bookmark-icon"></div>
+
+    <!-- Нижний бургер -->
+    <div class="bottom-burger">
+        <h4>Грамматические подсказки</h4>
+        <div class="korean-text" data-korean=""><b>은/는</b> - тематические частицы</div>
+        <div class="korean-text" data-korean=""><b>이/가</b> - подлежащие частицы</div>
+        <div class="korean-text" data-korean=""><b>을/를</b> - объектные частицы</div>
+        <div class="korean-text" data-korean=""><b>에/에서</b> - локативные частицы</div>
+    </div>
+
+    <!-- Нижняя закладка -->
+    <div class="bottom-bookmark-icon"></div>
+
+    <!-- Правая закладка -->
+    <div class="bookmark-icon"></div>
+
+    <!-- Правый бургер -->
+    <!-- <div class="right-burger">
+        <h4>Числительные</h4>
+        <div class="korean-text" data-korean=""><b>하나</b> - один</div>
+        <div class="korean-text" data-korean=""><b>둘</b> - два</div>
+        <div class="korean-text" data-korean=""><b>셋</b> - три</div>
+        <div class="korean-text" data-korean=""><b>넷</b> - четыре</div>
+    </div> -->
+
+    <div class="perehod">
+        <a href="/index.html"><img src="/image/vlevo2.svg" alt=""></a>
+        <a href="/index.html"><img src="/image/vpravo2.svg" alt=""></a>
+    </div>
+
+    <footer>
+        <section class="footer container">
+            <address>
+                <div class="footer1">
+                    <div class="tel">
+                        <img src="/image/tel_blue.svg" alt="">
+                        <p>8-925-685-52-39 </p>
+                    </div>
+                    <div class="mail">
+                        <p>anastasiya3000@yandex.ru</p>
+                    </div>
+                    <div class="footer-icon">
+                        <a href="" class="social-icon"> <img src="/image/telegram_icon 1.svg" alt=""></a>
+                        <a href="" class="social-icon"> <img src="/image/skype_icon 1.svg" alt=""></a>
+                        <a href="" class="social-icon"><img src="/image/whatsapp_green.png" alt=""></a>
+                        <a href="" class="social-icon"> <img src="/image/license.svg" alt=""></a>
+                    </div>
+                </div>
+
+                <div class="footer2">
+                    <nav class="nav1-footer">
+                        <ul class="ul-footer">
+                            <div class="f-li">
+                                <li class="li-footer"> <a href="" class="a-footer"><b>Правила оплаты</b></a></li>
+                                <li class="li-footer"> <a href="" class="a-footer"><b>Договор оферты</b></a></li>
+                                <li class="li-footer"> <a href="" class="a-footer"><b>Согласие с рассылкой</b></a></li>
+                                <li class="li-footer"><a href="" class="a-footer"><b>Пользовательское соглашение</b></a>
+                                </li>
+                                <li class="li-footer"> <a href="" class="a-footer"><b>Политика
+                                            конфиденциальности</b></a></li>
+                                <li class="li-footer"> <a href="" class="a-footer"><b>Положение о защите персональных
+                                            данных</b></a></li>
+                            </div>
+                        </ul>
+                    </nav>
+                </div>
+            </address>
+        </section>
+
+        <div class="copyright">
+            <img id="copyright" src="/image/Copyright2 _ blue.svg" alt="copyright">
+            <p>takiza, 2025</p>
+        </div>
+    </footer>
+
+   <script>
+
+const sentences = [
+    {
+        "russian": "Не опаздывайте.",
+        "korean": "늦지 마세요.",
+        "words": {
+            "Не": "...지 마세요",
+            "опаздывайте": "늦다"
+        }
+    },
+    {
+        "russian": "Не курите здесь.",
+        "korean": "여기서 담배를 피우지 마세요.",
+        "words": {
+            "Не": "...지 마세요",
+            "курите": "피우다",
+            "здесь": "여기서",
+            "сигареты": "담배"
+        }
+    },
+    {
+        "russian": "Не открывай дверь.",
+        "korean": "문을 열지 마.",
+        "words": {
+            "Не": "...지 마",
+            "открывай": "열다",
+            "дверь": "문"
+        }
+    },
+    {
+        "russian": "Не трогайте это.",
+        "korean": "그것을 만지지 마십시오.",
+        "words": {
+            "Не": "...지 마십시오",
+            "трогайте": "만지다",
+            "это": "그것"
+        }
+    },
+    {
+        "russian": "Не ешь слишком много.",
+        "korean": "너무 많이 먹지 마.",
+        "words": {
+            "Не": "...지 마",
+            "ешь": "먹다",
+            "слишком": "너무",
+            "много": "많이"
+        }
+    },
+    {
+        "russian": "Не рассказывай секрет.",
+        "korean": "비밀을 말하지 마.",
+        "words": {
+            "Не": "...지 마",
+            "рассказывай": "말하다",
+            "секрет": "비밀"
+        }
+    },
+    {
+        "russian": "Не закрывайте окно.",
+        "korean": "창문을 닫지 마세요.",
+        "words": {
+            "Не": "...지 마세요",
+            "закрывайте": "닫다",
+            "окно": "창문"
+        }
+    },
+    {
+        "russian": "Не смотри телевизор.",
+        "korean": "텔레비전을 보지 마.",
+        "words": {
+            "Не": "...지 마",
+            "смотри": "보다",
+            "телевизор": "텔레비전"
+        }
+    },
+    {
+        "russian": "Не пишите здесь.",
+        "korean": "여기에 쓰지 마세요.",
+        "words": {
+            "Не": "...지 마세요",
+            "пишите": "쓰다",
+            "здесь": "여기에"
+        }
+    },
+    {
+        "russian": "Не звони.",
+        "korean": "전화하지 마.",
+        "words": {
+            "Не": "...지 마",
+            "звони": "전화하다"
+        }
+    },
+    {
+        "russian": "Не занимайтесь спортом.",
+        "korean": "운동하지 마세요.",
+        "words": {
+            "Не": "...지 마세요",
+            "занимайтесь": "하다",
+            "спортом": "운동"
+        }
+    },
+    {
+        "russian": "Не волнуйся.",
+        "korean": "걱정하지 마.",
+        "words": {
+            "Не": "...지 마",
+            "волнуйся": "걱정하다"
+        }
+    },
+    {
+        "russian": "Не шумите.",
+        "korean": "소리 내지 마세요.",
+        "words": {
+            "Не": "...지 마세요",
+            "шумите": "소리 내다",
+            "звук": "소리"
+        }
+    },
+    {
+        "russian": "Не выходи.",
+        "korean": "나가지 마.",
+        "words": {
+            "Не": "...지 마",
+            "выходи": "나가다"
+        }
+    },
+    {
+        "russian": "Не принимайте это лекарство.",
+        "korean": "이 약을 먹지 마세요.",
+        "words": {
+            "Не": "...지 마세요",
+            "принимайте": "먹다",
+            "это": "이",
+            "лекарство": "약"
+        }
+    },
+    {
+        "russian": "Не жди.",
+        "korean": "기다리지 마.",
+        "words": {
+            "Не": "...지 마",
+            "жди": "기다리다"
+        }
+    },
+    {
+        "russian": "Не пейте кофе.",
+        "korean": "커피를 마시지 마세요.",
+        "words": {
+            "Не": "...지 마세요",
+            "пейте": "마시다",
+            "кофе": "커피"
+        }
+    },
+    {
+        "russian": "Не уходи.",
+        "korean": "떠나지 마.",
+        "words": {
+            "Не": "...지 마",
+            "уходи": "떠나다"
+        }
+    },
+    {
+        "russian": "Не тратьте деньги.",
+        "korean": "돈을 쓰지 마세요.",
+        "words": {
+            "Не": "...지 마세요",
+            "тратьте": "쓰다",
+            "деньги": "돈"
+        }
+    },
+    {
+        "russian": "Не плачь.",
+        "korean": "울지 마.",
+        "words": {
+            "Не": "...지 마",
+            "плачь": "울다"
+        }
+    },
+    {
+        "russian": "Не спи сейчас.",
+        "korean": "지금 자지 마.",
+        "words": {
+            "Не": "...지 마",
+            "спи": "자다",
+            "сейчас": "지금"
+        }
+    },
+    {
+        "russian": "Не забывайте обещание.",
+        "korean": "약속을 잊지 마세요.",
+        "words": {
+            "Не": "...지 마세요",
+            "забывайте": "잊다",
+            "обещание": "약속"
+        }
+    },
+    {
+        "russian": "Не верь тому человеку.",
+        "korean": "그 사람을 믿지 마.",
+        "words": {
+            "Не": "...지 마",
+            "верь": "믿다",
+            "тому": "그",
+            "человеку": "사람"
+        }
+    },
+    {
+        "russian": "Не делай громче звук телевизора.",
+        "korean": "TV 소리를 크게 하지 마세요.",
+        "words": {
+            "Не": "...지 마세요",
+            "делай": "하다",
+            "громче": "크다",
+            "звук": "소리",
+            "телевизора": "TV"
+        }
+    },
+    {
+        "russian": "Не садись здесь.",
+        "korean": "여기에 앉지 마.",
+        "words": {
+            "Не": "...지 마",
+            "садись": "앉다",
+            "здесь": "여기에"
+        }
+    },
+    {
+        "russian": "Не опаздывайте, а приходите рано.",
+        "korean": "늦지 말고 일찍 오세요.",
+        "words": {
+            "Не": "...지 말고",
+            "опаздывайте": "늦다",
+            "приходите": "오다",
+            "рано": "일찍"
+        }
+    },
+    {
+        "russian": "Не отдыхайте, а учитесь.",
+        "korean": "쉬지 말고 공부하세요.",
+        "words": {
+            "Не": "...지 말고",
+            "отдыхайте": "쉬다",
+            "учитесь": "공부하다"
+        }
+    },
+    {
+        "russian": "Не плачь, а улыбнись.",
+        "korean": "울지 말고 웃어요.",
+        "words": {
+            "Не": "...지 말고",
+            "плачь": "울다",
+            "улыбнись": "웃다"
+        }
+    },
+    {
+        "russian": "Не смотрите телевизор, а читайте книгу.",
+        "korean": "텔레비전을 보지 말고 책을 읽으세요.",
+        "words": {
+            "Не": "...지 말고",
+            "смотрите": "보다",
+            "телевизор": "텔레비전",
+            "читайте": "읽다",
+            "книгу": "책"
+        }
+    },
+    {
+        "russian": "Не звоните, а приходите лично.",
+        "korean": "전화하지 말고 직접 오세요.",
+        "words": {
+            "Не": "...지 말고",
+            "звоните": "전화하다",
+            "приходите": "오다",
+            "лично": "직접"
+        }
+    },
+    {
+        "russian": "Не волнуйтесь, а отдыхайте спокойно.",
+        "korean": "걱정하지 말고 편히 쉬세요.",
+        "words": {
+            "Не": "...지 말고",
+            "волнуйтесь": "걱정하다",
+            "отдыхайте": "쉬다",
+            "спокойно": "편히"
+        }
+    },
+    {
+        "russian": "Не шумите, а ведите себя тихо.",
+        "korean": "소리 내지 말고 조용히 하세요.",
+        "words": {
+            "Не": "...지 말고",
+            "шумите": "소리 내다",
+            "ведите": "하다",
+            "себя": "",
+            "тихо": "조용히"
+        }
+    },
+    {
+        "russian": "Не пишите здесь, а пишите в тетрадь.",
+        "korean": "여기에 쓰지 말고 공책에 쓰세요.",
+        "words": {
+            "Не": "...지 말고",
+            "пишите": "쓰다",
+            "здесь": "여기에",
+            "тетрадь": "공책"
+        }
+    },
+    {
+        "russian": "Не садитесь на автобус, а идите пешком.",
+        "korean": "버스 타지 말고 걸어가세요.",
+        "words": {
+            "Не": "...지 말고",
+            "садитесь": "타다",
+            "автобус": "버스",
+            "идите": "걷다",
+            "пешком": "걸어"
+        }
+    },
+    {
+        "russian": "Не бросайте мусор, а выбросите его в урну.",
+        "korean": "쓰레기 버리지 말고 쓰레기통에 버리세요.",
+        "words": {
+            "Не": "...지 말고",
+            "бросайте": "버리다",
+            "мусор": "쓰레기",
+            "выбросите": "버리다",
+            "урну": "쓰레기통"
+        }
+    },
+    {
+        "russian": "Не ложитесь спать поздно, а ложитесь рано.",
+        "korean": "늦게 자지 말고 일찍 자세요.",
+        "words": {
+            "Не": "...지 말고",
+            "ложитесь": "자다",
+            "спать": "",
+            "поздно": "늦게",
+            "рано": "일찍"
+        }
+    },
+    {
+        "russian": "Не ешьте много, а ешьте мало.",
+        "korean": "많이 먹지 말고 적게 먹으세요.",
+        "words": {
+            "Не": "...지 말고",
+            "ешьте": "먹다",
+            "много": "많이",
+            "мало": "적게"
+        }
+    },
+    {
+        "russian": "Не играй в игры, а делай уроки.",
+        "korean": "게임하지 말고 숙제하세요.",
+        "words": {
+            "Не": "...지 말고",
+            "играй": "게임하다",
+            "игры": "",
+            "делай": "하다",
+            "уроки": "숙제"
+        }
+    },
+    {
+        "russian": "Не стойте здесь, а сядьте вон там.",
+        "korean": "여기 서 있지 말고 저기에 앉으세요.",
+        "words": {
+            "Не": "...지 말고",
+            "стойте": "서다",
+            "здесь": "여기",
+            "сядьте": "앉다",
+            "там": "저기에"
+        }
+    },
+    {
+        "russian": "Не пей колу, а пей воду.",
+        "korean": "콜라 마시지 말고 물 마셔요.",
+        "words": {
+            "Не": "...지 말고",
+            "пей": "마시다",
+            "колу": "콜라",
+            "воду": "물"
+        }
+    },
+    {
+        "russian": "Не ходи один, а иди вместе.",
+        "korean": "혼자 가지 말고 같이 가세요.",
+        "words": {
+            "Не": "...지 말고",
+            "ходи": "가다",
+            "один": "혼자",
+            "иди": "가다",
+            "вместе": "같이"
+        }
+    },
+    {
+        "russian": "Не сдавайтесь, а продолжайте.",
+        "korean": "그만두지 말고 계속하세요.",
+        "words": {
+            "Не": "...지 말고",
+            "сдавайтесь": "그만두다",
+            "продолжайте": "계속하다"
+        }
+    },
+    {
+        "russian": "Не принимайте лекарства, а сходите в больницу.",
+        "korean": "약을 먹지 말고 병원에 가세요.",
+        "words": {
+            "Не": "...지 말고",
+            "принимайте": "먹다",
+            "лекарства": "약",
+            "сходите": "가다",
+            "больницу": "병원"
+        }
+    },
+    {
+        "russian": "Не закрывайте окно, а оставьте его открытым.",
+        "korean": "창문 닫지 말고 열어 두세요.",
+        "words": {
+            "Не": "...지 말고",
+            "закрывайте": "닫다",
+            "окно": "창문",
+            "оставьте": "두다",
+            "открытым": "열다"
+        }
+    },
+    {
+        "russian": "Не делайте завтра, а сделайте сегодня.",
+        "korean": "내일 하지 말고 오늘 하세요.",
+        "words": {
+            "Не": "...지 말고",
+            "делайте": "하다",
+            "завтра": "내일",
+            "сделайте": "하다",
+            "сегодня": "오늘"
+        }
+    },
+    {
+        "russian": "Не делай легкую работу, а делай сложную.",
+        "korean": "쉬운 일 하지 말고 어려운 일 하세요.",
+        "words": {
+            "Не": "...지 말고",
+            "делай": "하다",
+            "легкую": "쉽다",
+            "работу": "일",
+            "сложную": "어렵다"
+        }
+    },
+    {
+        "russian": "Не веди машину, а возьми такси.",
+        "korean": "운전하지 말고 택시를 타세요.",
+        "words": {
+            "Не": "...지 말고",
+            "веди": "운전하다",
+            "машину": "",
+            "возьми": "타다",
+            "такси": "택시"
+        }
+    },
+    {
+        "russian": "Не стой без дела, а помоги.",
+        "korean": "가만히 있지 말고 도와주세요.",
+        "words": {
+            "Не": "...지 말고",
+            "стой": "가만히 있다",
+            "без дела": "",
+            "помоги": "도와주다"
+        }
+    },
+    {
+        "russian": "Не пей холодную воду, а пей теплую.",
+        "korean": "찬물 마시지 말고 따뜻한 물 마셔요.",
+        "words": {
+            "Не": "...지 말고",
+            "пей": "마시다",
+            "холодную": "차다",
+            "воду": "물",
+            "теплую": "따뜻하다"
+        }
+    },
+    {
+        "russian": "Не думай об этом больше, а ложись спать.",
+        "korean": "그만 생각하지 말고 잠을 자세요.",
+        "words": {
+            "Не": "...지 말고",
+            "думай": "생각하다",
+            "об этом": "",
+            "больше": "",
+            "ложись": "자다",
+            "спать": "잠"
+        }
+    }
+];
+
+    // Переменные для управления состоянием
+    let currentIndex = 0;
+    let usedIndices = new Set();
+    let isRandomMode = true;
+
+    // Элементы DOM
+    const russianSentenceEl = document.getElementById('russian-sentence');
+    const koreanSentenceEl = document.getElementById('korean-sentence');
+    const koreanInputEl = document.getElementById('korean-input');
+    const resultMessageEl = document.getElementById('result-message');
+    const sentenceNumberEl = document.getElementById('sentence-number');
+    const progressEl = document.getElementById('progress');
+    const checkBtn = document.getElementById('check-btn');
+    const showBtn = document.getElementById('show-btn');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const speakerIcon = document.getElementById('speaker-icon');
+
+   // Функция для форматирования русского предложения с подсказками
+function formatRussianSentence(sentence, words) {
+    let formattedSentence = sentence;
+    
+    // Сортируем ключи по длине (от самых длинных к самым коротким)
+    // чтобы сначала заменять составные выражения
+    const sortedKeys = Object.keys(words).sort((a, b) => b.length - a.length);
+    
+    // Заменяем все фразы из words в предложении
+    sortedKeys.forEach(phrase => {
+        const translation = words[phrase];
+        const regex = new RegExp(phrase.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g');
+        formattedSentence = formattedSentence.replace(regex, 
+            `<span class="russian-word" data-translation="${translation}">${phrase}</span>`
+        );
+    });
+    
+    return formattedSentence;
+}
+
+    // Функция для произношения корейского предложения
+    function speakKorean() {
+        const koreanText = sentences[currentIndex].korean;
+        
+        if ('speechSynthesis' in window) {
+            const utterance = new SpeechSynthesisUtterance(koreanText);
+            utterance.lang = 'ko-KR';
+            utterance.rate = 0.9;
+            utterance.pitch = 1;
+            
+            window.speechSynthesis.speak(utterance);
+        } else {
+            alert("Ваш браузер не поддерживает синтез речи");
+        }
+    }
+
+    // Функция для отображения текущего предложения
+    function displayCurrentSentence() {
+        const currentSentence = sentences[currentIndex];
+        
+        sentenceNumberEl.innerHTML = `<span>Пример ${currentIndex + 1} из ${sentences.length}</span><span class="speaker-icon" id="speaker-icon">🔊</span>`;
+        russianSentenceEl.innerHTML = formatRussianSentence(currentSentence.russian, currentSentence.words);
+        koreanSentenceEl.textContent = currentSentence.korean;
+        koreanSentenceEl.style.display = 'none';
+        koreanInputEl.value = '';
+        resultMessageEl.style.display = 'none';
+        
+        // Обновляем состояние кнопок
+        prevBtn.disabled = currentIndex === 0;
+        nextBtn.disabled = currentIndex === sentences.length - 1;
+        
+        // Обновляем прогресс
+        progressEl.textContent = `Прогресс: ${currentIndex + 1}/${sentences.length}`;
+        
+        // Обновляем обработчик для иконки рупора
+        document.getElementById('speaker-icon').addEventListener('click', speakKorean);
+        
+        // Фокус на поле ввода
+        koreanInputEl.focus();
+    }
+
+    // Функция для получения случайного индекса
+    function getRandomIndex() {
+        if (usedIndices.size >= sentences.length) {
+            usedIndices.clear(); // Начинаем заново, если все примеры использованы
+        }
+        
+        let randomIndex;
+        do {
+            randomIndex = Math.floor(Math.random() * sentences.length);
+        } while (usedIndices.has(randomIndex));
+        
+        usedIndices.add(randomIndex);
+        return randomIndex;
+    }
+
+    // Функция для проверки введенного ответа
+    function checkAnswer() {
+        const userAnswer = koreanInputEl.value.trim();
+        const correctAnswer = sentences[currentIndex].korean;
+        
+        // Нормализуем ответы для сравнения (убираем лишние пробелы, игнорируем регистр)
+        const normalizedUserAnswer = userAnswer.replace(/\s+/g, ' ').toLowerCase();
+        const normalizedCorrectAnswer = correctAnswer.replace(/\s+/g, ' ').toLowerCase();
+        
+        if (normalizedUserAnswer === normalizedCorrectAnswer) {
+            resultMessageEl.textContent = "Правильно!";
+            resultMessageEl.className = "result-message correct";
+        } else {
+            resultMessageEl.textContent = "Неправильно. Попробуйте еще раз.";
+            resultMessageEl.className = "result-message incorrect";
+        }
+        
+        resultMessageEl.style.display = 'block';
+    }
+
+    // Обработчики событий
+    checkBtn.addEventListener('click', checkAnswer);
+
+    koreanInputEl.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            checkAnswer();
+        }
+    });
+
+    showBtn.addEventListener('click', function() {
+        koreanSentenceEl.style.display = 'block';
+        resultMessageEl.style.display = 'none';
+    });
+
+    prevBtn.addEventListener('click', function() {
+        if (currentIndex > 0) {
+            currentIndex--;
+            displayCurrentSentence();
+        }
+    });
+
+    nextBtn.addEventListener('click', function() {
+        if (isRandomMode) {
+            currentIndex = getRandomIndex();
+        } else {
+            if (currentIndex < sentences.length - 1) {
+                currentIndex++;
+            }
+        }
+        displayCurrentSentence();
+    });
+
+    // Инициализация тренажера
+    displayCurrentSentence();
+
+    // Оригинальный код для бургер-меню
+    const burgerMenu = document.getElementById("burgerMenu");
+    const navBurger = document.getElementById("navBurger");
+
+    burgerMenu.addEventListener("click", function (event) {
+        event.stopPropagation();
+        navBurger.classList.toggle("active");
+    });
+
+    document.addEventListener("click", function (event) {
+        if (!navBurger.contains(event.target) && !burgerMenu.contains(event.target)) {
+            navBurger.classList.remove("active");
+        }
+    });
+
+    function toggleBurger() {
+        const part1 = document.querySelector('.burger-part1');
+        const part2 = document.querySelector('.burger-part2');
+
+        if (part1.style.display === 'none') {
+            part1.style.display = 'block';
+            part2.style.display = 'none';
+        } else {
+            part1.style.display = 'none';
+            part2.style.display = 'block';
+        }
+    }
+
+    /* Свайп для мобильных устройств */
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    document.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+    });
+
+    document.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    });
+
+    function handleSwipe() {
+        const swipeThreshold = 50;
+        if (touchEndX < touchStartX - swipeThreshold) {
+            // Переход к следующему предложению
+            if (isRandomMode) {
+                currentIndex = getRandomIndex();
+            } else {
+                if (currentIndex < sentences.length - 1) {
+                    currentIndex++;
+                }
+            }
+            displayCurrentSentence();
+        } else if (touchEndX > touchStartX + swipeThreshold) {
+            // Переход к предыдущему предложению
+            if (currentIndex > 0) {
+                currentIndex--;
+                displayCurrentSentence();
+            }
+        }
+    }
+    </script>
+
+    <!-- <script src="/scripts/script_zvuk_clik.js"></script> -->
+</body>
+
+</html>
+
+ <!-- исправь ошибки только в скрипте и пропиши в скрипте только массив по принципу  // Массив предложений для тренажера
+    const sentences = [
+        {
+            russian: "",
+            korean: ".",
+            words: {
+              
+            }
+        }, 
+корейские слова , которые высвечиваются в подсказке (подсветке) - поставь в инфинитивную форму
+замени  в массив все эти 100 предложения :
+
+
+
+
+- по принципу  // Массив предложений для тренажера
+    const sentences = [
+        {
+            russian: "Я пишу ручкой.",
+            korean: "나는 만년필로 씁니다.",
+            words: {
+                "Я": "나",
+                "пишу": "쓰다",
+                "ручкой": "만년필"
+            }
+        },
+     
+    늦지 마세요. – Не опаздывайте.
+
+여기서 담배를 피우지 마세요. – Не курите здесь.
+
+문을 열지 마. – Не открывай дверь.
+
+그것을 만지지 마십시오. – Не трогайте это.
+
+너무 많이 먹지 마. – Не ешь слишком много.
+
+비밀을 말하지 마. – Не рассказывай секрет.
+
+창문을 닫지 마세요. – Не закрывайте окно.
+
+텔레비전을 보지 마. – Не смотри телевизор.
+
+여기에 쓰지 마세요. – Не пишите здесь.
+
+전화하지 마. – Не звони.
+
+운동하지 마세요. – Не занимайтесь спортом.
+
+걱정하지 마. – Не волнуйся.
+
+소리 내지 마세요. – Не шумите.
+
+나가지 마. – Не выходи.
+
+이 약을 먹지 마세요. – Не принимайте это лекарство.
+
+기다리지 마. – Не жди.
+
+커피를 마시지 마세요. – Не пейте кофе.
+
+떠나지 마. – Не уходи.
+
+돈을 쓰지 마세요. – Не тратьте деньги.
+
+울지 마. – Не плачь.
+
+지금 자지 마. – Не спи сейчас.
+
+약속을 잊지 마세요. – Не забывайте обещание.
+
+그 사람을 믿지 마. – Не верь тому человеку.
+
+TV 소리를 크게 하지 마세요. – Не делай громче звук телевизора.
+
+여기에 앉지 마. – Не садись здесь.
+
+Часть 2: Комбинированные предложения (Imperative + 지 말고)
+늦지 말고 일찍 오세요. – Не опаздывайте, а приходите рано.
+
+쉬지 말고 공부하세요. – Не отдыхайте, а учитесь.
+
+울지 말고 웃어요. – Не плачь, а улыбнись.
+
+텔레비전을 보지 말고 책을 읽으세요. – Не смотрите телевизор, а читайте книгу.
+
+전화하지 말고 직접 오세요. – Не звоните, а приходите лично.
+
+걱정하지 말고 편히 쉬세요. – Не волнуйтесь, а отдыхайте спокойно.
+
+소리 내지 말고 조용히 하세요. – Не шумите, а ведите себя тихо.
+
+여기에 쓰지 말고 노트에 쓰세요. – Не пишите здесь, а пишите в тетрадь.
+
+버스 타지 말고 걸어가세요. – Не садитесь на автобус, а идите пешком.
+
+쓰레기 버리지 말고 쓰레기통에 버리세요. – Не бросайте мусор, а выбросите его в урну.
+
+늦게 자지 말고 일찍 자세요. – Не ложитесь спать поздно, а ложитесь рано.
+
+많이 먹지 말고 적게 먹으세요. – Не ешьте много, а ешьте мало.
+
+게임하지 말고 숙제하세요. – Не играй в игры, а делай уроки.
+
+여기 서 있지 말고 저기에 앉으세요. – Не стойте здесь, а сядьте вон там.
+
+콜라 마시지 말고 물 마셔요. – Не пей колу, а пей воду.
+
+혼자 가지 말고 같이 가세요. – Не ходи один, а иди вместе.
+
+그만두지 말고 계속하세요. – Не сдавайтесь, а продолжайте.
+
+약을 먹지 말고 병원에 가세요. – Не принимайте лекарства, а сходите в больницу.
+
+창문 닫지 말고 열어 두세요. – Не закрывайте окно, а оставьте его открытым.
+
+내일 하지 말고 오늘 하세요. – Не делайте завтра, а сделайте сегодня.
+
+쉬운 일 하지 말고 어려운 일 하세요. – Не делай легкую работу, а делай сложную.
+
+운전하지 말고 택시를 타세요. – Не веди машину, а возьми такси.
+
+가만히 있지 말고 도와주세요. – Не стой без дела, а помоги.
+
+찬물 마시지 말고 따뜻한 물 마셔요. – Не пей холодную воду, а пей теплую.
+
+그만 생각하지 말고 잠을 자세요. – Не думай об этом больше, а ложись спать. -->
