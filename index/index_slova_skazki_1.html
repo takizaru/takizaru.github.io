@@ -5,13 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Korean Words Practice</title>
     <!-- <link rel="stylesheet" href="style.css"> -->
-    <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"> -->
-
-
-<style>
-   /* ===== ОБЩИЕ СТИЛИ ===== */
+    <style>
+        /* ===== ОБЩИЕ СТИЛИ ===== */
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
@@ -28,8 +23,7 @@ body {
     margin: 0;
     max-height: 100vh;
     max-width: 100%;
-    background-color: #E0F2E1;
-    background-image: url('/image/fon.png');
+    background-image: url('/image/фон 2.png');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -87,10 +81,7 @@ body {
 
 /* ===== HEADER ===== */
 header {
-    background: linear-gradient(45deg, #544848, #e3e3d2, #4a6545bb, #a6c1ee, #928da7b8, #e3e3d2);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    background-color: #c8ba8d;
     position: relative;
     z-index: 100;
     width: 100%;
@@ -129,7 +120,6 @@ header .container {
 
 .lk:hover {
     transform: scale(1.5);
-    border-radius: 100px solid rgb(49, 36, 105);
 }
 
 /* Бургер-меню */
@@ -241,19 +231,17 @@ main {
 }
 
 .start-section, .dictionary-card, .category-card {
-    background: rgba(255, 255, 255, 0.15);
-    border-radius: 20px;
+    background-color: #f5f2e860;
+    border: 1px solid #0f0520;
+    border-radius: 50px;
     padding: 30px 25px;
     text-align: center;
-    box-shadow: 
-        0 8px 32px rgba(0, 0, 0, 0.1),
-        inset 0 1px 0 rgba(255, 255, 255, 0.2),
-        inset 0 -1px 0 rgba(0, 0, 0, 0.05);
-    backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(2px);
     position: relative;
     overflow: hidden;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
 }
 
 .start-section {
@@ -265,35 +253,17 @@ main {
     justify-content: center;
     align-items: center;
     height: 350px;
-    cursor: pointer;
-}
-
-.start-section::before, .dictionary-card::before, .category-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, 
-        rgba(192, 192, 192, 0.8), 
-        rgba(255, 255, 255, 0.6), 
-        rgba(192, 192, 192, 0.8));
 }
 
 .start-section:hover, .dictionary-card:hover, .category-card:hover {
     transform: translateY(-15px) scale(1.03);
-    box-shadow: 
-        0 20px 40px rgba(0, 0, 0, 0.2),
-        inset 0 1px 0 rgba(255, 255, 255, 0.3);
-    background: rgba(255, 255, 255, 0.25);
-    border-color: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
 }
 
 .section-title, .dictionary-title, .category-title {
     font-size: 1.8em;
     margin-bottom: 15px;
-    color: #2c3e50;
+    color: hsla(60, 33%, 99%, 0.814);
     font-weight: 700;
     position: relative;
     padding-bottom: 10px;
@@ -309,12 +279,12 @@ main {
     height: 2px;
     background: linear-gradient(90deg, 
         transparent, 
-        rgba(52, 152, 219, 0.7), 
+        rgba(255, 255, 255, 0.7), 
         transparent);
 }
 
 .section-description, .category-description {
-    color: #34495e;
+    color: hsla(60, 33%, 99%, 0.814);
     margin-bottom: 25px;
     font-size: 1em;
     line-height: 1.5;
@@ -322,12 +292,11 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
-    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
 }
 
 .section-count, .dictionary-count, .category-count {
     font-size: 1.1em;
-    color: #2c3e50;
+    color: hsla(60, 33%, 99%, 0.814);
     font-weight: 600;
     background-color: rgba(255, 255, 255, 0.2);
     padding: 10px 25px;
@@ -355,7 +324,6 @@ main {
     min-width: min(90vw, 280px);
     max-width: min(90vw, 320px);
     aspect-ratio: 16/10;
-    cursor: pointer;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -364,22 +332,22 @@ main {
 
 .back-btn, .nav-btn {
     background: linear-gradient(
-        135deg,
-        rgba(220, 220, 220, 0.9) 0%,
-        rgba(192, 192, 192, 0.9) 25%,
-        rgba(169, 169, 169, 0.9) 50%,
-        rgba(192, 192, 192, 0.9) 75%,
-        rgba(220, 220, 220, 0.9) 100%
+        360deg, 
+        rgba(55, 58, 70, 0.8), 
+        rgb(122, 134, 113),  
+        rgba(111, 115, 104, 0.43), 
+        rgb(122, 134, 113), 
+        rgba(37, 73, 52, 0.8), 
+        rgba(55, 58, 70, 0.8)
     );
-    color: #2c3e50;
-    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: rgb(49, 36, 105);
+    border: 2px solid #0f0520;
     cursor: pointer;
     font-weight: 600;
     text-decoration: none;
     transition: all 0.3s ease;
-    box-shadow: 
-        0 4px 15px rgba(0, 0, 0, 0.1),
-        inset 0 2px 0 rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
     position: relative;
     overflow: hidden;
     z-index: 1;
@@ -387,48 +355,16 @@ main {
 
 .back-btn {
     padding: 14px 35px;
-    border-radius: 50px;
+    border-radius: 15px;
     font-size: 1.1em;
     display: inline-flex;
     align-items: center;
     gap: 12px;
 }
 
-.back-btn::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-        90deg, 
-        transparent, 
-        rgba(255, 255, 255, 0.4), 
-        transparent
-    );
-    transition: left 0.7s;
-    z-index: -1;
-}
-
 .back-btn:hover {
     transform: scale(1.08);
-    box-shadow: 
-        0 8px 25px rgba(0, 0, 0, 0.2),
-        inset 0 2px 0 rgba(255, 255, 255, 0.4);
-    background: linear-gradient(
-        135deg,
-        rgba(240, 240, 240, 0.95) 0%,
-        rgba(220, 220, 220, 0.95) 25%,
-        rgba(200, 200, 200, 0.95) 50%,
-        rgba(220, 220, 220, 0.95) 75%,
-        rgba(240, 240, 240, 0.95) 100%
-    );
-    color: #1a252f;
-}
-
-.back-btn:hover::before {
-    left: 100%;
+    color: rgb(4, 1, 48);
 }
 
 .back-btn img {
@@ -498,25 +434,7 @@ main {
     justify-content: center;
     padding: 30px;
     box-sizing: border-box;
-    border: 2px solid #f0f0f0;
-}
-
-.flashcard::before {
-    content: '';
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    right: -2px;
-    bottom: -2px;
-    background: linear-gradient(45deg, #2d6b5f, #4a9e8a, #7dc4b5, #a9dfd2);
-    border-radius: 22px;
-    z-index: -1;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.flashcard:hover::before {
-    opacity: 1;
+    border: 2px solid #0f0520;
 }
 
 .flashcard.flipped {
@@ -544,14 +462,14 @@ main {
 
 .card-front {
     background: linear-gradient(135deg, #f8f9ff 0%, #f0f4ff 100%);
-    border: 2px solid #e6ecff;
+    border: 2px solid #0f0520;
 }
 
 .card-back {
     background: linear-gradient(135deg, #2d3e50 0%, #3a5169 100%);
     color: white;
     transform: rotateY(180deg);
-    border: 2px solid #4a9e8a;
+    border: 2px solid #0f0520;
 }
 
 .card-front .word-display {
@@ -670,6 +588,16 @@ main {
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
+    background: linear-gradient(
+        360deg, 
+        rgba(55, 58, 70, 0.8), 
+        rgb(122, 134, 113),  
+        rgba(111, 115, 104, 0.43), 
+        rgb(122, 134, 113), 
+        rgba(37, 73, 52, 0.8), 
+        rgba(55, 58, 70, 0.8)
+    );
+    border: 2px solid #0f0520;
 }
 
 .nav-btn:hover {
@@ -809,127 +737,6 @@ address {
     animation: fadeIn 0.4s ease-out;
 }
 
-/* ===== ДОПОЛНИТЕЛЬНЫЕ СТИЛИ ИЗ ВТОРОГО КОДА ===== */
-.baner {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    font-weight: 900;
-    margin-bottom: 50px;
-}
-
-h1 {
-    font-family: "Montserrat", sans-serif;
-    font-weight: 900;
-    font-size: 36px;
-    background: linear-gradient(45deg, #544848, #e3e3d2, #4a6545, #fbc2eb, #a6c1ee, #928da7, #e3e3d2);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-size: 300% 300%;
-    animation: gradient-shift 5s ease infinite;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-}
-
-@keyframes gradient-shift {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
-}
-
-.box {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding-left: 45px;
-    padding-right: 45px;
-    margin-top: 20px;
-}
-
-.card1, .card2 {
-    width: 48%;
-    background-color: #f5f2e860;
-    border: 1px solid #0f0520;
-    border-radius: 50px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 50px;
-    padding-top: 50px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(2px);
-}
-
-.card1 a:hover, .card2 a:hover {
-    color: rgb(4, 1, 48);
-    font-size: 22px;
-}
-
-.card1 a, .card2 a {
-    color: hsla(60, 33%, 99%, 0.814);
-    text-decoration: none;
-    font-size: 18px;
-    font-weight: 600;
-}
-
-.btn-vibor {
-    width: 200px;
-    height: 50px;
-    background: linear-gradient(360deg, rgba(55, 58, 70, 0.8), rgb(122, 134, 113), rgba(111, 115, 104, 0.43), rgb(122, 134, 113), rgba(37, 73, 52, 0.8), rgba(55, 58, 70, 0.8));
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(10px);
-    justify-content: center;
-    display: flex;
-    align-items: center;
-    font-size: 18px;
-    text-align: center;
-    color: rgb(49, 36, 105);
-    border: 2px solid #0f0520;
-    border-radius: 15px;
-    gap: 20px;
-}
-
-.btn-proba {
-    width: 200px;
-    height: 50px;
-    display: flex;
-    font-size: 10px;
-    text-align: center;
-    border: 2px solid #0f0520;
-    border-radius: 16px;
-    padding: auto;
-    align-items: center;
-    justify-content: center;
-    margin-left: 150px;
-    margin-bottom: 50px;
-    background: linear-gradient(360deg, rgba(55, 58, 70, 0.8), rgb(122, 134, 113), rgba(111, 115, 104, 0.43), rgb(122, 134, 113), rgba(37, 73, 52, 0.8), rgba(55, 58, 70, 0.8));
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(10px);
-}
-
-.btn-proba:hover {
-    animation: puls 5s 3;
-}
-
-@keyframes puls {
-    0% {
-        transform: scale(0.5);
-    }
-    100% {
-        transform: scale(1);
-    }
-}
-
-.btn-vibor, .btn-proba {
-    margin-bottom: 10px;
-}
-
 .perehod {
     display: flex;
     justify-content: space-between;
@@ -945,16 +752,9 @@ h1 {
     transition: transform 0.3s;
 }
 
+
 .perehod>a:hover {
     transform: scale(1.5);
-}
-
-.proba a {
-    font-size: 14px;
-}
-
-.proba a:hover {
-    color: rgb(49, 36, 105);
 }
 
 /* ===== АДАПТАЦИЯ ДЛЯ ВСЕХ УСТРОЙСТВ ===== */
@@ -1127,15 +927,6 @@ h1 {
     header .container {
         padding: 15px 30px;
     }
-    
-    .box {
-        flex-direction: column;
-    }
-    
-    .card1, .card2 {
-        width: 70%;
-        margin-bottom: 45px;
-    }
 }
 
 /* Экраны 768px и меньше */
@@ -1203,15 +994,6 @@ h1 {
     
     header .container {
         padding: 15px 20px;
-    }
-    
-    h1 {
-        font-size: 28px;
-    }
-    
-    .btn-proba {
-        margin-left: 0;
-        width: 180px;
     }
 }
 
@@ -1381,26 +1163,6 @@ h1 {
     .footer-icon img {
         width: 28px;
         height: 28px;
-    }
-    
-    h1 {
-        font-size: 24px;
-    }
-    
-    .card1, .card2 {
-        width: 80%;
-        padding-top: 30px;
-        gap: 20px;
-    }
-    
-    .btn-vibor, .btn-proba {
-        width: 120px;
-        height: 30px;
-        font-size: 14px;
-    }
-    
-    .card1 a, .card2 a {
-        font-size: 10px;
     }
 }
 
@@ -1600,150 +1362,8 @@ h1 {
         width: 35px;
         height: 35px;
     }
-    
-    h1 {
-        font-size: 20px;
-    }
 }
-
-/* Экраны 250px и меньше (очень маленькие устройства) */
-@media (max-width: 250px) {
-    header .container,
-    main,
-    footer .container {
-        max-width: 240px;
-        padding: 5px;
-    }
-    
-    .logo {
-        width: 30px;
-        height: 30px;
-    }
-    
-    .lk {
-        width: 30px;
-        height: 30px;
-    }
-    
-    .burger-menu div {
-        width: 18px;
-        height: 2px;
-        gap: 3px;
-    }
-    
-    .flashcard {
-        height: 35vh;
-        padding: 10px;
-        border-radius: 12px;
-    }
-    
-    .card-front .word-display {
-        font-size: 24px;
-    }
-    
-    .card-back .word-display {
-        font-size: 20px;
-    }
-    
-    .card-front,
-    .card-back {
-        padding: 10px;
-        border-radius: 10px;
-    }
-    
-    .start-section {
-        height: 140px;
-        padding: 8px;
-        border-radius: 15px;
-    }
-    
-    .dictionary-card, .category-card {
-        padding: 15px 10px;
-        border-radius: 15px;
-    }
-    
-    .section-title, .dictionary-title, .category-title {
-        font-size: 1em;
-        margin-bottom: 10px;
-    }
-    
-    .navigation-buttons {
-        gap: 15px;
-        margin-top: 20px;
-    }
-    
-    .nav-btn {
-        width: 35px;
-        height: 35px;
-    }
-    
-    .nav-btn img {
-        width: 16px;
-        height: 16px;
-    }
-    
-    .back-btn {
-        padding: 6px 15px;
-        font-size: 0.8em;
-    }
-    
-    .back-btn img {
-        width: 16px;
-        height: 16px;
-    }
-    
-    .audio-icon {
-        width: 28px;
-        height: 28px;
-        top: 8px;
-        right: 8px;
-    }
-    
-    .audio-icon img {
-        width: 16px;
-        height: 16px;
-    }
-    
-    .progress-indicator {
-        font-size: 14px;
-        bottom: 10px;
-    }
-    
-    .mail, .tel {
-        font-size: 10px;
-    }
-    
-    .footer-icon {
-        gap: 10px;
-    }
-    
-    .footer-icon img {
-        width: 22px;
-        height: 22px;
-    }
-    
-    .copyright {
-        font-size: 10px;
-    }
-    
-    #copyright {
-        width: 14px;
-        height: 14px;
-    }
-    
-    .nav-burger {
-        width: 180px;
-    }
-    
-    .nav-burger .a-header {
-        font-size: 14px;
-    }
-    
-    .a-footer {
-        font-size: 8px;
-    }
-}
-</style>
+    </style>
 </head>
 <body>
     <div id="background-letters"></div>
@@ -1755,7 +1375,7 @@ h1 {
                 <div></div>
                 <div></div>
             </div>
-            <img class="logo" src="/image/logo krug.svg" alt="Логотип">
+          <img class="logo" src="/image/logo krug.svg" alt="Логотип">
             <a href="#" class="user">
                 <img class="lk" src="/image/userrblur.svg" alt="Пользователь">
             </a>
@@ -1773,13 +1393,11 @@ h1 {
         <div class="start-sections-container" id="startSectionsContainer">
             <div class="start-section" onclick="openDictionarySection(1)">
                 <div class="section-title">Словарь 1</div>
-                <!-- <div class="section-description">Базовые слова и фразы для начинающих. Изучите основы корейского языка с помощью самых часто используемых слов.</div> -->
                 <div class="section-count">13 категорий • 269 слов</div>
             </div>
             
             <div class="start-section" onclick="openDictionarySection(2)">
                 <div class="section-title">Словарь 2</div>
-                <!-- <div class="section-description">Продвинутая лексика и выражения. Углубите свои знания с помощью тематических словарей и сложных конструкций.</div> -->
                 <div class="section-count">15 категорий • 456 слов</div>
             </div>
         </div>
@@ -1791,7 +1409,7 @@ h1 {
         <div class="back-to-sections" id="backToSections">
             <button class="back-btn" onclick="backToStartSections()">
                 <img src="/image/vlevo2.svg" alt="Назад">
-                к выбору словарей
+                к словарям
             </button>
         </div>
 
@@ -1830,12 +1448,12 @@ h1 {
             </div>
         </section>
     </main>
-<div class="perehod">
+ <div class="perehod">
         <a href="/index.html"><img src="/image/vlevo2.svg" alt=""></a>
         <a href="/index.html"><img src="/image/vpravo2.svg" alt=""></a>
     </div>
     <footer>
-        <section class="footer container">
+        <div class="container">
             <address>
                 <div class="footer1">
                     <div class="tel">
@@ -1846,24 +1464,22 @@ h1 {
                         <p>anastasiya3000@yandex.ru</p>
                     </div>
                     <div class="footer-icon">
-                        <a href="" class="social-icon"><img src="/image/telegram_icon 1.svg" alt=""></a>
-                        <a href="" class="social-icon"><img src="/image/skype_icon 1.svg" alt=""></a>
-                        <a href="" class="social-icon"><img src="/image/whatsapp_green.png" alt=""></a>
-                        <a href="" class="social-icon"><img src="/image/license.svg" alt=""></a>
+                        <a href="" class="social-icon"><img src="/image/telegram_icon 1.svg" alt="Telegram"></a>
+                        <a href="" class="social-icon"><img src="/image/skype_icon 1.svg" alt="Skype"></a>
+                        <a href="" class="social-icon"><img src="/image/whatsapp_green.png" alt="WhatsApp"></a>
+                        <a href="" class="social-icon"><img src="/image/license.svg" alt="License"></a>
                     </div>
                 </div>
 
                 <div class="footer2">
                     <nav class="nav1-footer">
                         <ul class="ul-footer">
-                            <div class="f-li">
-                                <li class="li-footer"><a href="" class="a-footer"><b>Правила оплаты</b></a></li>
-                                <li class="li-footer"><a href="" class="a-footer"><b>Договор оферты</b></a></li>
-                                <li class="li-footer"><a href="" class="a-header"><b>Согласие с рассылкой</b></a></li>
-                                <li class="li-footer"><a href="" class="a-footer"><b>Пользовательское соглашение</b></a></li>
-                                <li class="li-footer"><a href="" class="a-footer"><b>Политика конфиденциальности</b></a></li>
-                                <li class="li-footer"><a href="" class="a-footer"><b>Положение о защите персональных данных</b></a></li>
-                            </div>
+                            <li class="li-footer"><a href="" class="a-footer"><b>Правила оплаты</b></a></li>
+                            <li class="li-footer"><a href="" class="a-footer"><b>Договор оферты</b></a></li>
+                            <li class="li-footer"><a href="" class="a-footer"><b>Согласие с рассылкой</b></a></li>
+                            <li class="li-footer"><a href="" class="a-footer"><b>Пользовательское соглашение</b></a></li>
+                            <li class="li-footer"><a href="" class="a-footer"><b>Политика конфиденциальности</b></a></li>
+                            <li class="li-footer"><a href="" class="a-footer"><b>Положение о защите персональных данных</b></a></li>
                         </ul>
                     </nav>
                 </div>
@@ -1873,20 +1489,18 @@ h1 {
                 <img id="copyright" src="/image/Copyright2 _ blue.svg" alt="copyright">
                 <p>takiza, 2025</p>
             </div>
-        </section>
+        </div>
     </footer>
 
+    <script src="script.js"></script>
     <script>
         // Массив с корейскими буквами для фона
-        const koreanLetters = [
-            '가', '나', '다', '라', '마', '바', '사', '아', '자', '차',
-            '카', '타', '파', '하', '거', '너', '더', '러', '머', '버',
-            '서', '어', '저', '처', '커', '터', '퍼', '허', '고', '노',
-            '도', '로', '모', '보', '소', '오', '조', '초', '코', '토'
-        ];
-
-
-
+const koreanLetters = [
+    '가', '나', '다', '라', '마', '바', '사', '아', '자', '차',
+    '카', '타', '파', '하', '거', '너', '더', '러', '머', '버',
+    '서', '어', '저', '처', '커', '터', '퍼', '허', '고', '노',
+    '도', '로', '모', '보', '소', '오', '조', '초', '코', '토'
+];
 
 
    const dictionary1Categories = [
@@ -2785,339 +2399,378 @@ h1 {
 
 
 
+// Глобальные переменные
+let currentDictionaryType = 0; // 1 или 2
+let currentCategoryIndex = 0;
+let currentWordIndex = 0;
+let speechSynthesisSupported = false;
+let isFlipped = false;
+let currentWords = [];
 
-        // Глобальные переменные
-        let currentDictionaryType = 0; // 1 или 2
-        let currentCategoryIndex = 0;
-        let currentWordIndex = 0;
-        let speechSynthesisSupported = false;
-        let isFlipped = false;
-        let currentWords = [];
+// Функция для создания анимированных букв на фоне
+function createBackgroundLetters() {
+    const container = document.getElementById('background-letters');
+    if (!container) return;
+    
+    container.innerHTML = '';
+    
+    for (let i = 0; i < 25; i++) {
+        const letter = document.createElement('div');
+        letter.className = 'korean-letter';
+        
+        const randomLetter = koreanLetters[Math.floor(Math.random() * koreanLetters.length)];
+        letter.textContent = randomLetter;
+        
+        const left = Math.random() * 100;
+        const top = Math.random() * 100;
+        const delay = Math.random() * 15;
+        
+        letter.style.left = `${left}%`;
+        letter.style.top = `${top}%`;
+        letter.style.animationDelay = `${delay}s`;
+        letter.style.fontSize = `${30 + Math.random() * 40}px`;
+        letter.style.transform += ` rotate(${Math.random() * 20 - 10}deg)`;
+        
+        container.appendChild(letter);
+    }
+}
 
-        // Функция для создания анимированных букв на фоне
-        function createBackgroundLetters() {
-            const container = document.getElementById('background-letters');
-            container.innerHTML = '';
-            
-            for (let i = 0; i < 25; i++) {
-                const letter = document.createElement('div');
-                letter.className = 'korean-letter';
-                
-                const randomLetter = koreanLetters[Math.floor(Math.random() * koreanLetters.length)];
-                letter.textContent = randomLetter;
-                
-                const left = Math.random() * 100;
-                const top = Math.random() * 100;
-                const delay = Math.random() * 15;
-                
-                letter.style.left = `${left}%`;
-                letter.style.top = `${top}%`;
-                letter.style.animationDelay = `${delay}s`;
-                letter.style.fontSize = `${30 + Math.random() * 40}px`;
-                letter.style.transform += ` rotate(${Math.random() * 20 - 10}deg)`;
-                
-                container.appendChild(letter);
-            }
-        }
-
-        // Инициализация при загрузке страницы
-        document.addEventListener('DOMContentLoaded', function () {
-            createBackgroundLetters();
-            checkSpeechSupport();
-            
-            if (speechSynthesisSupported) {
-                speechSynthesis.onvoiceschanged = function() {
-                    // Голоса загружены
-                };
-            }
-            
-            // Бургер-меню
-            const burgerMenu = document.getElementById("burgerMenu");
-            const navBurger = document.getElementById("navBurger");
-            
-            if (burgerMenu && navBurger) {
-                burgerMenu.addEventListener("click", function (event) {
-                    event.stopPropagation();
-                    navBurger.classList.toggle("active");
-                });
-                
-                document.addEventListener("click", function (event) {
-                    if (!navBurger.contains(event.target) && !burgerMenu.contains(event.target)) {
-                        navBurger.classList.remove("active");
-                    }
-                });
-            }
-            
-            // Клик по карточке для перелистывания
-            const flashcard = document.getElementById("flashcard");
-            if (flashcard) {
-                flashcard.addEventListener('click', (e) => {
-                    if (!e.target.closest('.audio-icon')) {
-                        flipCard();
-                    }
-                });
-            }
-            
-            // Обработка клавиатуры
-            document.addEventListener('keydown', function (event) {
-                switch (event.key) {
-                    case 'ArrowLeft':
-                        previousWord();
-                        break;
-                    case 'ArrowRight':
-                        nextWord();
-                        break;
-                    case ' ':
-                    case 'Spacebar':
-                        event.preventDefault();
-                        flipCard();
-                        break;
-                    case 'Enter':
-                        playKoreanAudio({ stopPropagation: () => { } });
-                        break;
-                    case 'Escape':
-                        if (document.getElementById('flashcardSection').classList.contains('active')) {
-                            backToCategoriesList();
-                        }
-                        break;
-                }
-            });
+// Проверяем поддержку синтеза речи
+function checkSpeechSupport() {
+    if ('speechSynthesis' in window) {
+        speechSynthesisSupported = true;
+    } else {
+        document.querySelectorAll('.audio-icon').forEach(icon => {
+            if (icon) icon.style.display = 'none';
         });
+    }
+}
 
-        // Проверяем поддержку синтеза речи
-        function checkSpeechSupport() {
-            if ('speechSynthesis' in window) {
-                speechSynthesisSupported = true;
-            } else {
-                document.querySelectorAll('.audio-icon').forEach(icon => {
-                    icon.style.display = 'none';
-                });
+// Открытие словаря (1 или 2)
+function openDictionarySection(dictionaryType) {
+    currentDictionaryType = dictionaryType;
+    
+    // Скрываем стартовые секции
+    const startContainer = document.getElementById('startSectionsContainer');
+    const backToSections = document.getElementById('backToSections');
+    const categoriesContainer = document.getElementById('categoriesContainer');
+    
+    if (!startContainer || !backToSections || !categoriesContainer) return;
+    
+    startContainer.style.display = 'none';
+    backToSections.classList.add('active');
+    
+    // Показываем контейнер категорий
+    categoriesContainer.classList.add('active');
+    categoriesContainer.innerHTML = '';
+    
+    // Выбираем категории в зависимости от словаря
+    const categories = dictionaryType === 1 ? dictionary1Categories : dictionary2Categories;
+    
+    // Рендерим категории
+    categories.forEach((category, index) => {
+        const card = document.createElement('div');
+        card.className = 'category-card';
+        card.innerHTML = `
+            <div class="category-title">${category.title}</div>
+            <div class="category-count">${category.count} слов</div>
+        `;
+        card.addEventListener('click', () => enterCategory(index));
+        categoriesContainer.appendChild(card);
+    });
+}
+
+// Вход в категорию
+function enterCategory(categoryIndex) {
+    currentCategoryIndex = categoryIndex;
+    
+    // Выбираем категории в зависимости от активного словаря
+    const categories = currentDictionaryType === 1 ? dictionary1Categories : dictionary2Categories;
+    
+    if (categories[categoryIndex] && categories[categoryIndex].words) {
+        currentWords = categories[categoryIndex].words;
+        currentWordIndex = 0;
+        
+        // Скрываем контейнер категорий
+        const categoriesContainer = document.getElementById('categoriesContainer');
+        const flashcardSection = document.getElementById('flashcardSection');
+        const backToCategories = document.getElementById('backToCategories');
+        
+        if (!categoriesContainer || !flashcardSection || !backToCategories) return;
+        
+        categoriesContainer.classList.remove('active');
+        
+        // Показываем флеш-карточки
+        flashcardSection.classList.add('active');
+        backToCategories.classList.add('active');
+        
+        updateWord();
+    }
+}
+
+// Возврат к списку категорий
+function backToCategoriesList() {
+    const flashcardSection = document.getElementById('flashcardSection');
+    const backToCategories = document.getElementById('backToCategories');
+    const categoriesContainer = document.getElementById('categoriesContainer');
+    
+    if (!flashcardSection || !backToCategories || !categoriesContainer) return;
+    
+    flashcardSection.classList.remove('active');
+    backToCategories.classList.remove('active');
+    categoriesContainer.classList.add('active');
+    
+    // Сброс состояния карточки
+    const flashcard = document.getElementById("flashcard");
+    if (flashcard) {
+        flashcard.classList.remove("flipped");
+        isFlipped = false;
+    }
+}
+
+// Возврат к выбору словарей
+function backToStartSections() {
+    const categoriesContainer = document.getElementById('categoriesContainer');
+    const backToSections = document.getElementById('backToSections');
+    const startContainer = document.getElementById('startSectionsContainer');
+    
+    if (!categoriesContainer || !backToSections || !startContainer) return;
+    
+    categoriesContainer.classList.remove('active');
+    backToSections.classList.remove('active');
+    startContainer.style.display = 'flex';
+    
+    // Сброс состояния карточки
+    const flashcard = document.getElementById("flashcard");
+    if (flashcard) {
+        flashcard.classList.remove("flipped");
+        isFlipped = false;
+    }
+}
+
+// Обновление слова на карточке
+function updateWord() {
+    const koreanWordElement = document.getElementById("korean-word");
+    const russianWordElement = document.getElementById("russian-word");
+    const progressIndicators = document.querySelectorAll('.progress-indicator');
+    
+    if (!koreanWordElement || !russianWordElement) return;
+    
+    if (currentWords.length > 0 && currentWordIndex < currentWords.length) {
+        const word = currentWords[currentWordIndex];
+        
+        // Корейское слово на передней стороне
+        koreanWordElement.textContent = word.korean;
+        
+        // Русский перевод на обратной стороне
+        russianWordElement.textContent = word.translation;
+
+        // Прогресс
+        const progressText = `${currentWordIndex + 1} / ${currentWords.length}`;
+        progressIndicators.forEach(el => {
+            el.textContent = progressText;
+        });
+    } else {
+        koreanWordElement.textContent = "단어 없음";
+        russianWordElement.textContent = "Нет слов";
+        progressIndicators.forEach(el => {
+            el.textContent = "0 / 0";
+        });
+    }
+
+    // Сброс переворота карточки
+    const flashcard = document.getElementById("flashcard");
+    if (flashcard) {
+        flashcard.classList.remove("flipped");
+        isFlipped = false;
+    }
+}
+
+// Переход к следующему слову
+function nextWord() {
+    if (currentWords.length === 0) return;
+
+    currentWordIndex = (currentWordIndex + 1) % currentWords.length;
+    updateWord();
+}
+
+// Переход к предыдущему слову
+function previousWord() {
+    if (currentWords.length === 0) return;
+
+    currentWordIndex = (currentWordIndex - 1 + currentWords.length) % currentWords.length;
+    updateWord();
+}
+
+// Перелистывание карточки
+function flipCard() {
+    const flashcard = document.getElementById("flashcard");
+    if (!flashcard) return;
+    
+    isFlipped = !isFlipped;
+    flashcard.classList.toggle("flipped");
+    
+    // Скрываем/показываем аудио-иконку в зависимости от стороны
+    const audioIcon = document.querySelector('.audio-icon');
+    if (audioIcon) {
+        if (isFlipped) {
+            audioIcon.style.display = 'none';
+        } else {
+            audioIcon.style.display = 'flex';
+        }
+    }
+}
+
+// Функция для озвучивания корейского слова
+function playKoreanAudio(event) {
+    if (event && event.stopPropagation) {
+        event.stopPropagation();
+    }
+
+    if (!speechSynthesisSupported || currentWords.length === 0) {
+        return;
+    }
+
+    const word = currentWords[currentWordIndex];
+    if (!word) return;
+
+    const text = word.korean;
+
+    if (text) {
+        // Отменяем текущее воспроизведение
+        speechSynthesis.cancel();
+
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'ko-KR';
+        utterance.rate = 0.9;
+        utterance.volume = 1.0;
+        utterance.pitch = 1.0;
+
+        // Получаем доступные голоса и выбираем корейский
+        const voices = speechSynthesis.getVoices();
+        const koreanVoice = voices.find(voice => 
+            voice.lang === 'ko-KR' || 
+            voice.lang.startsWith('ko') ||
+            voice.name.includes('Korean')
+        );
+        
+        if (koreanVoice) {
+            utterance.voice = koreanVoice;
+        }
+
+        // Воспроизводим
+        speechSynthesis.speak(utterance);
+    }
+}
+
+// Инициализация при загрузке страницы
+document.addEventListener('DOMContentLoaded', function () {
+    createBackgroundLetters();
+    checkSpeechSupport();
+    
+    if (speechSynthesisSupported) {
+        speechSynthesis.onvoiceschanged = function() {
+            // Голоса загружены
+        };
+    }
+    
+    // Бургер-меню
+    const burgerMenu = document.getElementById("burgerMenu");
+    const navBurger = document.getElementById("navBurger");
+    
+    if (burgerMenu && navBurger) {
+        burgerMenu.addEventListener("click", function (event) {
+            event.stopPropagation();
+            navBurger.classList.toggle("active");
+        });
+        
+        document.addEventListener("click", function (event) {
+            if (!navBurger.contains(event.target) && !burgerMenu.contains(event.target)) {
+                navBurger.classList.remove("active");
             }
-        }
-
-        // Открытие словаря (1 или 2)
-        function openDictionarySection(dictionaryType) {
-            currentDictionaryType = dictionaryType;
-            
-            // Скрываем стартовые секции
-            document.getElementById('startSectionsContainer').style.display = 'none';
-            document.getElementById('backToSections').classList.add('active');
-            
-            // Показываем контейнер категорий
-            const categoriesContainer = document.getElementById('categoriesContainer');
-            categoriesContainer.classList.add('active');
-            categoriesContainer.innerHTML = '';
-            
-            // Выбираем категории в зависимости от словаря
-            const categories = dictionaryType === 1 ? dictionary1Categories : dictionary2Categories;
-            
-            // Рендерим категории
-            categories.forEach((category, index) => {
-                const card = document.createElement('div');
-                card.className = 'category-card';
-                card.innerHTML = `
-                    <div class="category-title">${category.title}</div>
-                    <div class="category-count">${category.count} слов</div>
-                `;
-                card.addEventListener('click', () => enterCategory(index));
-                categoriesContainer.appendChild(card);
-            });
-        }
-
-        // Вход в категорию
-        function enterCategory(categoryIndex) {
-            currentCategoryIndex = categoryIndex;
-            
-            // Выбираем категории в зависимости от активного словаря
-            const categories = currentDictionaryType === 1 ? dictionary1Categories : dictionary2Categories;
-            
-            if (categories[categoryIndex] && categories[categoryIndex].words) {
-                currentWords = categories[categoryIndex].words;
-                currentWordIndex = 0;
-                
-                // Скрываем контейнер категорий
-                document.getElementById('categoriesContainer').classList.remove('active');
-                
-                // Показываем флеш-карточки
-                document.getElementById('flashcardSection').classList.add('active');
-                document.getElementById('backToCategories').classList.add('active');
-                
-                updateWord();
+        });
+    }
+    
+    // Клик по карточке для перелистывания
+    const flashcard = document.getElementById("flashcard");
+    if (flashcard) {
+        flashcard.addEventListener('click', (e) => {
+            if (!e.target.closest('.audio-icon')) {
+                flipCard();
             }
-        }
-
-        // Возврат к списку категорий
-        function backToCategoriesList() {
-            document.getElementById('flashcardSection').classList.remove('active');
-            document.getElementById('backToCategories').classList.remove('active');
-            document.getElementById('categoriesContainer').classList.add('active');
-            
-            // Сброс состояния карточки
-            const flashcard = document.getElementById("flashcard");
-            if (flashcard) {
-                flashcard.classList.remove("flipped");
-                isFlipped = false;
-            }
-        }
-
-        // Возврат к выбору словарей
-        function backToStartSections() {
-            document.getElementById('categoriesContainer').classList.remove('active');
-            document.getElementById('backToSections').classList.remove('active');
-            document.getElementById('startSectionsContainer').style.display = 'flex';
-            
-            // Сброс состояния карточки
-            const flashcard = document.getElementById("flashcard");
-            if (flashcard) {
-                flashcard.classList.remove("flipped");
-                isFlipped = false;
-            }
-        }
-
-        // Обновление слова на карточке
-        function updateWord() {
-            if (currentWords.length > 0 && currentWordIndex < currentWords.length) {
-                const word = currentWords[currentWordIndex];
-                
-                // Корейское слово на передней стороне
-                document.getElementById("korean-word").textContent = word.korean;
-                
-                // Русский перевод на обратной стороне
-                document.getElementById("russian-word").textContent = word.translation;
-
-                // Прогресс
-                const progressText = `${currentWordIndex + 1} / ${currentWords.length}`;
-                document.querySelectorAll('.progress-indicator').forEach(el => {
-                    el.textContent = progressText;
-                });
-            } else {
-                document.getElementById("korean-word").textContent = "단어 없음";
-                document.getElementById("russian-word").textContent = "Нет слов";
-                document.querySelectorAll('.progress-indicator').forEach(el => {
-                    el.textContent = "0 / 0";
-                });
-            }
-
-            // Сброс переворота карточки
-            const flashcard = document.getElementById("flashcard");
-            if (flashcard) {
-                flashcard.classList.remove("flipped");
-                isFlipped = false;
-            }
-        }
-
-        // Переход к следующему слову
-        function nextWord() {
-            if (currentWords.length === 0) return;
-
-            currentWordIndex = (currentWordIndex + 1) % currentWords.length;
-            updateWord();
-        }
-
-        // Переход к предыдущему слову
-        function previousWord() {
-            if (currentWords.length === 0) return;
-
-            currentWordIndex = (currentWordIndex - 1 + currentWords.length) % currentWords.length;
-            updateWord();
-        }
-
-        // Перелистывание карточки
-        function flipCard() {
-            const flashcard = document.getElementById("flashcard");
-            if (!flashcard) return;
-            
-            isFlipped = !isFlipped;
-            flashcard.classList.toggle("flipped");
-            
-            // Скрываем/показываем аудио-иконку в зависимости от стороны
-            const audioIcon = document.querySelector('.audio-icon');
-            if (audioIcon) {
-                if (isFlipped) {
-                    audioIcon.style.display = 'none';
-                } else {
-                    audioIcon.style.display = 'flex';
+        });
+    }
+    
+    // Обработка клавиатуры
+    document.addEventListener('keydown', function (event) {
+        switch (event.key) {
+            case 'ArrowLeft':
+                previousWord();
+                break;
+            case 'ArrowRight':
+                nextWord();
+                break;
+            case ' ':
+            case 'Spacebar':
+                event.preventDefault();
+                flipCard();
+                break;
+            case 'Enter':
+                playKoreanAudio({ stopPropagation: () => { } });
+                break;
+            case 'Escape':
+                const flashcardSection = document.getElementById('flashcardSection');
+                if (flashcardSection && flashcardSection.classList.contains('active')) {
+                    backToCategoriesList();
                 }
-            }
+                break;
         }
+    });
+});
 
-        // Функция для озвучивания корейского слова
-        function playKoreanAudio(event) {
-            if (event && event.stopPropagation) {
-                event.stopPropagation();
-            }
+// Обработчики свайпа для мобильных устройств
+let touchStartX = 0;
+let touchEndX = 0;
+let touchStartY = 0;
+let touchEndY = 0;
 
-            if (!speechSynthesisSupported || currentWords.length === 0) {
-                return;
-            }
+document.addEventListener('touchstart', (e) => {
+    const flashcardSection = document.getElementById('flashcardSection');
+    if (!flashcardSection || !flashcardSection.classList.contains('active')) return;
+    
+    touchStartX = e.changedTouches[0].screenX;
+    touchStartY = e.changedTouches[0].screenY;
+}, { passive: true });
 
-            const word = currentWords[currentWordIndex];
-            if (!word) return;
+document.addEventListener('touchend', (e) => {
+    const flashcardSection = document.getElementById('flashcardSection');
+    if (!flashcardSection || !flashcardSection.classList.contains('active')) return;
+    
+    touchEndX = e.changedTouches[0].screenX;
+    touchEndY = e.changedTouches[0].screenY;
+    handleSwipe();
+}, { passive: true });
 
-            const text = word.korean;
+function handleSwipe() {
+    const swipeThreshold = 50;
+    const verticalSwipeThreshold = 30;
 
-            if (text) {
-                // Отменяем текущее воспроизведение
-                speechSynthesis.cancel();
-
-                const utterance = new SpeechSynthesisUtterance(text);
-                utterance.lang = 'ko-KR';
-                utterance.rate = 0.9;
-                utterance.volume = 1.0;
-                utterance.pitch = 1.0;
-
-                // Получаем доступные голоса и выбираем корейский
-                const voices = speechSynthesis.getVoices();
-                const koreanVoice = voices.find(voice => 
-                    voice.lang === 'ko-KR' || 
-                    voice.lang.startsWith('ko') ||
-                    voice.name.includes('Korean')
-                );
-                
-                if (koreanVoice) {
-                    utterance.voice = koreanVoice;
-                }
-
-                // Воспроизводим
-                speechSynthesis.speak(utterance);
-            }
+    if (Math.abs(touchEndY - touchStartY) < verticalSwipeThreshold) {
+        if (touchEndX < touchStartX - swipeThreshold) {
+            nextWord();
+        } else if (touchEndX > touchStartX + swipeThreshold) {
+            previousWord();
         }
+    }
+}
 
-        // Обработчики свайпа для мобильных устройств
-        let touchStartX = 0;
-        let touchEndX = 0;
-        let touchStartY = 0;
-        let touchEndY = 0;
-
-        document.addEventListener('touchstart', (e) => {
-            if (!document.getElementById('flashcardSection').classList.contains('active')) return;
-            
-            touchStartX = e.changedTouches[0].screenX;
-            touchStartY = e.changedTouches[0].screenY;
-        }, { passive: true });
-
-        document.addEventListener('touchend', (e) => {
-            if (!document.getElementById('flashcardSection').classList.contains('active')) return;
-            
-            touchEndX = e.changedTouches[0].screenX;
-            touchEndY = e.changedTouches[0].screenY;
-            handleSwipe();
-        }, { passive: true });
-
-        function handleSwipe() {
-            const swipeThreshold = 50;
-            const verticalSwipeThreshold = 30;
-
-            if (Math.abs(touchEndY - touchStartY) < verticalSwipeThreshold) {
-                if (touchEndX < touchStartX - swipeThreshold) {
-                    nextWord();
-                } else if (touchEndX > touchStartX + swipeThreshold) {
-                    previousWord();
-                }
-            }
-        }
-
-
+// Экспортируем функции в глобальную область видимости
+window.openDictionarySection = openDictionarySection;
+window.backToStartSections = backToStartSections;
+window.backToCategoriesList = backToCategoriesList;
+window.previousWord = previousWord;
+window.nextWord = nextWord;
+window.playKoreanAudio = playKoreanAudio;
     </script>
 </body>
 </html>
