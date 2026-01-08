@@ -729,6 +729,27 @@
         transition: all 0.3s ease;
     }
 
+
+.perehod img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid rgb(49, 36, 105);
+    transition: transform 0.3s;
+}
+
+.perehod>a:hover {
+    transform: scale(1.5);
+}
+
+.perehod {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    padding: 0 120px 0 120px;
+    margin-bottom: 20px;
+}
     @keyframes fadeIn {
         from {
             opacity: 0;
