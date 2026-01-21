@@ -1,0 +1,2098 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Korean Words Practice</title>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <style>
+        /* ===== ОБЩИЕ СТИЛИ ===== */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    font-family: "Montserrat", serif;
+    font-size: auto;
+    font-style: normal;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    max-height: 100vh;
+    max-width: 100%;
+    background-image: url('/image/fon.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow-x: hidden;
+}
+
+#background-letters {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.korean-letter {
+    position: absolute;
+    font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+    font-size: 40px;
+    font-weight: bold;
+    opacity: 0;
+    animation: letterFloat 8s ease-in-out infinite;
+    color: transparent;
+    background: linear-gradient(45deg, #78909C, #546E7A, #90A4AE);
+    background-clip: text;
+    -webkit-background-clip: text;
+    user-select: none;
+}
+
+@keyframes letterFloat {
+    0% {
+        opacity: 0;
+        transform: scale(0.1) translate(0, 0) rotate(0deg);
+    }
+    10% {
+        opacity: 0.7;
+        transform: scale(1) translate(0, -100px) rotate(5deg);
+    }
+    80% {
+        opacity: 0.7;
+        transform: scale(1) translate(0, -300px) rotate(5deg);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(1) translate(0, -400px) rotate(5deg);
+    }
+}
+
+/* ===== HEADER ===== */
+header {
+    background-color: #c8ba8d;
+    position: relative;
+    z-index: 100;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+header .container {
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #c8ba8d;
+    padding: 20px 110px;
+    margin: 0;
+}
+
+.logo {
+    width: 54px;
+    height: 54px;
+    filter: brightness(0) invert(1);
+    transition: transform 0.3s;
+}
+
+.logo:hover {
+    transform: scale(1.5);
+}
+
+.lk {
+    width: 54px;
+    height: 54px;
+    filter: brightness(0) invert(1);
+    transition: transform 0.3s;
+}
+
+.lk:hover {
+    transform: scale(1.5);
+}
+
+/* Бургер-меню */
+.burger-menu {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+    z-index: 1000;
+}
+
+.burger-menu div {
+    width: 25px;
+    height: 3px;
+    background-color: #000;
+}
+
+.nav-burger {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 250px;
+    height: 100vh;
+    background-color: rgba(200, 186, 141, 0.95);
+    transition: left 0.3s ease;
+    z-index: 999;
+    padding-top: 80px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.nav-burger.active {
+    left: 0;
+}
+
+.nav-burger .ul-header {
+    list-style: none;
+    padding: 20px;
+    margin: 0;
+    flex-direction: column;
+}
+
+.nav-burger .li-header {
+    margin-bottom: 20px;
+}
+
+.nav-burger .a-header {
+    color: hsla(47, 18%, 20%, 0.814);
+    text-decoration: none;
+    font-size: 18px;
+    display: block;
+}
+
+.nav-burger .a-header:hover {
+    color: rgb(4, 1, 48);
+}
+
+.nav-header {
+    padding: 20px;
+}
+
+.ul-header {
+    display: flex;
+    list-style: none;
+}
+
+.li-header {
+    display: flex;
+    margin-right: 45px;
+}
+
+.a-header {
+    color: hsla(47, 18%, 20%, 0.814);
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.a-header:hover {
+    color: rgb(4, 1, 48);
+}
+
+/* ===== MAIN CONTENT ===== */
+main {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 30px 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.container {
+    width: 100%;
+    max-width: 1288px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.start-sections-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    margin: 50px auto;
+    max-width: 1200px;
+    padding: 25px;
+}
+
+.start-section, .dictionary-card, .category-card {
+    background-color: #f5f2e860;
+    border: 1px solid #0f0520;
+    border-radius: 50px;
+    padding: 30px 25px;
+    text-align: center;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(2px);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+}
+
+.start-section {
+    flex: 1;
+    min-width: min(90vw, 500px);
+    max-width: min(90vw, 550px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 350px;
+}
+
+.start-section:hover, .dictionary-card:hover, .category-card:hover {
+    transform: translateY(-15px) scale(1.03);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+}
+
+.section-title, .dictionary-title, .category-title {
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    color: hsla(60, 33%, 99%, 0.814);
+    font-weight: 700;
+    position: relative;
+    padding-bottom: 10px;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.section-title::after, .dictionary-title::after, .category-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 25%;
+    width: 50%;
+    height: 2px;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.7), 
+        transparent);
+}
+
+.section-description, .category-description {
+    color: hsla(60, 33%, 99%, 0.814);
+    margin-bottom: 25px;
+    font-size: 1em;
+    line-height: 1.5;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.section-count, .dictionary-count, .category-count {
+    font-size: 1.1em;
+    color: hsla(60, 33%, 99%, 0.814);
+    font-weight: 600;
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 10px 25px;
+    border-radius: 25px;
+    margin-top: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.dictionaries-container, .categories-container {
+    display: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+    margin: 40px auto;
+    max-width: 1400px;
+    padding: 20px;
+}
+
+.dictionaries-container.active, .categories-container.active {
+    display: flex;
+}
+
+.dictionary-card, .category-card {
+    flex: 1 0 auto;
+    min-width: min(90vw, 280px);
+    max-width: min(90vw, 320px);
+    aspect-ratio: 16/10;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.back-btn, .nav-btn {
+    background: linear-gradient(
+        360deg, 
+        rgba(55, 58, 70, 0.8), 
+        rgb(122, 134, 113),  
+        rgba(111, 115, 104, 0.43), 
+        rgb(122, 134, 113), 
+        rgba(37, 73, 52, 0.8), 
+        rgba(55, 58, 70, 0.8)
+    );
+    color: rgb(49, 36, 105);
+    border: 2px solid #0f0520;
+    cursor: pointer;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.back-btn {
+    padding: 14px 35px;
+    border-radius: 15px;
+    font-size: 1.1em;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.back-btn:hover {
+    transform: scale(1.08);
+    color: rgb(4, 1, 48);
+}
+
+.back-btn img {
+    width: 22px;
+    height: 22px;
+    filter: brightness(0) invert(0.3);
+}
+
+.back-to-sections, .back-to-dictionaries, .back-to-categories {
+    display: none;
+    justify-content: center;
+    margin: 20px auto 40px;
+    max-width: 1200px;
+    padding: 0 20px;
+    width: 100%;
+}
+
+.back-to-sections.active, .back-to-dictionaries.active, .back-to-categories.active {
+    display: flex;
+}
+
+/* ===== FLASHCARD SECTION ===== */
+.flashcard-section {
+    display: none;
+    width: 100%;
+    animation: fadeIn 0.5s ease-out;
+    position: relative;
+    min-height: calc(100vh - 200px);
+    flex: 1;
+}
+
+.flashcard-section.active {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+.flashcard-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 70vh;
+    perspective: 1000px;
+    margin: 0 auto 40px;
+    max-width: 100%;
+    padding: 20px;
+    width: 100%;
+}
+
+.flashcard {
+    width: 500px;
+    height: 350px;
+    background-color: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    position: relative;
+    cursor: pointer;
+    transform-style: preserve-3d;
+    transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    box-sizing: border-box;
+    border: 2px solid #0f0520;
+}
+
+.flashcard.flipped {
+    transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    box-sizing: border-box;
+    overflow: hidden;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+}
+
+.card-front {
+    background: linear-gradient(135deg, #f8f9ff 0%, #f0f4ff 100%);
+    border: 2px solid #0f0520;
+}
+
+.card-back {
+    background: linear-gradient(135deg, #2d3e50 0%, #3a5169 100%);
+    color: white;
+    transform: rotateY(180deg);
+    border: 2px solid #0f0520;
+}
+
+.card-front .word-display {
+    font-size: 72px;
+    font-weight: 900;
+    text-align: center;
+    line-height: 1.2;
+    margin: 0;
+    word-break: keep-all;
+    font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', 'Nanum Gothic', sans-serif;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #2c3e50;
+    padding: 20px;
+    max-width: 100%;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.card-back .word-display {
+    font-size: 54px;
+    font-weight: 700;
+    text-align: center;
+    line-height: 1.3;
+    margin: 0;
+    word-break: break-word;
+    font-family: 'Arial', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: white;
+    padding: 25px;
+    max-width: 100%;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    text-align: center;
+    word-spacing: normal;
+    letter-spacing: normal;
+}
+
+.audio-icon {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.8);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.audio-icon:hover {
+    transform: scale(1.1);
+    background-color: #e8f5f2;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.audio-icon img {
+    width: 22px;
+    height: 22px;
+}
+
+.card-back .audio-icon {
+    display: none !important;
+}
+
+.progress-indicator {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 18px;
+    color: #666;
+    font-weight: 500;
+    padding: 0 10px;
+}
+
+.card-back .progress-indicator {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.navigation-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 100px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+}
+
+.nav-btn {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(
+        360deg, 
+        rgba(55, 58, 70, 0.8), 
+        rgb(122, 134, 113),  
+        rgba(111, 115, 104, 0.43), 
+        rgb(122, 134, 113), 
+        rgba(37, 73, 52, 0.8), 
+        rgba(55, 58, 70, 0.8)
+    );
+    border: 2px solid #0f0520;
+}
+
+.nav-btn:hover {
+    transform: translateY(-3px) scale(1.1);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.nav-btn img {
+    width: 30px;
+    height: 30px;
+    filter: brightness(0) invert(0.3);
+    position: relative;
+    z-index: 1;
+}
+
+/* ===== FOOTER ===== */
+footer {
+    background-color: #c8ba8d;
+    padding: 30px 0;
+    margin-top: auto;
+    width: 100%;
+    margin: 0;
+}
+
+footer .container {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+address {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.footer1 {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.mail, .tel {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    gap: 5px;
+    color: hsla(47, 18%, 20%, 0.814);
+}
+
+.tel img {
+    width: 12px;
+    height: 12px;
+}
+
+.footer-icon {
+    display: flex;
+    gap: 15px;
+}
+
+.footer-icon img {
+    width: 30px;
+    height: 30px;
+}
+
+.footer2 {
+    display: flex;
+    align-items: flex-start;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.ul-footer {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+.li-footer {
+    margin: 0;
+}
+
+.a-footer {
+    color: hsla(47, 18%, 20%, 0.814);
+    text-decoration: none;
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+.a-footer:hover {
+    color: rgb(4, 1, 48);
+}
+
+.copyright {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    color: hsla(47, 18%, 20%, 0.814);
+    font-size: 14px;
+    width: 100%;
+    margin-top: 20px;
+}
+
+#copyright {
+    height: 18px;
+    width: 18px;
+}
+
+.tel:hover p, .mail:hover p, .copyright:hover p {
+    color: rgb(4, 1, 48);
+    font-size: 1.1em;
+    transition: all 0.3s ease;
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.word-display {
+    animation: fadeIn 0.4s ease-out;
+}
+
+.perehod {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    margin: 20px 0;
+}
+
+.perehod img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid rgb(49, 36, 105);
+    transition: transform 0.3s;
+}
+
+
+.perehod>a:hover {
+    transform: scale(1.5);
+}
+
+/* ===== АДАПТАЦИЯ ДЛЯ ВСЕХ УСТРОЙСТВ ===== */
+
+/* Экраны 1440px и меньше */
+@media (max-width: 1440px) {
+    header .container,
+    main,
+    footer .container {
+        max-width: 1200px;
+    }
+    
+    .flashcard {
+        width: 450px;
+        height: 315px;
+    }
+    
+    .card-front .word-display {
+        font-size: 64px;
+    }
+    
+    .card-back .word-display {
+        font-size: 48px;
+    }
+    
+    .start-section {
+        min-width: min(90vw, 450px);
+        max-width: min(90vw, 500px);
+        height: 320px;
+    }
+    
+    .navigation-buttons {
+        gap: 80px;
+    }
+    
+    header .container {
+        padding: 20px 80px;
+    }
+}
+
+/* Экраны 1280px и меньше */
+@media (max-width: 1280px) {
+    header .container,
+    main,
+    footer .container {
+        max-width: 1100px;
+    }
+    
+    .flashcard {
+        width: 420px;
+        height: 294px;
+    }
+    
+    .card-front .word-display {
+        font-size: 60px;
+    }
+    
+    .card-back .word-display {
+        font-size: 44px;
+    }
+    
+    .start-section {
+        min-width: min(90vw, 420px);
+        max-width: min(90vw, 480px);
+        height: 300px;
+    }
+    
+    .section-title, .dictionary-title, .category-title {
+        font-size: 1.6em;
+    }
+    
+    header .container {
+        padding: 20px 60px;
+    }
+}
+
+/* Экраны 1024px и меньше */
+@media (max-width: 1024px) {
+    header .container,
+    main,
+    footer .container {
+        max-width: 900px;
+    }
+    
+    .flashcard {
+        width: 400px;
+        height: 280px;
+    }
+    
+    .card-front .word-display {
+        font-size: 56px;
+    }
+    
+    .card-back .word-display {
+        font-size: 40px;
+    }
+    
+    .start-section {
+        min-width: min(90vw, 400px);
+        max-width: min(90vw, 450px);
+        height: 280px;
+        padding: 25px 20px;
+    }
+    
+    .dictionary-card, .category-card {
+        min-width: min(90vw, 260px);
+        max-width: min(90vw, 300px);
+    }
+    
+    .navigation-buttons {
+        gap: 70px;
+    }
+    
+    header .container {
+        padding: 15px 40px;
+    }
+}
+
+/* Экраны 900px и меньше */
+@media (max-width: 900px) {
+    header .container,
+    main,
+    footer .container {
+        max-width: 800px;
+    }
+    
+    .flashcard {
+        width: 380px;
+        height: 266px;
+    }
+    
+    .card-front .word-display {
+        font-size: 52px;
+    }
+    
+    .card-back .word-display {
+        font-size: 38px;
+    }
+    
+    .start-sections-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 25px;
+        margin: 40px auto;
+    }
+    
+    .start-section {
+        min-width: 95%;
+        max-width: 95%;
+        height: 260px;
+    }
+    
+    .section-title, .dictionary-title, .category-title {
+        font-size: 1.5em;
+    }
+    
+    address {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 25px;
+    }
+    
+    .footer1, .footer2 {
+        align-items: center;
+        text-align: center;
+        width: 100%;
+    }
+    
+    header .container {
+        padding: 15px 30px;
+    }
+}
+
+/* Экраны 768px и меньше */
+@media (max-width: 768px) {
+    header .container,
+    main,
+    footer .container {
+        max-width: 700px;
+    }
+    
+    .flashcard {
+        width: 95vw;
+        height: 60vh;
+        max-width: 500px;
+        max-height: 350px;
+    }
+    
+    .card-front .word-display {
+        font-size: 48px;
+    }
+    
+    .card-back .word-display {
+        font-size: 36px;
+    }
+    
+    .start-section {
+        height: 240px;
+    }
+    
+    .dictionary-card, .category-card {
+        min-width: 95%;
+        max-width: 95%;
+        aspect-ratio: 16/9;
+    }
+    
+    .navigation-buttons {
+        gap: 50px;
+        margin-top: 30px;
+    }
+    
+    .nav-btn {
+        width: 55px;
+        height: 55px;
+    }
+    
+    .nav-btn img {
+        width: 28px;
+        height: 28px;
+    }
+    
+    .back-btn {
+        padding: 12px 30px;
+        font-size: 1em;
+    }
+    
+    .footer1, .footer2 {
+        margin-bottom: 15px;
+    }
+    
+    .ul-footer {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    header .container {
+        padding: 15px 20px;
+    }
+}
+
+/* Экраны 640px и меньше */
+@media (max-width: 640px) {
+    header .container,
+    main,
+    footer .container {
+        max-width: 600px;
+    }
+    
+    .flashcard {
+        height: 55vh;
+    }
+    
+    .card-front .word-display {
+        font-size: 44px;
+    }
+    
+    .card-back .word-display {
+        font-size: 32px;
+    }
+    
+    .start-section {
+        height: 220px;
+        padding: 20px 15px;
+    }
+    
+    .section-title, .dictionary-title, .category-title {
+        font-size: 1.4em;
+    }
+    
+    .navigation-buttons {
+        gap: 40px;
+    }
+    
+    .nav-btn {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .nav-btn img {
+        width: 25px;
+        height: 25px;
+    }
+    
+    .audio-icon {
+        width: 36px;
+        height: 36px;
+        top: 15px;
+        right: 15px;
+    }
+    
+    .audio-icon img {
+        width: 20px;
+        height: 20px;
+    }
+    
+    header .container {
+        padding: 12px 15px;
+    }
+    
+    .logo, .lk {
+        width: 45px;
+        height: 45px;
+    }
+}
+
+/* Экраны 480px и меньше */
+@media (max-width: 480px) {
+    header .container,
+    main,
+    footer .container {
+        max-width: 450px;
+        padding: 10px 15px;
+    }
+    
+    header .container {
+        padding: 10px 15px;
+    }
+    
+    .logo {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .lk {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .flashcard {
+        height: 50vh;
+        padding: 20px;
+    }
+    
+    .card-front .word-display {
+        font-size: 36px;
+        padding: 15px;
+    }
+    
+    .card-back .word-display {
+        font-size: 28px;
+        padding: 20px;
+    }
+    
+    .card-front,
+    .card-back {
+        padding: 20px;
+    }
+    
+    .start-section {
+        height: 200px;
+        padding: 15px;
+    }
+    
+    .section-title, .dictionary-title, .category-title {
+        font-size: 1.3em;
+    }
+    
+    .start-sections-container {
+        margin: 30px auto;
+        padding: 15px;
+    }
+    
+    .navigation-buttons {
+        gap: 30px;
+    }
+    
+    .nav-btn {
+        width: 45px;
+        height: 45px;
+    }
+    
+    .nav-btn img {
+        width: 22px;
+        height: 22px;
+    }
+    
+    .back-btn {
+        padding: 10px 25px;
+        font-size: 0.95em;
+    }
+    
+    .back-btn img {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .progress-indicator {
+        font-size: 16px;
+        bottom: 15px;
+    }
+    
+    .mail, .tel {
+        font-size: 13px;
+    }
+    
+    .a-footer {
+        font-size: 11px;
+    }
+    
+    .copyright {
+        font-size: 13px;
+    }
+    
+    .footer-icon img {
+        width: 28px;
+        height: 28px;
+    }
+}
+
+/* Экраны 375px и меньше (мобильные телефоны) */
+@media (max-width: 375px) {
+    header .container,
+    main,
+    footer .container {
+        max-width: 350px;
+        padding: 10px;
+    }
+    
+    .flashcard {
+        height: 45vh;
+        padding: 15px;
+        border-radius: 15px;
+    }
+    
+    .card-front .word-display {
+        font-size: 32px;
+    }
+    
+    .card-back .word-display {
+        font-size: 24px;
+    }
+    
+    .card-front,
+    .card-back {
+        padding: 15px;
+        border-radius: 13px;
+    }
+    
+    .start-section {
+        height: 180px;
+        padding: 12px;
+    }
+    
+    .section-title, .dictionary-title, .category-title {
+        font-size: 1.2em;
+    }
+    
+    .dictionary-card, .category-card {
+        padding: 20px 15px;
+    }
+    
+    .navigation-buttons {
+        gap: 25px;
+    }
+    
+    .nav-btn {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .nav-btn img {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .back-btn {
+        padding: 8px 20px;
+        font-size: 0.9em;
+    }
+    
+    .back-btn img {
+        width: 18px;
+        height: 18px;
+    }
+    
+    .audio-icon {
+        width: 32px;
+        height: 32px;
+        top: 10px;
+        right: 10px;
+    }
+    
+    .audio-icon img {
+        width: 18px;
+        height: 18px;
+    }
+    
+    .nav-burger {
+        width: 200px;
+    }
+    
+    .nav-burger .a-header {
+        font-size: 16px;
+    }
+    
+    .burger-menu div {
+        width: 22px;
+        height: 2.5px;
+    }
+    
+    .mail, .tel {
+        font-size: 12px;
+    }
+    
+    .a-footer {
+        font-size: 10px;
+    }
+    
+    .copyright {
+        font-size: 12px;
+    }
+    
+    .footer-icon img {
+        width: 26px;
+        height: 26px;
+    }
+    
+    #copyright {
+        width: 16px;
+        height: 16px;
+    }
+}
+
+/* Экраны 320px и меньше (маленькие мобильные телефоны) */
+@media (max-width: 320px) {
+    header .container,
+    main,
+    footer .container {
+        max-width: 300px;
+        padding: 8px;
+    }
+    
+    .flashcard {
+        height: 40vh;
+        padding: 12px;
+    }
+    
+    .card-front .word-display {
+        font-size: 28px;
+    }
+    
+    .card-back .word-display {
+        font-size: 22px;
+    }
+    
+    .start-section {
+        height: 160px;
+        padding: 10px;
+    }
+    
+    .section-title, .dictionary-title, .category-title {
+        font-size: 1.1em;
+    }
+    
+    .section-count, .dictionary-count, .category-count {
+        font-size: 1em;
+        padding: 8px 20px;
+    }
+    
+    .navigation-buttons {
+        gap: 20px;
+        margin-top: 25px;
+    }
+    
+    .nav-btn {
+        width: 38px;
+        height: 38px;
+    }
+    
+    .nav-btn img {
+        width: 18px;
+        height: 18px;
+    }
+    
+    .back-btn {
+        padding: 7px 18px;
+        font-size: 0.85em;
+    }
+    
+    .mail, .tel {
+        font-size: 11px;
+    }
+    
+    .a-footer {
+        font-size: 9px;
+    }
+    
+    .copyright {
+        font-size: 11px;
+    }
+    
+    .footer-icon img {
+        width: 24px;
+        height: 24px;
+    }
+    
+    .logo {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .lk {
+        width: 35px;
+        height: 35px;
+    }
+}
+    </style>
+</head>
+<body>
+    <div id="background-letters"></div>
+
+    <header>
+        <div class="container">
+            <div class="burger-menu" id="burgerMenu">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+          <img class="logo" src="/image/logo krug.svg" alt="Логотип">
+            <a href="#" class="user">
+                <img class="lk" src="/image/userrblur.svg" alt="Пользователь">
+            </a>
+        </div>
+        <nav class="nav-burger" id="navBurger">
+            <ul class="ul-header">
+                <li class="li-header"><a href="" class="a-header">онлайн - переводчик</a></li>
+                <li class="li-header"><a href="" class="a-header">контакты</a></li>
+                <li class="li-header"><a href="" class="a-header">светлая тема</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="start-sections-container" id="startSectionsContainer">
+            <div class="start-section" onclick="openDictionarySection(1)">
+                <div class="section-title">словарь 1-5 стр.</div>
+                <div class="section-count">Гарри Поттер</div>
+            </div>
+            
+            <!-- <div class="start-section" onclick="openDictionarySection(2)">
+                <div class="section-title">Словарь 2</div>
+                <div class="section-count">15 категорий • 456 слов</div>
+            </div> -->
+        </div>
+
+        <div class="categories-container" id="categoriesContainer">
+            <!-- Категории будут добавлены через JavaScript -->
+        </div>
+
+        <div class="back-to-sections" id="backToSections">
+            <button class="back-btn" onclick="backToStartSections()">
+                <img src="/image/vlevo2.svg" alt="Назад">
+                к словарям
+            </button>
+        </div>
+
+        <section class="flashcard-section" id="flashcardSection">
+            <div class="back-to-categories" id="backToCategories">
+                <button class="back-btn" onclick="backToCategoriesList()">
+                    <img src="/image/vlevo2.svg" alt="Назад">
+                    к категориям
+                </button>
+            </div>
+
+            <div class="flashcard-container">
+                <div class="flashcard" id="flashcard">
+                    <div class="card-front">
+                        <button class="audio-icon" onclick="playKoreanAudio(event)">
+                            <img src="https://cdn-icons-png.flaticon.com/512/727/727245.png" alt="Озвучить">
+                        </button>
+                        <div class="word-display" id="korean-word">안녕하세요</div>
+                        <div class="progress-indicator" id="progressIndicator"></div>
+                    </div>
+
+                    <div class="card-back">
+                        <div class="word-display" id="russian-word">Здравствуйте</div>
+                        <div class="progress-indicator" id="progressIndicatorBack"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="navigation-buttons">
+                <button class="nav-btn" onclick="previousWord()">
+                    <img src="/image/vlevo2.svg" alt="Предыдущее слово">
+                </button>
+                <button class="nav-btn" onclick="nextWord()">
+                    <img src="/image/vpravo2.svg" alt="Следующее слово">
+                </button>
+            </div>
+        </section>
+    </main>
+ <div class="perehod">
+        <a href="/index.html"><img src="/image/vlevo2.svg" alt=""></a>
+        <a href="/index.html"><img src="/image/vpravo2.svg" alt=""></a>
+    </div>
+    <footer>
+        <div class="container">
+            <address>
+                <div class="footer1">
+                    <div class="tel">
+                        <img src="/image/tel_blue.svg" alt="">
+                        <p>8-925-685-52-39</p>
+                    </div>
+                    <div class="mail">
+                        <p>anastasiya3000@yandex.ru</p>
+                    </div>
+                    <div class="footer-icon">
+                        <a href="" class="social-icon"><img src="/image/telegram_icon 1.svg" alt="Telegram"></a>
+                        <a href="" class="social-icon"><img src="/image/skype_icon 1.svg" alt="Skype"></a>
+                        <a href="" class="social-icon"><img src="/image/whatsapp_green.png" alt="WhatsApp"></a>
+                        <a href="" class="social-icon"><img src="/image/license.svg" alt="License"></a>
+                    </div>
+                </div>
+
+                <div class="footer2">
+                    <nav class="nav1-footer">
+                        <ul class="ul-footer">
+                            <li class="li-footer"><a href="" class="a-footer"><b>Правила оплаты</b></a></li>
+                            <li class="li-footer"><a href="" class="a-footer"><b>Договор оферты</b></a></li>
+                            <li class="li-footer"><a href="" class="a-footer"><b>Согласие с рассылкой</b></a></li>
+                            <li class="li-footer"><a href="" class="a-footer"><b>Пользовательское соглашение</b></a></li>
+                            <li class="li-footer"><a href="" class="a-footer"><b>Политика конфиденциальности</b></a></li>
+                            <li class="li-footer"><a href="" class="a-footer"><b>Положение о защите персональных данных</b></a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </address>
+            
+            <div class="copyright">
+                <img id="copyright" src="/image/Copyright2 _ blue.svg" alt="copyright">
+                <p>takiza, 2025</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Массив с корейскими буквами для фона
+const koreanLetters = [
+    '가', '나', '다', '라', '마', '바', '사', '아', '자', '차',
+    '카', '타', '파', '하', '거', '너', '더', '러', '머', '버',
+    '서', '어', '저', '처', '커', '터', '퍼', '허', '고', '노',
+    '도', '로', '모', '보', '소', '오', '조', '초', '코', '토'
+];
+
+
+  const dictionary1Categories = [
+    {
+        "id": 1,
+        "title": "глаголы движения и действия",
+        "count": 30,
+        "words": [
+            { "korean": "가꾸다", "translation": "ухаживать, возделывать" },
+            { "korean": "가라앉다", "translation": "утихать, затихать" },
+            { "korean": "걸리다", "translation": "заболеть; быть повешенным; задеть" },
+            { "korean": "기울이다", "translation": "наклонять, склонять (внимание)" },
+            { "korean": "기대다", "translation": "прислоняться" },
+            { "korean": "내려가다", "translation": "спускаться" },
+            { "korean": "내려놓다", "translation": "опускать, ставить вниз" },
+            { "korean": "내려다보다", "translation": "смотреть вниз, обозревать" },
+            { "korean": "달리다", "translation": "бежать" },
+            { "korean": "달래다", "translation": "успокаивать, утешать" },
+            { "korean": "덮다", "translation": "покрывать" },
+            { "korean": "되돌아가다", "translation": "возвращаться назад" },
+            { "korean": "돌아가다", "translation": "возвращаться; умирать (эвф.)" },
+            { "korean": "돌아보다", "translation": "оглядываться" },
+            { "korean": "들다", "translation": "входить; поднимать" },
+            { "korean": "들어가다", "translation": "входить, заходить" },
+            { "korean": "들어서다", "translation": "вступать, входить (переступая порог)" },
+            { "korean": "떠나다", "translation": "уезжать, покидать" },
+            { "korean": "떨어지다", "translation": "падать, отваливаться" },
+            { "korean": "뛰다", "translation": "прыгать; бежать" },
+            { "korean": "마시다", "translation": "пить" },
+            { "korean": "모이다", "translation": "собираться" },
+            { "korean": "몰려들다", "translation": "стекаться, собираться толпой" },
+            { "korean": "물리다", "translation": "быть укушенным; проигрывать" },
+            { "korean": "빠지다", "translation": "выпадать; погружаться" },
+            { "korean": "살다", "translation": "жить" },
+            { "korean": "살피다", "translation": "осматривать, проверять" },
+            { "korean": "쌓이다", "translation": "накапливаться" },
+            { "korean": "올라가다", "translation": "подниматься" },
+            { "korean": "흘러나오다", "translation": "вытекать, доноситься (о звуке)" }
+        ]
+    },
+    {
+        "id": 2,
+        "title": "глаголы речи, мысли и чувств",
+        "count": 23,
+        "words": [
+            { "korean": "고집하다", "translation": "упрямиться, настаивать" },
+            { "korean": "기억하다", "translation": "помнить" },
+            { "korean": "느끼다", "translation": "чувствовать" },
+            { "korean": "대답하다", "translation": "отвечать" },
+            { "korean": "되풀이하다", "translation": "повторять" },
+            { "korean": "말하다", "translation": "говорить" },
+            { "korean": "믿다", "translation": "верить" },
+            { "korean": "물어보다", "translation": "спрашивать" },
+            { "korean": "믿다", "translation": "верить" },
+            { "korean": "발견하다", "translation": "обнаруживать" },
+            { "korean": "생각나다", "translation": "вспоминаться" },
+            { "korean": "생각하다", "translation": "думать" },
+            { "korean": "소리치다", "translation": "кричать" },
+            { "korean": "수군거리다", "translation": "шептаться, толковать" },
+            { "korean": "알다", "translation": "знать" },
+            { "korean": "알아보다", "translation": "узнавать, выяснять" },
+            { "korean": "알아차리다", "translation": "замечать, осознавать" },
+            { "korean": "의심하다", "translation": "сомневаться" },
+            { "korean": "이야기하다", "translation": "рассказывать, говорить" },
+            { "korean": "주장하다", "translation": "утверждать" },
+            { "korean": "지켜보다", "translation": "наблюдать" },
+            { "korean": "툴툴거리다", "translation": "ворчать, бурчать" },
+            { "korean": "확신하다", "translation": "быть уверенным" }
+        ]
+    },
+    {
+        "id": 3,
+        "title": "прилагательные и описательные слова",
+        "count": 28,
+        "words": [
+            { "korean": "가득", "translation": "полно, в изобилии" },
+            { "korean": "거의", "translation": "почти" },
+            { "korean": "건강하다", "translation": "быть здоровым" },
+            { "korean": "검은", "translation": "чёрный" },
+            { "korean": "고약하다", "translation": "отвратительный, мерзкий" },
+            { "korean": "굳다", "translation": "твердеть, коченеть" },
+            { "korean": "괴팍하다", "translation": "быть странным, причудливым" },
+            { "korean": "까맣다", "translation": "быть чёрным" },
+            { "korean": "끔찍하다", "translation": "ужасный, страшный" },
+            { "korean": "나쁘다", "translation": "быть плохим" },
+            { "korean": "낡다", "translation": "быть старым, ветхим" },
+            { "korean": "넓다", "translation": "быть широким" },
+            { "korean": "다르다", "translation": "отличаться" },
+            { "korean": "따뜻하다", "translation": "быть тёплым" },
+            { "korean": "뜨겁다", "translation": "быть горячим" },
+            { "korean": "많다", "translation": "быть многим" },
+            { "korean": "멀쩡하다", "translation": "быть в порядке, невредимым" },
+            { "korean": "무성하다", "translation": "быть густым, буйным" },
+            { "korean": "무섭다", "translation": "быть страшным" },
+            { "korean": "밝다", "translation": "быть светлым; ярким" },
+            { "korean": "새롭다", "translation": "быть новым" },
+            { "korean": "시끄럽다", "translation": "быть шумным" },
+            { "korean": "어둡다", "translation": "быть тёмным" },
+            { "korean": "이상하다", "translation": "быть странным" },
+            { "korean": "좋다", "translation": "быть хорошим, нравиться" },
+            { "korean": "크다", "translation": "быть большим" },
+            { "korean": "훌륭하다", "translation": "быть отличным, великолепным" },
+            { "korean": "희미하다", "translation": "быть слабым, тусклым" }
+        ]
+    },
+    {
+        "id": 4,
+        "title": "существительные (люди, места, предметы)",
+        "count": 36,
+        "words": [
+            { "korean": "가족", "translation": "семья" },
+            { "korean": "거실", "translation": "гостиная" },
+            { "korean": "경찰", "translation": "полиция" },
+            { "korean": "경찰서", "translation": "полицейский участок" },
+            { "korean": "계단", "translation": "лестница" },
+            { "korean": "고개", "translation": "голова (склонение)" },
+            { "korean": "고함", "translation": "крик, вопль" },
+            { "korean": "교회", "translation": "церковь" },
+            { "korean": "구름", "translation": "облако" },
+            { "korean": "기와", "translation": "черепица" },
+            { "korean": "눈", "translation": "глаз; снег" },
+            { "korean": "다리", "translation": "нога; мост" },
+            { "korean": "담쟁이덩굴", "translation": "плющ" },
+            { "korean": "동굴", "translation": "пещера" },
+            { "korean": "동네", "translation": "окрестности, район" },
+            { "korean": "문", "translation": "дверь" },
+            { "korean": "물병", "translation": "бутылка для воды" },
+            { "korean": "발소리", "translation": "звук шагов" },
+            { "korean": "벽난로", "translation": "камин" },
+            { "korean": "부엌", "translation": "кухня" },
+            { "korean": "부자", "translation": "богач" },
+            { "korean": "불빛", "translation": "свет огня" },
+            { "korean": "비명", "translation": "крик, вопль" },
+            { "korean": "새벽", "translation": "рассвет" },
+            { "korean": "소리", "translation": "звук" },
+            { "korean": "소식", "translation": "известие, новость" },
+            { "korean": "소유주", "translation": "владелец" },
+            { "korean": "손님", "translation": "гость, клиент" },
+            { "korean": "시체", "translation": "труп" },
+            { "korean": "얼굴", "translation": "лицо" },
+            { "korean": "얼음", "translation": "лёд" },
+            { "korean": "열쇠", "translation": "ключ" },
+            { "korean": "오두막집", "translation": "хижина, лачуга" },
+            { "korean": "자물쇠", "translation": "замок" },
+            { "korean": "지팡이", "translation": "трость" },
+            { "korean": "현관", "translation": "прихожая, вестибюль" }
+        ]
+    },
+    {
+        "id": 5,
+        "title": "существительные (понятия, явления, состояния)",
+        "count": 34,
+        "words": [
+            { "korean": "가운데", "translation": "середина" },
+            { "korean": "관심", "translation": "интерес" },
+            { "korean": "구역", "translation": "район, зона" },
+            { "korean": "근처", "translation": "окрестности, близко" },
+            { "korean": "기분", "translation": "чувство, настроение" },
+            { "korean": "기억", "translation": "память" },
+            { "korean": "끝", "translation": "конец" },
+            { "korean": "내막", "translation": "внутренняя история, подноготная" },
+            { "korean": "눈빛", "translation": "взгляд" },
+            { "korean": "단서", "translation": "ключ, улика" },
+            { "korean": "대관절", "translation": "в первую очередь, вообще" },
+            { "korean": "대신", "translation": "вместо" },
+            { "korean": "뒤", "translation": "зад, спина; после" },
+            { "korean": "만약", "translation": "если" },
+            { "korean": "머리카락", "translation": "волосы" },
+            { "korean": "먼지", "translation": "пыль" },
+            { "korean": "모습", "translation": "облик, вид" },
+            { "korean": "목소리", "translation": "голос" },
+            { "korean": "무엇", "translation": "что" },
+            { "korean": "문제", "translation": "проблема" },
+            { "korean": "물론", "translation": "конечно" },
+            { "korean": "뭔가", "translation": "что-то" },
+            { "korean": "반대", "translation": "противоположность" },
+            { "korean": "사건", "translation": "происшествие, случай" },
+            { "korean": "사실", "translation": "факт, на самом деле" },
+            { "korean": "상태", "translation": "состояние" },
+            { "korean": "생각", "translation": "мысль" },
+            { "korean": "속", "translation": "внутренность; скорость" },
+            { "korean": "습관", "translation": "привычка" },
+            { "korean": "신고", "translation": "сообщение, донесение" },
+            { "korean": "어둠", "translation": "темнота" },
+            { "korean": "이유", "translation": "причина" },
+            { "korean": "정원", "translation": "сад" },
+            { "korean": "통증", "translation": "боль" }
+        ]
+    },
+    {
+        "id": 6,
+        "title": "наречия и прочие части речи",
+        "count": 20,
+        "words": [
+            { "korean": "갈수록", "translation": "чем дальше, тем больше; постепенно" },
+            { "korean": "곧", "translation": "скоро, сразу" },
+            { "korean": "과연", "translation": "действительно ли, неужели" },
+            { "korean": "굳게", "translation": "твёрдо, крепко" },
+            { "korean": "깜짝", "translation": "внезапно, от неожиданности" },
+            { "korean": "꼭", "translation": "обязательно, непременно" },
+            { "korean": "단번에", "translation": "сразу, с одного раза" },
+            { "korean": "도대체", "translation": "как же, в самом деле (усилит.)" },
+            { "korean": "문득", "translation": "внезапно" },
+            { "korean": "몰래", "translation": "тайно, украдкой" },
+            { "korean": "바로", "translation": "прямо, именно" },
+            { "korean": "서서히", "translation": "постепенно" },
+            { "korean": "솔직히", "translation": "честно" },
+            { "korean": "아마", "translation": "возможно" },
+            { "korean": "어쩐지", "translation": "почему-то, как-то" },
+            { "korean": "오랫동안", "translation": "долгое время" },
+            { "korean": "오직", "translation": "только" },
+            { "korean": "즉시", "translation": "немедленно" },
+            { "korean": "한결같이", "translation": "одинаково, постоянно" },
+            { "korean": "항상", "translation": "всегда" }
+        ]
+    }
+];
+
+
+
+// Глобальные переменные
+let currentDictionaryType = 0; // 1 или 2
+let currentCategoryIndex = 0;
+let currentWordIndex = 0;
+let speechSynthesisSupported = false;
+let isFlipped = false;
+let currentWords = [];
+
+// Функция для создания анимированных букв на фоне
+function createBackgroundLetters() {
+    const container = document.getElementById('background-letters');
+    if (!container) return;
+    
+    container.innerHTML = '';
+    
+    for (let i = 0; i < 25; i++) {
+        const letter = document.createElement('div');
+        letter.className = 'korean-letter';
+        
+        const randomLetter = koreanLetters[Math.floor(Math.random() * koreanLetters.length)];
+        letter.textContent = randomLetter;
+        
+        const left = Math.random() * 100;
+        const top = Math.random() * 100;
+        const delay = Math.random() * 15;
+        
+        letter.style.left = `${left}%`;
+        letter.style.top = `${top}%`;
+        letter.style.animationDelay = `${delay}s`;
+        letter.style.fontSize = `${30 + Math.random() * 40}px`;
+        letter.style.transform += ` rotate(${Math.random() * 20 - 10}deg)`;
+        
+        container.appendChild(letter);
+    }
+}
+
+// Проверяем поддержку синтеза речи
+function checkSpeechSupport() {
+    if ('speechSynthesis' in window) {
+        speechSynthesisSupported = true;
+    } else {
+        document.querySelectorAll('.audio-icon').forEach(icon => {
+            if (icon) icon.style.display = 'none';
+        });
+    }
+}
+
+// Открытие словаря (1 или 2)
+function openDictionarySection(dictionaryType) {
+    currentDictionaryType = dictionaryType;
+    
+    // Скрываем стартовые секции
+    const startContainer = document.getElementById('startSectionsContainer');
+    const backToSections = document.getElementById('backToSections');
+    const categoriesContainer = document.getElementById('categoriesContainer');
+    
+    if (!startContainer || !backToSections || !categoriesContainer) return;
+    
+    startContainer.style.display = 'none';
+    backToSections.classList.add('active');
+    
+    // Показываем контейнер категорий
+    categoriesContainer.classList.add('active');
+    categoriesContainer.innerHTML = '';
+    
+    // Выбираем категории в зависимости от словаря
+    const categories = dictionaryType === 1 ? dictionary1Categories : dictionary2Categories;
+    
+    // Рендерим категории
+    categories.forEach((category, index) => {
+        const card = document.createElement('div');
+        card.className = 'category-card';
+        card.innerHTML = `
+            <div class="category-title">${category.title}</div>
+            <div class="category-count">${category.count} слов</div>
+        `;
+        card.addEventListener('click', () => enterCategory(index));
+        categoriesContainer.appendChild(card);
+    });
+}
+
+// Вход в категорию
+function enterCategory(categoryIndex) {
+    currentCategoryIndex = categoryIndex;
+    
+    // Выбираем категории в зависимости от активного словаря
+    const categories = currentDictionaryType === 1 ? dictionary1Categories : dictionary2Categories;
+    
+    if (categories[categoryIndex] && categories[categoryIndex].words) {
+        currentWords = categories[categoryIndex].words;
+        currentWordIndex = 0;
+        
+        // Скрываем контейнер категорий
+        const categoriesContainer = document.getElementById('categoriesContainer');
+        const flashcardSection = document.getElementById('flashcardSection');
+        const backToCategories = document.getElementById('backToCategories');
+        
+        if (!categoriesContainer || !flashcardSection || !backToCategories) return;
+        
+        categoriesContainer.classList.remove('active');
+        
+        // Показываем флеш-карточки
+        flashcardSection.classList.add('active');
+        backToCategories.classList.add('active');
+        
+        updateWord();
+    }
+}
+
+// Возврат к списку категорий
+function backToCategoriesList() {
+    const flashcardSection = document.getElementById('flashcardSection');
+    const backToCategories = document.getElementById('backToCategories');
+    const categoriesContainer = document.getElementById('categoriesContainer');
+    
+    if (!flashcardSection || !backToCategories || !categoriesContainer) return;
+    
+    flashcardSection.classList.remove('active');
+    backToCategories.classList.remove('active');
+    categoriesContainer.classList.add('active');
+    
+    // Сброс состояния карточки
+    const flashcard = document.getElementById("flashcard");
+    if (flashcard) {
+        flashcard.classList.remove("flipped");
+        isFlipped = false;
+    }
+}
+
+// Возврат к выбору словарей
+function backToStartSections() {
+    const categoriesContainer = document.getElementById('categoriesContainer');
+    const backToSections = document.getElementById('backToSections');
+    const startContainer = document.getElementById('startSectionsContainer');
+    
+    if (!categoriesContainer || !backToSections || !startContainer) return;
+    
+    categoriesContainer.classList.remove('active');
+    backToSections.classList.remove('active');
+    startContainer.style.display = 'flex';
+    
+    // Сброс состояния карточки
+    const flashcard = document.getElementById("flashcard");
+    if (flashcard) {
+        flashcard.classList.remove("flipped");
+        isFlipped = false;
+    }
+}
+
+// Обновление слова на карточке
+function updateWord() {
+    const koreanWordElement = document.getElementById("korean-word");
+    const russianWordElement = document.getElementById("russian-word");
+    const progressIndicators = document.querySelectorAll('.progress-indicator');
+    
+    if (!koreanWordElement || !russianWordElement) return;
+    
+    if (currentWords.length > 0 && currentWordIndex < currentWords.length) {
+        const word = currentWords[currentWordIndex];
+        
+        // Корейское слово на передней стороне
+        koreanWordElement.textContent = word.korean;
+        
+        // Русский перевод на обратной стороне
+        russianWordElement.textContent = word.translation;
+
+        // Прогресс
+        const progressText = `${currentWordIndex + 1} / ${currentWords.length}`;
+        progressIndicators.forEach(el => {
+            el.textContent = progressText;
+        });
+    } else {
+        koreanWordElement.textContent = "단어 없음";
+        russianWordElement.textContent = "Нет слов";
+        progressIndicators.forEach(el => {
+            el.textContent = "0 / 0";
+        });
+    }
+
+    // Сброс переворота карточки
+    const flashcard = document.getElementById("flashcard");
+    if (flashcard) {
+        flashcard.classList.remove("flipped");
+        isFlipped = false;
+    }
+}
+
+// Переход к следующему слову
+function nextWord() {
+    if (currentWords.length === 0) return;
+
+    currentWordIndex = (currentWordIndex + 1) % currentWords.length;
+    updateWord();
+}
+
+// Переход к предыдущему слову
+function previousWord() {
+    if (currentWords.length === 0) return;
+
+    currentWordIndex = (currentWordIndex - 1 + currentWords.length) % currentWords.length;
+    updateWord();
+}
+
+// Перелистывание карточки
+function flipCard() {
+    const flashcard = document.getElementById("flashcard");
+    if (!flashcard) return;
+    
+    isFlipped = !isFlipped;
+    flashcard.classList.toggle("flipped");
+    
+    // Скрываем/показываем аудио-иконку в зависимости от стороны
+    const audioIcon = document.querySelector('.audio-icon');
+    if (audioIcon) {
+        if (isFlipped) {
+            audioIcon.style.display = 'none';
+        } else {
+            audioIcon.style.display = 'flex';
+        }
+    }
+}
+
+// Функция для озвучивания корейского слова
+function playKoreanAudio(event) {
+    if (event && event.stopPropagation) {
+        event.stopPropagation();
+    }
+
+    if (!speechSynthesisSupported || currentWords.length === 0) {
+        return;
+    }
+
+    const word = currentWords[currentWordIndex];
+    if (!word) return;
+
+    const text = word.korean;
+
+    if (text) {
+        // Отменяем текущее воспроизведение
+        speechSynthesis.cancel();
+
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'ko-KR';
+        utterance.rate = 0.9;
+        utterance.volume = 1.0;
+        utterance.pitch = 1.0;
+
+        // Получаем доступные голоса и выбираем корейский
+        const voices = speechSynthesis.getVoices();
+        const koreanVoice = voices.find(voice => 
+            voice.lang === 'ko-KR' || 
+            voice.lang.startsWith('ko') ||
+            voice.name.includes('Korean')
+        );
+        
+        if (koreanVoice) {
+            utterance.voice = koreanVoice;
+        }
+
+        // Воспроизводим
+        speechSynthesis.speak(utterance);
+    }
+}
+
+// Инициализация при загрузке страницы
+document.addEventListener('DOMContentLoaded', function () {
+    createBackgroundLetters();
+    checkSpeechSupport();
+    
+    if (speechSynthesisSupported) {
+        speechSynthesis.onvoiceschanged = function() {
+            // Голоса загружены
+        };
+    }
+    
+    // Бургер-меню
+    const burgerMenu = document.getElementById("burgerMenu");
+    const navBurger = document.getElementById("navBurger");
+    
+    if (burgerMenu && navBurger) {
+        burgerMenu.addEventListener("click", function (event) {
+            event.stopPropagation();
+            navBurger.classList.toggle("active");
+        });
+        
+        document.addEventListener("click", function (event) {
+            if (!navBurger.contains(event.target) && !burgerMenu.contains(event.target)) {
+                navBurger.classList.remove("active");
+            }
+        });
+    }
+    
+    // Клик по карточке для перелистывания
+    const flashcard = document.getElementById("flashcard");
+    if (flashcard) {
+        flashcard.addEventListener('click', (e) => {
+            if (!e.target.closest('.audio-icon')) {
+                flipCard();
+            }
+        });
+    }
+    
+    // Обработка клавиатуры
+    document.addEventListener('keydown', function (event) {
+        switch (event.key) {
+            case 'ArrowLeft':
+                previousWord();
+                break;
+            case 'ArrowRight':
+                nextWord();
+                break;
+            case ' ':
+            case 'Spacebar':
+                event.preventDefault();
+                flipCard();
+                break;
+            case 'Enter':
+                playKoreanAudio({ stopPropagation: () => { } });
+                break;
+            case 'Escape':
+                const flashcardSection = document.getElementById('flashcardSection');
+                if (flashcardSection && flashcardSection.classList.contains('active')) {
+                    backToCategoriesList();
+                }
+                break;
+        }
+    });
+});
+
+// Обработчики свайпа для мобильных устройств
+let touchStartX = 0;
+let touchEndX = 0;
+let touchStartY = 0;
+let touchEndY = 0;
+
+document.addEventListener('touchstart', (e) => {
+    const flashcardSection = document.getElementById('flashcardSection');
+    if (!flashcardSection || !flashcardSection.classList.contains('active')) return;
+    
+    touchStartX = e.changedTouches[0].screenX;
+    touchStartY = e.changedTouches[0].screenY;
+}, { passive: true });
+
+document.addEventListener('touchend', (e) => {
+    const flashcardSection = document.getElementById('flashcardSection');
+    if (!flashcardSection || !flashcardSection.classList.contains('active')) return;
+    
+    touchEndX = e.changedTouches[0].screenX;
+    touchEndY = e.changedTouches[0].screenY;
+    handleSwipe();
+}, { passive: true });
+
+function handleSwipe() {
+    const swipeThreshold = 50;
+    const verticalSwipeThreshold = 30;
+
+    if (Math.abs(touchEndY - touchStartY) < verticalSwipeThreshold) {
+        if (touchEndX < touchStartX - swipeThreshold) {
+            nextWord();
+        } else if (touchEndX > touchStartX + swipeThreshold) {
+            previousWord();
+        }
+    }
+}
+
+// Экспортируем функции в глобальную область видимости
+window.openDictionarySection = openDictionarySection;
+window.backToStartSections = backToStartSections;
+window.backToCategoriesList = backToCategoriesList;
+window.previousWord = previousWord;
+window.nextWord = nextWord;
+window.playKoreanAudio = playKoreanAudio;
+    </script>
+</body>
+</html>
