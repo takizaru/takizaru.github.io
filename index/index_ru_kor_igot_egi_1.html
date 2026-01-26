@@ -1,0 +1,2392 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Упражнения - Тренажеры корейского языка</title>
+    <style>
+        /* Font imports */
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+        /* Base styles */
+        * {
+            font-family: "Montserrat", sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-color: #f0f8ff;
+        }
+
+        /* Стиль стекла с легким затемнением для main */
+        main {
+            flex: 1;
+            padding: 2rem 0;
+            width: 100%;
+            /* background: rgba(255, 255, 255, 0.064); */
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Korean text styling */
+        .korean-text {
+            font-family: "Noto Sans KR", sans-serif;
+            cursor: pointer;
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .korean-text:hover {
+            text-decoration: underline;
+        }
+
+        /* Фон с анимированными корейскими буквами */
+        #background-letters {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .korean-letter {
+            position: absolute;
+            font-family: 'Noto Sans KR', sans-serif;
+            font-size: 40px;
+            font-weight: bold;
+            opacity: 0;
+            animation: letterFloat 8s ease-in-out infinite;
+            color: transparent;
+            background: linear-gradient(45deg, #78909C, #546E7A, #90A4AE);
+            background-clip: text;
+            -webkit-background-clip: text;
+            user-select: none;
+        }
+
+        @keyframes letterFloat {
+            0% {
+                opacity: 0;
+                transform: scale(0.1) translate(0, 0) rotate(0deg);
+            }
+            10% {
+                opacity: 0.7;
+                transform: scale(1) translate(0, -100px) rotate(5deg);
+            }
+            80% {
+                opacity: 0.7;
+                transform: scale(1) translate(0, -300px) rotate(5deg);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(1) translate(0, -400px) rotate(5deg);
+            }
+        }
+
+        /* Header styles */
+        header {
+            background-color: #c8ba8d;
+            width: 100%;
+            position: relative;
+            z-index: 100;
+        }
+
+        .container {
+            max-width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 110px;
+            margin-bottom: 50px;
+        }
+
+        .logo {
+            width: 54px;
+            height: 54px;
+            transition: transform 0.3s;
+        }
+
+        .logo:hover {
+            transform: scale(1.5);
+        }
+
+        .lk {
+            width: 54px;
+            height: 54px;
+            transition: transform 0.3s;
+        }
+
+        .lk:hover {
+            transform: scale(1.5);
+        }
+
+        /* Бургер-меню */
+        .burger-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+            z-index: 1000;
+        }
+
+        .burger-menu div {
+            width: 25px;
+            height: 3px;
+            background-color: #000;
+        }
+
+        .nav-burger {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 250px;
+            height: 100vh;
+            background-color: rgba(200, 186, 141, 0.95);
+            transition: left 0.3s ease;
+            z-index: 999;
+            padding-top: 80px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-burger.active {
+            left: 0;
+        }
+
+        .nav-burger .ul-header {
+            list-style: none;
+            padding: 20px;
+            margin: 0;
+            flex-direction: column;
+        }
+
+        .nav-burger .li-header {
+            margin-bottom: 20px;
+        }
+
+        .nav-burger .a-header {
+            color: hsla(47, 18%, 20%, 0.814);
+            text-decoration: none;
+            font-size: 18px;
+            display: block;
+        }
+
+        .nav-burger .a-header:hover {
+            color: rgb(4, 1, 48);
+        }
+
+        /* Основной контент - ИГРА */
+        .game-wrapper {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .game-container {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            margin-top: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Игровое поле - ИЗМЕНЕНО: автоматическое подстраивание под контент */
+        .game-field {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            align-items: start;
+        }
+
+        .sentence-box {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 3px dashed #2c3e50;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            min-height: auto;
+            height: auto;
+            width: 100%;
+        }
+
+        .sentence-box::before {
+            content: 'Русский';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: #2c3e50;
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .sentence {
+            font-size: 1.8rem;
+            text-align: center;
+            color: #333;
+            line-height: 1.4;
+            padding: 1rem;
+            word-break: break-word;
+            overflow-wrap: break-word;
+            hyphens: auto;
+            width: 100%;
+            display: inline-block;
+            white-space: normal;
+        }
+
+        .options-box {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 20px;
+            border: 3px solid #e9ecef;
+            position: relative;
+            width: 100%;
+            height: auto;
+            min-height: auto;
+        }
+
+        .options-box::before {
+            content: 'Корейский';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: #3498db;
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .options-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 2rem;
+            width: 100%;
+        }
+
+        .option-btn {
+            padding: 1.2rem;
+            background: white;
+            border: 2px solid #ddd;
+            border-radius: 12px;
+            text-align: left;
+            cursor: pointer;
+            font-family: 'Noto Sans KR', sans-serif;
+            font-size: 1.3rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            min-height: 70px;
+            position: relative;
+            overflow: hidden;
+            -webkit-tap-highlight-color: transparent;
+            width: 100%;
+            justify-content: flex-start;
+        }
+
+        .option-btn:hover:not(.disabled) {
+            border-color: #4ecdc4;
+            transform: translateX(5px);
+            box-shadow: 0 4px 15px rgba(78, 205, 196, 0.2);
+        }
+
+        .option-btn::before {
+            content: attr(data-letter);
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #2c3e50;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-family: 'Montserrat', sans-serif;
+            flex-shrink: 0;
+        }
+
+        .option-btn[data-letter="A"]::before { background: #FF6B6B; }
+        .option-btn[data-letter="B"]::before { background: #4ECDC4; }
+        .option-btn[data-letter="C"]::before { background: #FFD166; }
+
+        .option-btn.correct {
+            background: linear-gradient(135deg, #d4edda, #c3e6cb);
+            border-color: #28a745;
+            color: #155724;
+            transform: scale(1.02);
+        }
+
+        .option-btn.wrong {
+            background: linear-gradient(135deg, #f8d7da, #f5c6cb);
+            border-color: #dc3545;
+            color: #721c24;
+            opacity: 0.8;
+        }
+
+        .option-btn.disabled {
+            pointer-events: none;
+            opacity: 0.7;
+        }
+
+        .korean-text {
+            font-family: 'Noto Sans KR', sans-serif;
+            font-size: 1.4rem;
+            line-height: 1.5;
+            padding-left: 40px;
+            word-break: break-word;
+            overflow-wrap: break-word;
+            display: inline-block;
+            text-align: left;
+            width: calc(100% - 40px);
+        }
+
+        /* Фидбэк и подсказки */
+        .feedback-container {
+            margin: 1.5rem 0;
+            width: 100%;
+        }
+
+        .feedback {
+            text-align: center;
+            padding: 1.2rem;
+            border-radius: 20px;
+            margin: 1rem 0;
+            font-weight: bold;
+            font-size: 1.1rem;
+            display: none;
+            animation: slideIn 0.5s ease;
+            width: 40%;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .feedback.correct {
+            background: linear-gradient(135deg, #d4edda, #c3e6cb);
+            color: #155724;
+            border: 2px solid #28a745;
+            display: block;
+        }
+
+        .feedback.wrong {
+            background: linear-gradient(135deg, #f8d7da, #f5c6cb);
+            color: #721c24;
+            border: 2px solid #dc3545;
+            display: block;
+        }
+
+        .hint-box {
+            background: linear-gradient(135deg, #fff3cd, #ffeaa7);
+            border: 2px solid #ffc107;
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            display: none;
+            animation: fadeIn 0.5s ease;
+            width: 100%;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .hint-box.active {
+            display: block;
+        }
+
+        .hint-title {
+            color: #856404;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .hint-text {
+            color: #856404;
+            font-style: italic;
+            line-height: 1.5;
+        }
+
+        /* Управление игрой */
+        .game-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 2px solid #eee;
+            flex-wrap: wrap;
+            gap: 1rem;
+            width: 100%;
+        }
+
+        .control-left, .control-right {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 0.8rem 1.8rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #2c3e50, #4ecdc4);
+            color: white;
+            box-shadow: 0 4px 15px rgba(74, 111, 165, 0.3);
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(74, 111, 165, 0.4);
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+
+        .btn-secondary:hover:not(:disabled) {
+            background: #5a6268;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #2c3e50;
+            color: #2c3e50;
+        }
+
+        .btn-outline:hover:not(:disabled) {
+            background: #2c3e50;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        /* Прогресс бар */
+        .progress-container {
+            margin: 1.5rem 0;
+            width: 100%;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .progress-bar {
+            height: 10px;
+            background: #e9ecef;
+            border-radius: 5px;
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4ecdc4, #2c3e50);
+            width: 0%;
+            transition: width 0.5s ease;
+            border-radius: 5px;
+        }
+
+        /* Экран завершения */
+        .game-complete {
+            text-align: center;
+            padding: 3rem 2rem;
+            display: none;
+            width: 100%;
+        }
+
+        .game-complete.active {
+            display: block;
+            animation: fadeIn 0.8s ease;
+        }
+
+        .result-title {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .result-score {
+            font-size: 4rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #2c3e50, #4ecdc4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin: 1rem 0;
+            line-height: 1;
+        }
+
+        .result-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem auto;
+            max-width: 800px;
+            width: 100%;
+        }
+
+        .result-stat {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .result-stat-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            line-height: 1;
+        }
+
+        .result-stat-label {
+            color: #666;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .result-message {
+            font-size: 1.2rem;
+            color: #666;
+            margin: 1.5rem 0;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.5;
+        }
+
+        /* Стили для перехода */
+        .perehod {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            padding: 0 120px 0 120px;
+            margin-bottom: 20px;
+        }
+
+        .perehod img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: 1px solid rgb(49, 36, 105);
+            transition: transform 0.3s;
+        }
+
+        .perehod > a:hover img {
+            transform: scale(1.5);
+        }
+
+        /* Footer styles */
+        footer {
+            background-color: #c8ba8d;
+            padding: 20px 0;
+            margin-top: auto;
+            position: relative;
+            width: 100%;
+        }
+
+        .footer1, .footer2 {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .mail,
+        .tel {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            gap: 5px;
+        }
+
+        .tel img {
+            width: 12px;
+            height: 12px;
+        }
+
+        .footer-icon {
+            display: flex;
+            gap: 15px;
+        }
+
+        .footer-icon img {
+            width: 30px;
+            height: 30px;
+        }
+
+        address {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+        }
+
+        .footer2 {
+            display: flex;
+            align-items: flex-start;
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        .ul-footer {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .li-footer {
+            margin: 0;
+        }
+
+        .a-footer {
+            color: hsla(47, 18%, 20%, 0.814);
+            text-decoration: none;
+            font-size: 12px;
+            white-space: nowrap;
+        }
+
+        .a-footer:hover {
+            color: rgb(4, 1, 48);
+        }
+
+        .copyright {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            color: hsla(47, 18%, 20%, 0.814);
+            font-size: 14px;
+        }
+
+        #copyright {
+            height: 15px;
+            width: 15px;
+            margin-right: 5px;
+        }
+
+        /* Телефон */
+        .tel:hover p {
+            color: rgb(4, 1, 48);
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+        }
+
+        /* Почта */
+        .mail:hover p {
+            color: rgb(4, 1, 48);
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+        }
+
+        /* Копирайт */
+        .copyright:hover p {
+            color: rgb(4, 1, 48);
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+        }
+
+        /* Для плавности перехода при убирании курсора */
+        .tel p,
+        .mail p,
+        .copyright p {
+            transition: all 0.3s ease;
+        }
+
+        /* Анимации */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .pulse {
+            animation: pulse 0.5s ease;
+        }
+
+        /* ============================================== */
+        /* АДАПТАЦИЯ ДЛЯ ВСЕХ УСТРОЙСТВ (1441px - 250px) */
+        /* ============================================== */
+
+        /* 1440px - 1201px */
+        @media (max-width: 1440px) {
+            .container {
+                padding: 20px 80px;
+            }
+            
+            .perehod {
+                padding: 0 80px 0 80px;
+            }
+            
+            .sentence {
+                font-size: 1.6rem;
+            }
+            
+            .korean-text {
+                font-size: 1.2rem;
+            }
+            
+            .game-wrapper {
+                max-width: 1200px;
+            }
+        }
+
+        /* 1200px - 992px */
+        @media (max-width: 1200px) {
+            .container {
+                padding: 20px 60px;
+            }
+            
+            .perehod {
+                padding: 0 60px 0 60px;
+            }
+            
+            .sentence {
+                font-size: 1.5rem;
+            }
+            
+            .korean-text {
+                font-size: 1.1rem;
+            }
+            
+            .game-field {
+                gap: 1.5rem;
+            }
+            
+            .sentence-box, .options-box {
+                padding: 2rem;
+            }
+            
+            .game-wrapper {
+                max-width: 1000px;
+            }
+        }
+
+        /* 992px - 768px */
+        @media (max-width: 992px) {
+            .container {
+                padding: 20px 40px;
+                margin-bottom: 40px;
+            }
+            
+            .burger-menu {
+                display: flex;
+            }
+            
+            .game-field {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .perehod {
+                padding: 0 40px 0 40px;
+            }
+            
+            .sentence {
+                font-size: 1.4rem;
+            }
+            
+            .korean-text {
+                font-size: 1.1rem;
+                padding-left: 35px;
+            }
+            
+            .option-btn {
+                padding: 1rem;
+                font-size: 1.1rem;
+                min-height: 60px;
+            }
+            
+            .option-btn::before {
+                width: 25px;
+                height: 25px;
+                font-size: 0.8rem;
+                left: 12px;
+            }
+            
+            .game-wrapper {
+                max-width: 800px;
+            }
+        }
+
+        /* 768px - 600px */
+        @media (max-width: 768px) {
+.feedback{
+    width: 100%;
+}
+
+            .container {
+                padding: 15px 30px;
+                margin-bottom: 30px;
+            }
+            
+            .perehod {
+                padding: 0 30px 0 30px;
+            }
+            
+            .sentence {
+                font-size: 1.3rem;
+            }
+            
+            .korean-text {
+                font-size: 1.1rem;
+                padding-left: 30px;
+            }
+            
+            .option-btn {
+                padding: 0.9rem;
+                min-height: 55px;
+                font-size: 1.05rem;
+            }
+            
+            .option-btn::before {
+                width: 22px;
+                height: 22px;
+                left: 10px;
+            }
+            
+            .game-controls {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .control-left, .control-right {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .korean-letter {
+                font-size: 25px;
+            }
+            
+            address {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            
+            .footer1, .footer2 {
+                align-items: center;
+                text-align: center;
+                width: 100%;
+            }
+            
+            .game-wrapper {
+                max-width: 90%;
+            }
+            
+            .game-container {
+                padding: 1.5rem;
+            }
+        }
+
+        /* 600px - 480px */
+        @media (max-width: 600px) {
+            .logo {
+                width: 45px;
+                height: 45px;
+            }
+            
+            .lk {
+                width: 45px;
+                height: 45px;
+            }
+            
+            .container {
+                padding: 12px 25px;
+                margin-bottom: 25px;
+            }
+            
+            .perehod {
+                padding: 0 25px 0 25px;
+            }
+            
+            .perehod img {
+                width: 28px;
+                height: 28px;
+            }
+            
+            .sentence {
+                font-size: 1.2rem;
+                padding: 0.8rem;
+            }
+            
+            .korean-text {
+                font-size: 1rem;
+                padding-left: 28px;
+            }
+            
+            .option-btn {
+                padding: 0.8rem;
+                min-height: 50px;
+                font-size: 1rem;
+            }
+            
+            .option-btn::before {
+                width: 20px;
+                height: 20px;
+                left: 10px;
+                font-size: 0.7rem;
+            }
+            
+            .btn {
+                padding: 0.7rem 1.5rem;
+                font-size: 0.9rem;
+            }
+            
+            .game-container {
+                padding: 1.2rem;
+            }
+            
+            .sentence-box, .options-box {
+                padding: 1.5rem;
+            }
+            
+            .result-title {
+                font-size: 2rem;
+            }
+            
+            .result-score {
+                font-size: 3rem;
+            }
+            
+            .result-stat-value {
+                font-size: 2rem;
+            }
+            
+            .footer-icon img {
+                width: 28px;
+                height: 28px;
+            }
+            
+            .a-footer {
+                font-size: 11px;
+            }
+        }
+
+        /* 480px - 360px */
+        @media (max-width: 480px) {
+            .logo {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .lk {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .container {
+                padding: 10px 20px;
+                margin-bottom: 20px;
+            }
+            
+            .perehod {
+                padding: 0 20px 0 20px;
+            }
+            
+            .perehod img {
+                width: 26px;
+                height: 26px;
+            }
+            
+            .sentence {
+                font-size: 1.1rem;
+                padding: 0.7rem;
+            }
+            
+            .korean-text {
+                font-size: 0.95rem;
+                padding-left: 26px;
+            }
+            
+            .option-btn {
+                padding: 0.7rem;
+                min-height: 45px;
+                font-size: 0.95rem;
+            }
+            
+            .option-btn::before {
+                width: 18px;
+                height: 18px;
+                left: 8px;
+                font-size: 0.65rem;
+            }
+            
+            .btn {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.85rem;
+            }
+            
+            .game-container {
+                padding: 1rem;
+            }
+            
+            .sentence-box, .options-box {
+                padding: 1.2rem;
+            }
+            
+            .result-stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-icon img {
+                width: 26px;
+                height: 26px;
+            }
+            
+            .a-footer {
+                font-size: 10px;
+            }
+            
+            .mail, .tel {
+                font-size: 12px;
+            }
+            
+            .copyright {
+                font-size: 12px;
+            }
+        }
+
+        /* 360px - 320px */
+        @media (max-width: 360px) {
+            .logo {
+                width: 35px;
+                height: 35px;
+            }
+            
+            .lk {
+                width: 35px;
+                height: 35px;
+            }
+            
+            .container {
+                padding: 8px 15px;
+                margin-bottom: 15px;
+            }
+            
+            .perehod {
+                padding: 0 15px 0 15px;
+            }
+            
+            .perehod img {
+                width: 24px;
+                height: 24px;
+            }
+            
+            .sentence {
+                font-size: 1rem;
+                padding: 0.6rem;
+            }
+            
+            .korean-text {
+                font-size: 0.9rem;
+                padding-left: 24px;
+            }
+            
+            .option-btn {
+                padding: 0.6rem;
+                min-height: 40px;
+                font-size: 0.9rem;
+            }
+            
+            .option-btn::before {
+                width: 16px;
+                height: 16px;
+                left: 6px;
+                font-size: 0.6rem;
+            }
+            
+            .btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.8rem;
+            }
+            
+            .game-container {
+                padding: 0.8rem;
+            }
+            
+            .sentence-box, .options-box {
+                padding: 1rem;
+                border-width: 2px;
+            }
+            
+            .sentence-box::before,
+            .options-box::before {
+                font-size: 0.7rem;
+                padding: 0.2rem 0.8rem;
+            }
+            
+            .footer-icon img {
+                width: 24px;
+                height: 24px;
+            }
+            
+            .a-footer {
+                font-size: 9px;
+            }
+            
+            .mail, .tel {
+                font-size: 11px;
+            }
+            
+            .copyright {
+                font-size: 11px;
+            }
+        }
+
+        /* 320px - 250px (очень маленькие устройства) */
+        @media (max-width: 320px) {
+            .logo {
+                width: 30px;
+                height: 30px;
+            }
+            
+            .lk {
+                width: 30px;
+                height: 30px;
+            }
+            
+            .container {
+                padding: 5px 10px;
+                margin-bottom: 10px;
+            }
+            
+            .perehod {
+                padding: 0 10px 0 10px;
+            }
+            
+            .perehod img {
+                width: 22px;
+                height: 22px;
+            }
+            
+            .sentence {
+                font-size: 0.9rem;
+                padding: 0.5rem;
+            }
+            
+            .korean-text {
+                font-size: 0.85rem;
+                padding-left: 22px;
+            }
+            
+            .option-btn {
+                padding: 0.5rem;
+                min-height: 35px;
+                font-size: 0.85rem;
+            }
+            
+            .option-btn::before {
+                width: 14px;
+                height: 14px;
+                left: 5px;
+                font-size: 0.55rem;
+            }
+            
+            .btn {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.75rem;
+            }
+            
+            .game-container {
+                padding: 0.6rem;
+            }
+            
+            .sentence-box, .options-box {
+                padding: 0.8rem;
+                border-radius: 15px;
+            }
+            
+            .burger-menu div {
+                width: 20px;
+                height: 2.5px;
+            }
+            
+            .nav-burger {
+                width: 200px;
+            }
+            
+            .nav-burger .a-header {
+                font-size: 16px;
+            }
+            
+            .footer-icon {
+                gap: 10px;
+            }
+            
+            .footer-icon img {
+                width: 22px;
+                height: 22px;
+            }
+            
+            .ul-footer {
+                gap: 8px;
+            }
+            
+            .a-footer {
+                font-size: 8px;
+            }
+        }
+
+        @media (max-width: 250px) {
+            .logo {
+                width: 25px;
+                height: 25px;
+            }
+            
+            .lk {
+                width: 25px;
+                height: 25px;
+            }
+            
+            .container {
+                padding: 3px 5px;
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+            
+            .perehod {
+                padding: 0 5px 0 5px;
+            }
+            
+            .perehod img {
+                width: 20px;
+                height: 20px;
+            }
+            
+            .sentence {
+                font-size: 0.8rem;
+                padding: 0.4rem;
+            }
+            
+            .korean-text {
+                font-size: 0.8rem;
+                padding-left: 20px;
+            }
+            
+            .option-btn {
+                padding: 0.4rem;
+                min-height: 30px;
+                font-size: 0.8rem;
+            }
+            
+            .option-btn::before {
+                width: 12px;
+                height: 12px;
+                left: 4px;
+                font-size: 0.5rem;
+            }
+            
+            .btn {
+                padding: 0.3rem 0.6rem;
+                font-size: 0.7rem;
+            }
+            
+            .game-container {
+                padding: 0.5rem;
+            }
+            
+            .sentence-box, .options-box {
+                padding: 0.6rem;
+                border-radius: 12px;
+            }
+            
+            .result-title {
+                font-size: 1.5rem;
+            }
+            
+            .result-score {
+                font-size: 2rem;
+            }
+            
+            .result-stat {
+                padding: 1rem;
+            }
+            
+            .result-stat-value {
+                font-size: 1.5rem;
+            }
+            
+            .result-message {
+                font-size: 1rem;
+            }
+        }
+
+        /* Предотвращение масштабирования на мобильных устройствах при вводе */
+        input, select, textarea {
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Фон с анимированными корейскими буквами -->
+    <div id="background-letters"></div>
+
+    <!-- ШАПКА в коричневых тонах -->
+    <header>
+        <div class="container">
+            <div class="burger-menu" id="burgerMenu">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <img class="logo" src="/image/logo krug.svg" alt="Логотип">
+            <a href="" class="user"> <img class="lk" src="/image/userrblur.svg" alt="Пользователь"></a>
+        </div>
+        <nav class="nav-burger" id="navBurger">
+            <ul class="ul-header">
+                <li class="li-header"> <a href="" class="a-header">онлайн - переводчик</a></li>
+                <li class="li-header"> <a href="" class="a-header">контакты</a></li>
+                <li class="li-header"> <a href="" class="a-header" id="themeToggle">светлая тема</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Основной контент - ИГРА -->
+    <main>
+        <div class="game-wrapper">
+            <div class="game-container">
+                <!-- Игровое поле -->
+                <div class="game-field">
+                    <!-- Русское предложение -->
+                    <div class="sentence-box">
+                        <div class="sentence" id="russianSentence">Я иду в школу.</div>
+                    </div>
+
+                    <!-- Корейские варианты -->
+                    <div class="options-box">
+                        <div class="options-container">
+                            <button class="option-btn" data-letter="A" data-index="0">
+                                <span class="korean-text" id="option0">나는 학교에 갑니다.</span>
+                            </button>
+                            <button class="option-btn" data-letter="B" data-index="1">
+                                <span class="korean-text" id="option1">나 학교 갑니다.</span>
+                            </button>
+                            <button class="option-btn" data-letter="C" data-index="2">
+                                <span class="korean-text" id="option2">나는 학교에 가다.</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Прогресс бар -->
+                <div class="progress-container">
+                    <div class="progress-label">
+                        <span>Прогресс</span>
+                        <span id="progressPercent">0%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                </div>
+
+                <!-- Фидбэк -->
+                <div class="feedback-container">
+                    <div id="feedback" class="feedback"></div>
+                    <div id="hintBox" class="hint-box">
+                        <div class="hint-title">💡 Подсказка</div>
+                        <div class="hint-text" id="hintText"></div>
+                    </div>
+                </div>
+
+                <!-- Управление -->
+                <div class="game-controls">
+                    <div class="control-left">
+                        <button class="btn btn-outline" id="hintBtn">
+                            <span>💡</span> Подсказка
+                        </button>
+                        <button class="btn btn-secondary" id="skipBtn">
+                            <span>⏭️</span> Пропустить
+                        </button>
+                    </div>
+                    <div class="control-right">
+                        <button class="btn btn-primary" id="nextBtn" style="display: none;">
+                            <span>➡️</span> Следующий вопрос
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Экран завершения -->
+                <div id="gameComplete" class="game-complete">
+                    <h2 class="result-title">Игра завершена! 🎉</h2>
+                    <div class="result-score" id="finalScore">0</div>
+                    
+                    <div class="result-message" id="resultMessage">
+                        Отличная работа! Вы хорошо справились с переводом предложений.
+                    </div>
+                    
+                    <div class="result-stats">
+                        <div class="result-stat">
+                            <div class="result-stat-value" id="finalCorrect">0</div>
+                            <div class="result-stat-label">Правильных ответов</div>
+                        </div>
+                        <div class="result-stat">
+                            <div class="result-stat-value" id="finalAccuracy">0%</div>
+                            <div class="result-stat-label">Точность</div>
+                        </div>
+                        <div class="result-stat">
+                            <div class="result-stat-value" id="finalTime">0с</div>
+                            <div class="result-stat-label">Время игры</div>
+                        </div>
+                    </div>
+                    
+                    <div class="game-controls">
+                        <button class="btn btn-primary" id="playAgainBtn">
+                            <span>🔄</span> Играть снова
+                        </button>
+                        <button class="btn btn-outline" id="backToMainBtn">
+                            <span>🏠</span> На главную
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Переходы -->
+    <div class="perehod">
+        <a href="/index/index_game_1.html"><img src="/image/vlevo2.svg" alt="Предыдущая страница"></a>
+        <a href="/index/Index_kor_ru_igot_egi_1.html"><img src="/image/vpravo2.svg" alt="Следующая страница"></a>
+    </div>
+    
+    <!-- ПОДВАЛ в коричневых тонах -->
+    <footer>
+        <section class="footer container">
+            <address>
+                <div class="footer1">
+                    <div class="tel">
+                        <img src="/image/tel_blue.svg" alt="">
+                        <p>8-925-685-52-39</p>
+                    </div>
+                    <div class="mail">
+                        <p>anastasiya3000@yandex.ru</p>
+                    </div>
+                    <div class="footer-icon">
+                        <a href="" class="social-icon"> <img src="/image/telegram_icon 1.svg" alt="Telegram"></a>
+                        <a href="" class="social-icon"> <img src="/image/skype_icon 1.svg" alt="Skype"></a>
+                        <a href="" class="social-icon"><img src="/image/whatsapp_green.png" alt="WhatsApp"></a>
+                        <a href="" class="social-icon"> <img src="/image/license.svg" alt="Лицензия"></a>
+                    </div>
+                </div>
+
+                <div class="footer2">
+                    <nav class="nav1-footer">
+                        <ul class="ul-footer">
+                            <li class="li-footer"> <a href="" class="a-footer"><b>Правила оплаты</b></a></li>
+                            <li class="li-footer"> <a href="" class="a-footer"><b>Договор оферты</b></a></li>
+                            <li class="li-footer"> <a href="" class="a-footer"><b>Согласие с рассылкой</b></a></li>
+                            <li class="li-footer"><a href="" class="a-footer"><b>Пользовательское соглашение</b></a></li>
+                            <li class="li-footer"> <a href="" class="a-footer"><b>Политика конфиденциальности</b></a></li>
+                            <li class="li-footer"> <a href="" class="a-footer"><b>Положение о защите персональных данных</b></a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </address>
+        </section>
+
+        <div class="copyright">
+            <img id="copyright" src="/image/Copyright2 _ blue.svg" alt="copyright">
+            <p>takiza, 2025</p>
+        </div>
+    </footer>
+
+  
+
+    <script>
+        // Массив с корейскими буквами для фона
+        const koreanLetters = [
+            '가', '나', '다', '라', '마', '바', '사', '아', '자', '차',
+            '카', '타', '파', '하', '거', '너', '더', '러', '머', '버',
+            '서', '어', '저', '처', '커', '터', '퍼', '허', '고', '노',
+            '도', '로', '모', '보', '소', '오', '조', '초', '코', '토'
+        ];
+
+        // Функция для создания анимированных букв
+        function createBackgroundLetters() {
+            const container = document.getElementById('background-letters');
+            
+            for (let i = 0; i < 25; i++) {
+                const letter = document.createElement('div');
+                letter.className = 'korean-letter';
+                
+                const randomLetter = koreanLetters[Math.floor(Math.random() * koreanLetters.length)];
+                letter.textContent = randomLetter;
+                
+                const left = Math.random() * 100;
+                const top = Math.random() * 100;
+                const delay = Math.random() * 15;
+                
+                letter.style.left = `${left}%`;
+                letter.style.top = `${top}%`;
+                letter.style.animationDelay = `${delay}s`;
+                letter.style.fontSize = `${30 + Math.random() * 40}px`;
+                letter.style.transform += ` rotate(${Math.random() * 20 - 10}deg)`;
+                
+                container.appendChild(letter);
+            }
+        }
+
+        // Глобальные переменные игры
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let correctAnswers = 0;
+        let totalQuestions = 10;
+        let questions = [];
+        let currentCorrectAnswer = null;
+        let gameStartTime = null;
+        let gameActive = true;
+        let hintsUsed = 0;
+
+        // НОВАЯ БАЗА ДАННЫХ ВОПРОСОВ С ПРЕДОСТАВЛЕННЫМИ ПРЕДЛОЖЕНИЯМИ
+        const questionDatabase = [
+            // Тема 1: Утверждение и отрицание
+            {
+                id: 1,
+                russian: "Я студент.",
+                korean: "저는 학생입니다.",
+                wrongOptions: [
+                    "저는 선생님입니다.",
+                    "저는 의사입니다."
+                ],
+                hint: "'저는' - я (вежливая форма), '학생' - студент, '입니다' - есть (связка)"
+            },
+            {
+                id: 2,
+                russian: "Это яблоко.",
+                korean: "이것은 사과입니다.",
+                wrongOptions: [
+                    "이것은 바나나입니다.",
+                    "이것은 오렌지입니다."
+                ],
+                hint: "'이것은' - это, '사과' - яблоко"
+            },
+            {
+                id: 3,
+                russian: "Вон то — школа.",
+                korean: "저것은 학교입니다.",
+                wrongOptions: [
+                    "저것은 병원입니다.",
+                    "저것은 은행입니다."
+                ],
+                hint: "'저것은' - вон то (далеко от говорящего и слушающего), '학교' - школа"
+            },
+            {
+                id: 4,
+                russian: "Я кореец / кореянка.",
+                korean: "나는 한국 사람입니다.",
+                wrongOptions: [
+                    "나는 미국 사람입니다.",
+                    "나는 일본 사람입니다."
+                ],
+                hint: "'나는' - я (неформально), '한국' - Корея, '사람' - человек"
+            },
+            {
+                id: 5,
+                russian: "Это дверь.",
+                korean: "이것은 문입니다.",
+                wrongOptions: [
+                    "이것은 창문입니다.",
+                    "이것은 벽입니다."
+                ],
+                hint: "'문' - дверь"
+            },
+            {
+                id: 6,
+                russian: "Он учитель.",
+                korean: "그는 선생님입니다.",
+                wrongOptions: [
+                    "그는 학생입니다.",
+                    "그는 의사입니다."
+                ],
+                hint: "'그는' - он, '선생님' - учитель (вежливая форма)"
+            },
+            {
+                id: 7,
+                russian: "Я врач.",
+                korean: "저는 의사입니다.",
+                wrongOptions: [
+                    "저는 간호사입니다.",
+                    "저는 과학자입니다."
+                ],
+                hint: "'의사' - врач"
+            },
+            {
+                id: 8,
+                russian: "Это кровать.",
+                korean: "이것은 침대입니다.",
+                wrongOptions: [
+                    "이것은 소파입니다.",
+                    "이것은 의자입니다."
+                ],
+                hint: "'침대' - кровать"
+            },
+            {
+                id: 9,
+                russian: "То — кофе.",
+                korean: "그것은 커피입니다.",
+                wrongOptions: [
+                    "그것은 차입니다.",
+                    "그것은 주스입니다."
+                ],
+                hint: "'그것은' - то (близко к слушателю), '커피' - кофе"
+            },
+         
+            {
+                id: 11,
+                russian: "Это не ключ.",
+                korean: "이것은 열쇠가 아닙니다.",
+                wrongOptions: [
+                    "이것은 열쇠입니다.",
+                    "이것은 자물쇠입니다."
+                ],
+                hint: "'가 아닙니다' - отрицательная форма связки (не является)"
+            },
+       
+            {
+                id: 13,
+                russian: "То не машина.",
+                korean: "그것은 차가 아닙니다.",
+                wrongOptions: [
+                    "그것은 차입니다.",
+                    "그것은 버스입니다."
+                ],
+                hint: "'차' - машина"
+            },
+            {
+                id: 14,
+                russian: "Он не друг.",
+                korean: "그는 친구가 아닙니다.",
+                wrongOptions: [
+                    "그는 친구입니다.",
+                    "그는 동료입니다."
+                ],
+                hint: "'친구' - друг"
+            },
+            {
+                id: 15,
+                russian: "Вон то не парк.",
+                korean: "저것은 공원이 아닙니다.",
+                wrongOptions: [
+                    "저것은 공원입니다.",
+                    "저것은 정원입니다."
+                ],
+                hint: "'공원' - парк"
+            },
+            {
+                id: 16,
+                russian: "Я не офисный работник.",
+                korean: "나는 회사원이 아닙니다.",
+                wrongOptions: [
+                    "나는 회사원입니다.",
+                    "나는 직원입니다."
+                ],
+                hint: "'회사원' - офисный работник"
+            },
+            {
+                id: 17,
+                russian: "Это не деньги.",
+                korean: "이것은 돈이 아닙니다.",
+                wrongOptions: [
+                    "이것은 돈입니다.",
+                    "이것은 카드입니다."
+                ],
+                hint: "'돈' - деньги"
+            },
+            {
+                id: 18,
+                russian: "То не окно.",
+                korean: "그것은 창문이 아닙니다.",
+                wrongOptions: [
+                    "그것은 창문입니다.",
+                    "그것은 유리입니다."
+                ],
+                hint: "'창문' - окно"
+            },
+            {
+                id: 19,
+                russian: "Я не повар.",
+                korean: "저는 요리사가 아닙니다.",
+                wrongOptions: [
+                    "저는 요리사입니다.",
+                    "저는 셰프입니다."
+                ],
+                hint: "'요리사' - повар"
+            },
+            {
+                id: 20,
+                russian: "Вон то не аптека.",
+                korean: "저것은 약국이 아닙니다.",
+                wrongOptions: [
+                    "저것은 약국입니다.",
+                    "저것은 병원입니다."
+                ],
+                hint: "'약국' - аптека"
+            },
+            // Тема 2: Указательные местоимения 이것, 그것, 저것 / 이, 그, 저
+            {
+                id: 21,
+                russian: "Это стул.",
+                korean: "이것은 의자입니다.",
+                wrongOptions: [
+                    "이것은 책상입니다.",
+                    "이것은 테이블입니다."
+                ],
+                hint: "'의자' - стул"
+            },
+            {
+                id: 22,
+                russian: "То — стол.",
+                korean: "그것은 책상입니다.",
+                wrongOptions: [
+                    "그것은 의자입니다.",
+                    "그것은 탁자입니다."
+                ],
+                hint: "'책상' - письменный стол"
+            },
+            {
+                id: 23,
+                russian: "Вон то — сумка.",
+                korean: "저것은 가방입니다.",
+                wrongOptions: [
+                    "저것은 핸드백입니다.",
+                    "저것은 배낭입니다."
+                ],
+                hint: "'가방' - сумка"
+            },
+        
+            {
+                id: 25,
+                russian: "Тот человек добрый.",
+                korean: "그 사람은 친절합니다.",
+                wrongOptions: [
+                    "그 사람은 무례합니다.",
+                    "그 사람은 착합니다."
+                ],
+                hint: "'그 사람은' - тот человек, '친절합니다' - добрый"
+            },
+            {
+                id: 26,
+                russian: "Вон тот дом большой.",
+                korean: "저 집은 큽니다.",
+                wrongOptions: [
+                    "저 집은 작습니다.",
+                    "저 집은 넓습니다."
+                ],
+                hint: "'저 집은' - вон тот дом, '큽니다' - большой"
+            },
+            {
+                id: 27,
+                russian: "Этот карандаш новый.",
+                korean: "이 연필은 새롭습니다.",
+                wrongOptions: [
+                    "이 연필은 오래되었습니다.",
+                    "이 연필은 예쁩니다."
+                ],
+                hint: "'이 연필은' - этот карандаш, '새롭습니다' - новый"
+            },
+            {
+                id: 28,
+                russian: "Та девушка — студентка.",
+                korean: "그 여자는 학생입니다.",
+                wrongOptions: [
+                    "그 여자는 선생님입니다.",
+                    "그 여자는 의사입니다."
+                ],
+                hint: "'그 여자는' - та девушка"
+            },
+            {
+                id: 29,
+                russian: "Вон тот мужчина — врач.",
+                korean: "저 남자는 의사입니다.",
+                wrongOptions: [
+                    "저 남자는 간호사입니다.",
+                    "저 남자는 과학자입니다."
+                ],
+                hint: "'저 남자는' - вон тот мужчина"
+            },
+            {
+                id: 30,
+                russian: "Эта еда вкусная.",
+                korean: "이 음식은 맛있습니다.",
+                wrongOptions: [
+                    "이 음식은 맛없습니다.",
+                    "이 음식은 매콤합니다."
+                ],
+                hint: "'이 음식은' - эта еда, '맛있습니다' - вкусная"
+            },
+            {
+                id: 31,
+                russian: "То — щенок.",
+                korean: "그것은 강아지입니다.",
+                wrongOptions: [
+                    "그것은 고양이입니다.",
+                    "그것은 토끼입니다."
+                ],
+                hint: "'강아지' - щенок"
+            },
+            {
+                id: 32,
+                russian: "Вон то — кошка.",
+                korean: "저것은 고양이입니다.",
+                wrongOptions: [
+                    "저것은 강아지입니다.",
+                    "저것은 햄스터입니다."
+                ],
+                hint: "'고양이' - кошка"
+            },
+            {
+                id: 33,
+                russian: "Эти туфли удобные.",
+                korean: "이 신발은 편합니다.",
+                wrongOptions: [
+                    "이 신발은 불편합니다.",
+                    "이 신발은 아름답습니다."
+                ],
+                hint: "'이 신발은' - эти туфли, '편합니다' - удобные"
+            },
+            {
+                id: 34,
+                russian: "Та машина дорогая.",
+                korean: "그 차는 비쌉니다.",
+                wrongOptions: [
+                    "그 차는 싸니다.",
+                    "그 차는 빠릅니다."
+                ],
+                hint: "'그 차는' - та машина, '비쌉니다' - дорогая"
+            },
+            {
+                id: 35,
+                russian: "Вон тот отель знаменитый.",
+                korean: "저 호텔은 유명합니다.",
+                wrongOptions: [
+                    "저 호텔은 무명합니다.",
+                    "저 호텔은 크습니다."
+                ],
+                hint: "'저 호텔은' - вон тот отель, '유명합니다' - знаменитый"
+            },
+            {
+                id: 36,
+                russian: "Это часы.",
+                korean: "이것은 시계입니다.",
+                wrongOptions: [
+                    "이것은 달력입니다.",
+                    "이것은 타이머입니다."
+                ],
+                hint: "'시계' - часы"
+            },
+            {
+                id: 37,
+                russian: "То — газета.",
+                korean: "그것은 신문입니다.",
+                wrongOptions: [
+                    "그것은 잡지입니다.",
+                    "그것은 책입니다."
+                ],
+                hint: "'신문' - газета"
+            },
+            {
+                id: 38,
+                russian: "Вон то — карта.",
+                korean: "저것은 지도입니다.",
+                wrongOptions: [
+                    "저것은 그림입니다.",
+                    "저것은 사진입니다."
+                ],
+                hint: "'지도' - карта"
+            },
+            {
+                id: 39,
+                russian: "Этот мяч маленький.",
+                korean: "이 공은 작습니다.",
+                wrongOptions: [
+                    "이 공은 큽니다.",
+                    "이 공은 둥급니다."
+                ],
+                hint: "'이 공은' - этот мяч, '작습니다' - маленький"
+            },
+            
+            // Тема 3: Местоимения места 여기, 거기, 저기
+            {
+                id: 41,
+                russian: "Книга здесь.",
+                korean: "책은 여기에 있습니다.",
+                wrongOptions: [
+                    "책은 거기에 있습니다.",
+                    "책은 저기에 있습니다."
+                ],
+                hint: "'여기에' - здесь (на этом месте), '있습니다' - есть/находится"
+            },
+            {
+                id: 42,
+                russian: "Туалет там.",
+                korean: "화장실은 거기에 있습니다.",
+                wrongOptions: [
+                    "화장실은 여기에 있습니다.",
+                    "화장실은 저기에 있습니다."
+                ],
+                hint: "'거기에' - там (ближе к слушателю)"
+            },
+            {
+                id: 43,
+                russian: "Магазин вон там.",
+                korean: "가게는 저기에 있습니다.",
+                wrongOptions: [
+                    "가게는 여기에 있습니다.",
+                    "가게는 거기에 있습니다."
+                ],
+                hint: "'저기에' - вон там (далеко от обоих)"
+            },
+            {
+                id: 44,
+                russian: "Здесь много людей.",
+                korean: "사람이 여기에 많습니다.",
+                wrongOptions: [
+                    "사람이 거기에 많습니다.",
+                    "사람이 저기에 많습니다."
+                ],
+                hint: "'많습니다' - много"
+            },
+            {
+                id: 45,
+                russian: "Парк там.",
+                korean: "공원은 거기에 있습니다.",
+                wrongOptions: [
+                    "공원은 여기에 있습니다.",
+                    "공원은 저기에 있습니다."
+                ],
+                hint: "'공원' - парк"
+            },
+            {
+                id: 46,
+                russian: "Машина вон там.",
+                korean: "차가 저기에 있습니다.",
+                wrongOptions: [
+                    "차가 여기에 있습니다.",
+                    "차가 거기에 있습니다."
+                ],
+                hint: "'차가' - машина (субъектный маркер '가')"
+            },
+            {
+                id: 47,
+                russian: "Ручки здесь нет.",
+                korean: "만년필이 여기에 없습니다.",
+                wrongOptions: [
+                    "만년필이 거기에 없습니다.",
+                    "만년필이 저기에 없습니다."
+                ],
+                hint: "'없습니다' - нет/отсутствует"
+            },
+            {
+                id: 48,
+                russian: "Школа там.",
+                korean: "학교는 거기에 있습니다.",
+                wrongOptions: [
+                    "학교는 여기에 있습니다.",
+                    "학교는 저기에 있습니다."
+                ],
+                hint: "'학교' - школа"
+            },
+            {
+                id: 49,
+                russian: "Больница вон там.",
+                korean: "병원은 저기에 있습니다.",
+                wrongOptions: [
+                    "병원은 여기에 있습니다.",
+                    "병원은 거기에 있습니다."
+                ],
+                hint: "'병원' - больница"
+            },
+            {
+                id: 50,
+                russian: "Деньги здесь.",
+                korean: "돈이 여기에 있습니다.",
+                wrongOptions: [
+                    "돈이 거기에 있습니다.",
+                    "돈이 저기에 있습니다."
+                ],
+                hint: "'돈' - деньги"
+            },
+            {
+                id: 51,
+                russian: "Сумки там нет.",
+                korean: "가방이 거기에 없습니다.",
+                wrongOptions: [
+                    "가방이 여기에 없습니다.",
+                    "가방이 저기에 없습니다."
+                ],
+                hint: "'가방' - сумка"
+            },
+            {
+                id: 52,
+                russian: "Банк вон там.",
+                korean: "은행은 저기에 있습니다.",
+                wrongOptions: [
+                    "은행은 여기에 있습니다.",
+                    "은행은 거기에 있습니다."
+                ],
+                hint: "'은행' - банк"
+            },
+            {
+                id: 53,
+                russian: "Ресторан здесь.",
+                korean: "식당이 여기에 있습니다.",
+                wrongOptions: [
+                    "식당이 거기에 있습니다.",
+                    "식당이 저기에 있습니다."
+                ],
+                hint: "'식당' - ресторан"
+            },
+            {
+                id: 54,
+                russian: "Автобусная остановка там.",
+                korean: "버스 정류장이 거기에 있습니다.",
+                wrongOptions: [
+                    "버스 정류장이 여기에 있습니다.",
+                    "버스 정류장이 저기에 있습니다."
+                ],
+                hint: "'버스 정류장' - автобусная остановка"
+            },
+            {
+                id: 55,
+                russian: "Почта вон там.",
+                korean: "우체국은 저기에 있습니다.",
+                wrongOptions: [
+                    "우체국은 여기에 있습니다.",
+                    "우체국은 거기에 있습니다."
+                ],
+                hint: "'우체국' - почта"
+            },
+            {
+                id: 56,
+                russian: "Здесь — наш дом.",
+                korean: "여기가 우리 집입니다.",
+                wrongOptions: [
+                    "거기가 우리 집입니다.",
+                    "저기가 우리 집입니다."
+                ],
+                hint: "'여기가' - здесь (как подлежащее), '우리 집' - наш дом"
+            },
+            {
+                id: 57,
+                russian: "Там — библиотека.",
+                korean: "거기가 도서관입니다.",
+                wrongOptions: [
+                    "여기가 도서관입니다.",
+                    "저기가 도서관입니다."
+                ],
+                hint: "'도서관' - библиотека"
+            },
+            {
+                id: 58,
+                russian: "Вон там — аэропорт.",
+                korean: "저기가 공항입니다.",
+                wrongOptions: [
+                    "여기가 공항입니다.",
+                    "거기가 공항입니다."
+                ],
+                hint: "'공항' - аэропорт"
+            },
+            {
+                id: 59,
+                russian: "Здесь — класс.",
+                korean: "여기는 교실입니다.",
+                wrongOptions: [
+                    "거기는 교실입니다.",
+                    "저기는 교실입니다."
+                ],
+                hint: "'교실' - класс (учебный)"
+            }
+        ];
+
+        // Функция инициализации игры
+        function initGame() {
+            currentQuestionIndex = 0;
+            score = 0;
+            correctAnswers = 0;
+            gameActive = true;
+            hintsUsed = 0;
+            gameStartTime = Date.now();
+            
+            questions = [...questionDatabase].sort(() => Math.random() - 0.5);
+            totalQuestions = Math.min(10, questions.length); // Ограничиваем 10 вопросами для одной игры
+            
+            document.getElementById('gameComplete').classList.remove('active');
+            document.querySelector('.game-field').style.display = 'grid';
+            document.querySelector('.progress-container').style.display = 'block';
+            document.querySelector('.game-controls').style.display = 'flex';
+            
+            loadQuestion();
+            updateProgress();
+        }
+
+        // Функция загрузки вопроса
+        function loadQuestion() {
+            if (currentQuestionIndex >= totalQuestions || !gameActive) {
+                endGame();
+                return;
+            }
+            
+            const question = questions[currentQuestionIndex];
+            document.getElementById('russianSentence').textContent = question.russian;
+            
+            const allOptions = [question.korean, ...question.wrongOptions];
+            const shuffledOptions = shuffleArray([...allOptions]);
+            
+            const optionBtns = document.querySelectorAll('.option-btn');
+            optionBtns.forEach((btn, index) => {
+                const optionText = shuffledOptions[index];
+                btn.querySelector('.korean-text').textContent = optionText;
+                btn.classList.remove('correct', 'wrong', 'disabled', 'pulse');
+                btn.disabled = false;
+                
+                if (optionText === question.korean) {
+                    currentCorrectAnswer = index;
+                }
+            });
+            
+            document.getElementById('nextBtn').style.display = 'none';
+            document.getElementById('feedback').className = 'feedback';
+            document.getElementById('feedback').textContent = '';
+            document.getElementById('hintBox').classList.remove('active');
+            updateProgress();
+        }
+
+        // Функция перемешивания массива
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        // Функция проверки ответа
+        function checkAnswer(selectedIndex) {
+            if (!gameActive) return;
+            
+            const isCorrect = selectedIndex === currentCorrectAnswer;
+            const optionBtns = document.querySelectorAll('.option-btn');
+            const feedback = document.getElementById('feedback');
+            
+            optionBtns.forEach(btn => {
+                btn.classList.add('disabled');
+                btn.disabled = true;
+            });
+            
+            optionBtns.forEach((btn, index) => {
+                if (index === currentCorrectAnswer) {
+                    btn.classList.add('correct');
+                } else if (index === selectedIndex && !isCorrect) {
+                    btn.classList.add('wrong');
+                }
+            });
+            
+            if (isCorrect) {
+                score += 10;
+                correctAnswers++;
+                feedback.textContent = "Правильно! 🎉 +10 очков";
+                feedback.className = 'feedback correct';
+                optionBtns[currentCorrectAnswer].classList.add('pulse');
+            } else {
+                feedback.textContent = `Неправильно 😞 Правильный ответ: ${optionBtns[currentCorrectAnswer].querySelector('.korean-text').textContent}`;
+                feedback.className = 'feedback wrong';
+            }
+            
+            document.getElementById('nextBtn').style.display = 'flex';
+            currentQuestionIndex++;
+        }
+
+        // Функция показа подсказки
+        function showHint() {
+            if (!gameActive || hintsUsed >= 3) return;
+            
+            const currentQuestion = questions[currentQuestionIndex];
+            if (!currentQuestion) return;
+            
+            hintsUsed++;
+            document.getElementById('hintText').textContent = currentQuestion.hint;
+            document.getElementById('hintBox').classList.add('active');
+            
+            score = Math.max(0, score - 5);
+        }
+
+        // Функция пропуска вопроса
+        function skipQuestion() {
+            if (!gameActive) return;
+            
+            currentQuestionIndex++;
+            loadQuestion();
+            
+            score = Math.max(0, score - 3);
+        }
+
+        // Функция обновления прогресса
+        function updateProgress() {
+            const progress = ((currentQuestionIndex) / totalQuestions) * 100;
+            document.getElementById('progressFill').style.width = `${progress}%`;
+            document.getElementById('progressPercent').textContent = `${Math.round(progress)}%`;
+        }
+
+        // Функция завершения игры
+        function endGame() {
+            gameActive = false;
+            
+            document.querySelector('.game-field').style.display = 'none';
+            document.querySelector('.progress-container').style.display = 'none';
+            document.querySelector('.game-controls').style.display = 'none';
+            
+            const gameTime = Math.floor((Date.now() - gameStartTime) / 1000);
+            const minutes = Math.floor(gameTime / 60);
+            const seconds = gameTime % 60;
+            const timeString = minutes > 0 ? `${minutes}м ${seconds}с` : `${seconds}с`;
+            
+            const accuracy = totalQuestions > 0 ? Math.round((correctAnswers / totalQuestions) * 100) : 0;
+            
+            let message = "";
+            if (accuracy >= 90) {
+                message = "Отличная работа! Вы прекрасно знаете корейский язык! 🌟";
+            } else if (accuracy >= 70) {
+                message = "Хороший результат! Продолжайте практиковаться! 👍";
+            } else if (accuracy >= 50) {
+                message = "Неплохо! Есть над чем поработать. 💪";
+            } else {
+                message = "Не расстраивайтесь! Практика делает мастера. 📚";
+            }
+            
+            document.getElementById('finalScore').textContent = score;
+            document.getElementById('finalCorrect').textContent = `${correctAnswers}/${totalQuestions}`;
+            document.getElementById('finalAccuracy').textContent = `${accuracy}%`;
+            document.getElementById('finalTime').textContent = timeString;
+            document.getElementById('resultMessage').textContent = message;
+            
+            document.getElementById('gameComplete').classList.add('active');
+        }
+
+        // Инициализация при загрузке страницы
+        document.addEventListener('DOMContentLoaded', function() {
+            // Создаем анимированный фон
+            createBackgroundLetters();
+            
+            // Бургер меню
+            const burgerMenu = document.getElementById('burgerMenu');
+            const navBurger = document.getElementById('navBurger');
+            
+            if (burgerMenu) {
+                burgerMenu.addEventListener('click', function() {
+                    navBurger.classList.toggle('active');
+                });
+            }
+            
+            // Переключение темы
+            const themeToggle = document.getElementById('themeToggle');
+            if (themeToggle) {
+                themeToggle.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    document.body.classList.toggle('dark-theme');
+                    this.textContent = document.body.classList.contains('dark-theme') 
+                        ? 'тёмная тема' 
+                        : 'светлая тема';
+                });
+            }
+            
+            // Инициализация игры
+            initGame();
+            
+            // Обработчики событий для игры
+            document.querySelectorAll('.option-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const index = parseInt(this.getAttribute('data-index'));
+                    checkAnswer(index);
+                });
+            });
+            
+            document.getElementById('nextBtn').addEventListener('click', function() {
+                loadQuestion();
+            });
+            
+            document.getElementById('hintBtn').addEventListener('click', showHint);
+            document.getElementById('skipBtn').addEventListener('click', skipQuestion);
+            document.getElementById('playAgainBtn').addEventListener('click', initGame);
+            
+            document.getElementById('backToMainBtn').addEventListener('click', function() {
+                window.location.href = '/index.html';
+            });
+            
+            // Закрытие бургер меню при клике вне его
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.burger-menu') && !e.target.closest('.nav-burger')) {
+                    navBurger.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
