@@ -1389,17 +1389,17 @@ address {
         </nav>
     </header>
 
-    <main>
+  <main>
         <div class="start-sections-container" id="startSectionsContainer">
             <div class="start-section" onclick="openDictionarySection(1)">
-                <div class="section-title">часть 2</div>
-                <div class="section-count">251 слово</div>
+                <div class="section-title">Словарь 1</div>
+                <div class="section-count">10 категорий • 256 слов</div>
             </div>
             
-            <!-- <div class="start-section" onclick="openDictionarySection(2)">
-                <div class="section-title"></div>
-                <div class="section-count">251 слово</div>
-            </div> -->
+            <div class="start-section" onclick="openDictionarySection(2)">
+                <div class="section-title">Словарь 2</div>
+                <div class="section-count">5 категорий • 146 слов</div>
+            </div>
         </div>
 
         <div class="categories-container" id="categoriesContainer">
@@ -1503,7 +1503,7 @@ const koreanLetters = [
 ];
 
 
-  const dictionary1Categories = [
+ const dictionary1Categories = [
     {
         "id": 1,
         "title": "основные глаголы движения",
@@ -1825,6 +1825,189 @@ const koreanLetters = [
             { "korean": "완벽하다", "translation": "быть (совершенным)" }
         ]
     }
+];
+const dictionary2Categories = [
+  {
+    "id": 1,
+    "title": "действия и движения",
+    "count": 44,
+    "words": [
+      { "korean": "가꾸다", "translation": "ухаживать, выращивать" },
+      { "korean": "걷다", "translation": "идти" },
+      { "korean": "걸리다", "translation": "застревать, цепляться" },
+      { "korean": "고치다", "translation": "чинить, исправлять" },
+      { "korean": "구경하다", "translation": "осматривать, смотреть" },
+      { "korean": "굴리다", "translation": "катить" },
+      { "korean": "기르다", "translation": "выращивать, растить" },
+      { "korean": "꼼꼼하다", "translation": "быть тщательным, аккуратным" },
+      { "korean": "끼다", "translation": "надевать (перчатки, кольцо)" },
+      { "korean": "나누다", "translation": "делить, разделять" },
+      { "korean": "내다", "translation": "платить; издавать (звук)" },
+      { "korean": "놀다", "translation": "играть" },
+      { "korean": "달리다", "translation": "бежать" },
+      { "korean": "던지다", "translation": "бросать" },
+      { "korean": "도와주다", "translation": "помогать" },
+      { "korean": "돌다", "translation": "вертеться, вращаться" },
+      { "korean": "뛰다", "translation": "бежать, прыгать" },
+      { "korean": "뜨다", "translation": "плавать; всплывать" },
+      { "korean": "만들다", "translation": "делать, создавать" },
+      { "korean": "맡기다", "translation": "поручать, оставлять на попечение" },
+      { "korean": "먹다", "translation": "есть" },
+      { "korean": "모으다", "translation": "собирать" },
+      { "korean": "묻다", "translation": "спрашивать" },
+      { "korean": "물어보다", "translation": "спрашивать" },
+      { "korean": "박다", "translation": "забивать (гвоздь)" },
+      { "korean": "벗다", "translation": "снимать (одежду)" },
+      { "korean": "보내다", "translation": "отправлять; проводить (время)" },
+      { "korean": "부르다", "translation": "звать; петь" },
+      { "korean": "붙이다", "translation": "приклеивать, прикреплять" },
+      { "korean": "빌리다", "translation": "занимать (в долг)" },
+      { "korean": "쓰다", "translation": "писать; использовать" },
+      { "korean": "씻다", "translation": "мыть" },
+      { "korean": "얻다", "translation": "получать, приобретать" },
+      { "korean": "열다", "translation": "открывать" },
+      { "korean": "옮기다", "translation": "переносить, переезжать" },
+      { "korean": "요리하다", "translation": "готовить (еду)" },
+      { "korean": "움직이다", "translation": "двигать(ся)" },
+      { "korean": "읽다", "translation": "читать" },
+      { "korean": "입다", "translation": "надевать (одежду)" },
+      { "korean": "잡다", "translation": "ловить, хватать" },
+      { "korean": "주다", "translation": "давать" },
+      { "korean": "찾다", "translation": "искать" },
+      { "korean": "타다", "translation": "ехать (на транспорте); гореть" },
+      { "korean": "푸다", "translation": "зачерпывать" }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "чувства и эмоции",
+    "count": 25,
+    "words": [
+      { "korean": "걱정하다", "translation": "беспокоиться" },
+      { "korean": "그립다", "translation": "скучать (по чему-то/кому-то)" },
+      { "korean": "기쁘다", "translation": "радоваться" },
+      { "korean": "노력하다", "translation": "стараться" },
+      { "korean": "닮다", "translation": "быть похожим" },
+      { "korean": "두렵다", "translation": "бояться" },
+      { "korean": "마음에 들다", "translation": "нравиться" },
+      { "korean": "미안하다", "translation": "сожалеть, извиняться" },
+      { "korean": "믿다", "translation": "верить" },
+      { "korean": "부끄럽다", "translation": "стыдиться" },
+      { "korean": "사랑하다", "translation": "любить" },
+      { "korean": "속다", "translation": "быть обманутым" },
+      { "korean": "속상하다", "translation": "огорчаться, расстраиваться" },
+      { "korean": "슬프다", "translation": "грустить" },
+      { "korean": "싫어하다", "translation": "не любить, ненавидеть" },
+      { "korean": "아끼다", "translation": "экономить, беречь" },
+      { "korean": "아프다", "translation": "болеть" },
+      { "korean": "울다", "translation": "плакать" },
+      { "korean": "원하다", "translation": "желать" },
+      { "korean": "위하다", "translation": "ради, для (кого-то)" },
+      { "korean": "즐겁다", "translation": "быть приятным" },
+      { "korean": "즐기다", "translation": "наслаждаться" },
+      { "korean": "짜증내다", "translation": "раздражаться" },
+      { "korean": "화나다", "translation": "сердиться" },
+      { "korean": "후회하다", "translation": "сожалеть" }
+    ]
+  },
+  {
+    "id": 3,
+    "title": "познание и общение",
+    "count": 24,
+    "words": [
+      { "korean": "가르치다", "translation": "учить (кого-то)" },
+      { "korean": "공부하다", "translation": "учиться" },
+      { "korean": "과시하다", "translation": "хвастаться, выставлять напоказ" },
+      { "korean": "궁금하다", "translation": "быть любопытным" },
+      { "korean": "기억하다", "translation": "помнить" },
+      { "korean": "논의하다", "translation": "обсуждать" },
+      { "korean": "대하다", "translation": "обращаться, относиться" },
+      { "korean": "듣다", "translation": "слушать" },
+      { "korean": "만나다", "translation": "встречать" },
+      { "korean": "배우다", "translation": "учить (что-то)" },
+      { "korean": "부탁하다", "translation": "просить" },
+      { "korean": "사용하다", "translation": "использовать" },
+      { "korean": "생각하다", "translation": "думать" },
+      { "korean": "소개하다", "translation": "представлять, знакомить" },
+      { "korean": "알다", "translation": "знать" },
+      { "korean": "알리다", "translation": "сообщать, извещать" },
+      { "korean": "얘기하다", "translation": "разговаривать, рассказывать" },
+      { "korean": "외우다", "translation": "запоминать, заучивать" },
+      { "korean": "이야기하다", "translation": "рассказывать" },
+      { "korean": "전하다", "translation": "передавать" },
+      { "korean": "주문하다", "translation": "заказывать" },
+      { "korean": "초대하다", "translation": "приглашать" },
+      { "korean": "표현하다", "translation": "выражать" },
+      { "korean": "허락하다", "translation": "разрешать" }
+    ]
+  },
+  {
+    "id": 4,
+    "title": "повседневная жизнь",
+    "count": 28,
+    "words": [
+      { "korean": "가져가다", "translation": "забирать" },
+      { "korean": "가져오다", "translation": "приносить" },
+      { "korean": "갈다", "translation": "точить, менять" },
+      { "korean": "결심하다", "translation": "решать (принимать решение)" },
+      { "korean": "고르다", "translation": "выбирать" },
+      { "korean": "구하다", "translation": "искать, спасать" },
+      { "korean": "기대하다", "translation": "ожидать" },
+      { "korean": "다니다", "translation": "посещать, ходить" },
+      { "korean": "도착하다", "translation": "прибывать" },
+      { "korean": "돌보다", "translation": "ухаживать, присматривать" },
+      { "korean": "들르다", "translation": "заходить, заглядывать" },
+      { "korean": "마시다", "translation": "пить" },
+      { "korean": "마치다", "translation": "заканчивать" },
+      { "korean": "맞다", "translation": "быть правильным; встречать" },
+      { "korean": "모이다", "translation": "собираться (вместе)" },
+      { "korean": "받다", "translation": "получать" },
+      { "korean": "사다", "translation": "покупать" },
+      { "korean": "서두르다", "translation": "спешить" },
+      { "korean": "설명하다", "translation": "объяснять" },
+      { "korean": "쉬다", "translation": "отдыхать" },
+      { "korean": "아니다", "translation": "не быть" },
+      { "korean": "여행하다", "translation": "путешествовать" },
+      { "korean": "오다", "translation": "приходить" },
+      { "korean": "자다", "translation": "спать" },
+      { "korean": "장을 보다", "translation": "покупать продукты" },
+      { "korean": "정리하다", "translation": "приводить в порядок" },
+      { "korean": "청소하다", "translation": "убирать" },
+      { "korean": "휴식하다", "translation": "отдыхать" }
+    ]
+  },
+  {
+    "id": 5,
+    "title": "состояния и изменения",
+    "count": 25,
+    "words": [
+      { "korean": "가득하다", "translation": "быть полным" },
+      { "korean": "견디다", "translation": "выдерживать, терпеть" },
+      { "korean": "그치다", "translation": "прекращаться" },
+      { "korean": "나타나다", "translation": "появляться" },
+      { "korean": "낫다", "translation": "выздоравливать; быть лучше" },
+      { "korean": "넘치다", "translation": "переливаться, переполняться" },
+      { "korean": "늘다", "translation": "увеличиваться" },
+      { "korean": "다치다", "translation": "получить травму" },
+      { "korean": "달라지다", "translation": "меняться" },
+      { "korean": "되다", "translation": "становиться" },
+      { "korean": "맡다", "translation": "поручать" },
+      { "korean": "머무르다", "translation": "оставаться" },
+      { "korean": "멈추다", "translation": "останавливаться" },
+      { "korean": "벗어나다", "translation": "освобождаться, вырываться" },
+      { "korean": "별나다", "translation": "быть странным, эксцентричным" },
+      { "korean": "보이다", "translation": "быть видимым" },
+      { "korean": "생기다", "translation": "появляться, возникать" },
+      { "korean": "솟다", "translation": "бить (об источнике), вздыматься" },
+      { "korean": "않다", "translation": "не делать" },
+      { "korean": "어울리다", "translation": "сочетаться, подходить" },
+      { "korean": "유지하다", "translation": "поддерживать" },
+      { "korean": "일어나다", "translation": "вставать, происходить" },
+      { "korean": "잠그다", "translation": "запирать" },
+      { "korean": "지나다", "translation": "проходить (о времени)" },
+      { "korean": "풀다", "translation": "решать (проблему); развязывать" }
+    ]
+  }
 ];
 
 
@@ -2203,4 +2386,5 @@ window.playKoreanAudio = playKoreanAudio;
     </script>
 </body>
 </html>
+
 
