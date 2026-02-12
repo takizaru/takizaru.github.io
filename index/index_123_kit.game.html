@@ -1,0 +1,2115 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Китайские числительные - Игра</title>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+        * {
+            font-family: "Montserrat", serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: fixed;
+            transition: all 0.5s ease;
+        }
+
+        /* Темы */
+        body.classic {
+            background-image: none;
+            background-color: #e1f0d4;
+            color: #333;
+        }
+
+        body.light {
+            background-image: none;
+            background-color: #ffffff;
+            color: #333;
+        }
+
+        body.dark {
+            background-image: none;
+            background-color: #0b1a33;
+            color: #fff;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1288px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            width: 100%;
+            background-color: #c8ba8d;
+            transition: all 0.5s ease;
+        }
+
+        body.dark header {
+            background-color: #163772;
+        }
+
+        body.light header {
+            background-color: #fff5f0;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 110px;
+            margin-bottom: 50px;
+        }
+
+        .logo {
+            transition: transform 0.3s;
+            height: 54px;
+        }
+
+        .logo:hover {
+            transform: scale(1.5);
+        }
+
+        .lk {
+            width: 54px;
+            height: 54px;
+            transition: transform 0.3s;
+        }
+
+        .lk:hover {
+            transform: scale(1.5);
+        }
+
+        /* Burger Menu */
+        .burger-menu {
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+            z-index: 1000;
+        }
+
+        .burger-menu div {
+            width: 25px;
+            height: 3px;
+            background-color: #000;
+            transition: all 0.3s ease;
+        }
+
+        body.dark .burger-menu div {
+            background-color: #fff;
+        }
+
+        .nav-burger {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 250px;
+            height: 100vh;
+            background-color: rgba(200, 186, 141, 0.95);
+            transition: left 0.3s ease;
+            z-index: 999;
+            padding-top: 80px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        body.dark .nav-burger {
+            background-color: rgba(22, 55, 114, 0.95);
+        }
+
+        body.light .nav-burger {
+            background-color: rgba(255, 245, 240, 0.98);
+        }
+
+        .nav-burger.active {
+            left: 0;
+        }
+
+        .nav-burger .ul-header {
+            list-style: none;
+            padding: 20px;
+            margin: 0;
+            flex-direction: column;
+        }
+
+        .nav-burger .li-header {
+            margin-bottom: 20px;
+        }
+
+        .nav-burger .a-header {
+            color: hsla(47, 18%, 20%, 0.814);
+            text-decoration: none;
+            font-size: 18px;
+            display: block;
+        }
+
+        body.dark .nav-burger .a-header {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        body.light .nav-burger .a-header {
+            color: #5a4a3a;
+        }
+
+        .nav-burger .a-header:hover {
+            color: rgb(4, 1, 48);
+        }
+
+        body.dark .nav-burger .a-header:hover {
+            color: #a6c1ee;
+        }
+
+        body.light .nav-burger .a-header:hover {
+            color: #ff7a5c;
+        }
+
+        /* Переключатель тем */
+        .theme-switcher {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .theme-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+
+        .theme-radio {
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            border: 2px solid #333;
+            position: relative;
+            cursor: pointer;
+        }
+
+        body.dark .theme-radio {
+            border-color: #fff;
+        }
+
+        body.light .theme-radio {
+            border-color: #5a4a3a;
+        }
+
+        .theme-radio:checked::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #333;
+        }
+
+        body.dark .theme-radio:checked::after {
+            background-color: #fff;
+        }
+
+        body.light .theme-radio:checked::after {
+            background-color: #ff7a5c;
+        }
+
+        .theme-label {
+            font-size: 16px;
+            color: #333;
+        }
+
+        body.dark .theme-label {
+            color: #fff;
+        }
+
+        body.light .theme-label {
+            color: #5a4a3a;
+        }
+
+        /* Main Content */
+        main {
+            flex: 1;
+            width: 100%;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        /* Кнопка "Назад" */
+        .fixed-back-button {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 120px;
+            height: 40px;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 182, 159, 0.4);
+            border-radius: 0 0 0 15px;
+            padding: 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            text-decoration: none;
+            color: #7a5c48;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            margin: 0;
+        }
+
+        body.light .fixed-back-button {
+            background: rgba(255, 255, 255, 0.25);
+            border: 1px solid rgba(255, 182, 159, 0.5);
+            color: #7a5c48;
+        }
+
+        body.dark .fixed-back-button {
+            background: rgba(22, 55, 114, 0.7);
+            border: 1px solid rgba(166, 193, 238, 0.4);
+            color: #fff;
+            backdrop-filter: blur(15px);
+        }
+
+        .fixed-back-button:hover {
+            background: #008080;
+            color: #ffffff;
+            transform: translateY(2px);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        body.light .fixed-back-button:hover {
+            background: rgba(255, 154, 118, 0.25);
+            color: #ff7a5c;
+            transform: translateY(2px);
+            box-shadow: 0 2px 4px rgba(255, 140, 110, 0.15);
+        }
+
+        body.dark .fixed-back-button:hover {
+            background: rgba(166, 193, 238, 0.8);
+            color: #0b1a33;
+            transform: translateY(2px);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Стили для игры */
+        .game-container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(0, 0, 0, 0.795);
+        }
+
+        body.light .game-container {
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        body.dark .game-container {
+            background: rgba(22, 55, 114, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.844);
+        }
+
+        .game-title {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        body.light .game-title {
+            color: #5a4a3a;
+        }
+
+        body.dark .game-title {
+            color: #fff;
+        }
+
+        /* ИСПРАВЛЕННЫЙ .target-number - КРУПНЫЕ И ЖИРНЫЕ ЦИФРЫ */
+        .target-number {
+            width: 100%;
+            margin: 30px auto;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            border: 2px dashed #0e122c;
+            min-height: 120px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            user-select: none;
+        }
+
+        body.light .target-number {
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px dashed #ff7a5c;
+            color: #5a4a3a;
+        }
+
+        body.dark .target-number {
+            background: rgba(22, 55, 114, 0.9);
+            border: 2px dashed #a6c1ee;
+            color: #fff;
+        }
+
+        .target-number:hover {
+            transform: scale(1.02);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        body.light .target-number:hover {
+            box-shadow: 0 5px 15px rgba(255, 140, 110, 0.1);
+        }
+
+        body.dark .target-number:hover {
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .target-number-label {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: #666;
+        }
+
+        body.light .target-number-label {
+            color: #8a6d5b;
+        }
+
+        body.dark .target-number-label {
+            color: #a6c1ee;
+        }
+
+        /* САМО ЧИСЛО - КРУПНОЕ И ЖИРНОЕ */
+        #targetNumber {
+            font-size: 4.5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        body.light #targetNumber {
+            text-shadow: 2px 2px 4px rgba(255, 122, 92, 0.1);
+        }
+
+        body.dark #targetNumber {
+            text-shadow: 2px 2px 4px rgba(166, 193, 238, 0.2);
+        }
+
+        .input-container {
+            margin-bottom: 30px;
+            text-align: center;
+            position: relative;
+            width: 100%;
+        }
+
+        /* ИСПРАВЛЕННЫЙ .korean-input - ШИРИНА ПО КОНТЕЙНЕРУ */
+        .korean-input {
+            width: 100%;
+            padding: 20px;
+            font-size: 3.5rem;
+            font-weight: 900;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.15);
+            border: 3px solid #0e122c;
+            border-radius: 12px;
+            margin: 0 0 20px 0;
+            outline: none;
+            transition: all 0.3s ease;
+            font-family: "Malgun Gothic", "Apple SD Gothic Neo", "Nanum Gothic", sans-serif;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            box-shadow: none;
+            line-height: 1.2;
+            letter-spacing: 2px;
+            display: block;
+            box-sizing: border-box;
+        }
+
+        .korean-input:invalid {
+            box-shadow: none;
+        }
+
+        .korean-input:-webkit-autofill,
+        .korean-input:-webkit-autofill:hover,
+        .korean-input:-webkit-autofill:focus,
+        .korean-input:-webkit-autofill:active {
+            -webkit-box-shadow: 0 0 0 30px rgba(255, 255, 255, 0.15) inset !important;
+            -webkit-text-fill-color: #333 !important;
+            caret-color: #333;
+        }
+
+        body.light .korean-input {
+            background: rgba(255, 255, 255, 0.9);
+            border: 3px solid #ff7a5c;
+            color: #5a4a3a;
+        }
+
+        body.light .korean-input:-webkit-autofill,
+        body.light .korean-input:-webkit-autofill:hover,
+        body.light .korean-input:-webkit-autofill:focus,
+        body.light .korean-input:-webkit-autofill:active {
+            -webkit-box-shadow: 0 0 0 30px rgba(255, 255, 255, 0.9) inset !important;
+            -webkit-text-fill-color: #5a4a3a !important;
+            caret-color: #5a4a3a;
+        }
+
+        body.dark .korean-input {
+            background: rgba(22, 55, 114, 0.9);
+            border: 3px solid #a6c1ee;
+            color: #fff;
+        }
+
+        body.dark .korean-input:-webkit-autofill,
+        body.dark .korean-input:-webkit-autofill:hover,
+        body.dark .korean-input:-webkit-autofill:focus,
+        body.dark .korean-input:-webkit-autofill:active {
+            -webkit-box-shadow: 0 0 0 30px rgba(22, 55, 114, 0.9) inset !important;
+            -webkit-text-fill-color: #fff !important;
+            caret-color: #fff;
+        }
+
+        .korean-input:focus {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        body.light .korean-input:focus {
+            border-color: #ff7a5c;
+            box-shadow: 0 5px 15px rgba(255, 140, 110, 0.1);
+        }
+
+        body.dark .korean-input:focus {
+            border-color: #a6c1ee;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .korean-input::placeholder {
+            font-size: 1.2rem;
+            font-weight: normal;
+            color: #999;
+            opacity: 0.8;
+        }
+
+        body.dark .korean-input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Компоненты для ввода */
+        .components-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        body.light .components-container {
+            background: rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(255, 182, 159, 0.3);
+        }
+
+        body.dark .components-container {
+            background: rgba(22, 55, 114, 0.3);
+            border: 1px solid rgba(166, 193, 238, 0.3);
+        }
+
+        .component-item {
+            padding: 12px 18px;
+            font-size: 1.5rem;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid #0e122c;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            user-select: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            min-width: 60px;
+            font-weight: bold;
+        }
+
+        .component-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            background: rgba(76, 175, 80, 0.3);
+        }
+
+        body.light .component-item {
+            background: rgba(255, 255, 255, 0.7);
+            border: 2px solid #ff7a5c;
+            color: #5a4a3a;
+        }
+
+        body.light .component-item:hover {
+            background: rgba(255, 154, 118, 0.3);
+            box-shadow: 0 5px 15px rgba(255, 140, 110, 0.1);
+        }
+
+        body.dark .component-item {
+            background: rgba(166, 193, 238, 0.3);
+            border: 2px solid #a6c1ee;
+            color: #fff;
+        }
+
+        body.dark .component-item:hover {
+            background: rgba(166, 193, 238, 0.4);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .game-controls {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .game-button {
+            padding: 12px 24px;
+            font-size: 1.1rem;
+            background: transparent;
+            border: 2px solid #0e122c;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            white-space: nowrap;
+            min-width: 140px;
+            width: auto;
+        }
+
+        body.light .game-button {
+            border: 2px solid #ff7a5c;
+            color: #5a4a3a;
+        }
+
+        body.dark .game-button {
+            border: 2px solid #a6c1ee;
+            color: #fff;
+        }
+
+        .check-button {
+            background: linear-gradient(135deg, #4CAF50, #2E7D32);
+            color: white;
+            border: none !important;
+        }
+
+        .check-button:hover {
+            background: linear-gradient(135deg, #45a049, #1B5E20);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+        }
+
+        .clear-button {
+            background: linear-gradient(135deg, #f44336, #c62828);
+            color: white;
+            border: none !important;
+        }
+
+        .clear-button:hover {
+            background: linear-gradient(135deg, #e53935, #b71c1c);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(244, 67, 54, 0.3);
+        }
+
+        .next-button {
+            background: linear-gradient(135deg, #2196F3, #1565C0);
+            color: white;
+            border: none !important;
+        }
+
+        .next-button:hover {
+            background: linear-gradient(135deg, #1e88e5, #0d47a1);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(33, 150, 243, 0.3);
+        }
+
+        .skip-button {
+            background: linear-gradient(135deg, #9C27B0, #7B1FA2);
+            color: white;
+            border: none !important;
+        }
+
+        .skip-button:hover {
+            background: linear-gradient(135deg, #8E24AA, #6A1B9A);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(156, 39, 176, 0.3);
+        }
+
+        .show-rule-button {
+            background: linear-gradient(135deg, #FF9800, #EF6C00);
+            color: white;
+            border: none !important;
+        }
+
+        .show-rule-button:hover {
+            background: linear-gradient(135deg, #FB8C00, #E65100);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 152, 0, 0.3);
+        }
+
+        .feedback {
+            text-align: center;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .correct-feedback {
+            background: rgba(76, 175, 80, 0.2);
+            border: 2px solid #4CAF50;
+            color: #2E7D32;
+        }
+
+        body.dark .correct-feedback {
+            background: rgba(76, 175, 80, 0.3);
+            color: #A5D6A7;
+        }
+
+        .incorrect-feedback {
+            background: rgba(244, 67, 54, 0.2);
+            border: 2px solid #f44336;
+            color: #c62828;
+        }
+
+        body.dark .incorrect-feedback {
+            background: rgba(244, 67, 54, 0.3);
+            color: #EF9A9A;
+        }
+
+        .rule-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            padding: 20px;
+        }
+
+        .rule-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.3);
+            position: relative;
+        }
+
+        body.light .rule-content {
+            background-color: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        body.dark .rule-content {
+            background-color: #163772;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #fff;
+        }
+
+        .rule-close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            position: absolute;
+            right: 20px;
+            top: 10px;
+        }
+
+        .rule-close:hover {
+            color: #000;
+        }
+
+        body.light .rule-close:hover {
+            color: #ff7a5c;
+        }
+
+        body.dark .rule-close:hover {
+            color: #a6c1ee;
+        }
+
+        .korean-numbers-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .korean-numbers-table th,
+        .korean-numbers-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: center;
+        }
+
+        body.light .korean-numbers-table th,
+        body.light .korean-numbers-table td {
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        body.dark .korean-numbers-table th,
+        body.dark .korean-numbers-table td {
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .korean-numbers-table th {
+            background-color: #f5f5f5;
+            font-weight: bold;
+        }
+
+        body.light .korean-numbers-table th {
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+
+        body.dark .korean-numbers-table th {
+            background-color: rgba(22, 55, 114, 0.9);
+        }
+       
+        
+.perehod img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid rgb(49, 36, 105);
+    transition: transform 0.3s;
+}
+
+.perehod>a:hover {
+    transform: scale(1.5);
+}
+
+.perehod {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    padding: 0 120px 0 120px;
+    margin-bottom: 20px;
+}
+
+
+        /* ========== ПОЛНОСТЬЮ ИСПРАВЛЕННЫЙ ПОДВАЛ ========== */
+        footer {
+            background-color: #c8ba8d;
+            padding: 30px 0 20px;
+            margin-top: auto;
+            transition: all 0.5s ease;
+            width: 100%;
+        }
+
+        body.dark footer {
+            background-color: #163772;
+        }
+
+        body.light footer {
+            background-color: #fff5f0;
+        }
+
+        footer .container {
+            max-width: 1288px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        address {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 40px;
+        }
+
+        /* Левая часть подвала */
+        .footer1 {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 20px;
+            flex: 0 0 auto;
+        }
+
+        .mail, .tel {
+            display: flex;
+            align-items: center;
+            font-size: 15px;
+            gap: 10px;
+        }
+
+        .tel img {
+            width: 14px;
+            height: 14px;
+        }
+
+        .footer-icon {
+            display: flex;
+            gap: 20px;
+            margin-top: 10px;
+        }
+
+        .footer-icon img {
+            width: 32px;
+            height: 32px;
+            transition: transform 0.3s;
+        }
+
+        .footer-icon img:hover {
+            transform: scale(1.2);
+        }
+
+        /* Правая часть подвала */
+        .footer2 {
+            display: flex;
+            flex: 1;
+            justify-content: flex-end;
+        }
+
+        .ul-footer {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            gap: 20px 30px;
+        }
+
+        .li-footer {
+            margin: 0;
+        }
+
+        .a-footer {
+            color: hsla(47, 18%, 20%, 0.814);
+            text-decoration: none;
+            font-size: 14px;
+            white-space: nowrap;
+            transition: color 0.3s;
+        }
+
+        body.dark .a-footer {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        body.light .a-footer {
+            color: #5a4a3a;
+        }
+
+        .a-footer:hover {
+            color: rgb(4, 1, 48);
+        }
+
+        body.light .a-footer:hover {
+            color: #ff7a5c;
+        }
+
+        body.dark .a-footer:hover {
+            color: #a6c1ee;
+        }
+
+        /* Копирайт */
+        .copyright {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            color: hsla(47, 18%, 20%, 0.814);
+            font-size: 14px;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(49, 36, 105, 0.2);
+        }
+
+        body.dark .copyright {
+            color: rgba(255, 255, 255, 0.8);
+            border-top-color: rgba(255, 255, 255, 0.2);
+        }
+
+        body.light .copyright {
+            color: #5a4a3a;
+            border-top-color: rgba(255, 122, 92, 0.2);
+        }
+
+        #copyright {
+            height: 16px;
+            width: 16px;
+        }
+
+        /* Hover эффекты */
+        .tel p, .mail p, .copyright p {
+            transition: all 0.3s ease;
+        }
+
+        .tel:hover p, .mail:hover p, .copyright:hover p {
+            color: rgb(4, 1, 48);
+            font-size: 1.1em;
+        }
+
+        body.light .tel:hover p,
+        body.light .mail:hover p,
+        body.light .copyright:hover p {
+            color: #ff7a5c;
+        }
+
+        body.dark .tel:hover p,
+        body.dark .mail:hover p,
+        body.dark .copyright:hover p {
+            color: #a6c1ee;
+        }
+
+        /* ========== АДАПТАЦИЯ ПОДВАЛА ========== */
+
+        /* 1200px - 1025px */
+        @media (max-width: 1200px) {
+            footer .container {
+                padding: 0 30px;
+            }
+            address {
+                gap: 30px;
+            }
+            .ul-footer {
+                gap: 15px 25px;
+            }
+            .a-footer {
+                font-size: 13px;
+            }
+        }
+
+        /* 1024px - 901px */
+        @media (max-width: 1024px) {
+            footer .container {
+                padding: 0 25px;
+            }
+            address {
+                gap: 25px;
+            }
+            .footer1 {
+                gap: 15px;
+            }
+            .ul-footer {
+                gap: 12px 20px;
+                justify-content: flex-end;
+            }
+        }
+
+        /* 900px - 769px */
+        @media (max-width: 900px) {
+            footer .container {
+                padding: 0 20px;
+            }
+            address {
+                flex-direction: column;
+                align-items: center;
+                gap: 30px;
+            }
+            .footer1 {
+                align-items: center;
+                text-align: center;
+                width: 100%;
+            }
+            .mail, .tel {
+                justify-content: center;
+            }
+            .footer-icon {
+                justify-content: center;
+            }
+            .footer2 {
+                justify-content: center;
+                width: 100%;
+            }
+            .ul-footer {
+                justify-content: center;
+                max-width: 600px;
+                margin: 0 auto;
+            }
+        }
+
+        /* 768px - 601px */
+        @media (max-width: 768px) {
+            footer {
+                padding: 25px 0 15px;
+            }
+            footer .container {
+                padding: 0 20px;
+            }
+            address {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 30px;
+            }
+            .footer1 {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                width: 100%;
+                gap: 12px;
+            }
+            .mail, 
+            .tel {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 14px;
+                gap: 8px;
+                width: 100%;
+            }
+            .tel img {
+                width: 12px;
+                height: 12px;
+            }
+            .footer-icon {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 15px;
+                margin-top: 5px;
+                width: 100%;
+            }
+            .footer-icon img {
+                width: 28px;
+                height: 28px;
+            }
+            .footer2 {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+            }
+            .ul-footer {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 10px;
+                width: 100%;
+                max-width: 100%;
+            }
+            .li-footer {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                width: 100%;
+            }
+            .a-footer {
+                font-size: 13px;
+                white-space: normal;
+                text-align: center;
+                display: inline-block;
+                padding: 3px 0;
+            }
+            .copyright {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-top: 25px;
+                padding-top: 15px;
+                font-size: 13px;
+                gap: 5px;
+                width: 100%;
+            }
+        }
+
+        /* 600px - 481px */
+        @media (max-width: 600px) {
+            footer {
+                padding: 22px 0 15px;
+            }
+            footer .container {
+                padding: 0 15px;
+            }
+            address {
+                gap: 25px;
+            }
+            .footer1 {
+                gap: 10px;
+            }
+            .mail, .tel {
+                font-size: 13px;
+                gap: 6px;
+            }
+            .footer-icon {
+                gap: 12px;
+            }
+            .footer-icon img {
+                width: 26px;
+                height: 26px;
+            }
+            .ul-footer {
+                gap: 8px;
+            }
+            .a-footer {
+                font-size: 12px;
+            }
+            .copyright {
+                margin-top: 22px;
+                padding-top: 12px;
+                font-size: 12px;
+            }
+        }
+
+        /* 480px - 376px */
+        @media (max-width: 480px) {
+            footer {
+                padding: 20px 0 12px;
+            }
+            footer .container {
+                padding: 0 12px;
+            }
+            address {
+                gap: 22px;
+            }
+            .footer1 {
+                gap: 8px;
+            }
+            .mail, .tel {
+                font-size: 12px;
+                gap: 5px;
+            }
+            .footer-icon {
+                gap: 10px;
+            }
+            .footer-icon img {
+                width: 24px;
+                height: 24px;
+            }
+            .ul-footer {
+                gap: 7px;
+            }
+            .a-footer {
+                font-size: 11px;
+            }
+            .copyright {
+                margin-top: 20px;
+                padding-top: 10px;
+                font-size: 11px;
+            }
+        }
+
+        /* 375px - 321px */
+        @media (max-width: 375px) {
+            footer {
+                padding: 18px 0 10px;
+            }
+            footer .container {
+                padding: 0 10px;
+            }
+            address {
+                gap: 20px;
+            }
+            .footer1 {
+                gap: 7px;
+            }
+            .mail, .tel {
+                font-size: 11px;
+                gap: 4px;
+            }
+            .tel img {
+                width: 11px;
+                height: 11px;
+            }
+            .footer-icon {
+                gap: 8px;
+            }
+            .footer-icon img {
+                width: 22px;
+                height: 22px;
+            }
+            .ul-footer {
+                gap: 6px;
+            }
+            .a-footer {
+                font-size: 10px;
+            }
+            .copyright {
+                margin-top: 18px;
+                padding-top: 8px;
+                font-size: 10px;
+                gap: 4px;
+            }
+            #copyright {
+                height: 12px;
+                width: 12px;
+            }
+        }
+
+        /* 320px - 251px */
+        @media (max-width: 320px) {
+            footer {
+                padding: 15px 0 8px;
+            }
+            footer .container {
+                padding: 0 8px;
+            }
+            address {
+                gap: 18px;
+            }
+            .footer1 {
+                gap: 6px;
+            }
+            .mail, .tel {
+                font-size: 10px;
+                gap: 3px;
+            }
+            .tel img {
+                width: 10px;
+                height: 10px;
+            }
+            .footer-icon {
+                gap: 6px;
+            }
+            .footer-icon img {
+                width: 20px;
+                height: 20px;
+            }
+            .ul-footer {
+                gap: 5px;
+            }
+            .a-footer {
+                font-size: 9px;
+            }
+            .copyright {
+                margin-top: 15px;
+                padding-top: 6px;
+                font-size: 9px;
+                gap: 3px;
+            }
+            #copyright {
+                height: 11px;
+                width: 11px;
+            }
+        }
+
+        /* 250px и меньше */
+        @media (max-width: 250px) {
+            footer {
+                padding: 12px 0 6px;
+            }
+            footer .container {
+                padding: 0 5px;
+            }
+            address {
+                gap: 15px;
+            }
+            .footer1 {
+                gap: 5px;
+            }
+            .mail, .tel {
+                font-size: 9px;
+                gap: 2px;
+                flex-wrap: wrap;
+            }
+            .tel img {
+                width: 9px;
+                height: 9px;
+            }
+            .footer-icon {
+                gap: 5px;
+                flex-wrap: wrap;
+            }
+            .footer-icon img {
+                width: 18px;
+                height: 18px;
+            }
+            .ul-footer {
+                gap: 4px;
+            }
+            .a-footer {
+                font-size: 8px;
+                padding: 2px 0;
+                white-space: normal;
+                word-break: break-word;
+            }
+            .copyright {
+                margin-top: 12px;
+                padding-top: 5px;
+                font-size: 8px;
+                gap: 2px;
+                flex-wrap: wrap;
+            }
+            #copyright {
+                height: 10px;
+                width: 10px;
+            }
+        }
+
+        /* Анимация летающих корейских букв */
+        .letters-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        body.dark .letters-animation {
+            opacity: 1;
+        }
+
+        .korean-character {
+            position: absolute;
+            font-size: 2rem;
+            color: rgba(166, 193, 238, 0.15);
+            opacity: 0;
+            text-shadow: 0 0 5px rgba(166, 193, 238, 0.1),
+                         0 0 10px rgba(166, 193, 238, 0.05);
+            user-select: none;
+            font-weight: bold;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translate(0, 0) scale(0.5);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.5;
+            }
+            50% {
+                transform: translate(var(--move-x), var(--move-y)) scale(1.2);
+            }
+            90% {
+                opacity: 0.5;
+            }
+            100% {
+                transform: translate(var(--end-x), var(--end-y)) scale(0.5);
+                opacity: 0;
+            }
+        }
+
+        /* Адаптация для header */
+        @media (max-width: 1250px) {
+            header .container {
+                justify-content: space-between;
+                padding: 20px 40px;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            header .container {
+                padding: 20px 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-burger {
+                width: 200px;
+            }
+            .fixed-back-button {
+                display: none;
+            }
+        }
+
+        /* Адаптация для .target-number и .korean-input */
+        @media (max-width: 768px) {
+            #targetNumber {
+                font-size: 3.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header .container {
+                padding: 15px 20px;
+            }
+            .logo {
+                height: 45px;
+            }
+            .lk {
+                width: 45px;
+                height: 45px;
+            }
+            .game-title {
+                font-size: 1.6rem;
+            }
+            .target-number {
+                padding: 20px;
+                min-height: 100px;
+            }
+            #targetNumber {
+                font-size: 3rem;
+            }
+            .korean-input {
+                padding: 15px;
+                font-size: 2.5rem;
+            }
+            .korean-input::placeholder {
+                font-size: 0.95rem;
+            }
+            .game-button {
+                min-width: 110px;
+                padding: 10px 16px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 375px) {
+            .game-title {
+                font-size: 1.4rem;
+            }
+            .target-number {
+                padding: 15px;
+                min-height: 90px;
+            }
+            #targetNumber {
+                font-size: 2.5rem;
+            }
+            .korean-input {
+                padding: 12px;
+                font-size: 2rem;
+            }
+            .game-controls {
+                flex-direction: column;
+                align-items: center;
+            }
+            .game-button {
+                width: 100%;
+                max-width: 280px;
+            }
+        }
+
+        @media (max-width: 320px) {
+            .target-number {
+                padding: 12px;
+                min-height: 80px;
+            }
+            #targetNumber {
+                font-size: 2rem;
+            }
+            .korean-input {
+                padding: 10px;
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body class="classic">
+    <header>
+        <div class="container">
+            <div class="burger-menu" id="burgerMenu">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <img class="logo" src="/image/logo krug.svg" alt="Логотип">
+            <a href="#" class="user" id="userBtn">
+                <img class="lk" src="/image/userrblur.svg" alt="Пользователь">
+            </a>
+        </div>
+        <nav class="nav-burger" id="navBurger">
+            <ul class="ul-header">
+                <li class="li-header"><a href="" class="a-header">Контакты</a></li>
+                <li class="li-header">
+                    <div class="theme-switcher">
+                        <div class="theme-option">
+                            <input type="radio" id="classic-theme" name="theme" class="theme-radio" value="classic" checked>
+                            <label for="classic-theme" class="theme-label">Классическая тема</label>
+                        </div>
+                        <div class="theme-option">
+                            <input type="radio" id="light-theme" name="theme" class="theme-radio" value="light">
+                            <label for="light-theme" class="theme-label">Светлая тема</label>
+                        </div>
+                        <div class="theme-option">
+                            <input type="radio" id="dark-theme" name="theme" class="theme-radio" value="dark">
+                            <label for="dark-theme" class="theme-label">Тёмная тема</label>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Анимация летающих корейских букв -->
+    <div class="letters-animation" id="lettersAnimation"></div>
+
+    <!-- Фиксированная кнопка "Назад на главную" -->
+    <a href="#" class="fixed-back-button back-to-main">← На главную</a>
+
+    <div class="game-container">
+        <h1 class="game-title">Китайские числительные</h1>
+        
+        <div class="target-number" id="targetNumberElement">
+            <div class="target-number-label">Составьте число:</div>
+            <div id="targetNumber">235</div>
+        </div>
+        
+        <div class="input-container">
+            <input type="text" 
+                   class="korean-input" 
+                   id="koreanInput" 
+                   placeholder="Введите китайскими числительными" 
+                   autocomplete="off"
+                   spellcheck="false"
+                   inputmode="text">
+            <p style="color: #666; font-size: 0.9rem; margin-top: 10px;">
+                Вводите корейскими буквами, кликайте на компоненты ниже или печатайте
+            </p>
+            
+            <!-- Компоненты для ввода -->
+            <div class="components-container" id="componentsContainer">
+                <!-- Компоненты будут добавлены сюда -->
+            </div>
+        </div>
+        
+        <div class="game-controls">
+            <button class="game-button check-button" id="checkButton">ПРОВЕРИТЬ</button>
+            <button class="game-button clear-button" id="clearButton">ОЧИСТИТЬ</button>
+            <button class="game-button next-button" id="nextButton">СЛЕДУЮЩИЙ</button>
+            <button class="game-button skip-button" id="skipButton">ПРОПУСТИТЬ</button>
+            <button class="game-button show-rule-button" id="showRuleButton">ПРАВИЛА</button>
+        </div>
+        
+        <div class="feedback" id="feedback"></div>
+    </div>
+    
+    <!-- Модальное окно с правилами -->
+    <div class="rule-modal" id="ruleModal">
+        <div class="rule-content">
+            <span class="rule-close">&times;</span>
+            <h2>Китайские (сино-корейские) числительные</h2>
+            
+            <p>Эта система используется для дат, денег, номеров телефонов, минут, секунд:</p>
+            
+            <table class="korean-numbers-table">
+                <thead>
+                    <tr>
+                        <th>Число</th>
+                        <th>Хангыль</th>
+                        <th>Значение</th>
+                        <th>Пример</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>1</td><td>일</td><td>один</td><td>십일 (11)</td></tr>
+                    <tr><td>2</td><td>이</td><td>два</td><td>이십 (20)</td></tr>
+                    <tr><td>3</td><td>삼</td><td>три</td><td>삼십 (30)</td></tr>
+                    <tr><td>4</td><td>사</td><td>четыре</td><td>사십 (40)</td></tr>
+                    <tr><td>5</td><td>오</td><td>пять</td><td>오십 (50)</td></tr>
+                    <tr><td>6</td><td>육</td><td>шесть</td><td>육십 (60)</td></tr>
+                    <tr><td>7</td><td>칠</td><td>семь</td><td>칠십 (70)</td></tr>
+                    <tr><td>8</td><td>팔</td><td>восемь</td><td>팔십 (80)</td></tr>
+                    <tr><td>9</td><td>구</td><td>девять</td><td>구십 (90)</td></tr>
+                    <tr><td>10</td><td>십</td><td>десять</td><td>십오 (15)</td></tr>
+                    <tr><td>100</td><td>백</td><td>сто</td><td>백이십 (120)</td></tr>
+                    <tr><td>1,000</td><td>천</td><td>тысяча</td><td>천사백 (1,400)</td></tr>
+                    <tr><td>10,000</td><td>만</td><td>десять тысяч</td><td>이만 (20,000)</td></tr>
+                    <tr><td>100,000,000</td><td>억</td><td>сто миллионов</td><td>일억 (100,000,000)</td></tr>
+                </tbody>
+            </table>
+            
+            <h3>Принцип построения чисел:</h3>
+            <p>Китайская система строится по <strong>мультипликативному принципу</strong>:</p>
+            
+            <table class="korean-numbers-table">
+                <thead>
+                    <tr>
+                        <th>Число</th>
+                        <th>Хангыль</th>
+                        <th>Состав</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>11</td><td>십일</td><td>10 + 1</td></tr>
+                    <tr><td>16</td><td>십육</td><td>10 + 6 (особое чтение)</td></tr>
+                    <tr><td>20</td><td>이십</td><td>2 × 10</td></tr>
+                    <tr><td>25</td><td>이십오</td><td>2 × 10 + 5</td></tr>
+                    <tr><td>100</td><td>백</td><td>100</td></tr>
+                    <tr><td>101</td><td>백일</td><td>100 + 1</td></tr>
+                    <tr><td>235</td><td>이백삼십오</td><td>2 × 100 + 3 × 10 + 5</td></tr>
+                    <tr><td>1,508</td><td>천오백팔</td><td>1 × 1000 + 5 × 100 + 8</td></tr>
+                    <tr><td>1,000,000</td><td>백만</td><td>100 × 10,000</td></tr>
+                    <tr><td>5,678,901</td><td>오백육십칠만 팔천구백일</td><td>567 × 10,000 + 8,901</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+     <div class="perehod">
+        <a href="/index/index_123_kor.game.html"><img src="/image/vlevo2.svg" alt=""></a>
+        <a href="/index.html"><img src="/image/vpravo2.svg" alt=""></a>
+    </div>
+    <footer>
+        <section class="footer container">
+            <address>
+                <div class="footer1">
+                    <div class="tel">
+                        <img src="/image/tel_blue.svg" alt="">
+                        <p>8-925-685-52-39</p>
+                    </div>
+                    <div class="mail">
+                        <p>anastasiya3000@yandex.ru</p>
+                    </div>
+                    <div class="footer-icon">
+                        <a href="" class="social-icon"><img src="/image/telegram_icon 1.svg" alt=""></a>
+                        <a href="" class="social-icon"><img src="/image/skype_icon 1.svg" alt=""></a>
+                        <a href="" class="social-icon"><img src="/image/whatsapp_green.png" alt=""></a>
+                        <a href="" class="social-icon"><img src="/image/license.svg" alt=""></a>
+                    </div>
+                </div>
+
+                <div class="footer2">
+                    <nav class="nav1-footer">
+                        <ul class="ul-footer">
+                            <li class="li-footer"><a href="" class="a-footer"><b>Правила оплаты</b></a></li>
+                            <li class="li-footer"><a href="" class="a-footer"><b>Договор оферты</b></a></li>
+                            <li class="li-footer"><a href="" class="a-footer"><b>Согласие с рассылкой</b></a></li>
+                            <li class="li-footer"><a href="" class="a-footer"><b>Пользовательское соглашение</b></a></li>
+                            <li class="li-footer"><a href="" class="a-footer"><b>Политика конфиденциальности</b></a></li>
+                            <li class="li-footer"><a href="" class="a-footer"><b>Положение о защите персональных данных</b></a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </address>
+            <div class="copyright">
+                <img id="copyright" src="/image/Copyright2 _ blue.svg" alt="copyright">
+                <p>takiza, 2025</p>
+            </div>
+        </section>
+    </footer>
+    
+    <script>
+        // Исправленные КИТАЙСКИЕ (сино-корейские) числительные данные
+        const chineseNumbers = {
+            digits: {
+                1: { korean: '일', roman: 'il', pronunciation: 'иль' },
+                2: { korean: '이', roman: 'i', pronunciation: 'и' },
+                3: { korean: '삼', roman: 'sam', pronunciation: 'сам' },
+                4: { korean: '사', roman: 'sa', pronunciation: 'са' },
+                5: { korean: '오', roman: 'o', pronunciation: 'о' },
+                6: { korean: '육', roman: 'yuk', pronunciation: 'юк' },
+                7: { korean: '칠', roman: 'chil', pronunciation: 'чиль' },
+                8: { korean: '팔', roman: 'pal', pronunciation: 'паль' },
+                9: { korean: '구', roman: 'gu', pronunciation: 'гу' }
+            },
+            
+            placeValues: {
+                10: { korean: '십', roman: 'sip', pronunciation: 'сип', multiplier: 10 },
+                100: { korean: '백', roman: 'baek', pronunciation: 'бэк', multiplier: 100 },
+                1000: { korean: '천', roman: 'cheon', pronunciation: 'чхон', multiplier: 1000 },
+                10000: { korean: '만', roman: 'man', pronunciation: 'ман', multiplier: 10000 },
+                100000000: { korean: '억', roman: 'eok', pronunciation: 'ок', multiplier: 100000000 }
+            }
+        };
+
+        // Игровые переменные
+        let currentTarget = 235;
+
+        // DOM элементы
+        const targetNumberElement = document.getElementById('targetNumberElement');
+        const targetNumberTextElement = document.getElementById('targetNumber');
+        const koreanInputElement = document.getElementById('koreanInput');
+        const componentsContainer = document.getElementById('componentsContainer');
+        const checkButton = document.getElementById('checkButton');
+        const clearButton = document.getElementById('clearButton');
+        const nextButton = document.getElementById('nextButton');
+        const skipButton = document.getElementById('skipButton');
+        const showRuleButton = document.getElementById('showRuleButton');
+        const feedbackElement = document.getElementById('feedback');
+        const ruleModal = document.getElementById('ruleModal');
+        const ruleClose = document.querySelector('.rule-close');
+        const burgerMenu = document.getElementById('burgerMenu');
+        const navBurger = document.getElementById('navBurger');
+        const themeRadios = document.querySelectorAll('input[name="theme"]');
+        const lettersAnimation = document.getElementById('lettersAnimation');
+        const backButton = document.querySelector('.fixed-back-button');
+
+        // Функция для добавления компонента в поле ввода
+        function addComponentToInput(componentText) {
+            koreanInputElement.value += componentText;
+            koreanInputElement.focus();
+            checkIfComplete();
+        }
+
+        // Функция конвертации числа в китайско-корейское написание
+        function convertToChineseKorean(number) {
+            if (number <= 0 || number > 999999999) return null;
+            
+            let result = '';
+            let temp = number;
+            
+            // Сотни миллионов (억)
+            if (temp >= 100000000) {
+                const eoks = Math.floor(temp / 100000000);
+                if (eoks > 1) {
+                    result += chineseNumbers.digits[eoks].korean;
+                }
+                result += chineseNumbers.placeValues[100000000].korean;
+                temp %= 100000000;
+            }
+            
+            // Десятки тысяч (만)
+            if (temp >= 10000) {
+                const mans = Math.floor(temp / 10000);
+                if (mans > 1) {
+                    result += convertToChineseKorean(mans);
+                }
+                result += chineseNumbers.placeValues[10000].korean;
+                temp %= 10000;
+            }
+            
+            // Тысячи
+            if (temp >= 1000) {
+                const thousands = Math.floor(temp / 1000);
+                if (thousands > 1) {
+                    result += chineseNumbers.digits[thousands].korean;
+                }
+                result += chineseNumbers.placeValues[1000].korean;
+                temp %= 1000;
+            }
+            
+            // Сотни
+            if (temp >= 100) {
+                const hundreds = Math.floor(temp / 100);
+                if (hundreds > 1) {
+                    result += chineseNumbers.digits[hundreds].korean;
+                }
+                result += chineseNumbers.placeValues[100].korean;
+                temp %= 100;
+            }
+            
+            // Десятки
+            if (temp >= 10) {
+                const tens = Math.floor(temp / 10);
+                if (tens > 1) {
+                    result += chineseNumbers.digits[tens].korean;
+                }
+                result += chineseNumbers.placeValues[10].korean;
+                temp %= 10;
+            }
+            
+            // Единицы
+            if (temp > 0) {
+                result += chineseNumbers.digits[temp].korean;
+            }
+            
+            return result;
+        }
+
+        // Функция для генерации случайного числа
+        function generateRandomNumber() {
+            const difficulty = Math.random();
+            let newNumber;
+            
+            if (difficulty < 0.3) {
+                newNumber = Math.floor(Math.random() * 89) + 11;
+            } else if (difficulty < 0.6) {
+                newNumber = Math.floor(Math.random() * 900) + 100;
+            } else if (difficulty < 0.8) {
+                newNumber = Math.floor(Math.random() * 9000) + 1000;
+            } else {
+                newNumber = Math.floor(Math.random() * 90000) + 10000;
+            }
+            
+            return newNumber;
+        }
+
+        // Инициализация игры
+        function initGame() {
+            currentTarget = generateRandomNumber();
+            updateTargetNumber();
+            generateComponents();
+            koreanInputElement.value = '';
+            koreanInputElement.focus();
+            feedbackElement.style.display = 'none';
+            checkButton.style.display = 'inline-block';
+        }
+
+        // Обновление целевого числа
+        function updateTargetNumber() {
+            targetNumberTextElement.textContent = currentTarget.toLocaleString('ru-RU');
+        }
+
+        // Генерация компонентов для ввода
+        function generateComponents() {
+            componentsContainer.innerHTML = '';
+            
+            const placeValues = ['십', '백', '천', '만', '억'];
+            placeValues.forEach(place => {
+                const componentElement = document.createElement('div');
+                componentElement.className = 'component-item';
+                componentElement.textContent = place;
+                componentElement.addEventListener('click', () => {
+                    addComponentToInput(place);
+                });
+                componentsContainer.appendChild(componentElement);
+            });
+            
+            const digits = ['일', '이', '삼', '사', '오', '육', '칠', '팔', '구'];
+            digits.forEach(digit => {
+                const componentElement = document.createElement('div');
+                componentElement.className = 'component-item';
+                componentElement.textContent = digit;
+                componentElement.addEventListener('click', () => {
+                    addComponentToInput(digit);
+                });
+                componentsContainer.appendChild(componentElement);
+            });
+        }
+
+        // Проверка, собран ли полный ответ
+        function checkIfComplete() {
+            const userInput = koreanInputElement.value.trim();
+            const correctKorean = convertToChineseKorean(currentTarget);
+            
+            if (userInput === correctKorean) {
+                showCorrectFeedback();
+            }
+        }
+
+        // Проверка ответа
+        function checkAnswer() {
+            const userInput = koreanInputElement.value.trim();
+            const correctKorean = convertToChineseKorean(currentTarget);
+            
+            if (!userInput) {
+                feedbackElement.style.display = 'block';
+                feedbackElement.className = 'feedback incorrect-feedback';
+                feedbackElement.textContent = 'Неправильно';
+                return;
+            }
+            
+            if (userInput === correctKorean) {
+                showCorrectFeedback();
+            } else {
+                feedbackElement.style.display = 'block';
+                feedbackElement.className = 'feedback incorrect-feedback';
+                feedbackElement.textContent = 'Неправильно';
+            }
+        }
+
+        // Показать сообщение об успешном ответе
+        function showCorrectFeedback() {
+            feedbackElement.style.display = 'block';
+            feedbackElement.className = 'feedback correct-feedback';
+            feedbackElement.textContent = 'Правильно!';
+            checkButton.style.display = 'none';
+        }
+
+        // Очистка ввода
+        function clearInput() {
+            koreanInputElement.value = '';
+            feedbackElement.style.display = 'none';
+            checkButton.style.display = 'inline-block';
+            koreanInputElement.focus();
+        }
+
+        // Следующее число
+        function nextNumber() {
+            initGame();
+        }
+
+        // Пропустить текущее число
+        function skipNumber() {
+            initGame();
+        }
+
+        // Функция озвучки корейских чисел
+        function speakKoreanNumber(number) {
+            const koreanText = convertToChineseKorean(number);
+            if (!koreanText) return;
+            
+            if ('speechSynthesis' in window) {
+                const utterance = new SpeechSynthesisUtterance(koreanText);
+                utterance.lang = 'ko-KR';
+                utterance.rate = 0.8;
+                utterance.pitch = 1.0;
+                utterance.volume = 1.0;
+                
+                const voices = speechSynthesis.getVoices();
+                const koreanVoice = voices.find(voice => 
+                    voice.lang === 'ko-KR');
+                
+                if (koreanVoice) {
+                    utterance.voice = koreanVoice;
+                }
+                
+                speechSynthesis.speak(utterance);
+            }
+        }
+
+        // Создание анимации летающих корейских букв
+        function createKoreanAnimation() {
+            const koreanChars = [
+                '일', '이', '삼', '사', '오', '육', '칠', '팔', '구', '십',
+                '백', '천', '만', '억'
+            ];
+            
+            const containerWidth = window.innerWidth;
+            const containerHeight = window.innerHeight;
+            
+            lettersAnimation.innerHTML = '';
+            
+            const charsCount = 15;
+            
+            for (let i = 0; i < charsCount; i++) {
+                const char = document.createElement('div');
+                char.className = 'korean-character';
+                
+                const randomChar = koreanChars[Math.floor(Math.random() * koreanChars.length)];
+                char.textContent = randomChar;
+                
+                const startX = Math.random() * containerWidth;
+                const startY = Math.random() * containerHeight;
+                
+                const moveX = (Math.random() - 0.5) * 200;
+                const moveY = (Math.random() - 0.5) * 200;
+                const endX = startX + (Math.random() - 0.5) * 400;
+                const endY = startY + (Math.random() - 0.5) * 400;
+                
+                char.style.left = `${startX}px`;
+                char.style.top = `${startY}px`;
+                
+                char.style.setProperty('--move-x', `${moveX}px`);
+                char.style.setProperty('--move-y', `${moveY}px`);
+                char.style.setProperty('--end-x', `${endX}px`);
+                char.style.setProperty('--end-y', `${endY}px`);
+                
+                const duration = 20 + Math.random() * 30;
+                const delay = Math.random() * 10;
+                
+                char.style.animation = `float ${duration}s ease-in-out ${delay}s infinite`;
+                
+                lettersAnimation.appendChild(char);
+            }
+        }
+
+        // Инициализация при загрузке страницы
+        document.addEventListener('DOMContentLoaded', function() {
+            initGame();
+            
+            targetNumberElement.addEventListener('click', () => {
+                speakKoreanNumber(currentTarget);
+            });
+            
+            if (document.body.classList.contains('dark')) {
+                createKoreanAnimation();
+            }
+            
+            koreanInputElement.addEventListener('input', function() {
+                checkIfComplete();
+            });
+            
+            koreanInputElement.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') {
+                    checkAnswer();
+                }
+            });
+        });
+
+        // Обработчики событий
+        checkButton.addEventListener('click', checkAnswer);
+        clearButton.addEventListener('click', clearInput);
+        nextButton.addEventListener('click', nextNumber);
+        skipButton.addEventListener('click', skipNumber);
+
+        // Модальное окно с правилами
+        showRuleButton.addEventListener('click', () => {
+            ruleModal.style.display = 'block';
+        });
+
+        ruleClose.addEventListener('click', () => {
+            ruleModal.style.display = 'none';
+        });
+
+        window.addEventListener('click', (event) => {
+            if (event.target === ruleModal) {
+                ruleModal.style.display = 'none';
+            }
+        });
+
+        // Бургер-меню
+        burgerMenu.addEventListener('click', function() {
+            navBurger.classList.toggle('active');
+        });
+
+        // Переключение тем
+        themeRadios.forEach(radio => {
+            radio.addEventListener('change', function() {
+                const selectedTheme = this.value;
+                document.body.className = selectedTheme;
+                
+                if (selectedTheme === 'dark') {
+                    createKoreanAnimation();
+                } else {
+                    lettersAnimation.innerHTML = '';
+                }
+            });
+        });
+
+        // Закрытие бургер-меню при клике вне его
+        document.addEventListener('click', function(event) {
+            if (!burgerMenu.contains(event.target) && !navBurger.contains(event.target)) {
+                navBurger.classList.remove('active');
+            }
+        });
+
+        // Кнопка "Назад"
+        backButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            if (document.referrer && document.referrer.includes(window.location.hostname)) {
+                window.history.back();
+            } else {
+                window.location.href = '/';
+            }
+        });
+    </script>
+</body>
+</html>
