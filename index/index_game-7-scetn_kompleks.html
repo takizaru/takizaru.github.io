@@ -196,9 +196,9 @@
                     <div>счётные слова</div><div>даты, годы, 개월</div>
                     <div>возраст (살)</div><div>возраст (세)</div>
                     <div>предметы 1-99</div><div>телефоны, деньги</div>
-                    <div>этажи (층) ❗</div><div>주일 (недели) ❗</div>
+                    <!-- <div>этажи (층) ❗</div><div>주일 (недели) ❗</div> -->
                 </div>
-                <div class="note-box">⚠️ 층 (этаж) и 주일 (неделя) — с кит. числ.</div>
+                <div class="note-box">⚠️ 층 (этаж), 인분 (порции) и 주일 (неделя) — с кит. числ.</div>
             </div>
 
             <div class="ref-card counters">
@@ -209,7 +209,7 @@
                     <div class="counter-item">알 <small>круглые</small></div><div class="counter-item">대 <small>техника</small></div><div class="counter-item">켤레 <small>пары</small></div>
                     <div class="counter-item">그루 <small>деревья</small></div><div class="counter-item">척 <small>суда</small></div><div class="counter-item">채 <small>дома</small></div>
                     <div class="counter-item">개 <small>вещи</small></div><div class="counter-item">병 <small>бутылки</small></div><div class="counter-item">잔 <small>чашки</small></div>
-                    <div class="counter-item">벌 <small>одежда</small></div><div class="counter-item">송이 <small>цветы</small></div><div class="counter-item">인분 <small>порции</small></div>
+                    <div class="counter-item">벌 <small>одежда</small></div><div class="counter-item">송이 <small>цветы</small></div>
                 </div>
             </div>
 
@@ -286,7 +286,7 @@
         const baseQuestions = [
             // ДЕНЬГИ: новый пример (тысяча вон заменён на 10000 вон — типичный счёт)
             { phrase: '현금 ______ 원', hint: 'десять тысяч вон (купюра)', correct: '만', options: ['만', '천', '백', '십', '일만'], explanation: '원 (воны) — китайские числительные. 10000 = 만 원', numeralType: 'chinese' },
-            { phrase: '음식 ______ 인분', hint: 'три порции еды', correct: '세', options: ['세', '삼', '셋', '세개', '서'], explanation: '인분 — кор. числ.: 3 → 세', numeralType: 'korean' },
+            { phrase: '음식 ______ 인분', hint: 'три порции еды', correct: '삼', options: ['세', '삼', '셋', '세개', '서'], explanation: '인분 — кит. числ.: 3 → 삼', numeralType: 'chinese' },
             { phrase: '______ 층', hint: 'третий этаж', correct: '삼', options: ['삼', '세', '셋', '3', '세층'], explanation: '층 (этаж) — исключение, кит. числ.: 삼', numeralType: 'chinese' },
             { phrase: '______ 주일', hint: 'две недели', correct: '이', options: ['이', '두', '둘', '2', '두주일'], explanation: '주일 — исключение, кит. числ.: 이', numeralType: 'chinese' },
             { phrase: '______ 개월', hint: 'шесть месяцев', correct: '육', options: ['육', '여섯', '여섯개', '육개', '6'], explanation: '개월 — кит. числ.: 6 = 육', numeralType: 'chinese' },
@@ -442,3 +442,4 @@
 </body>
 
 </html>
+
