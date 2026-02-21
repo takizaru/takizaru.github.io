@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Корейский тренажёр: счётные комплексы • кор./кит.</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&family=Montserrat:wght@400;600;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Montserrat", sans-serif; }
+        body { background: #f0f4fa; display: flex; flex-direction: column; min-height: 100vh; }
+        header {
+            background: #a5b0cb; padding: 15px 30px; box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+        }
+        .header-container {
+            max-width: 1400px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between;
+        }
+        .logo-area { display: flex; align-items: center; gap: 15px; }
+        .burger-icon { font-size: 28px; color: #1e2a3a; cursor: pointer; }
+        .site-logo { font-weight: 900; font-size: 24px; color: #2c3e50; letter-spacing: 1px; }
+        .user-icon { font-size: 32px; color: #1e2a3a; transition: transform 0.2s; }
+        .user-icon:hover { transform: scale(1.1); }
+
+
+        /* Переход */
+.perehod {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 120px;
+    margin-bottom: 20px;
+}
+
+.perehod img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid rgb(49, 36, 105);
+    transition: transform 0.3s;
+}
+
+.perehod > a:hover {
+    transform: scale(1.5);
+}
+        .main-container {
+            display: flex; justify-content: center; align-items: flex-start; gap: 25px;
+            max-width: 1400px; margin: 30px auto; padding: 0 20px; flex-wrap: wrap;
+        }
+        .game-section {
+            flex: 2 1 600px; background: white; border-radius: 30px; padding: 30px 25px;
+            box-shadow: 0 15px 30px rgba(52, 73, 94, 0.2); border: 2px solid #34495e;
+        }
+        .reference-section {
+            flex: 1 1 280px; background: white; border-radius: 30px; padding: 25px 20px;
+            box-shadow: 0 15px 30px rgba(52, 73, 94, 0.2); border: 2px solid #34495e;
+            max-height: 800px; overflow-y: auto;
+        }
+
+        .quiz-header {
+            display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap;
+        }
+        .quiz-header h2 { color: #2c3e50; font-size: 24px; }
+        .score {
+            background: #e8ecf1; padding: 8px 20px; border-radius: 40px; font-weight: 900;
+            color: #2c3e50; border: 2px solid #5d6d7e;
+        }
+        .question-card {
+            background: #f9f9fc; border-radius: 30px; padding: 25px 20px; margin: 20px 0;
+            border: 2px dashed #5d6d7e; transition: 0.2s;
+        }
+        .korean-phrase {
+            font-size: 42px; font-weight: 700; font-family: "Noto Sans KR", sans-serif;
+            text-align: center; margin: 10px 0 20px; color: #1a1a2c; line-height: 1.4;
+            display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 8px;
+        }
+        .phrase-word {
+            display: inline-flex; align-items: center; gap: 6px;
+        }
+        .blank-highlight {
+            background: #fff2b5; padding: 5px 15px; border-radius: 40px; border: 2px solid #f1c40f;
+            font-weight: 900; font-size: 1.2em; transition: 0.2s;
+        }
+        .tts-icon {
+            font-size: 28px; color: #2c3e50; cursor: pointer; margin-left: 12px;
+            background: #e9edf2; border-radius: 50%; padding: 8px; transition: 0.2s;
+        }
+        .tts-icon:hover { background: #cfd9e6; transform: scale(1.1); }
+        .hint-text {
+            font-size: 18px; text-align: center; color: #2c3e50; margin-bottom: 20px;
+            background: #eef2f7; padding: 15px; border-radius: 50px;
+        }
+        .options {
+            display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin: 25px 0;
+        }
+        .option-btn {
+            background: white; border: 3px solid #a5b0cb; border-radius: 60px; padding: 15px 25px;
+            font-size: 26px; font-weight: 700; font-family: "Noto Sans KR", sans-serif;
+            color: #2c3e50; cursor: pointer; transition: 0.2s; min-width: 100px;
+            box-shadow: 0 5px 0 #7f8c8d;
+        }
+        .option-btn:hover:not(:disabled) {
+            background: #e8ecf1; transform: translateY(-3px); box-shadow: 0 8px 0 #7f8c8d;
+        }
+        .option-btn:active:not(:disabled) {
+            transform: translateY(2px); box-shadow: 0 3px 0 #7f8c8d;
+        }
+        .option-btn.correct { background: #27ae60; color: white; border-color: #1e8449; }
+        .option-btn.wrong { background: #c0392b; color: white; border-color: #a93226; }
+        .option-btn:disabled { opacity: 0.7; cursor: not-allowed; }
+        .feedback {
+            margin-top: 25px; padding: 20px; border-radius: 25px; background: #eef2f7;
+            font-size: 18px; line-height: 1.6; border-left: 10px solid #34495e;
+        }
+        .feedback.correct { background: #e3f5e8; border-left-color: #27ae60; }
+        .feedback.incorrect { background: #f9e9e8; border-left-color: #c0392b; }
+        .next-btn {
+            background: #34495e; border: none; color: white; font-size: 22px; font-weight: 900;
+            padding: 16px 40px; border-radius: 60px; cursor: pointer; box-shadow: 0 5px 0 #1e2a3a;
+            transition: 0.2s; margin: 20px auto 0; display: none; width: fit-content;
+        }
+        .next-btn:hover { background: #5d6d7e; transform: translateY(-3px); box-shadow: 0 8px 0 #1e2a3a; }
+        .next-btn:active { transform: translateY(2px); box-shadow: 0 3px 0 #1e2a3a; }
+
+        .ref-card {
+            background: #f2f4f8; border-radius: 20px; padding: 18px; margin-bottom: 20px; border-left: 8px solid;
+        }
+        .ref-card.system { border-left-color: #2c3e50; }
+        .ref-card.counters { border-left-color: #27ae60; }
+        .ref-card.phone { border-left-color: #f39c12; }
+        .ref-card.dates { border-left-color: #e74c3c; }
+        .ref-card h3 { font-family: "Noto Sans KR", sans-serif; font-size: 22px; margin-bottom: 10px; }
+        
+        .system-table { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; margin: 10px 0; font-size: 14px; }
+        .counter-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; margin: 10px 0;
+        }
+        .counter-item {
+            background: white; padding: 5px; border-radius: 8px; text-align: center;
+            font-family: "Noto Sans KR", sans-serif; font-size: 16px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .counter-item small { font-family: "Montserrat", sans-serif; font-size: 10px; display: block; }
+        .special-forms { background: #e8f4fd; padding: 10px; border-radius: 12px; margin: 10px 0; font-size: 14px; }
+        .note-box { background: #fff3e0; border-radius: 16px; padding: 12px; font-size: 14px; margin-top: 10px; }
+        .example-box { background: white; padding: 8px; border-radius: 12px; margin: 5px 0; font-family: "Noto Sans KR", sans-serif; font-size: 18px; text-align: center; }
+        .num-system-badge {
+            display: inline-block; padding: 3px 10px; border-radius: 30px; font-size: 13px;
+            font-weight: 700; margin-left: 8px; background: #d4e0eb; color: #1e2a3a;
+        }
+        .badge-cor { background: #b8d9f0; } /* кор. */
+        .badge-kit { background: #f7d9b0; } /* кит. */
+
+        footer {
+            background: #a5b0cb; margin-top: auto; padding: 30px 20px 15px;
+        }
+        .footer-container {
+            max-width: 1400px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 40px;
+        }
+        .footer-contacts { display: flex; flex-direction: column; gap: 15px; }
+        .footer-contacts .item { display: flex; align-items: center; gap: 12px; color: #1e2a3a; }
+        .social-links { display: flex; gap: 18px; }
+        .social-links a { color: #1e2a3a; font-size: 26px; transition: transform 0.2s; }
+        .social-links a:hover { transform: scale(1.2); }
+        .footer-menu { display: flex; flex-wrap: wrap; gap: 20px 35px; list-style: none; }
+        .footer-menu li a { text-decoration: none; color: #1e2a3a; font-weight: 500; }
+        .copyright { text-align: center; padding-top: 30px; margin-top: 30px; border-top: 2px solid rgba(0,0,0,0.1); color: #1e2a3a; }
+        @media (max-width: 900px) { .main-container { flex-direction: column; } .korean-phrase { font-size: 36px; } }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo-area">
+                <i class="fas fa-bars burger-icon" id="burgerMenu"></i>
+                <!-- <span class="site-logo">수사 연구소</span> -->
+            </div>
+            <i class="fas fa-user-circle user-icon"></i>
+        </div>
+    </header>
+
+    <div class="main-container">
+        <div class="game-section">
+            <div class="quiz-header">
+                <h2>🔢 Счётные комплексы (род. падеж)</h2>
+                <div class="score" id="scoreDisplay">0 / 80</div>
+            </div>
+            <div id="quizContainer"></div>
+            <button class="next-btn" id="nextBtn" onclick="nextQuestion()">следующий ➡️</button>
+        </div>
+
+        <div class="reference-section">
+            <div class="ref-card system">
+                <h3>📊 Две системы</h3>
+                <div class="system-table">
+                    <div><strong>🇰🇷 кор.</strong></div><div><strong>🇨🇳 кит.</strong></div>
+                    <div>часы (1-12)</div><div>минуты, секунды</div>
+                    <div>счётные слова</div><div>даты, годы, 개월</div>
+                    <div>возраст (살)</div><div>возраст (세)</div>
+                    <div>предметы 1-99</div><div>телефоны, деньги</div>
+                    <div>этажи (층) ❗</div><div>주일 (недели) ❗</div>
+                </div>
+                <div class="note-box">⚠️ 층 (этаж) и 주일 (неделя) — с кит. числ.</div>
+            </div>
+
+            <div class="ref-card counters">
+                <h3>🔹 Счётные слова (кор.)</h3>
+                <div class="counter-grid">
+                    <div class="counter-item">명 <small>люди</small></div><div class="counter-item">분 <small>уваж.</small></div><div class="counter-item">마리 <small>жив.</small></div>
+                    <div class="counter-item">권 <small>книги</small></div><div class="counter-item">장 <small>плоские</small></div><div class="counter-item">자루 <small>длинные</small></div>
+                    <div class="counter-item">알 <small>круглые</small></div><div class="counter-item">대 <small>техника</small></div><div class="counter-item">켤레 <small>пары</small></div>
+                    <div class="counter-item">그루 <small>деревья</small></div><div class="counter-item">척 <small>суда</small></div><div class="counter-item">채 <small>дома</small></div>
+                    <div class="counter-item">개 <small>вещи</small></div><div class="counter-item">병 <small>бутылки</small></div><div class="counter-item">잔 <small>чашки</small></div>
+                    <div class="counter-item">벌 <small>одежда</small></div><div class="counter-item">송이 <small>цветы</small></div><div class="counter-item">인분 <small>порции</small></div>
+                </div>
+            </div>
+
+            <div class="ref-card system">
+                <h3>🔸 Китайские + счётные</h3>
+                <div class="special-forms">
+                    <p>• 층 (этаж) — 삼 층</p><p>• 주일 (неделя) — 이 주일</p>
+                    <p>• 개월 — 육 개월</p><p>• 원 (воны) — 오천 원</p>
+                    <p>• 세 (возраст) — 사십오 세</p><p>• 번 (номер) — 칠 번</p>
+                    <p>• 호 (кв.) — 이십삼 호</p><p>• 돈: 만 원 (10000)</p>
+                </div>
+            </div>
+
+            <div class="ref-card system">
+                <h3>🔸 Особые формы (кор.)</h3>
+                <div class="special-forms">
+                    <p>하나 → <strong>한</strong> (1)</p><p>둘 → <strong>두</strong> (2)</p>
+                    <p>셋 → <strong>세</strong> (3)</p><p>넷 → <strong>네</strong> (4)</p>
+                    <p>스물 → <strong>스무</strong> (20)</p>
+                    <p>예: 한 명, 두 개, 세 권, 네 병</p>
+                </div>
+            </div>
+
+            <div class="ref-card phone">
+                <h3>📞 Телефон</h3>
+                <div class="example-box">010-1234-5678</div>
+                <p>공일공 일이삼사 오육칠팔</p>
+                <p>0 = <strong>공</strong> (в номерах)</p>
+            </div>
+
+            <div class="ref-card dates">
+                <h3>📅 Даты / деньги</h3>
+                <div class="example-box">45세 (45 лет) кит.</div>
+                <div class="example-box">2025년 5월 10일 кит.</div>
+                <div class="example-box">￦ 10,000 = 만 원</div>
+                <div class="example-box">육 개월 (6 мес.) кит.</div>
+                <div class="example-box">784동 23호 кит.</div>
+                <div class="example-box">3층 = 삼 층 (кит.)</div>
+                <div class="example-box">2주일 = 이 주일</div>
+            </div>
+
+            <div class="note-box">
+                <strong>💡 Род. падеж:</strong> 두 사람의 (двух людей), 세 명의 — в тренажёре отработка через родительный контекст.
+            </div>
+        </div>
+    </div>
+
+ <div class="perehod">
+        <a href="/index/index_123_kit.game.html" class="nav-link">
+            <img src="/image/vlevo2.svg" alt=""></a>
+        <a href="/index.html" class="nav-link">
+         
+            <img src="/image/vpravo2.svg" alt="">
+        </a>
+    </div>
+
+    <!-- <footer>
+        <div class="footer-container">
+            <div class="footer-contacts">
+                <div class="item"><i class="fas fa-phone-alt"></i> 8-925-685-52-39</div>
+                <div class="item"><i class="fas fa-envelope"></i> koreanlab@yandex.ru</div>
+                <div class="social-links"><a href="#"><i class="fab fa-telegram"></i></a><a href="#"><i class="fab fa-skype"></i></a><a href="#"><i class="fab fa-whatsapp"></i></a></div>
+            </div>
+            <ul class="footer-menu"><li><a href="#">О проекте</a></li><li><a href="#">Правила</a></li><li><a href="#">Контакты</a></li><li><a href="#">Политика</a></li></ul>
+        </div>
+        <div class="copyright"><i class="far fa-copyright"></i> Числительный тренажёр, 2025</div>
+    </footer> -->
+
+    <script>
+        function shuffleArray(arr) { for (let i = arr.length-1; i>0; i--) { const j=Math.floor(Math.random()*(i+1)); [arr[i],arr[j]]=[arr[j],arr[i]]; } return arr; }
+
+        // ========== БАНК ВОПРОСОВ ==========
+        // Удалён "돈을 세는 단위: 1000" — заменён на корректный пример с вонами (만 원)
+        const baseQuestions = [
+            // ДЕНЬГИ: новый пример (тысяча вон заменён на 10000 вон — типичный счёт)
+            { phrase: '현금 ______ 원', hint: 'десять тысяч вон (купюра)', correct: '만', options: ['만', '천', '백', '십', '일만'], explanation: '원 (воны) — китайские числительные. 10000 = 만 원', numeralType: 'chinese' },
+            { phrase: '음식 ______ 인분', hint: 'три порции еды', correct: '세', options: ['세', '삼', '셋', '세개', '서'], explanation: '인분 — кор. числ.: 3 → 세', numeralType: 'korean' },
+            { phrase: '______ 층', hint: 'третий этаж', correct: '삼', options: ['삼', '세', '셋', '3', '세층'], explanation: '층 (этаж) — исключение, кит. числ.: 삼', numeralType: 'chinese' },
+            { phrase: '______ 주일', hint: 'две недели', correct: '이', options: ['이', '두', '둘', '2', '두주일'], explanation: '주일 — исключение, кит. числ.: 이', numeralType: 'chinese' },
+            { phrase: '______ 개월', hint: 'шесть месяцев', correct: '육', options: ['육', '여섯', '여섯개', '육개', '6'], explanation: '개월 — кит. числ.: 6 = 육', numeralType: 'chinese' },
+            { phrase: '신발 두 ______', hint: 'две пары обуви (род. падеж: двух пар обуви)', correct: '켤레', options: ['켤레', '컬레', '개', '신발', '대'], explanation: 'Для пар обуви — 켤레', numeralType: 'korean' },
+            { phrase: '알약 일곱 ______', hint: 'семь таблеток', correct: '알', options: ['알', '개', '병', '자루', '상자'], explanation: 'Круглые → 알', numeralType: 'korean' },
+            { phrase: '학생 다섯 ______', hint: 'пять студентов', correct: '명', options: ['명', '분', '마리', '개', '사람'], explanation: 'Люди → 명', numeralType: 'korean' },
+            { phrase: '선생님 한 ______', hint: 'один учитель (уважит.)', correct: '분', options: ['분', '명', '개', '마리', '선생'], explanation: 'Уважаемые люди → 분', numeralType: 'korean' },
+            { phrase: '고양이 두 ______', hint: 'две кошки', correct: '마리', options: ['마리', '개', '명', '동물', '고양이'], explanation: 'Животные → 마리', numeralType: 'korean' },
+            { phrase: '자동차 두 ______', hint: 'две машины', correct: '대', options: ['대', '개', '자동차', '마리', '채'], explanation: 'Механизмы → 대', numeralType: 'korean' },
+            { phrase: '책 세 ______', hint: 'три книги', correct: '권', options: ['권', '장', '개', '자루', '책'], explanation: 'Книги → 권', numeralType: 'korean' },
+            { phrase: '종이 세 ______', hint: 'три листа бумаги', correct: '장', options: ['장', '권', '매', '쪽', '개'], explanation: 'Плоские → 장', numeralType: 'korean' },
+            { phrase: '연필 여섯 ______', hint: 'шесть карандашей', correct: '자루', options: ['자루', '개', '대', '알', '연필'], explanation: 'Длинные предметы → 자루', numeralType: 'korean' },
+            { phrase: '소나무 세 ______', hint: 'три сосны', correct: '그루', options: ['그루', '개', '나무', '대', '자루'], explanation: 'Деревья → 그루', numeralType: 'korean' },
+            { phrase: '배 한 ______', hint: 'один корабль', correct: '척', options: ['척', '대', '개', '배', '채'], explanation: 'Суда → 척', numeralType: 'korean' },
+            { phrase: '집 두 ______', hint: 'два дома', correct: '채', options: ['채', '개', '집', '대', '동'], explanation: 'Дома → 채', numeralType: 'korean' },
+            { phrase: '꽃 열 ______', hint: 'десять цветов', correct: '송이', options: ['송이', '개', '꽃', '대', '자루'], explanation: 'Цветы → 송이', numeralType: 'korean' },
+            { phrase: '옷 세 ______', hint: 'три предмета одежды', correct: '벌', options: ['벌', '개', '옷', '대', '자루'], explanation: 'Комплекты одежды → 벌', numeralType: 'korean' },
+            { phrase: '맥주 두 ______', hint: 'две бутылки пива', correct: '병', options: ['병', '개', '맥주', '자루', '벌'], explanation: 'Бутылки → 병', numeralType: 'korean' },
+            { phrase: '커피 두 ______', hint: 'две чашки кофе', correct: '잔', options: ['잔', '개', '커피', '병', '벌'], explanation: 'Чашки → 잔', numeralType: 'korean' },
+            { phrase: '사과 ______ 개', hint: 'одно яблоко (особая форма)', correct: '한', options: ['한', '하나', '일', '첫', '한개'], explanation: '하나 → 한 перед сч.словом', numeralType: 'korean' },
+            { phrase: '______ 명', hint: 'три человека (особая форма)', correct: '세', options: ['세', '셋', '삼', '세개', '세명'], explanation: '셋 → 세', numeralType: 'korean' },
+            { phrase: '사과 ______ 개', hint: 'двадцать яблок', correct: '스무', options: ['스무', '스물', '이십', '스물개', '스무개'], explanation: '스물 → 스무', numeralType: 'korean' },
+            { phrase: '______ 세', hint: '45 лет (возраст, кит.)', correct: '사십오', options: ['사십오', '마흔다섯', '쉰다섯', '사오', '45'], explanation: 'Возраст 세 — кит.: 45 = 사십오', numeralType: 'chinese' },
+            { phrase: '2015년 5월 10______', hint: '10 мая', correct: '일', options: ['일', '십', '날', '째', '10'], explanation: 'Даты (дни) — кит. + 일', numeralType: 'chinese' },
+            { phrase: '010-1234-5678 (как 0?)', hint: 'ноль в номере', correct: '공', options: ['공', '영', '제로', '빵', '0'], explanation: 'В телефонах 0 = 공', numeralType: 'chinese' },
+            { phrase: '784동 23______', hint: 'квартира 23', correct: '호', options: ['호', '번', '동', '실', '층'], explanation: 'Номер квартиры → 호 (кит.)', numeralType: 'chinese' },
+            { phrase: '______ 원 있습니다', hint: '5000 вон', correct: '오천', options: ['오천', '다섯천', '5천', '오천원', '5000'], explanation: 'Деньги — кит.: 5000 = 오천', numeralType: 'chinese' },
+            { phrase: '______ 번 버스', hint: 'автобус 7', correct: '칠', options: ['칠', '일곱', '7', '칠번', '일곱번'], explanation: 'Номера маршрутов — кит.: 7 = 칠', numeralType: 'chinese' }
+        ];
+
+        // Перемешать опции внутри каждого вопроса
+        const questions = baseQuestions.map(q => ({ ...q, options: shuffleArray([...q.options]) }));
+        let currentIndex = 0, score = 0, answered = false;
+        const total = questions.length;
+        const quizContainer = document.getElementById('quizContainer');
+        const scoreDisplay = document.getElementById('scoreDisplay');
+        const nextBtn = document.getElementById('nextBtn');
+
+        // Функция озвучки (использует Web Speech API)
+        function speakKorean(text) {
+            if (!window.speechSynthesis) { alert('Голосовой синтез не поддерживается'); return; }
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'ko-KR'; utterance.rate = 0.9; utterance.pitch = 1;
+            window.speechSynthesis.cancel(); // избежать наложения
+            window.speechSynthesis.speak(utterance);
+        }
+
+        function renderQuestion() {
+            const q = questions[currentIndex];
+            const badgeType = q.numeralType === 'korean' ? 'badge-cor' : 'badge-kit';
+            const badgeText = q.numeralType === 'korean' ? 'кор.' : 'кит.';
+            
+            // Разбиваем фразу: часть до ____, само ____, часть после
+            let parts = q.phrase.split('______');
+            let leftPart = parts[0] || '';
+            let rightPart = parts[1] || '';
+
+            // Фраза будет динамически обновляться при клике
+            let html = `
+                <div class="question-card" id="currentQuestionCard">
+                    <div class="korean-phrase" id="koreanPhraseContainer">
+                        <span class="phrase-word">${leftPart}</span>
+                        <span class="blank-highlight" id="blankPlaceholder">_____</span>
+                        <span class="phrase-word">${rightPart}</span>
+                        <span class="num-system-badge ${badgeType}">${badgeText}</span>
+                        <i class="fas fa-volume-up tts-icon" id="ttsButton" title="озвучить"></i>
+                    </div>
+                    <div class="hint-text">💡 ${q.hint}</div>
+                    <div class="options" id="optionsContainer"></div>
+                    <div class="feedback" id="feedbackArea"></div>
+                </div>
+            `;
+            quizContainer.innerHTML = html;
+
+            const optionsDiv = document.getElementById('optionsContainer');
+            q.options.forEach(opt => {
+                const btn = document.createElement('button');
+                btn.className = 'option-btn';
+                btn.dataset.value = opt;
+                btn.textContent = opt;
+                optionsDiv.appendChild(btn);
+            });
+
+            // TTS обработчик
+            document.getElementById('ttsButton').addEventListener('click', (e) => {
+                e.stopPropagation();
+                // Озвучиваем полную фразу (если ответ дан — с заполненным словом, иначе с ____)
+                const fullPhrase = q.phrase.replace('______', answered ? selectedCorrectValue : '_____');
+                speakKorean(fullPhrase);
+            });
+
+            let selectedCorrectValue = q.correct; // для tts
+
+            document.querySelectorAll('.option-btn').forEach(btn => {
+                btn.addEventListener('click', function (e) {
+                    if (answered) return;
+                    const selected = this.dataset.value;
+                    const isCorrect = (selected === q.correct);
+                    selectedCorrectValue = q.correct;
+
+                    // подсветка кнопок
+                    document.querySelectorAll('.option-btn').forEach(b => b.disabled = true);
+                    if (isCorrect) {
+                        this.classList.add('correct');
+                        score++;
+                    } else {
+                        this.classList.add('wrong');
+                        document.querySelectorAll('.option-btn').forEach(b => {
+                            if (b.dataset.value === q.correct) b.classList.add('correct');
+                        });
+                    }
+
+                    // Заполняем пропуск в фразе
+                    const blankSpan = document.getElementById('blankPlaceholder');
+                    if (blankSpan) blankSpan.innerHTML = `<strong>${q.correct}</strong>`;
+
+                    answered = true;
+                    updateScore();
+
+                    const fb = document.getElementById('feedbackArea');
+                    fb.innerHTML = isCorrect ? `<strong>✅ Правильно!</strong> ${q.explanation}` : `<strong>❌ Ошибка.</strong> Правильно: ${q.correct}. ${q.explanation}`;
+                    fb.className = isCorrect ? 'feedback correct' : 'feedback incorrect';
+
+                    nextBtn.style.display = 'block';
+                });
+            });
+
+            nextBtn.style.display = 'none';
+        }
+
+        function updateScore() { scoreDisplay.textContent = `✔️ ${score} / ${total}`; }
+
+        window.nextQuestion = function() {
+            if (currentIndex < total - 1) { currentIndex++; answered = false; renderQuestion(); }
+            else {
+                quizContainer.innerHTML = `
+                    <div class="question-card" style="text-align:center;">
+                        <h2 style="color:#2c3e50;">🎉 Завершено!</h2>
+                        <p style="font-size:28px; margin:20px;">Результат: ${score} / ${total}</p>
+                        <p style="font-size:18px;">Отлично!</p>
+                        <button class="next-btn" onclick="restartQuiz()" style="display:block; margin:10px auto;">🔄 заново</button>
+                    </div>
+                `;
+                nextBtn.style.display = 'none';
+            }
+        };
+
+        window.restartQuiz = function() { currentIndex = 0; score = 0; answered = false; renderQuestion(); updateScore(); };
+
+        window.addEventListener('load', () => { renderQuestion(); updateScore(); });
+        document.getElementById('burgerMenu').addEventListener('click', () => alert('Навигация: кор./кит. числительные'));
+    </script>
+</body>
+</html>
