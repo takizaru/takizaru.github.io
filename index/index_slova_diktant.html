@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, minimum-scale=0.1, maximum-scale=2.0">
+  <title>Корейский диктант • Тренажёр с выбором слов</title>
+  <!-- Подключаем шрифты -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Montserrat", sans-serif;
+      background: rgba(245, 246, 248, 0.92);
+      backdrop-filter: blur(20px);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0;
+      margin: 0;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Лёгкие серые переливы на фоне */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at 20% 30%, rgba(180, 180, 190, 0.08) 0%, transparent 45%),
+                  radial-gradient(circle at 80% 70%, rgba(200, 200, 210, 0.06) 0%, transparent 55%),
+                  radial-gradient(circle at 50% 80%, rgba(210, 210, 220, 0.04) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Korean text */
+    .korean-text {
+      font-family: "Noto Sans KR", sans-serif;
+    }
+
+    /* ======= HEADER (исправлено) ======= */
+    header {
+      width: 100%;
+      background-color: #c8ba8d; /* ваш цвет */
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      margin-bottom: 0; /* убрал отступ, чтобы не ломался layout */
+    }
+
+    header .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background-color: transparent;
+    }
+
+    .logo {
+      height: 40px;
+      width: auto;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      /* убраны left/top – теперь transform без absolute */
+    }
+
+    .logo:hover {
+      transform: scale(1.5);
+    }
+
+    .user .lk {
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      border-radius: 50%; /* исправлено: убран solid */
+    }
+
+    .user .lk:hover {
+      transform: scale(1.5);
+      box-shadow: 0 0 0 2px rgb(49, 36, 105); /* добавил обводку вместо border-radius с solid */
+    }
+
+    /* Бургер-меню */
+    .burger-menu {
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 5px;
+      z-index: 1000;
+    }
+
+    .burger-menu div {
+      width: 25px;
+      height: 3px;
+      background-color: #000;
+    }
+
+    .nav-burger {
+      position: fixed;
+      top: 0;
+      left: -100%;
+      width: 250px;
+      height: 100vh;
+      background-color: rgba(200, 186, 141, 0.95); /* бежевый */
+      transition: left 0.3s ease;
+      z-index: 999;
+      padding-top: 80px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-burger.active {
+      left: 0;
+    }
+
+    .nav-burger .ul-header {
+      list-style: none;
+      padding: 20px;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .nav-burger .li-header {
+      margin-bottom: 20px;
+    }
+
+    .nav-burger .a-header {
+      color: hsla(47, 18%, 20%, 0.814);
+      text-decoration: none;
+      font-size: 18px;
+      display: block;
+    }
+
+    .nav-burger .a-header:hover {
+      color: rgb(4, 1, 48);
+    }
+
+    /* Основная часть (тренажёр) */
+    .trainer-wrapper {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 1.5rem 1.2rem;
+      width: 100%;
+      z-index: 1;
+    }
+
+    .trainer {
+      max-width: 720px;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.72);
+      backdrop-filter: blur(24px) saturate(180%);
+      -webkit-backdrop-filter: blur(24px) saturate(180%);
+      box-shadow: 0 30px 50px rgba(0, 0, 0, 0.06),
+                  0 0 0 1px rgba(80, 90, 110, 0.12),
+                  inset 0 1px 0 rgba(255, 255, 255, 0.7);
+      border-radius: 2.5rem;
+      padding: 2rem 2rem 2.2rem;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .trainer::after {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: inherit;
+      padding: 1px;
+      background: linear-gradient(135deg, rgba(40, 50, 70, 0.18), transparent 40%, transparent 70%, rgba(40, 50, 70, 0.12));
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    h1 {
+      font-weight: 500;
+      font-size: 1.9rem;
+      letter-spacing: -0.2px;
+      color: #1e2a3a;
+      text-align: center;
+      margin-bottom: 0.9rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+    }
+
+    h1 span {
+      background: rgba(40, 55, 75, 0.05);
+      color: #2c3a4e;
+      font-size: 1.3rem;
+      padding: 0.2rem 0.9rem;
+      border-radius: 3rem;
+      border: 1px solid rgba(60, 70, 90, 0.18);
+      font-weight: 400;
+    }
+
+    .toggle-section {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+      background: rgba(240, 242, 245, 0.65);
+      backdrop-filter: blur(10px);
+      border-radius: 3rem;
+      padding: 0.4rem;
+      margin: 1rem 0 1.3rem;
+      flex-wrap: wrap;
+      border: 1px solid rgba(180, 185, 195, 0.25);
+    }
+
+    .toggle-option {
+      flex: 1;
+      text-align: center;
+      padding: 0.65rem 1.2rem;
+      border-radius: 2.5rem;
+      font-weight: 500;
+      font-size: 0.95rem;
+      color: #4b5568;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      background: transparent;
+      user-select: none;
+      border: 1px solid transparent;
+      min-width: 125px;
+    }
+
+    .toggle-option.active {
+      background: rgba(255, 255, 255, 0.85);
+      color: #1e293b;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
+      border-color: rgba(60, 70, 90, 0.35);
+      font-weight: 600;
+    }
+
+    .words-container {
+      margin: 1.2rem 0 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .word-row {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      background: rgba(255, 255, 255, 0.45);
+      border-radius: 1rem;
+      padding: 0.5rem 1rem;
+      border: 1px solid rgba(210, 215, 225, 0.55);
+      flex-wrap: wrap;
+      transition: all 0.2s ease;
+      backdrop-filter: blur(4px);
+    }
+
+    .word-row:hover {
+      background: rgba(255, 255, 255, 0.75);
+      border-color: rgba(80, 90, 110, 0.25);
+    }
+
+    .stimulus {
+      font-weight: 550;
+      min-width: 115px;
+      font-size: 1.05rem;
+      color: #1f2937;
+      word-break: break-word;
+    }
+
+    .input-field {
+      flex: 2;
+      padding: 0.6rem 1rem;
+      border: 2px solid rgba(150, 160, 175, 0.45);
+      border-radius: 2rem;
+      font-size: 0.95rem;
+      background: rgba(255, 255, 255, 0.65);
+      color: #111827;
+      outline: none;
+      transition: all 0.25s ease;
+      font-family: inherit;
+      min-width: 140px;
+      caret-color: #1f3a5f;
+    }
+
+    .input-field:focus {
+      border-color: #1e3a5f;
+      box-shadow: 0 0 18px rgba(30, 58, 95, 0.12);
+      background: rgba(255, 255, 255, 0.9);
+    }
+
+    .input-field.correct {
+      border-color: #2e7d32;
+      background: rgba(232, 245, 233, 0.65);
+      color: #1b4d1e;
+      box-shadow: 0 0 12px rgba(46, 125, 50, 0.18);
+    }
+
+    .input-field.wrong {
+      border-color: #6b1a1a;
+      background: rgba(255, 235, 238, 0.65);
+      color: #4a0f0f;
+      box-shadow: 0 0 12px rgba(110, 20, 20, 0.22);
+    }
+
+    .correct-hint {
+      font-size: 0.85rem;
+      font-weight: 500;
+      margin-left: 0.2rem;
+      white-space: nowrap;
+      color: #1b5e20;
+      background: rgba(200, 230, 201, 0.55);
+      padding: 0.2rem 0.8rem;
+      border-radius: 1rem;
+      display: inline-block;
+      border: 1px solid rgba(46, 125, 50, 0.25);
+    }
+
+    .error-hint {
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-left: 0.2rem;
+      white-space: nowrap;
+      color: #5a1717;
+      background: rgba(255, 205, 210, 0.65);
+      padding: 0.2rem 0.8rem;
+      border-radius: 1rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.2rem;
+      border: 1px solid rgba(130, 30, 30, 0.35);
+    }
+
+    .button-group {
+      display: flex;
+      justify-content: center;
+      gap: 0.9rem;
+      flex-wrap: wrap;
+      margin: 1.3rem 0 0.4rem;
+    }
+
+    .btn {
+      padding: 0.7rem 1.8rem;
+      border-radius: 2.5rem;
+      font-weight: 550;
+      font-size: 0.95rem;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      background: rgba(255, 255, 255, 0.65);
+      color: #1e2a3a;
+      letter-spacing: 0.3px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+      border: 1px solid rgba(100, 110, 130, 0.25);
+      white-space: nowrap;
+      backdrop-filter: blur(8px);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #1e3a5f, #162b44);
+      color: #f0f4fa;
+      border: 1px solid #1e3a5f;
+      box-shadow: 0 8px 20px rgba(20, 35, 55, 0.18);
+      font-weight: 600;
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(135deg, #234668, #1a324e);
+      box-shadow: 0 10px 25px rgba(20, 40, 65, 0.28);
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.07);
+      border-color: rgba(70, 80, 100, 0.35);
+    }
+
+    .btn:active {
+      transform: translateY(1px);
+    }
+
+    .score-panel {
+      text-align: center;
+      margin: 1.2rem 0 0.2rem;
+      font-weight: 500;
+      font-size: 1.2rem;
+      padding: 0.5rem;
+      border-radius: 2rem;
+      background: rgba(255, 255, 255, 0.65);
+      backdrop-filter: blur(8px);
+      color: #1e2a3a;
+      border: 1px solid rgba(180, 185, 195, 0.35);
+    }
+
+    .score-value {
+      font-size: 1.9rem;
+      font-weight: 700;
+      margin: 0 0.2rem;
+      color: #1e3a5f;
+      text-shadow: 0 0 8px rgba(30, 58, 95, 0.15);
+    }
+
+    /* ======= НАВИГАЦИЯ МЕЖДУ СТРАНИЦАМИ (исправлено) ======= */
+    .perehod {
+      display: flex;
+      justify-content: space-between;
+      padding: 0 120px;
+      margin: 20px 0 20px 0;
+      width: 100%;
+      max-width: 900px;
+      z-index: 1;
+    }
+
+    .perehod a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 1px solid rgb(49, 36, 105);
+      transition: transform 0.3s;
+      background: rgba(255,255,255,0.8);
+      backdrop-filter: blur(10px);
+    }
+
+    .perehod a:hover {
+      transform: scale(1.5);
+    }
+
+    .perehod svg {
+      width: 24px;
+      height: 24px;
+      stroke: #1e2a3a;
+      stroke-width: 2.5;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* ======= FOOTER (исправлено) ======= */
+    footer {
+      width: 100%;
+      background-color: #c8ba8d;
+      padding: 20px 0;
+      margin-top: auto;
+      z-index: 5;
+    }
+
+    footer .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    address {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      font-style: normal;
+    }
+
+    .footer1, .footer2 {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .tel, .mail {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      color: hsla(47, 18%, 20%, 0.814);
+      transition: all 0.3s ease;
+    }
+
+    .tel svg, .mail svg {
+      width: 16px;
+      height: 16px;
+      stroke: currentColor;
+    }
+
+    .tel:hover p, .mail:hover p {
+      color: rgb(4, 1, 48);
+      font-size: 1.1em;
+    }
+
+    .footer-icon {
+      display: flex;
+      gap: 15px;
+    }
+
+    .footer-icon a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .footer-icon svg {
+      width: 30px;
+      height: 30px;
+      stroke: #1e2a3a;
+      fill: none;
+      transition: transform 0.2s;
+    }
+
+    .footer-icon a:hover svg {
+      transform: scale(1.2);
+      stroke: rgb(4, 1, 48);
+    }
+
+    .ul-footer {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .a-footer {
+      color: hsla(47, 18%, 20%, 0.814);
+      text-decoration: none;
+      font-size: 12px;
+      white-space: nowrap;
+      transition: color 0.3s;
+    }
+
+    .a-footer:hover {
+      color: rgb(4, 1, 48);
+    }
+
+    .copyright {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      color: hsla(47, 18%, 20%, 0.814);
+      font-size: 14px;
+      margin-top: 15px;
+      transition: all 0.3s ease;
+    }
+
+    .copyright:hover p {
+      color: rgb(4, 1, 48);
+      font-size: 1.1em;
+    }
+
+    .copyright svg {
+      width: 15px;
+      height: 15px;
+      margin-right: 5px;
+    }
+
+
+    
+
+.perehod img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid rgb(49, 36, 105);
+    transition: transform 0.3s;
+}
+
+.perehod>a:hover {
+    transform: scale(1.5);
+}
+
+.perehod {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    padding: 0 120px 0 120px;
+    margin-bottom: 20px;
+}
+
+    /* Модальное окно */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.35);
+      backdrop-filter: blur(12px);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-content {
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(30px);
+      border-radius: 2rem;
+      max-width: 580px;
+      width: 92%;
+      max-height: 78vh;
+      padding: 1.8rem;
+      box-shadow: 0 35px 60px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(80, 90, 110, 0.18);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .modal-header h2 {
+      font-size: 1.4rem;
+      color: #1e2a3a;
+    }
+
+    .close-modal {
+      background: none;
+      border: none;
+      font-size: 2rem;
+      cursor: pointer;
+      color: #5a6272;
+      line-height: 1;
+      transition: 0.2s;
+    }
+
+    .close-modal:hover {
+      color: #111827;
+    }
+
+    .word-select-list {
+      overflow-y: auto;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+      margin: 0.8rem 0;
+      max-height: 55vh;
+      padding-right: 0.3rem;
+    }
+
+    .word-check-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.95rem;
+      padding: 0.35rem 0.8rem;
+      border-radius: 0.7rem;
+      background: rgba(245, 247, 250, 0.65);
+      color: #1f2937;
+    }
+
+    .word-check-item input[type="checkbox"] {
+      width: 1.1rem;
+      height: 1.1rem;
+      accent-color: #1e3a5f;
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 0.6rem;
+      justify-content: flex-end;
+      margin-top: 1rem;
+    }
+
+    /* Адаптивность */
+    @media (max-width: 1100px) {
+      .perehod {
+        padding: 0 60px;
+      }
+      address {
+        flex-direction: column;
+        align-items: center;
+      }
+      .footer1, .footer2 {
+        width: 100%;
+        align-items: center;
+      }
+      .footer-icon {
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 768px) {
+      header .container {
+        padding: 15px 20px;
+      }
+      .logo {
+        height: 32px;
+      }
+      .user .lk {
+        width: 32px;
+        height: 32px;
+      }
+      .trainer {
+        padding: 1.5rem;
+        border-radius: 2rem;
+      }
+      .stimulus {
+        min-width: 85px;
+        font-size: 1rem;
+      }
+      .input-field {
+        font-size: 0.9rem;
+      }
+      .perehod {
+        padding: 0 30px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .logo {
+        width: 35px;
+        height: 35px;
+      }
+      .user .lk {
+        width: 26px;
+        height: 26px;
+      }
+      .footer1, .footer2, .copyright {
+        text-align: center;
+      }
+      .ul-footer {
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .trainer {
+        padding: 1.2rem;
+        border-radius: 1.8rem;
+      }
+      h1 {
+        font-size: 1.4rem;
+      }
+      .toggle-option {
+        font-size: 0.8rem;
+        padding: 0.5rem 0.8rem;
+      }
+      .word-row {
+        padding: 0.3rem 0.6rem;
+      }
+      .stimulus {
+        min-width: 65px;
+        font-size: 0.9rem;
+      }
+      .input-field {
+        font-size: 0.8rem;
+        min-width: 100px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- ==================== ШАПКА ==================== -->
+  <header>
+    <div class="container">
+  
+            <div class="burger-menu" id="burgerMenu">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <img class="logo" src="/image/logo krug.svg" alt="Логотип">
+            <a href="" class="user"> <img class="lk" src="/image/userrblur.svg" alt="Пользователь"></a>
+        </div>
+        <nav class="nav-burger" id="navBurger">
+            <ul class="ul-header">
+                <li class="li-header"> <a href="" class="a-header">онлайн - переводчик</a></li>
+                <li class="li-header"> <a href="" class="a-header">контакты</a></li>
+                <li class="li-header"> <a href="" class="a-header">светлая тема</a></li>
+            </ul>
+        </nav>
+    </div>
+   
+  </header>
+
+  <!-- ==================== ОСНОВНОЙ БЛОК ==================== -->
+  <div class="trainer-wrapper">
+    <div class="trainer">
+      <div class="toggle-section" id="modeToggle">
+        <div class="toggle-option active" data-mode="ru-to-ko">🇷🇺 Русский → 🇰🇷 Корейский</div>
+        <div class="toggle-option" data-mode="ko-to-ru">🇰🇷 Корейский → 🇷🇺 Русский</div>
+      </div>
+
+      <div id="wordsContainer" class="words-container"></div>
+
+      <div class="button-group">
+        <button class="btn btn-primary" id="checkBtn">✅ Проверить</button>
+        <button class="btn" id="resetBtn">🔄 Новые слова</button>
+        <button class="btn" id="selectWordsBtn">📋 Выбрать слова</button>
+      </div>
+
+      <div id="scoreDisplay" class="score-panel">Ожидает проверки</div>
+      <div style="text-align: center; font-size: 0.8rem; color: #4b5563; margin-top: 0.3rem;">
+        максимум — <strong>5 баллов</strong> (10 слов)
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== НАВИГАЦИЯ МЕЖДУ СТРАНИЦАМИ ==================== -->
+  <div class="perehod">
+        <a href="/index.html"><img src="/image/vlevo2.svg" alt=""></a>
+        <a href="/index.html"><img src="/image/vpravo2.svg" alt=""></a>
+    </div>
+
+
+  <!-- ==================== ПОДВАЛ ==================== -->
+
+
+  <!-- ==================== МОДАЛЬНОЕ ОКНО ВЫБОРА СЛОВ ==================== -->
+  <div class="modal-overlay" id="wordSelectModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>📚 Выберите слова для изучения</h2>
+        <button class="close-modal" id="closeModalBtn">&times;</button>
+      </div>
+      <div class="word-select-list" id="wordCheckList"></div>
+      <div class="modal-actions">
+        <button class="btn" id="selectAllBtn">Выбрать всё</button>
+        <button class="btn" id="deselectAllBtn">Снять всё</button>
+        <button class="btn btn-primary" id="applySelectionBtn">Применить</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      const DICTIONARY = [
+        { korean: "어제", russian: "вчера" },
+        { korean: "오늘", russian: "сегодня" },
+        { korean: "내일", russian: "завтра" },
+        { korean: "그저께", russian: "позавчера" },
+        { korean: "모레", russian: "послезавтра" },
+        { korean: "월요일", russian: "понедельник" },
+        { korean: "화요일", russian: "вторник" },
+        { korean: "수요일", russian: "среда" },
+        { korean: "목요일", russian: "четверг" },
+        { korean: "금요일", russian: "пятница" },
+        { korean: "토요일", russian: "суббота" },
+        { korean: "일요일", russian: "воскресенье" },
+        { korean: "가다", russian: "идти" },
+        { korean: "오다", russian: "приходить" },
+        { korean: "먹다", russian: "есть" },
+        { korean: "마시다", russian: "пить" },
+        { korean: "자다", russian: "спать" },
+        { korean: "일어나다", russian: "вставать" },
+        { korean: "쓰다", russian: "писать" },
+        { korean: "읽다", russian: "читать" },
+        { korean: "보다", russian: "смотреть" },
+        { korean: "듣다", russian: "слушать" },
+        { korean: "말하다", russian: "говорить" },
+        { korean: "만나다", russian: "встречать" },
+        { korean: "사다", russian: "покупать" },
+        { korean: "팔다", russian: "продавать" },
+        { korean: "일하다", russian: "работать" },
+        { korean: "공부하다", russian: "учиться" },
+        { korean: "가르치다", russian: "учить (кого-то)" },
+        { korean: "배우다", russian: "учиться (чему-то)" },
+        { korean: "운동하다", russian: "заниматься спортом" },
+        { korean: "쉬다", russian: "отдыхать" },
+        { korean: "놀다", russian: "играть, веселиться" },
+        { korean: "걷다", russian: "ходить пешком" },
+        { korean: "뛰다", russian: "бегать" },
+        { korean: "앉다", russian: "сидеть" },
+        { korean: "서다", russian: "стоять" },
+        { korean: "열다", russian: "открывать" },
+        { korean: "닫다", russian: "закрывать" },
+        { korean: "켜다", russian: "включать" },
+        { korean: "끄다", russian: "выключать" },
+        { korean: "씻다", russian: "мыть" },
+        { korean: "청소하다", russian: "убирать" },
+        { korean: "요리하다", russian: "готовить" },
+        { korean: "입다", russian: "надевать (одежду)" },
+        { korean: "벗다", russian: "снимать (одежду)" },
+        { korean: "찍다", russian: "фотографировать" },
+        { korean: "그리다", russian: "рисовать" },
+        { korean: "노래하다", russian: "петь" },
+        { korean: "춤추다", russian: "танцевать" },
+        { korean: "울다", russian: "плакать" },
+        { korean: "웃다", russian: "смеяться" },
+        { korean: "기다리다", russian: "ждать" },
+        { korean: "도와주다", russian: "помогать" },
+        { korean: "전화하다", russian: "звонить" },
+        { korean: "질문하다", russian: "спрашивать" },
+        { korean: "대답하다", russian: "отвечать" },
+        { korean: "사람", russian: "человек" },
+        { korean: "친구", russian: "друг" },
+        { korean: "가족", russian: "семья" },
+        { korean: "학교", russian: "школа" },
+        { korean: "학생", russian: "студент" },
+        { korean: "선생님", russian: "учитель" },
+        { korean: "시간", russian: "время" },
+        { korean: "날씨", russian: "погода" },
+        { korean: "집", russian: "дом" },
+        { korean: "방", russian: "комната" },
+        { korean: "도시", russian: "город" },
+        { korean: "나라", russian: "страна" },
+        { korean: "음식", russian: "еда" },
+        { korean: "물", russian: "вода" },
+        { korean: "책", russian: "книга" },
+        { korean: "컴퓨터", russian: "компьютер" },
+        { korean: "핸드폰", russian: "телефон" },
+        { korean: "자동차", russian: "машина" },
+        { korean: "버스", russian: "автобус" },
+        { korean: "지하철", russian: "метро" },
+        { korean: "공원", russian: "парк" },
+        { korean: "병원", russian: "больница" },
+        { korean: "가게", russian: "магазин" },
+        { korean: "영화", russian: "фильм" },
+        { korean: "음악", russian: "музыка" },
+        { korean: "크다", russian: "большой" },
+        { korean: "작다", russian: "маленький" },
+        { korean: "길다", russian: "длинный" },
+        { korean: "짧다", russian: "короткий" },
+        { korean: "많다", russian: "много" },
+        { korean: "적다", russian: "мало" },
+        { korean: "좋다", russian: "хороший" },
+        { korean: "나쁘다", russian: "плохой" },
+        { korean: "예쁘다", russian: "красивый" },
+        { korean: "귀엽다", russian: "милый" },
+        { korean: "덥다", russian: "жаркий" },
+        { korean: "춥다", russian: "холодный" },
+        { korean: "비싸다", russian: "дорогой" },
+        { korean: "싸다", russian: "дешёвый" },
+        { korean: "재미있다", russian: "интересный" }
+      ];
+
+      let currentWords = [];
+      let mode = "ru-to-ko";
+      let isChecked = false;
+      let selectedIndices = new Set(DICTIONARY.map((_, idx) => idx));
+
+      const wordsContainer = document.getElementById('wordsContainer');
+      const checkBtn = document.getElementById('checkBtn');
+      const resetBtn = document.getElementById('resetBtn');
+      const selectWordsBtn = document.getElementById('selectWordsBtn');
+      const scoreDisplay = document.getElementById('scoreDisplay');
+      const modeToggle = document.getElementById('modeToggle');
+      const toggleOptions = document.querySelectorAll('.toggle-option');
+
+      const modalOverlay = document.getElementById('wordSelectModal');
+      const closeModalBtn = document.getElementById('closeModalBtn');
+      const wordCheckList = document.getElementById('wordCheckList');
+      const selectAllBtn = document.getElementById('selectAllBtn');
+      const deselectAllBtn = document.getElementById('deselectAllBtn');
+      const applySelectionBtn = document.getElementById('applySelectionBtn');
+
+      function normalizeYo(str) {
+        return str.toLowerCase().replace(/ё/g, 'е').replace(/é/g, 'е');
+      }
+
+      function getSelectedWordsArray() {
+        return DICTIONARY.filter((_, idx) => selectedIndices.has(idx));
+      }
+
+      function getRandomWordsFromSelected(count = 10) {
+        const pool = getSelectedWordsArray();
+        if (pool.length === 0) return [];
+        if (pool.length < count) return [...pool].sort(() => Math.random() - 0.5);
+        const shuffled = [...pool].sort(() => Math.random() - 0.5);
+        return shuffled.slice(0, count);
+      }
+
+      function renderWords() {
+        wordsContainer.innerHTML = '';
+        currentWords.forEach((word, index) => {
+          const stimulusText = mode === 'ru-to-ko' ? word.russian : word.korean;
+          const expectedAnswer = mode === 'ru-to-ko' ? word.korean : word.russian;
+
+          const row = document.createElement('div');
+          row.className = 'word-row';
+
+          const stimulusSpan = document.createElement('span');
+          stimulusSpan.className = 'stimulus';
+          stimulusSpan.textContent = stimulusText;
+
+          const inputField = document.createElement('input');
+          inputField.type = 'text';
+          inputField.className = 'input-field';
+          inputField.placeholder = mode === 'ru-to-ko' ? 'корейское слово' : 'русский перевод';
+          inputField.dataset.index = index;
+          inputField.dataset.expected = expectedAnswer;
+
+          const hintSpan = document.createElement('span');
+          hintSpan.className = 'correct-hint';
+          hintSpan.style.display = 'none';
+          hintSpan.textContent = '✓ ' + expectedAnswer;
+
+          row.appendChild(stimulusSpan);
+          row.appendChild(inputField);
+          row.appendChild(hintSpan);
+          wordsContainer.appendChild(row);
+        });
+
+        isChecked = false;
+        scoreDisplay.innerHTML = '⏳ Ожидает проверки';
+        document.querySelectorAll('.input-field').forEach(inp => {
+          inp.classList.remove('correct', 'wrong');
+          inp.readOnly = false;
+        });
+        document.querySelectorAll('.correct-hint, .error-hint').forEach(el => el.style.display = 'none');
+        document.querySelectorAll('.error-hint').forEach(el => el.remove());
+      }
+
+      function refreshWords() {
+        const selected = getSelectedWordsArray();
+        if (selected.length === 0) {
+          alert('Вы не выбрали ни одного слова. Пожалуйста, отметьте хотя бы 10 слов в настройках.');
+          currentWords = [];
+          renderWords();
+          return;
+        }
+        if (selected.length < 10) {
+          currentWords = [...selected].sort(() => Math.random() - 0.5);
+        } else {
+          currentWords = getRandomWordsFromSelected(10);
+        }
+        renderWords();
+      }
+
+      function checkAnswers() {
+        if (isChecked) {
+          alert('Вы уже проверили этот набор. Нажмите «Новые слова», чтобы продолжить.');
+          return;
+        }
+        if (currentWords.length === 0) {
+          alert('Нет слов для проверки.');
+          return;
+        }
+
+        const inputs = document.querySelectorAll('.input-field');
+        let correctCount = 0;
+
+        inputs.forEach(input => {
+          const userAnswer = normalizeYo(input.value.trim());
+          const expected = normalizeYo(input.dataset.expected.trim());
+          const isCorrect = userAnswer === expected;
+
+          const row = input.closest('.word-row');
+          const oldErrorHint = row.querySelector('.error-hint');
+          if (oldErrorHint) oldErrorHint.remove();
+
+          const hintSpan = row.querySelector('.correct-hint');
+          if (hintSpan) hintSpan.style.display = 'none';
+
+          if (isCorrect) {
+            input.classList.add('correct');
+            input.classList.remove('wrong');
+            correctCount++;
+            if (hintSpan) {
+              hintSpan.textContent = '✓ ' + input.dataset.expected;
+              hintSpan.style.display = 'inline-block';
+              hintSpan.className = 'correct-hint';
+            }
+          } else {
+            input.classList.add('wrong');
+            input.classList.remove('correct');
+            const errorHint = document.createElement('span');
+            errorHint.className = 'error-hint';
+            errorHint.innerHTML = '✗ <strong>' + input.dataset.expected + '</strong>';
+            row.appendChild(errorHint);
+          }
+          input.readOnly = true;
+        });
+
+        const maxPoints = 5;
+        const perWord = currentWords.length > 0 ? maxPoints / currentWords.length : 0;
+        const score = (correctCount * perWord).toFixed(1);
+        scoreDisplay.innerHTML = `🎯 Ваш результат: <span class="score-value">${score}</span> / ${maxPoints}`;
+        isChecked = true;
+      }
+
+      function setMode(newMode) {
+        if (mode === newMode) return;
+        mode = newMode;
+        toggleOptions.forEach(opt => opt.classList.toggle('active', opt.dataset.mode === mode));
+        refreshWords();
+      }
+
+      function renderWordCheckboxes() {
+        wordCheckList.innerHTML = '';
+        DICTIONARY.forEach((item, idx) => {
+          const div = document.createElement('div');
+          div.className = 'word-check-item';
+          const checkbox = document.createElement('input');
+          checkbox.type = 'checkbox';
+          checkbox.checked = selectedIndices.has(idx);
+          checkbox.dataset.index = idx;
+          const label = document.createElement('span');
+          label.textContent = `${item.korean} — ${item.russian}`;
+          div.appendChild(checkbox);
+          div.appendChild(label);
+          wordCheckList.appendChild(div);
+        });
+      }
+
+      function openModal() {
+        renderWordCheckboxes();
+        modalOverlay.classList.add('active');
+      }
+
+      function closeModal() {
+        modalOverlay.classList.remove('active');
+      }
+
+      function applySelectionFromModal() {
+        const checkboxes = wordCheckList.querySelectorAll('input[type="checkbox"]');
+        const newSelected = new Set();
+        checkboxes.forEach(cb => { if (cb.checked) newSelected.add(Number(cb.dataset.index)); });
+        if (newSelected.size === 0) {
+          alert('Нужно выбрать хотя бы одно слово.');
+          return;
+        }
+        selectedIndices = newSelected;
+        closeModal();
+        refreshWords();
+      }
+
+      // Бургер-меню
+      const burgerMenu = document.getElementById("burgerMenu");
+      const navBurger = document.getElementById("navBurger");
+      burgerMenu.addEventListener("click", function (event) {
+        event.stopPropagation();
+        navBurger.classList.toggle("active");
+      });
+      document.addEventListener("click", function (event) {
+        if (!navBurger.contains(event.target) && !burgerMenu.contains(event.target)) {
+          navBurger.classList.remove("active");
+        }
+      });
+
+      modeToggle.addEventListener('click', (e) => {
+        const option = e.target.closest('.toggle-option');
+        if (!option) return;
+        setMode(option.dataset.mode);
+      });
+
+      checkBtn.addEventListener('click', checkAnswers);
+      resetBtn.addEventListener('click', refreshWords);
+      selectWordsBtn.addEventListener('click', openModal);
+      closeModalBtn.addEventListener('click', closeModal);
+      modalOverlay.addEventListener('click', (e) => { if (e.target === modalOverlay) closeModal(); });
+      selectAllBtn.addEventListener('click', () => {
+        wordCheckList.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = true);
+      });
+      deselectAllBtn.addEventListener('click', () => {
+        wordCheckList.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+      });
+      applySelectionBtn.addEventListener('click', applySelectionFromModal);
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && document.activeElement?.tagName !== 'BUTTON' && !modalOverlay.classList.contains('active')) {
+          e.preventDefault();
+          if (!isChecked) checkAnswers();
+          else refreshWords();
+        }
+      });
+
+      refreshWords();
+      toggleOptions.forEach(opt => opt.classList.toggle('active', opt.dataset.mode === mode));
+    })();
+  </script>
+</body>
+</html>
