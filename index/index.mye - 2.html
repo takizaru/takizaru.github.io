@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes, viewport-fit=cover">
+    <title>Корейский конструктор ~며 / 으며</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: linear-gradient(135deg, #d4e7e1 0%, #b8d8d0 100%);
+            font-family: 'Noto Sans KR', 'Segoe UI', system-ui, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 1rem;
+            margin: 0;
+        }
+        .app {
+            max-width: 850px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(20px);
+            border-radius: 2.5rem;
+            padding: 1.8rem;
+            box-shadow: 0 25px 50px rgba(64, 100, 90, 0.25);
+            border: 1px solid rgba(180, 210, 200, 0.6);
+        }
+        h1 {
+            font-size: clamp(1.5rem, 4vw, 2.2rem);
+            font-weight: 700;
+            color: #2c5e5e;
+            text-align: center;
+            margin-bottom: 0.2rem;
+            letter-spacing: 2px;
+        }
+        .subtitle {
+            color: #4a7c7c;
+            margin-bottom: 1.2rem;
+            font-weight: 500;
+            font-size: clamp(0.8rem, 2vw, 0.95rem);
+            text-align: center;
+        }
+        .task-card {
+            background: rgba(220, 240, 235, 0.7);
+            border-radius: 1.8rem;
+            padding: 1rem 1.2rem;
+            margin: 0.8rem 0 1.2rem;
+            border: 1px solid #b0cec7;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            backdrop-filter: blur(8px);
+        }
+        .russian-box {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+            flex: 1 1 auto;
+            min-width: 0;
+        }
+        .russian-sentence {
+            font-size: clamp(1rem, 3vw, 1.3rem);
+            font-weight: 600;
+            color: #1e3b3b;
+            background: #e0f0eb;
+            padding: 0.35rem 1rem;
+            border-radius: 2.5rem;
+            border: 1px solid #9bc0b8;
+            word-break: break-word;
+            flex: 1 1 auto;
+            min-width: 120px;
+            text-align: center;
+        }
+        .play-hint-btn {
+            background: #b0d5ce;
+            border: none;
+            width: 42px;
+            height: 42px;
+            min-width: 42px;
+            border-radius: 50%;
+            font-size: 1.3rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #1e4a4a;
+            transition: 0.2s;
+            box-shadow: 0 4px 10px rgba(60, 110, 100, 0.2);
+            border: 1px solid #8db5ab;
+            flex-shrink: 0;
+        }
+        .play-hint-btn:hover {
+            background: #8fc0b5;
+            color: white;
+        }
+        .nav-box {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            flex-shrink: 0;
+        }
+        .nav-arrow {
+            background: #c0dbd3;
+            border: none;
+            width: 38px;
+            height: 38px;
+            min-width: 38px;
+            border-radius: 50%;
+            font-size: 1.3rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #1e4a4a;
+            transition: 0.2s;
+            border: 1px solid #9bc0b7;
+            font-weight: bold;
+        }
+        .nav-arrow:hover {
+            background: #9cc4b9;
+            color: white;
+        }
+        .progress {
+            font-weight: 600;
+            color: #386565;
+            background: #cbe4de;
+            padding: 0.3rem 0.8rem;
+            border-radius: 2.5rem;
+            font-size: clamp(0.75rem, 2vw, 0.9rem);
+            min-width: 60px;
+            text-align: center;
+            white-space: nowrap;
+        }
+        .build-label {
+            font-weight: 600;
+            color: #2c5e5e;
+            margin: 0.5rem 0 0.3rem;
+            font-size: clamp(0.75rem, 2vw, 0.9rem);
+        }
+        .build-area {
+            background: rgba(235, 248, 244, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 1.4rem;
+            padding: 0.8rem 1rem;
+            min-height: 70px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.5rem;
+            border: 2px dashed #79aaa0;
+            margin: 0.3rem 0 1rem;
+            transition: 0.2s;
+            background: rgba(215, 235, 228, 0.7);
+        }
+        .mosaic-block {
+            background: #ecf6f3;
+            border: 2px solid #7faaa2;
+            border-radius: 2rem;
+            padding: 0.4rem 1rem;
+            font-size: clamp(0.95rem, 2.5vw, 1.2rem);
+            font-weight: 600;
+            color: #1f4540;
+            display: flex;
+            align-items: center;
+            gap: 0.2rem;
+            background: #f4fbf9;
+            transition: 0.2s;
+            cursor: pointer;
+            user-select: none;
+            box-shadow: 0 2px 6px rgba(80, 130, 120, 0.15);
+        }
+        .mosaic-block:hover {
+            background: #d0ebe4;
+            border-color: #5a8f84;
+        }
+        .mosaic-block.dict-form {
+            background: #fef9e7;
+            border-color: #c9a96e;
+            border-style: solid;
+        }
+        .mosaic-block.combined {
+            background: #e6f7ee;
+            border-color: #5a9e84;
+            border-style: solid;
+        }
+        .elements-panel {
+            background: rgba(210, 228, 222, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 1.5rem;
+            padding: 0.8rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            justify-content: center;
+            margin: 0.8rem 0;
+            border: 1px solid #b3cfc6;
+            min-height: 50px;
+        }
+        .element-chip {
+            background: #dcebe5;
+            border: 2px solid #8cb5ab;
+            border-radius: 2rem;
+            padding: 0.45rem 1rem;
+            font-weight: 700;
+            color: #1e4d47;
+            cursor: pointer;
+            background: #f0f9f6;
+            transition: 0.15s;
+            font-size: clamp(0.9rem, 2.2vw, 1.15rem);
+            box-shadow: 0 2px 6px rgba(70, 110, 100, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 0.2rem;
+            user-select: none;
+        }
+        .element-chip.infinitive-chip {
+            background: #fef9e7;
+            border-color: #c9a96e;
+        }
+        .element-chip.ending-chip {
+            background: #e8f0fe;
+            border-color: #7b9fc0;
+        }
+        .element-chip.particle-chip {
+            background: #f0e6f6;
+            border-color: #b39bc0;
+        }
+        .element-chip:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(70, 110, 100, 0.3);
+        }
+        .element-chip:active {
+            transform: scale(0.95);
+        }
+        .button-row {
+            display: flex;
+            gap: 0.6rem;
+            justify-content: center;
+            margin-top: 0.8rem;
+            flex-wrap: wrap;
+        }
+        .btn {
+            background: #c6ddd6;
+            border: none;
+            padding: 0.6rem 1.5rem;
+            border-radius: 3rem;
+            font-weight: 700;
+            color: #1b4d47;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            border: 1px solid #96bcb3;
+            transition: 0.2s;
+            font-size: clamp(0.85rem, 2vw, 1rem);
+            background: rgba(225, 242, 237, 0.8);
+            backdrop-filter: blur(6px);
+            white-space: nowrap;
+        }
+        .btn.check-btn {
+            background: #6a9f95;
+            color: white;
+            border-color: #4c7f74;
+        }
+        .btn.check-btn:hover {
+            background: #528078;
+        }
+        .btn:hover {
+            background: #b9d5cc;
+        }
+        .btn:active {
+            transform: scale(0.96);
+        }
+        .feedback {
+            margin-top: 0.7rem;
+            font-weight: 600;
+            padding: 0.4rem 1rem;
+            border-radius: 2rem;
+            text-align: center;
+            font-size: clamp(0.8rem, 2vw, 0.95rem);
+        }
+        .correct-feedback {
+            background: #c6e5db;
+            color: #1b463b;
+        }
+        .wrong-feedback {
+            background: #f5cfc4;
+            color: #7b3a2c;
+        }
+        .legend {
+            display: flex;
+            gap: 0.7rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 0.3rem;
+            font-size: clamp(0.65rem, 1.6vw, 0.8rem);
+            color: #5a7d77;
+        }
+        .legend span {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            white-space: nowrap;
+        }
+        .legend-dot {
+            width: 11px;
+            height: 11px;
+            border-radius: 50%;
+            display: inline-block;
+            flex-shrink: 0;
+        }
+
+        /* Стили для блока с переходами – теперь под игрой и без громоздких отступов */
+        .perehod {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 850px;
+            margin: 20px auto 0;
+            padding: 0 20px;
+        }
+
+        .perehod a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .perehod img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: 1px solid rgb(49, 36, 105);
+            transition: transform 0.3s;
+        }
+
+        .perehod a:hover img {
+            transform: scale(1.5);
+        }
+
+        @media (min-width: 1441px) {
+            .app { max-width: 950px; padding: 2.2rem; border-radius: 3rem; }
+            .mosaic-block { font-size: 1.3rem; padding: 0.5rem 1.3rem; }
+            .element-chip { font-size: 1.2rem; padding: 0.55rem 1.3rem; }
+            .russian-sentence { font-size: 1.5rem; }
+            .perehod { max-width: 950px; }
+        }
+        @media (max-width: 1024px) and (min-width: 769px) {
+            .app { max-width: 90%; padding: 1.5rem; border-radius: 2.2rem; }
+            .mosaic-block { font-size: 1.05rem; padding: 0.35rem 0.9rem; }
+            .element-chip { font-size: 1rem; padding: 0.4rem 0.9rem; }
+        }
+        @media (max-width: 768px) and (min-width: 481px) {
+            .app { max-width: 95%; padding: 1.2rem; border-radius: 2rem; }
+            .task-card { flex-direction: column; align-items: stretch; }
+            .russian-box, .nav-box { justify-content: center; }
+            .mosaic-block { font-size: 1rem; padding: 0.35rem 0.8rem; }
+            .element-chip { font-size: 0.95rem; padding: 0.35rem 0.8rem; }
+            .build-area { min-height: 60px; padding: 0.6rem 0.8rem; }
+        }
+        @media (max-width: 480px) and (min-width: 376px) {
+            .app { max-width: 100%; padding: 1rem; border-radius: 1.6rem; }
+            .task-card { flex-direction: column; align-items: stretch; }
+            .russian-box, .nav-box { justify-content: center; }
+            .mosaic-block { font-size: 0.9rem; padding: 0.3rem 0.7rem; }
+            .element-chip { font-size: 0.85rem; padding: 0.3rem 0.7rem; }
+            .btn { padding: 0.45rem 1rem; font-size: 0.85rem; }
+        }
+        @media (max-width: 375px) and (min-width: 250px) {
+            .app { max-width: 100%; padding: 0.7rem; border-radius: 1.3rem; }
+            .task-card { flex-direction: column; align-items: stretch; }
+            .mosaic-block { font-size: 0.78rem; padding: 0.25rem 0.55rem; }
+            .element-chip { font-size: 0.75rem; padding: 0.25rem 0.55rem; }
+            .btn { padding: 0.35rem 0.8rem; font-size: 0.75rem; }
+            h1 { font-size: 1.3rem; }
+            .russian-sentence { font-size: 0.9rem; }
+            .perehod { padding: 0 10px; }
+        }
+    </style>
+</head>
+<body>
+<div class="app">
+    <h1>~며 / 으며</h1>
+    <div class="subtitle">Собери предложение из элементов · предикативы в словарной форме</div>
+
+    <div class="task-card">
+        <div class="russian-box">
+            <span class="russian-sentence" id="russianTarget">Я пою и танцую.</span>
+            <button class="play-hint-btn" id="playHintBtn" title="Прослушать правильное предложение">🔊</button>
+        </div>
+        <div class="nav-box">
+            <button class="nav-arrow" id="prevBtn" title="Предыдущее">◀</button>
+            <span class="progress" id="progressDisplay">1 / 30</span>
+            <button class="nav-arrow" id="nextBtn" title="Следующее">▶</button>
+        </div>
+    </div>
+
+    <div class="build-label">📍 Собери предложение здесь (нажми на слово, чтобы вернуть обратно)</div>
+    <div class="build-area" id="buildArea"></div>
+
+    <div class="build-label">Элементы:</div>
+    <div class="legend">
+        <span><span class="legend-dot" style="background:#fef9e7;border:1px solid #c9a96e;"></span> словарная форма</span>
+        <span><span class="legend-dot" style="background:#e8f0fe;border:1px solid #7b9fc0;"></span> окончание</span>
+        <span><span class="legend-dot" style="background:#f0e6f6;border:1px solid #b39bc0;"></span> частица</span>
+        <span><span class="legend-dot" style="background:#dcebe5;border:1px solid #8cb5ab;"></span> слово</span>
+    </div>
+    <div class="elements-panel" id="elementsPanel"></div>
+
+    <div class="button-row">
+        <button class="btn" id="resetBtn"><span>↺</span> Сбросить</button>
+        <button class="btn check-btn" id="checkBtn"><span>✓</span> Проверить</button>
+    </div>
+    <div id="feedbackMessage" class="feedback" style="display: none;"></div>
+</div>
+
+<!-- Блок с переходами теперь прямо под игрой -->
+<div class="perehod">
+    <a href="/index/Index_kor_ru_igot_egi_1.html"><img src="/image/vlevo2.svg" alt="Предыдущая страница"></a>
+    <a href="/index.html"><img src="/image/vpravo2.svg" alt="Следующая страница"></a>
+</div>
+
+<script>
+    (function() {
+        const tasks = [
+            { ru: "Я пою и танцую.", solution: ["저는", "노래를", "부르며", "춤을", "춥니다"] },
+            { ru: "Он врач и учитель.", solution: ["그는", "의사며", "선생님입니다"] },
+            { ru: "Идёт дождь и дует ветер.", solution: ["비가", "오며", "바람이", "붑니다"] },
+            { ru: "Я читаю книгу и пью кофе.", solution: ["저는", "책을", "읽으며", "커피를", "마십니다"] },
+            { ru: "Эта сумка дешёвая и красивая.", solution: ["이", "가방은", "싸며", "예쁩니다"] },
+            { ru: "Сегодня холодно и ветрено, идёт снег.", solution: ["오늘은", "춥고", "바람이", "불며", "눈이", "옵니다"] },
+            { ru: "Я слушаю музыку и занимаюсь спортом.", solution: ["저는", "음악을", "들으며", "운동합니다"] },
+            { ru: "Он студент и певец.", solution: ["그는", "학생이며", "가수입니다"] },
+            { ru: "Мы гуляем и разговариваем.", solution: ["우리는", "산책하며", "이야기합니다"] },
+            { ru: "Эта еда вкусная и полезная.", solution: ["이", "음식은", "맛있으며", "건강합니다"] },
+            { ru: "Утром я просыпаюсь и потягиваюсь.", solution: ["저는", "아침에", "일어나며", "기지개를", "켭니다"] },
+            { ru: "Этот фильм интересный и трогательный.", solution: ["이", "영화는", "재미있으며", "감동적입니다"] },
+            { ru: "Он играет в баскетбол и учится.", solution: ["그는", "농구를", "하며", "공부합니다"] },
+            { ru: "Старшая сестра готовит и поёт.", solution: ["언니는", "요리하며", "노래를", "부릅니다"] },
+            { ru: "Здесь тихо и красиво.", solution: ["이곳은", "조용하며", "아름답습니다"] },
+            { ru: "Я путешествую и фотографирую.", solution: ["저는", "사진을", "찍으며", "여행합니다"] },
+            { ru: "Минсу улыбается и говорит.", solution: ["민수는", "웃으며", "말합니다"] },
+            { ru: "Эта тетрадь тонкая и лёгкая.", solution: ["이", "공책은", "얇으며", "가볍습니다"] },
+            { ru: "Я смотрю телевизор и ужинаю.", solution: ["저는", "텔레비전을", "보며", "저녁을", "먹습니다"] },
+            { ru: "Бабушка вяжет и рассказывает.", solution: ["할머니는", "뜨개질을", "하며", "이야기합니다"] },
+            { ru: "Эта дорога широкая и чистая.", solution: ["이", "길은", "넓으며", "깨끗합니다"] },
+            { ru: "Он пишет письмо и плачет.", solution: ["그는", "편지를", "쓰며", "눈물을", "흘립니다"] },
+            { ru: "Я принимаю душ и пою.", solution: ["저는", "샤워를", "하며", "노래합니다"] },
+            { ru: "Она работает учителем и заботится о детях.", solution: ["그녀는", "선생님으로", "일하며", "아이들을", "돌봅니다"] },
+            { ru: "Этот компьютер быстрый и тихий.", solution: ["이", "컴퓨터는", "빠르며", "조용합니다"] },
+            { ru: "Мы едим и строим планы.", solution: ["우리는", "밥을", "먹으며", "계획을", "세웁니다"] },
+            { ru: "Эта река глубокая и широкая.", solution: ["그", "강은", "깊으며", "넓습니다"] },
+            { ru: "Я жду друга и читаю книгу.", solution: ["나는", "친구를", "기다리며", "책을", "읽습니다"] },
+            { ru: "Эта работа лёгкая и интересная.", solution: ["이", "일은", "쉬우며", "재미있습니다"] },
+            { ru: "Ребёнок плачет и ищет маму.", solution: ["아기는", "울며", "엄마를", "찾습니다"] }
+        ];
+
+        const stemMetaMap = {
+            '부르': { dict: '부르다', combiningStem: '부르', irregularFinal: { 'ㅂ니다': '부릅니다' } },
+            '추': { dict: '추다', combiningStem: '추' },
+            '오': { dict: '오다', combiningStem: '오', irregularFinal: { 'ㅂ니다': '옵니다' } },
+            '읽': { dict: '읽다', combiningStem: '읽' },
+            '마시': { dict: '마시다', combiningStem: '마시' },
+            '싸': { dict: '싸다', combiningStem: '싸' },
+            '예쁘': { dict: '예쁘다', combiningStem: '예쁘' },
+            '맛있': { dict: '맛있다', combiningStem: '맛있' },
+            '일어나': { dict: '일어나다', combiningStem: '일어나' },
+            '재미있': { dict: '재미있다', combiningStem: '재미있' },
+            '하': { dict: '하다', combiningStem: '하' },
+            '공부하': { dict: '공부하다', combiningStem: '공부하' },
+            '요리하': { dict: '요리하다', combiningStem: '요리하' },
+            '조용하': { dict: '조용하다', combiningStem: '조용하' },
+            '아름답': { dict: '아름답다', combiningStem: '아름답' },
+            '찍': { dict: '찍다', combiningStem: '찍' },
+            '여행하': { dict: '여행하다', combiningStem: '여행하' },
+            '웃': { dict: '웃다', combiningStem: '웃' },
+            '말하': { dict: '말하다', combiningStem: '말하' },
+            '얇': { dict: '얇다', combiningStem: '얇' },
+            '가볍': { dict: '가볍다', combiningStem: '가볍' },
+            '보': { dict: '보다', combiningStem: '보' },
+            '먹': { dict: '먹다', combiningStem: '먹' },
+            '넓': { dict: '넓다', combiningStem: '넓' },
+            '깨끗하': { dict: '깨끗하다', combiningStem: '깨끗하' },
+            '쓰': { dict: '쓰다', combiningStem: '쓰' },
+            '흘리': { dict: '흘리다', combiningStem: '흘리' },
+            '노래하': { dict: '노래하다', combiningStem: '노래하' },
+            '일하': { dict: '일하다', combiningStem: '일하' },
+            '돌보': { dict: '돌보다', combiningStem: '돌보' },
+            '빠르': { dict: '빠르다', combiningStem: '빠르' },
+            '세우': { dict: '세우다', combiningStem: '세우' },
+            '깊': { dict: '깊다', combiningStem: '깊' },
+            '기다리': { dict: '기다리다', combiningStem: '기다리' },
+            '울': { dict: '울다', combiningStem: '울' },
+            '찾': { dict: '찾다', combiningStem: '찾' },
+            '산책하': { dict: '산책하다', combiningStem: '산책하' },
+            '이야기하': { dict: '이야기하다', combiningStem: '이야기하' },
+            '운동하': { dict: '운동하다', combiningStem: '운동하' },
+            '건강하': { dict: '건강하다', combiningStem: '건강하' },
+            '감동적이': { dict: '감동적이다', combiningStem: '감동적이' },
+            '부': { dict: '불다', combiningStem: '부' },
+            '불': { dict: '불다', combiningStem: '불' },
+            '들': { dict: '듣다', combiningStem: '들' },
+            '쉬우': { dict: '쉽다', combiningStem: '쉬우' },
+            '켜': { dict: '켜다', combiningStem: '켜' },
+            '추우': { dict: '춥다', combiningStem: '추우' },
+            '더우': { dict: '덥다', combiningStem: '더우' }
+        };
+
+        const manualBlockParse = {
+            '춥니다': { stem: '추', ending: 'ㅂ니다', dict: '추다' },
+            '붑니다': { stem: '부', ending: 'ㅂ니다', dict: '불다' },
+            '마십니다': { stem: '마시', ending: 'ㅂ니다', dict: '마시다' },
+            '예쁩니다': { stem: '예쁘', ending: 'ㅂ니다', dict: '예쁘다' },
+            '옵니다': { stem: '오', ending: 'ㅂ니다', dict: '오다' },
+            '부릅니다': { stem: '부르', ending: 'ㅂ니다', dict: '부르다' },
+            '켭니다': { stem: '켜', ending: 'ㅂ니다', dict: '켜다' },
+            '세웁니다': { stem: '세우', ending: 'ㅂ니다', dict: '세우다' },
+            '흘립니다': { stem: '흘리', ending: 'ㅂ니다', dict: '흘리다' },
+            '운동합니다': { stem: '운동하', ending: 'ㅂ니다', dict: '운동하다' },
+            '이야기합니다': { stem: '이야기하', ending: 'ㅂ니다', dict: '이야기하다' },
+            '건강합니다': { stem: '건강하', ending: 'ㅂ니다', dict: '건강하다' },
+            '감동적입니다': { stem: '감동적이', ending: 'ㅂ니다', dict: '감동적이다' },
+            '공부합니다': { stem: '공부하', ending: 'ㅂ니다', dict: '공부하다' },
+            '여행합니다': { stem: '여행하', ending: 'ㅂ니다', dict: '여행하다' },
+            '말합니다': { stem: '말하', ending: 'ㅂ니다', dict: '말하다' },
+            '노래합니다': { stem: '노래하', ending: 'ㅂ니다', dict: '노래하다' },
+            '돌봅니다': { stem: '돌보', ending: 'ㅂ니다', dict: '돌보다' },
+            '조용합니다': { stem: '조용하', ending: 'ㅂ니다', dict: '조용하다' },
+            '깨끗합니다': { stem: '깨끗하', ending: 'ㅂ니다', dict: '깨끗하다' }
+        };
+
+        function hasBatchim(char) {
+            if (!char) return false;
+            const code = char.charCodeAt(0);
+            if (code < 0xAC00 || code > 0xD7A3) return false;
+            return (code - 0xAC00) % 28 !== 0;
+        }
+
+        function canAttachEnding(stem, ending) {
+            if (!stem || !ending) return false;
+            const lastChar = stem[stem.length - 1];
+            const batchim = hasBatchim(lastChar);
+            if (ending === '며') return !batchim;
+            if (ending === '으며') return batchim;
+            if (ending === 'ㅂ니다') return !batchim;
+            if (ending === '습니다') return batchim;
+            return false;
+        }
+
+        function isEnding(text) {
+            return ['며', '으며', '습니다', 'ㅂ니다'].includes(text);
+        }
+
+        function isParticle(text) {
+            return ['는', '은', '가', '이', '를', '을', '도', '고', '으로', '로', '에', '에서'].includes(text);
+        }
+
+        function getStemMeta(stem) {
+            if (stemMetaMap[stem]) return stemMetaMap[stem];
+            if (/^[가-힣]+$/.test(stem) && stem.length >= 1) {
+                return { dict: stem + '다', combiningStem: stem };
+            }
+            return null;
+        }
+
+        function attachFinalEnding(stem, ending) {
+            if (ending === '습니다') return stem + ending;
+            if (ending === 'ㅂ니다') {
+                const meta = getStemMeta(stem);
+                if (meta && meta.irregularFinal && meta.irregularFinal['ㅂ니다']) {
+                    return meta.irregularFinal['ㅂ니다'];
+                }
+                const lastChar = stem[stem.length - 1];
+                if (!hasBatchim(lastChar)) {
+                    const code = lastChar.charCodeAt(0) - 0xAC00;
+                    const onset = Math.floor(code / (21 * 28));
+                    const vowel = Math.floor((code / 28) % 21);
+                    const newSyllable = String.fromCharCode(0xAC00 + (onset * 21 * 28) + (vowel * 28) + 17);
+                    return stem.slice(0, -1) + newSyllable + '니다';
+                }
+                return stem + ending;
+            }
+            return stem + ending;
+        }
+
+        function tokenizeSolution(solutionArray) {
+            const tokens = [];
+            solutionArray.forEach(block => {
+                if (manualBlockParse[block]) {
+                    const p = manualBlockParse[block];
+                    tokens.push({ display: p.dict, type: 'predicate', combiningStem: p.stem, isDict: true });
+                    tokens.push({ display: p.ending, type: 'ending', combiningStem: null, isDict: false });
+                    return;
+                }
+                const parts = splitKoreanBlock(block);
+                tokens.push(...parts);
+            });
+            return tokens;
+        }
+
+        function splitKoreanBlock(block) {
+            const result = [];
+            let remaining = block;
+            const finalEndings = ['습니다', 'ㅂ니다', '입니다'];
+            const connectingEndings = ['으며', '며'];
+            const allParticles = ['는', '은', '가', '이', '를', '을', '도', '고', '으로', '로', '에', '에서'];
+
+            let foundEnding = null;
+            for (let end of finalEndings) {
+                if (remaining.endsWith(end) && remaining.length > end.length) {
+                    foundEnding = end;
+                    remaining = remaining.slice(0, -end.length);
+                    break;
+                }
+            }
+            if (!foundEnding) {
+                for (let end of connectingEndings) {
+                    if (remaining.endsWith(end) && remaining.length > end.length) {
+                        foundEnding = end;
+                        remaining = remaining.slice(0, -end.length);
+                        break;
+                    }
+                }
+            }
+
+            let foundParticle = null;
+            for (let p of allParticles) {
+                if (remaining.endsWith(p) && remaining.length > p.length) {
+                    foundParticle = p;
+                    remaining = remaining.slice(0, -p.length);
+                    break;
+                }
+            }
+
+            if (remaining.length > 0) {
+                const meta = getStemMeta(remaining);
+                if (meta && (foundEnding || block === remaining)) {
+                    result.push({ display: meta.dict, type: 'predicate', combiningStem: meta.combiningStem, isDict: true });
+                } else {
+                    result.push({ display: remaining, type: 'word', combiningStem: null, isDict: false });
+                }
+            }
+            if (foundParticle) result.push({ display: foundParticle, type: 'particle', combiningStem: null, isDict: false });
+            if (foundEnding) result.push({ display: foundEnding, type: 'ending', combiningStem: null, isDict: false });
+
+            return result.filter(s => s.display.length > 0);
+        }
+
+        function splitMergedBlock(block) {
+            if (manualBlockParse[block]) return [manualBlockParse[block].stem, manualBlockParse[block].ending];
+            const endings = ['습니다', 'ㅂ니다', '으며', '며'];
+            for (let end of endings) {
+                if (block.endsWith(end) && block.length > end.length) {
+                    return [block.slice(0, -end.length), end];
+                }
+            }
+            const particles = ['는', '은', '가', '이', '를', '을', '도', '고', '으로', '로', '에', '에서'];
+            for (let p of particles) {
+                if (block.endsWith(p) && block.length > p.length) {
+                    return [block.slice(0, -p.length), p];
+                }
+            }
+            return [block];
+        }
+
+        let taskOrder = [];
+        let currentOrderIndex = 0;
+        let builtBlocks = [];
+        let availableElements = [];
+
+        function shuffleArray(arr) {
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+
+        function initTaskOrder() {
+            taskOrder = Array.from({ length: tasks.length }, (_, i) => i);
+            taskOrder = shuffleArray(taskOrder);
+            currentOrderIndex = 0;
+        }
+
+        function getCurrentTask() { return tasks[taskOrder[currentOrderIndex]]; }
+
+        const buildArea = document.getElementById('buildArea');
+        const elementsPanel = document.getElementById('elementsPanel');
+        const russianTarget = document.getElementById('russianTarget');
+        const progressDisplay = document.getElementById('progressDisplay');
+        const feedbackDiv = document.getElementById('feedbackMessage');
+        const playHintBtn = document.getElementById('playHintBtn');
+        const resetBtn = document.getElementById('resetBtn');
+        const checkBtn = document.getElementById('checkBtn');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+
+        function getBlockClass(block) {
+            if (block.isCombined) return 'mosaic-block combined';
+            if (block.isDict) return 'mosaic-block dict-form';
+            return 'mosaic-block';
+        }
+        function getElementClass(el) {
+            if (el.type === 'predicate') return 'infinitive-chip';
+            if (el.type === 'ending') return 'ending-chip';
+            if (el.type === 'particle') return 'particle-chip';
+            return '';
+        }
+
+        function renderBuildArea() {
+            buildArea.innerHTML = '';
+            builtBlocks.forEach((block, idx) => {
+                const div = document.createElement('div');
+                div.className = getBlockClass(block);
+                div.textContent = block.display;
+                div.setAttribute('data-index', idx);
+                div.addEventListener('click', () => returnBlockToElements(idx));
+                buildArea.appendChild(div);
+            });
+        }
+
+        function renderElementsPanel() {
+            elementsPanel.innerHTML = '';
+            availableElements.forEach((el, idx) => {
+                const chip = document.createElement('div');
+                chip.className = 'element-chip ' + getElementClass(el);
+                chip.textContent = el.display;
+                chip.setAttribute('data-index', idx);
+                chip.addEventListener('click', () => handleElementClick(idx));
+                elementsPanel.appendChild(chip);
+            });
+        }
+
+        function handleElementClick(elementIndex) {
+            if (elementIndex < 0 || elementIndex >= availableElements.length) return;
+            const el = availableElements[elementIndex];
+
+            if (el.type === 'ending') {
+                let attached = false;
+                for (let i = builtBlocks.length - 1; i >= 0; i--) {
+                    const block = builtBlocks[i];
+                    if (block.isCombined) continue;
+                    if (el.display === 'ㅂ니다' || el.display === '습니다') {
+                        if (block.isDict && !block.isCombined) {
+                            if (canAttachEnding(block.combiningStem, el.display)) {
+                                block.display = attachFinalEnding(block.combiningStem, el.display);
+                                block.isDict = false; block.isCombined = true; block.combiningStem = null;
+                                attached = true; break;
+                            } else {
+                                showFeedback('❌ Это окончание не подходит к данной основе.', false);
+                                return;
+                            }
+                        }
+                    } else if (el.display === '며' || el.display === '으며') {
+                        if ((block.isDict || block.type === 'word') && !block.isCombined) {
+                            const stem = block.isDict ? block.combiningStem : block.display;
+                            if (canAttachEnding(stem, el.display)) {
+                                block.display = stem + el.display;
+                                block.isDict = false; block.isCombined = true;
+                                if (block.isDict) block.combiningStem = null;
+                                attached = true; break;
+                            } else {
+                                showFeedback('❌ Это окончание не подходит к данной основе.', false);
+                                return;
+                            }
+                        }
+                    }
+                }
+                if (!attached) addElementToBuild(elementIndex);
+                else { renderBuildArea(); renderElementsPanel(); clearFeedback(); }
+            } else if (el.type === 'particle') {
+                let attached = false;
+                if (builtBlocks.length > 0) {
+                    const last = builtBlocks[builtBlocks.length - 1];
+                    if (last.type === 'word' && !last.isDict && !last.isCombined) {
+                        last.display += el.display;
+                        last.isCombined = true;
+                        availableElements.splice(elementIndex, 1);
+                        attached = true;
+                    }
+                }
+                if (!attached) addElementToBuild(elementIndex);
+                else { renderBuildArea(); renderElementsPanel(); clearFeedback(); }
+            } else {
+                addElementToBuild(elementIndex);
+            }
+        }
+
+        function addElementToBuild(elementIndex) {
+            if (elementIndex < 0 || elementIndex >= availableElements.length) return;
+            const el = availableElements.splice(elementIndex, 1)[0];
+            builtBlocks.push({
+                display: el.display,
+                type: el.type,
+                combiningStem: el.combiningStem,
+                isDict: el.isDict || false,
+                isCombined: false,
+            });
+            renderBuildArea(); renderElementsPanel(); clearFeedback();
+        }
+
+        function returnBlockToElements(index) {
+            if (index < 0 || index >= builtBlocks.length) return;
+            const removed = builtBlocks.splice(index, 1)[0];
+            if (removed.isCombined) {
+                const parts = splitMergedBlock(removed.display);
+                parts.forEach(p => {
+                    if (isEnding(p)) {
+                        availableElements.push({ display: p, type: 'ending', combiningStem: null, isDict: false });
+                    } else if (isParticle(p)) {
+                        availableElements.push({ display: p, type: 'particle', combiningStem: null, isDict: false });
+                    } else {
+                        const meta = getStemMeta(p);
+                        if (meta) {
+                            availableElements.push({ display: meta.dict, type: 'predicate', combiningStem: meta.combiningStem, isDict: true });
+                        } else {
+                            availableElements.push({ display: p, type: 'word', combiningStem: null, isDict: false });
+                        }
+                    }
+                });
+            } else {
+                availableElements.push({
+                    display: removed.display,
+                    type: removed.type,
+                    combiningStem: removed.combiningStem,
+                    isDict: removed.isDict || false,
+                });
+            }
+            availableElements = shuffleArray(availableElements);
+            renderBuildArea(); renderElementsPanel(); clearFeedback();
+        }
+
+        function resetBuild() { loadCurrentTask(); }
+
+        function checkAnswer() {
+            const task = getCurrentTask();
+            const solutionStr = task.solution.join('');
+            const builtStr = builtBlocks.map(b => b.display).join('');
+            if (solutionStr === builtStr) {
+                showFeedback('✅ Отлично! Всё верно.', true);
+                return true;
+            } else {
+                showFeedback('❌ Пока не совпадает. Попробуйте другую комбинацию.', false);
+                return false;
+            }
+        }
+
+        function showFeedback(msg, isCorrect) {
+            feedbackDiv.style.display = 'block';
+            feedbackDiv.textContent = msg;
+            feedbackDiv.className = `feedback ${isCorrect ? 'correct-feedback' : 'wrong-feedback'}`;
+            if (!isCorrect && msg.includes('не подходит')) {
+                setTimeout(() => { if (feedbackDiv.textContent === msg) feedbackDiv.style.display = 'none'; }, 2000);
+            }
+        }
+        function clearFeedback() { feedbackDiv.style.display = 'none'; }
+
+        function loadCurrentTask() {
+            const task = getCurrentTask();
+            russianTarget.textContent = task.ru;
+            progressDisplay.textContent = `${currentOrderIndex + 1} / ${tasks.length}`;
+            availableElements = shuffleArray(tokenizeSolution(task.solution));
+            builtBlocks = [];
+            renderBuildArea(); renderElementsPanel(); clearFeedback();
+        }
+
+        function navigateToNext() {
+            if (currentOrderIndex < tasks.length - 1) { currentOrderIndex++; loadCurrentTask(); }
+        }
+        function navigateToPrev() {
+            if (currentOrderIndex > 0) { currentOrderIndex--; loadCurrentTask(); }
+        }
+
+        function speakHint() {
+            const task = getCurrentTask();
+            const fullSentence = task.solution.join(' ');
+            if (window.speechSynthesis) {
+                window.speechSynthesis.cancel();
+                const utterance = new SpeechSynthesisUtterance(fullSentence);
+                utterance.lang = 'ko-KR';
+                utterance.rate = 0.4;
+                utterance.pitch = 1.0;
+                const voices = speechSynthesis.getVoices();
+                const koVoice = voices.find(v => v.lang.startsWith('ko'));
+                if (koVoice) utterance.voice = koVoice;
+                speechSynthesis.speak(utterance);
+            }
+        }
+
+        playHintBtn.addEventListener('click', speakHint);
+        resetBtn.addEventListener('click', resetBuild);
+        checkBtn.addEventListener('click', () => { if (checkAnswer()) setTimeout(navigateToNext, 900); });
+        prevBtn.addEventListener('click', navigateToPrev);
+        nextBtn.addEventListener('click', navigateToNext);
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft' && !e.ctrlKey && !e.metaKey) { e.preventDefault(); navigateToPrev(); }
+            else if (e.key === 'ArrowRight' && !e.ctrlKey && !e.metaKey) { e.preventDefault(); navigateToNext(); }
+            else if (e.key === 'Enter' && !e.ctrlKey && !e.metaKey) { e.preventDefault(); if (checkAnswer()) setTimeout(navigateToNext, 900); }
+            else if (e.key === 'r' && e.ctrlKey) { e.preventDefault(); resetBuild(); }
+        });
+
+        initTaskOrder();
+        loadCurrentTask();
+    })();
+</script>
+</body>
+</html>
