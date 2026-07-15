@@ -399,7 +399,7 @@
         </div>
         <div class="nav-box">
             <button class="nav-arrow" id="prevBtn" title="Предыдущее">◀</button>
-            <span class="progress" id="progressDisplay">1 / 30</span>
+            <span class="progress" id="progressDisplay">1 / 22</span>
             <button class="nav-arrow" id="nextBtn" title="Следующее">▶</button>
         </div>
     </div>
@@ -422,46 +422,38 @@
     </div>
     <div id="feedbackMessage" class="feedback" style="display: none;"></div>
 </div>
-
 <!-- Блок с переходами теперь прямо под игрой -->
 <div class="perehod">
     <a href="/index/Index_kor_ru_igot_egi_1.html"><img src="/image/vlevo2.svg" alt="Предыдущая страница"></a>
     <a href="/index.html"><img src="/image/vpravo2.svg" alt="Следующая страница"></a>
 </div>
 
+
 <script>
     (function() {
         const tasks = [
             { ru: "Я пою и танцую.", solution: ["저는", "노래를", "부르며", "춤을", "춥니다"] },
-            { ru: "Он врач и учитель.", solution: ["그는", "의사며", "선생님입니다"] },
-            { ru: "Идёт дождь и дует ветер.", solution: ["비가", "오며", "바람이", "붑니다"] },
+            { ru: "Он врач и учитель.", solution: ["그는", "의사", "이며", "선생님", "입니다"] },
             { ru: "Я читаю книгу и пью кофе.", solution: ["저는", "책을", "읽으며", "커피를", "마십니다"] },
             { ru: "Эта сумка дешёвая и красивая.", solution: ["이", "가방은", "싸며", "예쁩니다"] },
-            { ru: "Сегодня холодно и ветрено, идёт снег.", solution: ["오늘은", "춥고", "바람이", "불며", "눈이", "옵니다"] },
             { ru: "Я слушаю музыку и занимаюсь спортом.", solution: ["저는", "음악을", "들으며", "운동합니다"] },
-            { ru: "Он студент и певец.", solution: ["그는", "학생이며", "가수입니다"] },
+            { ru: "Он студент и певец.", solution: ["그는", "학생", "이며", "가수", "입니다"] },
             { ru: "Мы гуляем и разговариваем.", solution: ["우리는", "산책하며", "이야기합니다"] },
             { ru: "Эта еда вкусная и полезная.", solution: ["이", "음식은", "맛있으며", "건강합니다"] },
-            { ru: "Утром я просыпаюсь и потягиваюсь.", solution: ["저는", "아침에", "일어나며", "기지개를", "켭니다"] },
-            { ru: "Этот фильм интересный и трогательный.", solution: ["이", "영화는", "재미있으며", "감동적입니다"] },
             { ru: "Он играет в баскетбол и учится.", solution: ["그는", "농구를", "하며", "공부합니다"] },
             { ru: "Старшая сестра готовит и поёт.", solution: ["언니는", "요리하며", "노래를", "부릅니다"] },
             { ru: "Здесь тихо и красиво.", solution: ["이곳은", "조용하며", "아름답습니다"] },
-            { ru: "Я путешествую и фотографирую.", solution: ["저는", "사진을", "찍으며", "여행합니다"] },
             { ru: "Минсу улыбается и говорит.", solution: ["민수는", "웃으며", "말합니다"] },
             { ru: "Эта тетрадь тонкая и лёгкая.", solution: ["이", "공책은", "얇으며", "가볍습니다"] },
             { ru: "Я смотрю телевизор и ужинаю.", solution: ["저는", "텔레비전을", "보며", "저녁을", "먹습니다"] },
-            { ru: "Бабушка вяжет и рассказывает.", solution: ["할머니는", "뜨개질을", "하며", "이야기합니다"] },
             { ru: "Эта дорога широкая и чистая.", solution: ["이", "길은", "넓으며", "깨끗합니다"] },
             { ru: "Он пишет письмо и плачет.", solution: ["그는", "편지를", "쓰며", "눈물을", "흘립니다"] },
             { ru: "Я принимаю душ и пою.", solution: ["저는", "샤워를", "하며", "노래합니다"] },
             { ru: "Она работает учителем и заботится о детях.", solution: ["그녀는", "선생님으로", "일하며", "아이들을", "돌봅니다"] },
             { ru: "Этот компьютер быстрый и тихий.", solution: ["이", "컴퓨터는", "빠르며", "조용합니다"] },
-            { ru: "Мы едим и строим планы.", solution: ["우리는", "밥을", "먹으며", "계획을", "세웁니다"] },
-            { ru: "Эта река глубокая и широкая.", solution: ["그", "강은", "깊으며", "넓습니다"] },
+            { ru: "Эта река глубокая и широкая.", solution: ["이", "강이", "깊으며", "넓습니다"] },
             { ru: "Я жду друга и читаю книгу.", solution: ["나는", "친구를", "기다리며", "책을", "읽습니다"] },
-            { ru: "Эта работа лёгкая и интересная.", solution: ["이", "일은", "쉬우며", "재미있습니다"] },
-            { ru: "Ребёнок плачет и ищет маму.", solution: ["아기는", "울며", "엄마를", "찾습니다"] }
+            { ru: "Эта работа лёгкая и интересная.", solution: ["이", "일은", "쉬우며", "재미있습니다"] }
         ];
 
         const stemMetaMap = {
@@ -535,7 +527,9 @@
             '노래합니다': { stem: '노래하', ending: 'ㅂ니다', dict: '노래하다' },
             '돌봅니다': { stem: '돌보', ending: 'ㅂ니다', dict: '돌보다' },
             '조용합니다': { stem: '조용하', ending: 'ㅂ니다', dict: '조용하다' },
-            '깨끗합니다': { stem: '깨끗하', ending: 'ㅂ니다', dict: '깨끗하다' }
+            '깨끗합니다': { stem: '깨끗하', ending: 'ㅂ니다', dict: '깨끗하다' },
+            '입니다': { stem: '이', ending: 'ㅂ니다', dict: '이다' },
+            '이며': { stem: '이', ending: '며', dict: '이다' }
         };
 
         function hasBatchim(char) {
@@ -566,9 +560,6 @@
 
         function getStemMeta(stem) {
             if (stemMetaMap[stem]) return stemMetaMap[stem];
-            if (/^[가-힣]+$/.test(stem) && stem.length >= 1) {
-                return { dict: stem + '다', combiningStem: stem };
-            }
             return null;
         }
 
@@ -643,7 +634,7 @@
 
             if (remaining.length > 0) {
                 const meta = getStemMeta(remaining);
-                if (meta && (foundEnding || block === remaining)) {
+                if (meta && foundEnding) {
                     result.push({ display: meta.dict, type: 'predicate', combiningStem: meta.combiningStem, isDict: true });
                 } else {
                     result.push({ display: remaining, type: 'word', combiningStem: null, isDict: false });
