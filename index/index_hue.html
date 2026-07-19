@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes, viewport-fit=cover">
+    <title>Корейский конструктор ~ㄴ/은 후에 · 다음에 · 뒤에</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: linear-gradient(135deg, #d4e7e1 0%, #b8d8d0 100%);
+            font-family: 'Noto Sans KR', 'Segoe UI', system-ui, sans-serif;
+            display: flex; flex-direction: column; align-items: center;
+            min-height: 100vh; padding: 1rem; margin: 0;
+        }
+        .app {
+            max-width: 850px; width: 100%;
+            background: rgba(255,255,255,0.75); backdrop-filter: blur(20px);
+            border-radius: 2.5rem; padding: 1.8rem;
+            box-shadow: 0 25px 50px rgba(64,100,90,0.25);
+            border: 1px solid rgba(180,210,200,0.6);
+        }
+        h1 {
+            font-size: clamp(1.5rem, 4vw, 2.2rem); font-weight: 700;
+            color: #2c5e5e; text-align: center; margin-bottom: 0.2rem; letter-spacing: 2px;
+        }
+        .subtitle {
+            color: #4a7c7c; margin-bottom: 1.2rem; font-weight: 500;
+            font-size: clamp(0.8rem, 2vw, 0.95rem); text-align: center;
+        }
+        .task-card {
+            background: rgba(220,240,235,0.7); border-radius: 1.8rem;
+            padding: 1rem 1.2rem; margin: 0.8rem 0 1.2rem;
+            border: 1px solid #b0cec7; display: flex; align-items: center;
+            justify-content: space-between; flex-wrap: wrap; gap: 0.8rem;
+            backdrop-filter: blur(8px);
+        }
+        .russian-box {
+            display: flex; align-items: center; gap: 0.6rem;
+            flex-wrap: wrap; flex: 1 1 auto; min-width: 0;
+        }
+        .russian-sentence {
+            font-size: clamp(1rem, 3vw, 1.3rem); font-weight: 600;
+            color: #1e3b3b; background: #e0f0eb; padding: 0.35rem 1rem;
+            border-radius: 2.5rem; border: 1px solid #9bc0b8;
+            word-break: break-word; flex: 1 1 auto; min-width: 120px; text-align: center;
+        }
+        .play-hint-btn {
+            background: #b0d5ce; border: none; width: 42px; height: 42px;
+            min-width: 42px; border-radius: 50%; font-size: 1.3rem;
+            cursor: pointer; display: flex; align-items: center; justify-content: center;
+            color: #1e4a4a; transition: 0.2s; box-shadow: 0 4px 10px rgba(60,110,100,0.2);
+            border: 1px solid #8db5ab; flex-shrink: 0;
+        }
+        .play-hint-btn:hover { background: #8fc0b5; color: white; }
+        .nav-box { display: flex; align-items: center; gap: 0.6rem; flex-shrink: 0; }
+        .nav-arrow {
+            background: #c0dbd3; border: none; width: 38px; height: 38px;
+            min-width: 38px; border-radius: 50%; font-size: 1.3rem;
+            cursor: pointer; display: flex; align-items: center; justify-content: center;
+            color: #1e4a4a; transition: 0.2s; border: 1px solid #9bc0b7; font-weight: bold;
+        }
+        .nav-arrow:hover { background: #9cc4b9; color: white; }
+        .progress {
+            font-weight: 600; color: #386565; background: #cbe4de;
+            padding: 0.3rem 0.8rem; border-radius: 2.5rem;
+            font-size: clamp(0.75rem, 2vw, 0.9rem); min-width: 60px;
+            text-align: center; white-space: nowrap;
+        }
+        .build-label {
+            font-weight: 600; color: #2c5e5e; margin: 0.5rem 0 0.3rem;
+            font-size: clamp(0.75rem, 2vw, 0.9rem);
+        }
+        .build-area {
+            background: rgba(235,248,244,0.8); backdrop-filter: blur(10px);
+            border-radius: 1.4rem; padding: 0.8rem 1rem; min-height: 70px;
+            display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem;
+            border: 2px dashed #79aaa0; margin: 0.3rem 0 1rem;
+            transition: 0.2s; background: rgba(215,235,228,0.7);
+        }
+        .mosaic-block {
+            background: #ecf6f3; border: 2px solid #7faaa2; border-radius: 2rem;
+            padding: 0.4rem 1rem; font-size: clamp(0.95rem, 2.5vw, 1.2rem);
+            font-weight: 600; color: #1f4540; display: flex; align-items: center;
+            gap: 0.2rem; background: #f4fbf9; transition: 0.2s; cursor: pointer;
+            user-select: none; box-shadow: 0 2px 6px rgba(80,130,120,0.15);
+        }
+        .mosaic-block:hover { background: #d0ebe4; border-color: #5a8f84; }
+        .mosaic-block.dict-form {
+            background: #fef9e7; border-color: #c9a96e; border-style: solid;
+        }
+        .mosaic-block.combined {
+            background: #e6f7ee; border-color: #5a9e84; border-style: solid;
+        }
+        .elements-panel {
+            background: rgba(210,228,222,0.7); backdrop-filter: blur(10px);
+            border-radius: 1.5rem; padding: 0.8rem; display: flex;
+            flex-wrap: wrap; gap: 0.6rem; justify-content: center;
+            margin: 0.8rem 0; border: 1px solid #b3cfc6; min-height: 50px;
+        }
+        .element-chip {
+            background: #dcebe5; border: 2px solid #8cb5ab; border-radius: 2rem;
+            padding: 0.45rem 1rem; font-weight: 700; color: #1e4d47;
+            cursor: pointer; background: #f0f9f6; transition: 0.15s;
+            font-size: clamp(0.9rem, 2.2vw, 1.15rem);
+            box-shadow: 0 2px 6px rgba(70,110,100,0.2);
+            display: flex; align-items: center; gap: 0.2rem; user-select: none;
+        }
+        .element-chip.infinitive-chip { background: #fef9e7; border-color: #c9a96e; }
+        .element-chip.ending-chip { background: #e8f0fe; border-color: #7b9fc0; }
+        .element-chip.particle-chip { background: #f0e6f6; border-color: #b39bc0; }
+        .element-chip:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(70,110,100,0.3); }
+        .element-chip:active { transform: scale(0.95); }
+        .button-row {
+            display: flex; gap: 0.6rem; justify-content: center;
+            margin-top: 0.8rem; flex-wrap: wrap;
+        }
+        .btn {
+            background: #c6ddd6; border: none; padding: 0.6rem 1.5rem;
+            border-radius: 3rem; font-weight: 700; color: #1b4d47;
+            cursor: pointer; display: flex; align-items: center; gap: 0.4rem;
+            border: 1px solid #96bcb3; transition: 0.2s;
+            font-size: clamp(0.85rem, 2vw, 1rem);
+            background: rgba(225,242,237,0.8); backdrop-filter: blur(6px);
+            white-space: nowrap;
+        }
+        .btn.check-btn { background: #6a9f95; color: white; border-color: #4c7f74; }
+        .btn.check-btn:hover { background: #528078; }
+        .btn:hover { background: #b9d5cc; }
+        .btn:active { transform: scale(0.96); }
+        .feedback {
+            margin-top: 0.7rem; font-weight: 600; padding: 0.4rem 1rem;
+            border-radius: 2rem; text-align: center;
+            font-size: clamp(0.8rem, 2vw, 0.95rem);
+        }
+        .correct-feedback { background: #c6e5db; color: #1b463b; }
+        .wrong-feedback { background: #f5cfc4; color: #7b3a2c; }
+        .legend {
+            display: flex; gap: 0.7rem; justify-content: center;
+            flex-wrap: wrap; margin-bottom: 0.3rem;
+            font-size: clamp(0.65rem, 1.6vw, 0.8rem); color: #5a7d77;
+        }
+        .legend span { display: flex; align-items: center; gap: 0.3rem; white-space: nowrap; }
+        .legend-dot {
+            width: 11px; height: 11px; border-radius: 50%;
+            display: inline-block; flex-shrink: 0;
+        }
+        .perehod {
+            display: flex; flex-direction: row; justify-content: space-between;
+            width: 100%; max-width: 850px; margin: 20px auto 0; padding: 0 20px;
+        }
+        .perehod a { display: inline-flex; align-items: center; justify-content: center; }
+        .perehod img {
+            width: 30px; height: 30px; border-radius: 50%;
+            border: 1px solid rgb(49,36,105); transition: transform 0.3s;
+        }
+        .perehod a:hover img { transform: scale(1.5); }
+        @media (min-width: 1441px) { .app { max-width: 950px; padding: 2.2rem; border-radius: 3rem; } .mosaic-block { font-size: 1.3rem; padding: 0.5rem 1.3rem; } .element-chip { font-size: 1.2rem; padding: 0.55rem 1.3rem; } .russian-sentence { font-size: 1.5rem; } .perehod { max-width: 950px; } }
+        @media (max-width: 1024px) and (min-width: 769px) { .app { max-width: 90%; padding: 1.5rem; border-radius: 2.2rem; } .mosaic-block { font-size: 1.05rem; padding: 0.35rem 0.9rem; } .element-chip { font-size: 1rem; padding: 0.4rem 0.9rem; } }
+        @media (max-width: 768px) and (min-width: 481px) { .app { max-width: 95%; padding: 1.2rem; border-radius: 2rem; } .task-card { flex-direction: column; align-items: stretch; } .russian-box, .nav-box { justify-content: center; } .mosaic-block { font-size: 1rem; padding: 0.35rem 0.8rem; } .element-chip { font-size: 0.95rem; padding: 0.35rem 0.8rem; } .build-area { min-height: 60px; padding: 0.6rem 0.8rem; } }
+        @media (max-width: 480px) and (min-width: 376px) { .app { max-width: 100%; padding: 1rem; border-radius: 1.6rem; } .task-card { flex-direction: column; align-items: stretch; } .russian-box, .nav-box { justify-content: center; } .mosaic-block { font-size: 0.9rem; padding: 0.3rem 0.7rem; } .element-chip { font-size: 0.85rem; padding: 0.3rem 0.7rem; } .btn { padding: 0.45rem 1rem; font-size: 0.85rem; } }
+        @media (max-width: 375px) and (min-width: 250px) { .app { max-width: 100%; padding: 0.7rem; border-radius: 1.3rem; } .task-card { flex-direction: column; align-items: stretch; } .mosaic-block { font-size: 0.78rem; padding: 0.25rem 0.55rem; } .element-chip { font-size: 0.75rem; padding: 0.25rem 0.55rem; } .btn { padding: 0.35rem 0.8rem; font-size: 0.75rem; } h1 { font-size: 1.3rem; } .russian-sentence { font-size: 0.9rem; } .perehod { padding: 0 10px; } }
+    </style>
+</head>
+<body>
+<div class="app">
+    <h1>~ㄴ/은 후에 · 다음에 · 뒤에</h1>
+    <div class="subtitle">Собери предложение из элементов · предикативы в словарной форме</div>
+
+    <div class="task-card">
+        <div class="russian-box">
+            <span class="russian-sentence" id="russianTarget"></span>
+            <button class="play-hint-btn" id="playHintBtn" title="Прослушать правильное предложение">🔊</button>
+        </div>
+        <div class="nav-box">
+            <button class="nav-arrow" id="prevBtn" title="Предыдущее">◀</button>
+            <span class="progress" id="progressDisplay">1 / 30</span>
+            <button class="nav-arrow" id="nextBtn" title="Следующее">▶</button>
+        </div>
+    </div>
+
+    <div class="build-label">📍 Собери предложение здесь (нажми на слово, чтобы вернуть обратно)</div>
+    <div class="build-area" id="buildArea"></div>
+
+    <div class="build-label">Элементы:</div>
+    <div class="legend">
+        <span><span class="legend-dot" style="background:#fef9e7;border:1px solid #c9a96e;"></span> словарная форма</span>
+        <span><span class="legend-dot" style="background:#e8f0fe;border:1px solid #7b9fc0;"></span> окончание</span>
+        <span><span class="legend-dot" style="background:#f0e6f6;border:1px solid #b39bc0;"></span> частица</span>
+        <span><span class="legend-dot" style="background:#dcebe5;border:1px solid #8cb5ab;"></span> слово</span>
+    </div>
+    <div class="elements-panel" id="elementsPanel"></div>
+
+    <div class="button-row">
+        <button class="btn" id="resetBtn"><span>↺</span> Сбросить</button>
+        <button class="btn check-btn" id="checkBtn"><span>✓</span> Проверить</button>
+    </div>
+    <div id="feedbackMessage" class="feedback" style="display: none;"></div>
+</div>
+
+<div class="perehod">
+    <a href="/index/index.mye - 2.html"><img src="/image/vlevo2.svg" alt="Предыдущая страница"></a>
+    <a href="/index.html"><img src="/image/vpravo2.svg" alt="Следующая страница"></a>
+</div>
+
+<script>
+    (function() {
+        // ========== ЗАДАНИЯ (с учётом правок пользователя) ==========
+        const tasks = [
+            { ru: "После того как я поел, я пошёл в школу.", solution: ["저", "는", "밥", "을", "먹은", "후에", "학교", "에", "갔어요"] },
+            { ru: "После того как я посмотрел телевизор, я сделал домашнее задание.", solution: ["저", "는", "텔레비전", "을", "본", "다음에", "숙제", "를", "했어요"] },
+            { ru: "После того как я прочитал книгу, я лёг спать.", solution: ["저", "는", "책", "을", "읽은", "뒤에", "잠", "을", "잤어요"] },
+            { ru: "После того как я встретил друга, я пошёл в ресторан.", solution: ["저", "는", "친구", "를", "만난", "후에", "식당", "에", "갔어요"] },
+            { ru: "После того как я спел песню, я станцевал.", solution: ["저", "는", "노래", "를", "한", "다음에", "춤", "을", "췄어요"] },
+            { ru: "После того как я купил хлеб, я пошёл домой.", solution: ["저", "는", "빵", "을", "산", "뒤에", "집", "에", "갔어요"] },
+            { ru: "После того как я написал письмо, я отправил его.", solution: ["저", "는", "편지", "를", "쓴", "후에", "보냈어요"] },
+            { ru: "После того как я позавтракал, я почистил зубы.", solution: ["저", "는", "아침", "을", "먹은", "다음에", "이", "를", "닦았어요"] },
+            { ru: "После того как я проснулся, я умылся.", solution: ["저", "는", "일어난", "뒤에", "세수", "를", "했어요"] },
+            { ru: "После того как я выпил воду, я побежал.", solution: ["저", "는", "물", "을", "마신", "후에", "달렸어요"] },
+            { ru: "После того как я купил билет, я пошёл в кино.", solution: ["저", "는", "표", "를", "산", "뒤에", "영화관", "에", "갔어요"] },
+            { ru: "После того как я приготовил еду, я поел.", solution: ["저", "는", "음식", "을", "요리한", "후에", "밥", "을", "먹었어요"] },
+            { ru: "После того как я выучил корейский, я поехал в Корею.", solution: ["저", "는", "한국어", "를", "배운", "다음에", "한국", "에", "갔어요"] },
+            { ru: "После того как я позвонил маме, я вышел.", solution: ["저", "는", "어머니", "에게", "전화한", "뒤에", "나갔어요"] },
+            { ru: "После того как я надел пальто, я вышел на улицу.", solution: ["저", "는", "외투", "를", "입은", "후에", "밖", "에", "나갔어요"] },
+            { ru: "После того как я снял обувь, я вошёл в дом.", solution: ["저", "는", "신발", "을", "벗은", "다음에", "집", "에", "들어갔어요"] },
+            { ru: "После того как я помыл руки, я поел.", solution: ["저", "는", "손", "을", "씻은", "뒤에", "밥", "을", "먹었어요"] },
+            { ru: "После того как я вышел из автобуса, я пошёл пешком.", solution: ["저", "는", "버스", "에서", "내린", "다음에", "걸어갔어요"] },
+            { ru: "После того как я сделал домашнюю работу, я поиграл.", solution: ["저", "는", "숙제", "를", "한", "뒤에", "놀았어요"] },
+            { ru: "После того как я купил цветы, я подарил их.", solution: ["저", "는", "꽃", "을", "산", "후에", "선물했어요"] },
+            { ru: "После того как я прочитал газету, я выпил кофе.", solution: ["저", "는", "신문", "을", "읽은", "다음에", "커피", "를", "마셨어요"] },
+            { ru: "После того как я включил радио, я лёг спать.", solution: ["저", "는", "라디오", "를", "켠", "뒤에", "잤어요"] },
+            { ru: "После того как я встретил учителя, я поздоровался.", solution: ["저", "는", "선생님", "을", "만난", "다음에", "인사했어요"] },
+            { ru: "После того как я выучил слова, я сдал тест.", solution: ["저", "는", "단어", "를", "외운", "뒤에", "시험", "을", "봤어요"] },
+            { ru: "После того как я сделал покупки, я пошёл домой.", solution: ["저", "는", "쇼핑", "을", "한", "다음에", "집", "에", "갔어요"] },
+            { ru: "После того как я отдохнул, я почувствовал себя лучше.", solution: ["저", "는", "쉰", "뒤에", "기분", "이", "좋아졌어요"] }
+        ];
+
+        // ========== ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ==========
+        function hasBatchim(char) {
+            if (!char) return false;
+            const code = char.charCodeAt(0);
+            if (code < 0xAC00 || code > 0xD7A3) return false;
+            return (code - 0xAC00) % 28 !== 0;
+        }
+
+        function isParticle(text) {
+            return ['는', '은', '가', '이', '를', '을', '도', '고', '으로', '로', '에', '에서', '에게'].includes(text);
+        }
+
+        function tokenizeSolution(solArray) {
+            return solArray.map(item => {
+                if (isParticle(item)) return { display: item, type: 'particle', isDict: false };
+                return { display: item, type: 'word', isDict: false };
+            });
+        }
+
+        // ========== СОСТОЯНИЕ ==========
+        let taskOrder = [];
+        let currentOrderIndex = 0;
+        let builtBlocks = [];
+        let availableElements = [];
+
+        function shuffleArray(arr) {
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+
+        function initTaskOrder() {
+            taskOrder = Array.from({ length: tasks.length }, (_, i) => i);
+            taskOrder = shuffleArray(taskOrder);
+            currentOrderIndex = 0;
+        }
+
+        function getCurrentTask() { return tasks[taskOrder[currentOrderIndex]]; }
+
+        // ========== DOM ==========
+        const buildArea = document.getElementById('buildArea');
+        const elementsPanel = document.getElementById('elementsPanel');
+        const russianTarget = document.getElementById('russianTarget');
+        const progressDisplay = document.getElementById('progressDisplay');
+        const feedbackDiv = document.getElementById('feedbackMessage');
+        const playHintBtn = document.getElementById('playHintBtn');
+        const resetBtn = document.getElementById('resetBtn');
+        const checkBtn = document.getElementById('checkBtn');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+
+        function getBlockClass(block) {
+            if (block.isCombined) return 'mosaic-block combined';
+            if (block.isDict) return 'mosaic-block dict-form';
+            return 'mosaic-block';
+        }
+        function getElementClass(el) {
+            if (el.type === 'predicate') return 'infinitive-chip';
+            if (el.type === 'ending') return 'ending-chip';
+            if (el.type === 'particle') return 'particle-chip';
+            return '';
+        }
+
+        function renderBuildArea() {
+            buildArea.innerHTML = '';
+            builtBlocks.forEach((block, idx) => {
+                const div = document.createElement('div');
+                div.className = getBlockClass(block);
+                div.textContent = block.display;
+                div.setAttribute('data-index', idx);
+                div.addEventListener('click', () => returnBlockToElements(idx));
+                buildArea.appendChild(div);
+            });
+        }
+
+        function renderElementsPanel() {
+            elementsPanel.innerHTML = '';
+            availableElements.forEach((el, idx) => {
+                const chip = document.createElement('div');
+                chip.className = 'element-chip ' + getElementClass(el);
+                chip.textContent = el.display;
+                chip.setAttribute('data-index', idx);
+                chip.addEventListener('click', () => handleElementClick(idx));
+                elementsPanel.appendChild(chip);
+            });
+        }
+
+        function handleElementClick(elementIndex) {
+            if (elementIndex < 0 || elementIndex >= availableElements.length) return;
+            addElementToBuild(elementIndex);
+        }
+
+        function addElementToBuild(elementIndex) {
+            if (elementIndex < 0 || elementIndex >= availableElements.length) return;
+            const el = availableElements.splice(elementIndex, 1)[0];
+            builtBlocks.push({ display: el.display, type: el.type, isDict: false, isCombined: false });
+            renderBuildArea(); renderElementsPanel(); clearFeedback();
+        }
+
+        function returnBlockToElements(index) {
+            if (index < 0 || index >= builtBlocks.length) return;
+            const removed = builtBlocks.splice(index, 1)[0];
+            availableElements.push({ display: removed.display, type: removed.type, isDict: false });
+            availableElements = shuffleArray(availableElements);
+            renderBuildArea(); renderElementsPanel(); clearFeedback();
+        }
+
+        function resetBuild() { loadCurrentTask(); }
+
+        function checkAnswer() {
+            const task = getCurrentTask();
+            const solutionStr = task.solution.join('');
+            const builtStr = builtBlocks.map(b => b.display).join('');
+            if (solutionStr === builtStr) {
+                showFeedback('✅ Отлично! Всё верно.', true);
+                return true;
+            } else {
+                showFeedback('❌ Пока не совпадает. Попробуйте другую комбинацию.', false);
+                return false;
+            }
+        }
+
+        function showFeedback(msg, isCorrect) {
+            feedbackDiv.style.display = 'block';
+            feedbackDiv.textContent = msg;
+            feedbackDiv.className = `feedback ${isCorrect ? 'correct-feedback' : 'wrong-feedback'}`;
+        }
+        function clearFeedback() { feedbackDiv.style.display = 'none'; }
+
+        function loadCurrentTask() {
+            const task = getCurrentTask();
+            russianTarget.textContent = task.ru;
+            progressDisplay.textContent = `${currentOrderIndex + 1} / ${tasks.length}`;
+            availableElements = shuffleArray(tokenizeSolution(task.solution));
+            builtBlocks = [];
+            renderBuildArea(); renderElementsPanel(); clearFeedback();
+        }
+
+        function navigateToNext() {
+            if (currentOrderIndex < tasks.length - 1) { currentOrderIndex++; loadCurrentTask(); }
+        }
+        function navigateToPrev() {
+            if (currentOrderIndex > 0) { currentOrderIndex--; loadCurrentTask(); }
+        }
+
+        function speakHint() {
+            const task = getCurrentTask();
+            const fullSentence = task.solution.join(' ');
+            if (window.speechSynthesis) {
+                window.speechSynthesis.cancel();
+                const utterance = new SpeechSynthesisUtterance(fullSentence);
+                utterance.lang = 'ko-KR';
+                utterance.rate = 0.4;
+                utterance.pitch = 1.0;
+                const voices = speechSynthesis.getVoices();
+                const koVoice = voices.find(v => v.lang.startsWith('ko'));
+                if (koVoice) utterance.voice = koVoice;
+                speechSynthesis.speak(utterance);
+            }
+        }
+
+        playHintBtn.addEventListener('click', speakHint);
+        resetBtn.addEventListener('click', resetBuild);
+        checkBtn.addEventListener('click', () => { if (checkAnswer()) setTimeout(navigateToNext, 900); });
+        prevBtn.addEventListener('click', navigateToPrev);
+        nextBtn.addEventListener('click', navigateToNext);
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft' && !e.ctrlKey && !e.metaKey) { e.preventDefault(); navigateToPrev(); }
+            else if (e.key === 'ArrowRight' && !e.ctrlKey && !e.metaKey) { e.preventDefault(); navigateToNext(); }
+            else if (e.key === 'Enter' && !e.ctrlKey && !e.metaKey) { e.preventDefault(); if (checkAnswer()) setTimeout(navigateToNext, 900); }
+            else if (e.key === 'r' && e.ctrlKey) { e.preventDefault(); resetBuild(); }
+        });
+
+        initTaskOrder();
+        loadCurrentTask();
+    })();
+</script>
+</body>
+</html>
